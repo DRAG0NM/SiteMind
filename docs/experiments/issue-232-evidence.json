@@ -1,0 +1,378 @@
+{
+  "nature": "synthetic",
+  "purpose": "Issue 232 local functional acceptance; not factory or live-model acceptance",
+  "main_sha": "a7439be458e84e3b67961ba07142a6eeafcd9a0c",
+  "http": {
+    "passed": true,
+    "v1": "asset://manufacturing/4f1bfb5c/process_doc/source",
+    "v2": "asset://manufacturing/e36300eb/process_doc/source",
+    "parent": "asset://manufacturing/4f1bfb5c/process_doc/source",
+    "manifest_id": "vm-0a544b489145ca81",
+    "cutoff": "2026-11-15T06:15:42.902782+00:00",
+    "old_as_of_hidden": 404,
+    "unpublished_graph_hidden": 404,
+    "published": true,
+    "backtests": {
+      "act-849ee2c7591bbe8a": "pass"
+    },
+    "graph_triples": 3,
+    "v1_content_sha256": "4f1bfb5c85e1505070be6de368a1cf2f6a84691c8a1aa24966f6dee066153edd"
+  },
+  "persistence": {
+    "assets": [
+      {
+        "asset_id": "asset://manufacturing/4f1bfb5c/process_doc/source",
+        "hash": "sha256:4f1bfb5c85e1505070be6de368a1cf2f6a84691c8a1aa24966f6dee066153edd",
+        "blob_exists": true,
+        "hash_matches": true
+      },
+      {
+        "asset_id": "asset://manufacturing/e36300eb/process_doc/source",
+        "hash": "sha256:e36300ebbef972781579aadbd6cd36fcc9dea94c3f1aec8b256a923313264c6a",
+        "blob_exists": true,
+        "hash_matches": true
+      }
+    ],
+    "activation": [
+      [
+        "asset://manufacturing/4f1bfb5c/process_doc/source",
+        "identified",
+        ""
+      ],
+      [
+        "asset://manufacturing/4f1bfb5c/process_doc/source",
+        "identified",
+        "kb://equipment"
+      ],
+      [
+        "asset://manufacturing/4f1bfb5c/process_doc/source",
+        "in_graph",
+        "vm-0a544b489145ca81"
+      ],
+      [
+        "asset://manufacturing/e36300eb/process_doc/source",
+        "identified",
+        ""
+      ],
+      [
+        "asset://manufacturing/e36300eb/process_doc/source",
+        "identified",
+        "kb://equipment"
+      ]
+    ]
+  },
+  "receipt": {
+    "document_id": "browser-manual",
+    "asset_version_id": "asset://manufacturing/4f1bfb5c/process_doc/source",
+    "content_hash": "sha256:4f1bfb5c85e1505070be6de368a1cf2f6a84691c8a1aa24966f6dee066153edd",
+    "parent_version_id": null,
+    "expert": "equipment",
+    "nature": "synthetic",
+    "available_at": "2026-11-15T06:10:53.765306Z",
+    "status": "published",
+    "candidate_ids": [
+      "rule-4e89e70351e5e674"
+    ],
+    "ontology_candidate_ids": [
+      "ont-7ce629fa546bf033"
+    ],
+    "entity_ids": [
+      "entity://demo-electronics/air_compressor/AC-2"
+    ],
+    "deduplicated": false,
+    "published": true,
+    "note": "已通过统一确认发布；图谱须按清单读取，旧运行保持原版本；本地回测使用明确标注的 synthetic 计价基础，缺月补 0.62 元/kWh",
+    "received_at": "2026-11-15T06:10:53.765306Z",
+    "source_name": "manual-v1.txt",
+    "source_level": "experience_record",
+    "action_ids": [
+      "act-614d3d467f958fd4",
+      "act-849ee2c7591bbe8a"
+    ],
+    "manifest_ids": [
+      "vm-0a544b489145ca81"
+    ],
+    "reviews": {
+      "ont-7ce629fa546bf033": "accept"
+    },
+    "backtests": {
+      "act-849ee2c7591bbe8a": "pass"
+    }
+  },
+  "graph": {
+    "schema_version": "1",
+    "ok": true,
+    "business_status": "done",
+    "job_id": null,
+    "data": {
+      "items": [
+        {
+          "subject": "<entity://demo-electronics/air_compressor/AC-2>",
+          "predicate": "<http://www.w3.org/1999/02/22-rdf-syntax-ns#type>",
+          "object": "<https://brickschema.org/schema/Brick#Compressor>"
+        },
+        {
+          "subject": "<entity://demo-electronics/air_compressor/AC-2>",
+          "predicate": "<https://plantkg.dev/ns/ontology#reviewedBy>",
+          "object": "\"dev-reviewer\""
+        },
+        {
+          "subject": "<entity://demo-electronics/air_compressor/AC-2>",
+          "predicate": "<https://plantkg.dev/ns/ontology#sourceAsset>",
+          "object": "<asset://manufacturing/4f1bfb5c/process_doc/source>"
+        }
+      ]
+    },
+    "error": null,
+    "evidence_ids": [],
+    "run_id": null,
+    "version_manifest_id": "vm-0a544b489145ca81",
+    "page": {
+      "next_cursor": null,
+      "page_size": 50,
+      "total": null
+    },
+    "notice": null
+  },
+  "review_confirmation": {
+    "action_id": "act-614d3d467f958fd4",
+    "kind": "review_decision",
+    "plant_id": "demo-electronics",
+    "payload": {
+      "review_id": "ont-7ce629fa546bf033",
+      "target_ref": "ont-7ce629fa546bf033",
+      "decision": "accept",
+      "revision": {
+        "choice": "https://brickschema.org/schema/Brick#Compressor"
+      },
+      "rationale": "Synthetic browser acceptance"
+    },
+    "proposed_by": {
+      "agent_run_id": null,
+      "run_id": null,
+      "trace_id": "document-review-cli",
+      "call_id": null,
+      "tool": null
+    },
+    "proposed_at": "2026-11-15T06:11:22.451207Z",
+    "expires_at": "2026-11-16T06:11:22.451207Z",
+    "status": "confirmed",
+    "revision": 1,
+    "target_ref": "ont-7ce629fa546bf033",
+    "target_revision": null,
+    "decided_by": "dev-reviewer",
+    "decided_at": "2026-11-15T06:11:34.551838Z",
+    "reason": "Synthetic local browser acceptance",
+    "edits": null,
+    "idempotency_key": "auto-c63e10a14d90ea683c666c0b2ff37ab3"
+  },
+  "publish_confirmation": {
+    "action_id": "act-849ee2c7591bbe8a",
+    "kind": "publish",
+    "plant_id": "demo-electronics",
+    "payload": {
+      "target_ref": "ont-7ce629fa546bf033",
+      "candidate": {
+        "candidate_id": "ont-7ce629fa546bf033",
+        "kind": "knowledge",
+        "base_manifest_id": "vm-1175058d0d17ae80",
+        "changes": {
+          "rules": {
+            "ref": "b30-rules:c3d16119381d3ce5a5fe82bf0350cf0640aa8c14376053810936772391260efe",
+            "content_hash": "sha256:c3d16119381d3ce5a5fe82bf0350cf0640aa8c14376053810936772391260efe"
+          },
+          "ontology": {
+            "ref": "graph:v1:e364d20b7e922d01ccded3ca3946495d838a1e3e3759b104a3fbc548ac9fca50",
+            "content_hash": "sha256:4a3caf3a72df483369b2c00f797c1094ac0539e3082f077488887091edb5b231"
+          }
+        },
+        "status": "validated",
+        "trigger": "人工复核资料规则",
+        "created_at": "2026-11-15T06:12:32.375061Z",
+        "validation_policy_version": "b30-fallback-no-backtest",
+        "backtest_report_id": "b32-report-8d13de284d0ba519",
+        "publish_action_id": "pending"
+      },
+      "backtest_report": {
+        "report_id": "b32-report-8d13de284d0ba519",
+        "candidate_id": "ont-7ce629fa546bf033",
+        "base_manifest_id": "vm-1175058d0d17ae80",
+        "split_ids": [
+          "issue_232_b71d010e0c7ac15c"
+        ],
+        "seed": 32,
+        "metrics": {
+          "issue_232_b71d010e0c7ac15c": {
+            "base_target": 0.0,
+            "candidate_target": 0.0,
+            "base_resolved": 4.0,
+            "candidate_resolved": 4.0,
+            "base_safety": 1.0,
+            "candidate_safety": 1.0,
+            "base_fast": 3.0,
+            "candidate_fast": 3.0,
+            "base_capacity_violation_minutes": 0.0,
+            "candidate_capacity_violation_minutes": 0.0,
+            "base_cost_cny": 554.26,
+            "candidate_cost_cny": 554.26
+          },
+          "base": {
+            "target": 0.0,
+            "resolved": 4.0,
+            "safety": 1.0,
+            "fast": 3.0,
+            "capacity_violation_minutes": 0.0,
+            "cost_cny": 554.26
+          },
+          "candidate": {
+            "target": 0.0,
+            "resolved": 4.0,
+            "safety": 1.0,
+            "fast": 3.0,
+            "capacity_violation_minutes": 0.0,
+            "cost_cny": 554.26
+          },
+          "coverage": {
+            "deterministic_fallbacks": 34.0,
+            "target_events": 0.0,
+            "target_measured": 1.0,
+            "baseline_reused": 0.0,
+            "rule_coverage": 0.0
+          }
+        },
+        "constraint_violations": {
+          "base": 0,
+          "candidate": 0
+        },
+        "failures": [],
+        "thresholds": {
+          "cost_tolerance_pct": 5.0,
+          "target_improvement": 0.0
+        },
+        "policy_version": "b32-v2",
+        "verdict": "pass",
+        "artifact_hash": "sha256:38572f906d7cbdf84d3a115729dd550db39092e7f41abab53e9cb7020425e21d",
+        "job_id": null,
+        "scope": "fast_window"
+      }
+    },
+    "proposed_by": {
+      "agent_run_id": null,
+      "run_id": null,
+      "trace_id": "document-review-cli",
+      "call_id": null,
+      "tool": null
+    },
+    "proposed_at": "2026-11-15T06:12:40.544593Z",
+    "expires_at": "2026-11-16T06:12:40.544593Z",
+    "status": "confirmed",
+    "revision": 1,
+    "target_ref": "ont-7ce629fa546bf033",
+    "target_revision": null,
+    "decided_by": "dev-reviewer",
+    "decided_at": "2026-11-15T06:13:54.864993Z",
+    "reason": "Synthetic local browser acceptance",
+    "edits": null,
+    "idempotency_key": "auto-0b2a49d3e3580f9a5f314503d6114284"
+  },
+  "browser_upload": {
+    "phase": "upload",
+    "passed": true,
+    "errors": []
+  },
+  "browser_restart": {
+    "phase": "restart",
+    "passed": true,
+    "errors": []
+  },
+  "backtest": {
+    "report_id": "b32-report-8d13de284d0ba519",
+    "candidate_id": "ont-7ce629fa546bf033",
+    "base_manifest_id": "vm-1175058d0d17ae80",
+    "split_ids": [
+      "issue_232_b71d010e0c7ac15c"
+    ],
+    "metrics": {
+      "issue_232_b71d010e0c7ac15c": {
+        "base_target": 0.0,
+        "candidate_target": 0.0,
+        "base_resolved": 4.0,
+        "candidate_resolved": 4.0,
+        "base_safety": 1.0,
+        "candidate_safety": 1.0,
+        "base_fast": 3.0,
+        "candidate_fast": 3.0,
+        "base_capacity_violation_minutes": 0.0,
+        "candidate_capacity_violation_minutes": 0.0,
+        "base_cost_cny": 554.26,
+        "candidate_cost_cny": 554.26
+      },
+      "base": {
+        "target": 0.0,
+        "resolved": 4.0,
+        "safety": 1.0,
+        "fast": 3.0,
+        "capacity_violation_minutes": 0.0,
+        "cost_cny": 554.26
+      },
+      "candidate": {
+        "target": 0.0,
+        "resolved": 4.0,
+        "safety": 1.0,
+        "fast": 3.0,
+        "capacity_violation_minutes": 0.0,
+        "cost_cny": 554.26
+      },
+      "coverage": {
+        "deterministic_fallbacks": 34.0,
+        "target_events": 0.0,
+        "target_measured": 1.0,
+        "baseline_reused": 0.0,
+        "rule_coverage": 0.0
+      }
+    },
+    "constraint_violations": {
+      "base": 0,
+      "candidate": 0
+    },
+    "failures": [],
+    "verdict": "pass",
+    "scope": "fast_window",
+    "artifact_hash": "sha256:38572f906d7cbdf84d3a115729dd550db39092e7f41abab53e9cb7020425e21d"
+  },
+  "alignment_fix_regression": {
+    "name": "pytest",
+    "errors": "0",
+    "failures": "0",
+    "skipped": "0",
+    "tests": "64",
+    "time": "351.741",
+    "timestamp": "2026-11-15T17:19:30.183440+08:00",
+    "scope": "upload_http + B06 + ontology; after equipment ID boundary fix"
+  },
+  "backend_regression": {
+    "tests": "1720",
+    "failures": "0",
+    "errors": "0",
+    "skipped": "0",
+    "time": "2856.139",
+    "timestamp": "2026-11-15T17:04:14.808916+08:00"
+  },
+  "frontend_regression": {
+    "test_files": 28,
+    "tests": 136,
+    "failures": 0
+  },
+  "contract_examples_regression": {
+    "tests": 189,
+    "failures": 0
+  },
+  "b36_acceptance": {
+    "tests": 5,
+    "failures": 0,
+    "runs": 2,
+    "events_each": 14,
+    "balanced_minutes_each": 2880,
+    "nature": "synthetic"
+  }
+}

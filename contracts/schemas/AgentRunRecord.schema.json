@@ -1,0 +1,478 @@
+{
+  "$defs": {
+    "AgentResultKind": {
+      "description": "AgentResultSource 的结果类型：专家运行、门控不一致研判、第 3 层裁决、追问。",
+      "enum": [
+        "expert",
+        "triage",
+        "arbitration",
+        "follow_up",
+        "investigate"
+      ],
+      "title": "AgentResultKind",
+      "type": "string"
+    },
+    "AgentRunNode": {
+      "additionalProperties": false,
+      "description": "一次运行里的一个 Agent 节点（B23）：主 Agent 为 depth 0；子 Agent 按 Nexent SSE 的 invocation_id 区分。",
+      "properties": {
+        "node_id": {
+          "maxLength": 200,
+          "minLength": 1,
+          "title": "Node Id",
+          "type": "string"
+        },
+        "agent_name": {
+          "maxLength": 200,
+          "minLength": 1,
+          "title": "Agent Name",
+          "type": "string"
+        },
+        "depth": {
+          "minimum": 0,
+          "title": "Depth",
+          "type": "integer"
+        },
+        "parent_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Parent Id"
+        },
+        "started_at": {
+          "anyOf": [
+            {
+              "format": "date-time",
+              "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d{1,9})?(Z|[+-]00:?00)$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Started At"
+        },
+        "finished_at": {
+          "anyOf": [
+            {
+              "format": "date-time",
+              "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d{1,9})?(Z|[+-]00:?00)$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Finished At"
+        },
+        "final_answer": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Final Answer"
+        }
+      },
+      "required": [
+        "node_id",
+        "agent_name",
+        "depth"
+      ],
+      "title": "AgentRunNode",
+      "type": "object"
+    },
+    "AgentTiming": {
+      "additionalProperties": false,
+      "description": "三个仿真时间与墙钟耗时（03 §3.0 时间协调）。仿真时间决定动作生效，墙钟只进报告。",
+      "properties": {
+        "origin_event_at": {
+          "format": "date-time",
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d{1,9})?(Z|[+-]00:?00)$",
+          "title": "Origin Event At",
+          "type": "string"
+        },
+        "trigger_at": {
+          "format": "date-time",
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d{1,9})?(Z|[+-]00:?00)$",
+          "title": "Trigger At",
+          "type": "string"
+        },
+        "effective_at": {
+          "format": "date-time",
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d{1,9})?(Z|[+-]00:?00)$",
+          "title": "Effective At",
+          "type": "string"
+        },
+        "requested_at": {
+          "format": "date-time",
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d{1,9})?(Z|[+-]00:?00)$",
+          "title": "Requested At",
+          "type": "string"
+        },
+        "returned_at": {
+          "anyOf": [
+            {
+              "format": "date-time",
+              "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d{1,9})?(Z|[+-]00:?00)$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Returned At"
+        },
+        "latency_ms": {
+          "anyOf": [
+            {
+              "minimum": 0,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Latency Ms"
+        },
+        "retries": {
+          "default": 0,
+          "minimum": 0,
+          "title": "Retries",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "origin_event_at",
+        "trigger_at",
+        "effective_at",
+        "requested_at"
+      ],
+      "title": "AgentTiming",
+      "type": "object"
+    },
+    "AgentToolCall": {
+      "additionalProperties": false,
+      "description": "一次 plantkg 工具调用（B23）：以 plantkg 自己的调用记录为准，不取 SSE 里模型填的参数。",
+      "properties": {
+        "call_id": {
+          "maxLength": 200,
+          "minLength": 1,
+          "title": "Call Id",
+          "type": "string"
+        },
+        "agent_name": {
+          "maxLength": 200,
+          "minLength": 1,
+          "title": "Agent Name",
+          "type": "string"
+        },
+        "depth": {
+          "default": 0,
+          "minimum": 0,
+          "title": "Depth",
+          "type": "integer"
+        },
+        "tool": {
+          "maxLength": 200,
+          "minLength": 1,
+          "title": "Tool",
+          "type": "string"
+        },
+        "model_params": {
+          "additionalProperties": true,
+          "title": "Model Params",
+          "type": "object"
+        },
+        "bound_params": {
+          "additionalProperties": true,
+          "title": "Bound Params",
+          "type": "object"
+        },
+        "started_at": {
+          "format": "date-time",
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d{1,9})?(Z|[+-]00:?00)$",
+          "title": "Started At",
+          "type": "string"
+        },
+        "duration_ms": {
+          "minimum": 0,
+          "title": "Duration Ms",
+          "type": "integer"
+        },
+        "business_status": {
+          "title": "Business Status",
+          "type": "string"
+        },
+        "summary": {
+          "anyOf": [
+            {
+              "maxLength": 500,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Summary"
+        }
+      },
+      "required": [
+        "call_id",
+        "agent_name",
+        "tool",
+        "started_at",
+        "duration_ms",
+        "business_status"
+      ],
+      "title": "AgentToolCall",
+      "type": "object"
+    },
+    "RunBinding": {
+      "additionalProperties": false,
+      "description": "一次专家或主 Agent 运行的绑定（03 §3.0 轮次与过期）。绑定不符的结果只入历史，不执行、不回写。",
+      "properties": {
+        "run_id": {
+          "maxLength": 200,
+          "minLength": 1,
+          "title": "Run Id",
+          "type": "string"
+        },
+        "knowledge_version": {
+          "minimum": 1,
+          "title": "Knowledge Version",
+          "type": "integer"
+        },
+        "ticket_id": {
+          "maxLength": 200,
+          "minLength": 1,
+          "title": "Ticket Id",
+          "type": "string"
+        },
+        "round": {
+          "minimum": 1,
+          "title": "Round",
+          "type": "integer"
+        },
+        "state_version": {
+          "minimum": 0,
+          "title": "State Version",
+          "type": "integer"
+        },
+        "trigger_at": {
+          "format": "date-time",
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d{1,9})?(Z|[+-]00:?00)$",
+          "title": "Trigger At",
+          "type": "string"
+        }
+      },
+      "required": [
+        "run_id",
+        "knowledge_version",
+        "ticket_id",
+        "round",
+        "state_version",
+        "trigger_at"
+      ],
+      "title": "RunBinding",
+      "type": "object"
+    },
+    "RunMode": {
+      "description": "v0.8 运行模式（03 §3.0 运行模式）。deterministic 是 live 来源缺失时的记录口径，不是请求模式。",
+      "enum": [
+        "live",
+        "trial",
+        "evaluation",
+        "deterministic"
+      ],
+      "title": "RunMode",
+      "type": "string"
+    },
+    "TerminalReason": {
+      "description": "网关判定的终态原因（07 Q03 四种异常 + 正常结束）。",
+      "enum": [
+        "completed",
+        "completed_from_deltas",
+        "timeout",
+        "cancelled",
+        "stream_lost_recovered",
+        "stream_lost",
+        "error"
+      ],
+      "title": "TerminalReason",
+      "type": "string"
+    }
+  },
+  "additionalProperties": false,
+  "description": "一次专家或主 Agent 运行（live 实调、缓存或确定性实现）的记录。\n\nB23 扩展：live 运行另记模型、Agent 节点与 depth、工具调用（模型填值 → 系统绑定值）与最终回答，\n供展示页“查看 Nexent 运行记录”使用；这些字段都可选，缓存与确定性记录可以不填。\n工作台的问答（kind=follow_up）不属于事件单，binding 可以为空。",
+  "properties": {
+    "agent_run_id": {
+      "maxLength": 200,
+      "minLength": 1,
+      "title": "Agent Run Id",
+      "type": "string"
+    },
+    "kind": {
+      "$ref": "#/$defs/AgentResultKind"
+    },
+    "agent_name": {
+      "maxLength": 200,
+      "minLength": 1,
+      "title": "Agent Name",
+      "type": "string"
+    },
+    "run_mode": {
+      "$ref": "#/$defs/RunMode"
+    },
+    "source": {
+      "enum": [
+        "nexent",
+        "cache",
+        "deterministic"
+      ],
+      "title": "Source",
+      "type": "string"
+    },
+    "binding": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/RunBinding"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "timing": {
+      "$ref": "#/$defs/AgentTiming"
+    },
+    "status": {
+      "enum": [
+        "finished",
+        "failed",
+        "timeout",
+        "blocked",
+        "cancelled"
+      ],
+      "title": "Status",
+      "type": "string"
+    },
+    "coverage_gap": {
+      "default": false,
+      "title": "Coverage Gap",
+      "type": "boolean"
+    },
+    "proposal_ids": {
+      "default": [],
+      "items": {
+        "type": "string"
+      },
+      "title": "Proposal Ids",
+      "type": "array"
+    },
+    "model": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Model"
+    },
+    "conversation_id": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Conversation Id"
+    },
+    "query": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Query"
+    },
+    "terminal_reason": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/TerminalReason"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    },
+    "nodes": {
+      "default": [],
+      "items": {
+        "$ref": "#/$defs/AgentRunNode"
+      },
+      "title": "Nodes",
+      "type": "array"
+    },
+    "tool_calls": {
+      "default": [],
+      "items": {
+        "$ref": "#/$defs/AgentToolCall"
+      },
+      "title": "Tool Calls",
+      "type": "array"
+    },
+    "final_answer": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Final Answer"
+    }
+  },
+  "required": [
+    "agent_run_id",
+    "kind",
+    "agent_name",
+    "run_mode",
+    "source",
+    "binding",
+    "timing",
+    "status"
+  ],
+  "title": "AgentRunRecord",
+  "type": "object",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "plantkg:contracts/1.2.0/AgentRunRecord"
+}

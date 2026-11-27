@@ -1,0 +1,161 @@
+{
+  "$defs": {
+    "ResponseBudget": {
+      "additionalProperties": false,
+      "description": "仿真响应预算（仿真分钟），取实测墙钟 p95 向上取整。",
+      "properties": {
+        "layer12_min": {
+          "minimum": 0,
+          "title": "Layer12 Min",
+          "type": "integer"
+        },
+        "layer3_min": {
+          "minimum": 0,
+          "title": "Layer3 Min",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "layer12_min",
+        "layer3_min"
+      ],
+      "title": "ResponseBudget",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "description": "版本清单 policy 组件的内容（03 §3.4、§3.5）：带版本、可进化。",
+  "properties": {
+    "policy_version": {
+      "maxLength": 200,
+      "minLength": 1,
+      "title": "Policy Version",
+      "type": "string"
+    },
+    "arbitration_weights": {
+      "additionalProperties": {
+        "type": "number"
+      },
+      "title": "Arbitration Weights",
+      "type": "object"
+    },
+    "priority_profiles": {
+      "additionalProperties": {
+        "items": {
+          "type": "string"
+        },
+        "type": "array"
+      },
+      "title": "Priority Profiles",
+      "type": "object"
+    },
+    "confidence_low": {
+      "default": 0.3,
+      "maximum": 1,
+      "minimum": 0,
+      "title": "Confidence Low",
+      "type": "number"
+    },
+    "confidence_high": {
+      "default": 0.7,
+      "maximum": 1,
+      "minimum": 0,
+      "title": "Confidence High",
+      "type": "number"
+    },
+    "sampling_ratio": {
+      "default": 0.2,
+      "maximum": 1,
+      "minimum": 0,
+      "title": "Sampling Ratio",
+      "type": "number"
+    },
+    "response_budget": {
+      "$ref": "#/$defs/ResponseBudget"
+    },
+    "major_loss_cny": {
+      "anyOf": [
+        {
+          "minimum": 0,
+          "type": "number"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Major Loss Cny"
+    },
+    "preview_horizon_min": {
+      "default": 30,
+      "minimum": 1,
+      "title": "Preview Horizon Min",
+      "type": "integer"
+    },
+    "preview_soc_low": {
+      "default": 0.3,
+      "maximum": 1,
+      "minimum": 0,
+      "title": "Preview Soc Low",
+      "type": "number"
+    },
+    "preview_transformer_high": {
+      "default": 0.85,
+      "maximum": 1,
+      "minimum": 0,
+      "title": "Preview Transformer High",
+      "type": "number"
+    },
+    "autonomy_levels": {
+      "additionalProperties": {
+        "enum": [
+          "L0",
+          "L1",
+          "L2",
+          "L3"
+        ],
+        "type": "string"
+      },
+      "title": "Autonomy Levels",
+      "type": "object"
+    },
+    "autonomy_default_level": {
+      "default": "L2",
+      "enum": [
+        "L0",
+        "L1",
+        "L2",
+        "L3"
+      ],
+      "title": "Autonomy Default Level",
+      "type": "string"
+    },
+    "autonomy_unseen_level": {
+      "default": "L0",
+      "enum": [
+        "L0",
+        "L1",
+        "L2",
+        "L3"
+      ],
+      "title": "Autonomy Unseen Level",
+      "type": "string"
+    },
+    "human_deadline_min": {
+      "default": 30,
+      "minimum": 1,
+      "title": "Human Deadline Min",
+      "type": "integer"
+    }
+  },
+  "required": [
+    "policy_version",
+    "arbitration_weights",
+    "priority_profiles",
+    "response_budget"
+  ],
+  "title": "PolicyConfig",
+  "type": "object",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "plantkg:contracts/1.2.0/PolicyConfig"
+}

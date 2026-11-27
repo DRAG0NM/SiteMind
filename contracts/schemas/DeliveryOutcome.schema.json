@@ -1,0 +1,46 @@
+{
+  "additionalProperties": false,
+  "description": "B47 执行回执（#168）：B28 只依赖本契约映射 DayDecision.result.outcome，不 import 分级执行。\n\n排队 / 工单 → work_order，infeasible / stale → blocked，全部执行 → executed；\ncorrection 是低置信转人工纠错。action_indexes 是本次提案里对应的动作序号。",
+  "properties": {
+    "outcome": {
+      "enum": [
+        "executed",
+        "queued_work_order",
+        "queued_human",
+        "blocked_infeasible",
+        "stale",
+        "correction"
+      ],
+      "title": "Outcome",
+      "type": "string"
+    },
+    "reason": {
+      "default": "",
+      "title": "Reason",
+      "type": "string"
+    },
+    "work_order_ids": {
+      "default": [],
+      "items": {
+        "type": "string"
+      },
+      "title": "Work Order Ids",
+      "type": "array"
+    },
+    "action_indexes": {
+      "default": [],
+      "items": {
+        "type": "integer"
+      },
+      "title": "Action Indexes",
+      "type": "array"
+    }
+  },
+  "required": [
+    "outcome"
+  ],
+  "title": "DeliveryOutcome",
+  "type": "object",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "plantkg:contracts/1.2.0/DeliveryOutcome"
+}

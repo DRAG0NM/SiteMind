@@ -1,0 +1,10 @@
+{
+  "model": "UIEvent",
+  "data": {
+    "type": "keepalive",
+    "agent_run_id": "ar-20260630-0001",
+    "trace_id": "tr-0001",
+    "seq": 20,
+    "ts": "2026-10-30T02:00:25Z"
+  }
+}

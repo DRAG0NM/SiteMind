@@ -1,0 +1,21 @@
+{
+  "model": "OntologyCandidate",
+  "base": "ontology_candidate",
+  "expect_error": "Unknown",
+  "data": {
+    "candidate_id": "oc-0001",
+    "layer": "concept",
+    "subject": "point:AHU1_SAT",
+    "options": [
+      "Supply_Air_Temperature_Sensor",
+      "Unknown"
+    ],
+    "evidence": [
+      {
+        "perspective": "name",
+        "excerpt": "AHU1_SAT"
+      }
+    ],
+    "recall_source": "vector"
+  }
+}

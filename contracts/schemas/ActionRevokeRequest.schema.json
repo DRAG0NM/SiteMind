@@ -1,0 +1,46 @@
+{
+  "additionalProperties": false,
+  "description": "撤销已生效动作；system_wrong 计入人工纠错，other 只记录。保护动作必须填 note 并带 confirm_protection。",
+  "properties": {
+    "reason_kind": {
+      "enum": [
+        "system_wrong",
+        "other"
+      ],
+      "title": "Reason Kind",
+      "type": "string"
+    },
+    "note": {
+      "default": "",
+      "maxLength": 500,
+      "title": "Note",
+      "type": "string"
+    },
+    "confirm_protection": {
+      "default": false,
+      "title": "Confirm Protection",
+      "type": "boolean"
+    },
+    "run_id": {
+      "anyOf": [
+        {
+          "maxLength": 200,
+          "minLength": 1,
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Run Id"
+    }
+  },
+  "required": [
+    "reason_kind"
+  ],
+  "title": "ActionRevokeRequest",
+  "type": "object",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "plantkg:contracts/1.2.0/ActionRevokeRequest"
+}

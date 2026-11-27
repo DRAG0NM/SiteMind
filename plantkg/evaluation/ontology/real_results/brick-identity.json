@@ -1,0 +1,1013 @@
+{
+  "old_sha256": "7df37f49d7933ae9cc73dc3e1fbc18e78954c41e35899bd5da8ea47c0a6d6841",
+  "new_sha256": "d336095f4cc24bbdee63ba414bb12f46dd6450f718cbe8a4b3c9be23fc26f620",
+  "old_terms_deprecated_in_new": 175,
+  "with_replacement": 143,
+  "correct": [],
+  "missing": [],
+  "wrong": [
+    {
+      "source": "https://brickschema.org/schema/Brick#Auditorium",
+      "prediction": "https://brickschema.org/schema/Brick#Auditorium",
+      "expected": [
+        "https://w3id.org/rec#Auditorium"
+      ]
+    },
+    {
+      "source": "https://brickschema.org/schema/Brick#Basement",
+      "prediction": "https://brickschema.org/schema/Brick#Basement",
+      "expected": [
+        "https://w3id.org/rec#BasementLevel"
+      ]
+    },
+    {
+      "source": "https://brickschema.org/schema/Brick#Battery_Room",
+      "prediction": "https://brickschema.org/schema/Brick#Battery_Room",
+      "expected": [
+        "https://w3id.org/rec#ElectricityRoom"
+      ]
+    },
+    {
+      "source": "https://brickschema.org/schema/Brick#Bench_Space",
+      "prediction": "https://brickschema.org/schema/Brick#Bench_Space",
+      "expected": [
+        "https://w3id.org/rec#Zone"
+      ]
+    },
+    {
+      "source": "https://brickschema.org/schema/Brick#Break_Room",
+      "prediction": "https://brickschema.org/schema/Brick#Break_Room",
+      "expected": [
+        "https://w3id.org/rec#StaffRoom"
+      ]
+    },
+    {
+      "source": "https://brickschema.org/schema/Brick#Breakroom",
+      "prediction": "https://brickschema.org/schema/Brick#Breakroom",
+      "expected": [
+        "https://w3id.org/rec#StaffRoom"
+      ]
+    },
+    {
+      "source": "https://brickschema.org/schema/Brick#Broadcast_Room",
+      "prediction": "https://brickschema.org/schema/Brick#Broadcast_Room",
+      "expected": [
+        "https://w3id.org/rec#RecordingRoom"
+      ]
+    },
+    {
+      "source": "https://brickschema.org/schema/Brick#Building",
+      "prediction": "https://brickschema.org/schema/Brick#Building",
+      "expected": [
+        "https://w3id.org/rec#Building"
+      ]
+    },
+    {
+      "source": "https://brickschema.org/schema/Brick#Cafeteria",
+      "prediction": "https://brickschema.org/schema/Brick#Cafeteria",
+      "expected": [
+        "https://w3id.org/rec#CafeteriaRoom"
+      ]
+    },
+    {
+      "source": "https://brickschema.org/schema/Brick#Chilled_Water_Discharge_Flow_Sensor",
+      "prediction": "https://brickschema.org/schema/Brick#Chilled_Water_Discharge_Flow_Sensor",
+      "expected": [
+        "https://brickschema.org/schema/Brick#Leaving_Chilled_Water_Flow_Sensor"
+      ]
+    },
+    {
+      "source": "https://brickschema.org/schema/Brick#Chilled_Water_Discharge_Flow_Setpoint",
+      "prediction": "https://brickschema.org/schema/Brick#Chilled_Water_Discharge_Flow_Setpoint",
+      "expected": [
+        "https://brickschema.org/schema/Brick#Leaving_Chilled_Water_Flow_Setpoint"
+      ]
+    },
+    {
+      "source": "https://brickschema.org/schema/Brick#Chilled_Water_Return_Temperature_Sensor",
+      "prediction": "https://brickschema.org/schema/Brick#Chilled_Water_Return_Temperature_Sensor",
+      "expected": [
+        "https://brickschema.org/schema/Brick#Entering_Chilled_Water_Temperature_Sensor"
+      ]
+    },
+    {
+      "source": "https://brickschema.org/schema/Brick#Chilled_Water_Supply_Flow_Sensor",
+      "prediction": "https://brickschema.org/schema/Brick#Chilled_Water_Supply_Flow_Sensor",
+      "expected": [
+        "https://brickschema.org/schema/Brick#Leaving_Chilled_Water_Flow_Sensor"
+      ]
+    },
+    {
+      "source": "https://brickschema.org/schema/Brick#Chilled_Water_Supply_Flow_Setpoint",
+      "prediction": "https://brickschema.org/schema/Brick#Chilled_Water_Supply_Flow_Setpoint",
+      "expected": [
+        "https://brickschema.org/schema/Brick#Leaving_Chilled_Water_Flow_Setpoint"
+      ]
+    },
+    {
+      "source": "https://brickschema.org/schema/Brick#Chilled_Water_Supply_Temperature_Sensor",
+      "prediction": "https://brickschema.org/schema/Brick#Chilled_Water_Supply_Temperature_Sensor",
+      "expected": [
+        "https://brickschema.org/schema/Brick#Leaving_Chilled_Water_Temperature_Sensor"
+      ]
+    },
+    {
+      "source": "https://brickschema.org/schema/Brick#Cold_Box",
+      "prediction": "https://brickschema.org/schema/Brick#Cold_Box",
+      "expected": [
+        "https://w3id.org/rec#Laboratory"
+      ]
+    },
+    {
+      "source": "https://brickschema.org/schema/Brick#Common_Space",
+      "prediction": "https://brickschema.org/schema/Brick#Common_Space",
+      "expected": [
+        "https://w3id.org/rec#Space"
+      ]
+    },
+    {
+      "source": "https://brickschema.org/schema/Brick#Concession",
+      "prediction": "https://brickschema.org/schema/Brick#Concession",
+      "expected": [
+        "https://w3id.org/rec#FoodHandlingRoom"
+      ]
+    },
+    {
+      "source": "https://brickschema.org/schema/Brick#Condenser",
+      "prediction": "https://brickschema.org/schema/Brick#Condenser",
+      "expected": [
+        "https://brickschema.org/schema/Brick#Condensing_Unit"
+      ]
+    },
+    {
+      "source": "https://brickschema.org/schema/Brick#Conference_Room",
+      "prediction": "https://brickschema.org/schema/Brick#Conference_Room",
+      "expected": [
+        "https://w3id.org/rec#ConferenceRoom"
+      ]
+    },
+    {
+      "source": "https://brickschema.org/schema/Brick#Control_Room",
+      "prediction": "https://brickschema.org/schema/Brick#Control_Room",
+      "expected": [
+        "https://w3id.org/rec#SecurityRoom"
+      ]
+    },
+    {
+      "source": "https://brickschema.org/schema/Brick#Copy_Room",
+      "prediction": "https://brickschema.org/schema/Brick#Copy_Room",
+      "expected": [
+        "https://w3id.org/rec#CopyingRoom"
+      ]
+    },
+    {
+      "source": "https://brickschema.org/schema/Brick#Cubicle",
+      "prediction": "https://brickschema.org/schema/Brick#Cubicle",
+      "expected": [
+        "https://w3id.org/rec#Workspace"
+      ]
+    },
+    {
+      "source": "https://brickschema.org/schema/Brick#Differential_Supply_Return_Water_Temperature_Sensor",
+      "prediction": "https://brickschema.org/schema/Brick#Differential_Supply_Return_Water_Temperature_Sensor",
+      "expected": [
+        "https://brickschema.org/schema/Brick#Differential_Entering_Leaving_Water_Temperature_Sensor"
+      ]
+    },
+    {
+      "source": "https://brickschema.org/schema/Brick#Discharge_Chilled_Water",
+      "prediction": "https://brickschema.org/schema/Brick#Discharge_Chilled_Water",
+      "expected": [
+        "https://brickschema.org/schema/Brick#Leaving_Chilled_Water"
+      ]
+    },
+    {
+      "source": "https://brickschema.org/schema/Brick#Discharge_Hot_Water",
+      "prediction": "https://brickschema.org/schema/Brick#Discharge_Hot_Water",
+      "expected": [
+        "https://brickschema.org/schema/Brick#Leaving_Hot_Water"
+      ]
+    },
+    {
+      "source": "https://brickschema.org/schema/Brick#Discharge_Water",
+      "prediction": "https://brickschema.org/schema/Brick#Discharge_Water",
+      "expected": [
+        "https://brickschema.org/schema/Brick#Leaving_Water"
+      ]
+    },
+    {
+      "source": "https://brickschema.org/schema/Brick#Discharge_Water_Flow_Sensor",
+      "prediction": "https://brickschema.org/schema/Brick#Discharge_Water_Flow_Sensor",
+      "expected": [
+        "https://brickschema.org/schema/Brick#Leaving_Water_Flow_Sensor"
+      ]
+    },
+    {
+      "source": "https://brickschema.org/schema/Brick#Discharge_Water_Flow_Setpoint",
+      "prediction": "https://brickschema.org/schema/Brick#Discharge_Water_Flow_Setpoint",
+      "expected": [
+        "https://brickschema.org/schema/Brick#Leaving_Water_Flow_Setpoint"
+      ]
+    },
+    {
+      "source": "https://brickschema.org/schema/Brick#Discharge_Water_Temperature_Sensor",
+      "prediction": "https://brickschema.org/schema/Brick#Discharge_Water_Temperature_Sensor",
+      "expected": [
+        "https://brickschema.org/schema/Brick#Leaving_Water_Temperature_Sensor"
+      ]
+    },
+    {
+      "source": "https://brickschema.org/schema/Brick#Distribution_Frame",
+      "prediction": "https://brickschema.org/schema/Brick#Distribution_Frame",
+      "expected": [
+        "https://w3id.org/rec#CableRoom"
+      ]
+    },
+    {
+      "source": "https://brickschema.org/schema/Brick#Domestic_Hot_Water_Supply_Temperature_Sensor",
+      "prediction": "https://brickschema.org/schema/Brick#Domestic_Hot_Water_Supply_Temperature_Sensor",
+      "expected": [
+        "https://brickschema.org/schema/Brick#Leaving_Domestic_Hot_Water_Temperature_Sensor"
+      ]
+    },
+    {
+      "source": "https://brickschema.org/schema/Brick#Domestic_Hot_Water_Supply_Temperature_Setpoint",
+      "prediction": "https://brickschema.org/schema/Brick#Domestic_Hot_Water_Supply_Temperature_Setpoint",
+      "expected": [
+        "https://brickschema.org/schema/Brick#Leaving_Domestic_Hot_Water_Temperature_Setpoint"
+      ]
+    },
+    {
+      "source": "https://brickschema.org/schema/Brick#Effective_Air_Temperature_Cooling_Setpoint",
+      "prediction": "https://brickschema.org/schema/Brick#Effective_Air_Temperature_Cooling_Setpoint",
+      "expected": [
+        "https://brickschema.org/schema/Brick#Effective_Cooling_Zone_Air_Temperature_Setpoint"
+      ]
+    },
+    {
+      "source": "https://brickschema.org/schema/Brick#Effective_Air_Temperature_Heating_Setpoint",
+      "prediction": "https://brickschema.org/schema/Brick#Effective_Air_Temperature_Heating_Setpoint",
+      "expected": [
+        "https://brickschema.org/schema/Brick#Effective_Heating_Zone_Air_Temperature_Setpoint"
+      ]
+    },
+    {
+      "source": "https://brickschema.org/schema/Brick#Effective_Zone_Air_Temperature_Setpoint",
+      "prediction": "https://brickschema.org/schema/Brick#Effective_Zone_Air_Temperature_Setpoint",
+      "expected": [
+        "https://brickschema.org/schema/Brick#Effective_Target_Zone_Air_Temperature_Setpoint"
+      ]
+    },
+    {
+      "source": "https://brickschema.org/schema/Brick#Electrical_Room",
+      "prediction": "https://brickschema.org/schema/Brick#Electrical_Room",
+      "expected": [
+        "https://w3id.org/rec#ElectricityRoom"
+      ]
+    },
+    {
+      "source": "https://brickschema.org/schema/Brick#Elevator_Shaft",
+      "prediction": "https://brickschema.org/schema/Brick#Elevator_Shaft",
+      "expected": [
+        "https://w3id.org/rec#ElevatorShaft"
+      ]
+    },
+    {
+      "source": "https://brickschema.org/schema/Brick#Elevator_Space",
+      "prediction": "https://brickschema.org/schema/Brick#Elevator_Space",
+      "expected": [
+        "https://w3id.org/rec#ElevatorShaft"
+      ]
+    },
+    {
+      "source": "https://brickschema.org/schema/Brick#Employee_Entrance_Lobby",
+      "prediction": "https://brickschema.org/schema/Brick#Employee_Entrance_Lobby",
+      "expected": [
+        "https://w3id.org/rec#ServiceEntrance"
+      ]
+    },
+    {
+      "source": "https://brickschema.org/schema/Brick#Enclosed_Office",
+      "prediction": "https://brickschema.org/schema/Brick#Enclosed_Office",
+      "expected": [
+        "https://w3id.org/rec#Workspace"
+      ]
+    },
+    {
+      "source": "https://brickschema.org/schema/Brick#Energy_Zone",
+      "prediction": "https://brickschema.org/schema/Brick#Energy_Zone",
+      "expected": [
+        "https://w3id.org/rec#Zone"
+      ]
+    },
+    {
+      "source": "https://brickschema.org/schema/Brick#Entrance",
+      "prediction": "https://brickschema.org/schema/Brick#Entrance",
+      "expected": [
+        "https://w3id.org/rec#Entrance"
+      ]
+    },
+    {
+      "source": "https://brickschema.org/schema/Brick#Equipment_Room",
+      "prediction": "https://brickschema.org/schema/Brick#Equipment_Room",
+      "expected": [
+        "https://w3id.org/rec#UtilitiesRoom"
+      ]
+    },
+    {
+      "source": "https://brickschema.org/schema/Brick#Exercise_Room",
+      "prediction": "https://brickschema.org/schema/Brick#Exercise_Room",
+      "expected": [
+        "https://w3id.org/rec#ExerciseRoom"
+      ]
+    },
+    {
+      "source": "https://brickschema.org/schema/Brick#Exhaust_Fan_Disable_Command",
+      "prediction": "https://brickschema.org/schema/Brick#Exhaust_Fan_Disable_Command",
+      "expected": [
+        "https://brickschema.org/schema/Brick#Disable_Command"
+      ]
+    },
+    {
+      "source": "https://brickschema.org/schema/Brick#Exhaust_Fan_Enable_Command",
+      "prediction": "https://brickschema.org/schema/Brick#Exhaust_Fan_Enable_Command",
+      "expected": [
+        "https://brickschema.org/schema/Brick#Enable_Command"
+      ]
+    },
+    {
+      "source": "https://brickschema.org/schema/Brick#Fire_Zone",
+      "prediction": "https://brickschema.org/schema/Brick#Fire_Zone",
+      "expected": [
+        "https://w3id.org/rec#ServiceEntrance"
+      ]
+    },
+    {
+      "source": "https://brickschema.org/schema/Brick#Floor",
+      "prediction": "https://brickschema.org/schema/Brick#Floor",
+      "expected": [
+        "https://w3id.org/rec#Level"
+      ]
+    },
+    {
+      "source": "https://brickschema.org/schema/Brick#Food_Service_Room",
+      "prediction": "https://brickschema.org/schema/Brick#Food_Service_Room",
+      "expected": [
+        "https://w3id.org/rec#FoodHandlingRoom"
+      ]
+    },
+    {
+      "source": "https://brickschema.org/schema/Brick#Fresh_Air_Fan",
+      "prediction": "https://brickschema.org/schema/Brick#Fresh_Air_Fan",
+      "expected": [
+        "https://brickschema.org/schema/Brick#Outside_Fan"
+      ]
+    },
+    {
+      "source": "https://brickschema.org/schema/Brick#Furniture",
+      "prediction": "https://brickschema.org/schema/Brick#Furniture",
+      "expected": [
+        "https://w3id.org/rec#Furniture"
+      ]
+    },
+    {
+      "source": "https://brickschema.org/schema/Brick#Generator_Room",
+      "prediction": "https://brickschema.org/schema/Brick#Generator_Room",
+      "expected": [
+        "https://w3id.org/rec#ElectricityRoom"
+      ]
+    },
+    {
+      "source": "https://brickschema.org/schema/Brick#HVAC_Zone",
+      "prediction": "https://brickschema.org/schema/Brick#HVAC_Zone",
+      "expected": [
+        "https://w3id.org/rec#HVACZone"
+      ]
+    },
+    {
+      "source": "https://brickschema.org/schema/Brick#Hallway",
+      "prediction": "https://brickschema.org/schema/Brick#Hallway",
+      "expected": [
+        "https://w3id.org/rec#Hallway"
+      ]
+    },
+    {
+      "source": "https://brickschema.org/schema/Brick#Heat_Exchanger_Supply_Water_Temperature_Sensor",
+      "prediction": "https://brickschema.org/schema/Brick#Heat_Exchanger_Supply_Water_Temperature_Sensor",
+      "expected": [
+        "https://brickschema.org/schema/Brick#Heat_Exchanger_Leaving_Water_Temperature_Sensor"
+      ]
+    },
+    {
+      "source": "https://brickschema.org/schema/Brick#Heat_Sensor",
+      "prediction": "https://brickschema.org/schema/Brick#Heat_Sensor",
+      "expected": [
+        "https://brickschema.org/schema/Brick#Temperature_Sensor"
+      ]
+    },
+    {
+      "source": "https://brickschema.org/schema/Brick#High_Temperature_Hot_Water_Return_Temperature_Sensor",
+      "prediction": "https://brickschema.org/schema/Brick#High_Temperature_Hot_Water_Return_Temperature_Sensor",
+      "expected": [
+        "https://brickschema.org/schema/Brick#Entering_High_Temperature_Hot_Water_Temperature_Sensor"
+      ]
+    },
+    {
+      "source": "https://brickschema.org/schema/Brick#High_Temperature_Hot_Water_Supply_Temperature_Sensor",
+      "prediction": "https://brickschema.org/schema/Brick#High_Temperature_Hot_Water_Supply_Temperature_Sensor",
+      "expected": [
+        "https://brickschema.org/schema/Brick#Leaving_High_Temperature_Hot_Water_Temperature_Sensor"
+      ]
+    },
+    {
+      "source": "https://brickschema.org/schema/Brick#Hot_Water_Discharge_Flow_Sensor",
+      "prediction": "https://brickschema.org/schema/Brick#Hot_Water_Discharge_Flow_Sensor",
+      "expected": [
+        "https://brickschema.org/schema/Brick#Hot_Water_Leaving_Flow_Sensor"
+      ]
+    },
+    {
+      "source": "https://brickschema.org/schema/Brick#Hot_Water_Discharge_Flow_Setpoint",
+      "prediction": "https://brickschema.org/schema/Brick#Hot_Water_Discharge_Flow_Setpoint",
+      "expected": [
+        "https://brickschema.org/schema/Brick#Hot_Water_Leaving_Flow_Setpoint"
+      ]
+    },
+    {
+      "source": "https://brickschema.org/schema/Brick#Hot_Water_Return_Temperature_Sensor",
+      "prediction": "https://brickschema.org/schema/Brick#Hot_Water_Return_Temperature_Sensor",
+      "expected": [
+        "https://brickschema.org/schema/Brick#Entering_Hot_Water_Temperature_Sensor"
+      ]
+    },
+    {
+      "source": "https://brickschema.org/schema/Brick#Hot_Water_Supply_Flow_Sensor",
+      "prediction": "https://brickschema.org/schema/Brick#Hot_Water_Supply_Flow_Sensor",
+      "expected": [
+        "https://brickschema.org/schema/Brick#Hot_Water_Leaving_Flow_Sensor"
+      ]
+    },
+    {
+      "source": "https://brickschema.org/schema/Brick#Hot_Water_Supply_Flow_Setpoint",
+      "prediction": "https://brickschema.org/schema/Brick#Hot_Water_Supply_Flow_Setpoint",
+      "expected": [
+        "https://brickschema.org/schema/Brick#Hot_Water_Leaving_Flow_Setpoint"
+      ]
+    },
+    {
+      "source": "https://brickschema.org/schema/Brick#Hot_Water_Supply_Temperature_Sensor",
+      "prediction": "https://brickschema.org/schema/Brick#Hot_Water_Supply_Temperature_Sensor",
+      "expected": [
+        "https://brickschema.org/schema/Brick#Leaving_Hot_Water_Temperature_Sensor"
+      ]
+    },
+    {
+      "source": "https://brickschema.org/schema/Brick#IDF",
+      "prediction": "https://brickschema.org/schema/Brick#IDF",
+      "expected": [
+        "https://w3id.org/rec#CableRoom"
+      ]
+    },
+    {
+      "source": "https://brickschema.org/schema/Brick#Janitor_Room",
+      "prediction": "https://brickschema.org/schema/Brick#Janitor_Room",
+      "expected": [
+        "https://w3id.org/rec#BackOffice"
+      ]
+    },
+    {
+      "source": "https://brickschema.org/schema/Brick#Laboratory",
+      "prediction": "https://brickschema.org/schema/Brick#Laboratory",
+      "expected": [
+        "https://w3id.org/rec#Laboratory"
+      ]
+    },
+    {
+      "source": "https://brickschema.org/schema/Brick#Library",
+      "prediction": "https://brickschema.org/schema/Brick#Library",
+      "expected": [
+        "https://w3id.org/rec#Library"
+      ]
+    },
+    {
+      "source": "https://brickschema.org/schema/Brick#Lobby",
+      "prediction": "https://brickschema.org/schema/Brick#Lobby",
+      "expected": [
+        "https://w3id.org/rec#Lobby"
+      ]
+    },
+    {
+      "source": "https://brickschema.org/schema/Brick#Location",
+      "prediction": "https://brickschema.org/schema/Brick#Location",
+      "expected": [
+        "https://w3id.org/rec#Architecture"
+      ]
+    },
+    {
+      "source": "https://brickschema.org/schema/Brick#Lounge",
+      "prediction": "https://brickschema.org/schema/Brick#Lounge",
+      "expected": [
+        "https://w3id.org/rec#Lounge"
+      ]
+    },
+    {
+      "source": "https://brickschema.org/schema/Brick#MDF",
+      "prediction": "https://brickschema.org/schema/Brick#MDF",
+      "expected": [
+        "https://w3id.org/rec#CableRoom"
+      ]
+    },
+    {
+      "source": "https://brickschema.org/schema/Brick#Mail_Room",
+      "prediction": "https://brickschema.org/schema/Brick#Mail_Room",
+      "expected": [
+        "https://w3id.org/rec#MailRoom"
+      ]
+    },
+    {
+      "source": "https://brickschema.org/schema/Brick#Massage_Room",
+      "prediction": "https://brickschema.org/schema/Brick#Massage_Room",
+      "expected": [
+        "https://w3id.org/rec#TherapyRoom"
+      ]
+    },
+    {
+      "source": "https://brickschema.org/schema/Brick#Mechanical_Room",
+      "prediction": "https://brickschema.org/schema/Brick#Mechanical_Room",
+      "expected": [
+        "https://w3id.org/rec#UtilitiesRoom"
+      ]
+    },
+    {
+      "source": "https://brickschema.org/schema/Brick#Medical_Room",
+      "prediction": "https://brickschema.org/schema/Brick#Medical_Room",
+      "expected": [
+        "https://w3id.org/rec#HealthcareRoom"
+      ]
+    },
+    {
+      "source": "https://brickschema.org/schema/Brick#Medium_Temperature_Hot_Water_Return_Temperature_Sensor",
+      "prediction": "https://brickschema.org/schema/Brick#Medium_Temperature_Hot_Water_Return_Temperature_Sensor",
+      "expected": [
+        "https://brickschema.org/schema/Brick#Entering_Medium_Temperature_Hot_Water_Temperature_Sensor"
+      ]
+    },
+    {
+      "source": "https://brickschema.org/schema/Brick#Medium_Temperature_Hot_Water_Supply_Temperature_Sensor",
+      "prediction": "https://brickschema.org/schema/Brick#Medium_Temperature_Hot_Water_Supply_Temperature_Sensor",
+      "expected": [
+        "https://brickschema.org/schema/Brick#Leaving_Medium_Temperature_Hot_Water_Temperature_Sensor"
+      ]
+    },
+    {
+      "source": "https://brickschema.org/schema/Brick#Office",
+      "prediction": "https://brickschema.org/schema/Brick#Office",
+      "expected": [
+        "https://w3id.org/rec#Office"
+      ]
+    },
+    {
+      "source": "https://brickschema.org/schema/Brick#Office_Kitchen",
+      "prediction": "https://brickschema.org/schema/Brick#Office_Kitchen",
+      "expected": [
+        "https://w3id.org/rec#Kitchenette"
+      ]
+    },
+    {
+      "source": "https://brickschema.org/schema/Brick#Open_Office",
+      "prediction": "https://brickschema.org/schema/Brick#Open_Office",
+      "expected": [
+        "https://w3id.org/rec#OfficeLandscape"
+      ]
+    },
+    {
+      "source": "https://brickschema.org/schema/Brick#Outdoor_Area",
+      "prediction": "https://brickschema.org/schema/Brick#Outdoor_Area",
+      "expected": [
+        "https://w3id.org/rec#OutdoorSpace"
+      ]
+    },
+    {
+      "source": "https://brickschema.org/schema/Brick#Parking_Space",
+      "prediction": "https://brickschema.org/schema/Brick#Parking_Space",
+      "expected": [
+        "https://w3id.org/rec#ParkingSpace"
+      ]
+    },
+    {
+      "source": "https://brickschema.org/schema/Brick#Plumbing_Room",
+      "prediction": "https://brickschema.org/schema/Brick#Plumbing_Room",
+      "expected": [
+        "https://w3id.org/rec#UtilitiesRoom"
+      ]
+    },
+    {
+      "source": "https://brickschema.org/schema/Brick#Portfolio",
+      "prediction": "https://brickschema.org/schema/Brick#Portfolio",
+      "expected": [
+        "https://w3id.org/rec#Portfolio"
+      ]
+    },
+    {
+      "source": "https://brickschema.org/schema/Brick#Private_Office",
+      "prediction": "https://brickschema.org/schema/Brick#Private_Office",
+      "expected": [
+        "https://w3id.org/rec#Office"
+      ]
+    },
+    {
+      "source": "https://brickschema.org/schema/Brick#Reception",
+      "prediction": "https://brickschema.org/schema/Brick#Reception",
+      "expected": [
+        "https://w3id.org/rec#Reception"
+      ]
+    },
+    {
+      "source": "https://brickschema.org/schema/Brick#Region",
+      "prediction": "https://brickschema.org/schema/Brick#Region",
+      "expected": [
+        "https://w3id.org/rec#Region"
+      ]
+    },
+    {
+      "source": "https://brickschema.org/schema/Brick#Rest_Room",
+      "prediction": "https://brickschema.org/schema/Brick#Rest_Room",
+      "expected": [
+        "https://w3id.org/rec#RestingRoom"
+      ]
+    },
+    {
+      "source": "https://brickschema.org/schema/Brick#Restroom",
+      "prediction": "https://brickschema.org/schema/Brick#Restroom",
+      "expected": [
+        "https://w3id.org/rec#Bathroom"
+      ]
+    },
+    {
+      "source": "https://brickschema.org/schema/Brick#Retail_Room",
+      "prediction": "https://brickschema.org/schema/Brick#Retail_Room",
+      "expected": [
+        "https://w3id.org/rec#RetailRoom"
+      ]
+    },
+    {
+      "source": "https://brickschema.org/schema/Brick#Return_Chilled_Water_Temperature_Setpoint",
+      "prediction": "https://brickschema.org/schema/Brick#Return_Chilled_Water_Temperature_Setpoint",
+      "expected": [
+        "https://brickschema.org/schema/Brick#Entering_Chilled_Water_Temperature_Setpoint"
+      ]
+    },
+    {
+      "source": "https://brickschema.org/schema/Brick#Return_Condenser_Water",
+      "prediction": "https://brickschema.org/schema/Brick#Return_Condenser_Water",
+      "expected": [
+        "https://brickschema.org/schema/Brick#Entering_Condenser_Water"
+      ]
+    },
+    {
+      "source": "https://brickschema.org/schema/Brick#Return_Condenser_Water_Flow_Sensor",
+      "prediction": "https://brickschema.org/schema/Brick#Return_Condenser_Water_Flow_Sensor",
+      "expected": [
+        "https://brickschema.org/schema/Brick#Entering_Condenser_Water_Flow_Sensor"
+      ]
+    },
+    {
+      "source": "https://brickschema.org/schema/Brick#Return_Condenser_Water_Temperature_Sensor",
+      "prediction": "https://brickschema.org/schema/Brick#Return_Condenser_Water_Temperature_Sensor",
+      "expected": [
+        "https://brickschema.org/schema/Brick#Entering_Condenser_Water_Temperature_Sensor"
+      ]
+    },
+    {
+      "source": "https://brickschema.org/schema/Brick#Return_Hot_Water",
+      "prediction": "https://brickschema.org/schema/Brick#Return_Hot_Water",
+      "expected": [
+        "https://brickschema.org/schema/Brick#Entering_Hot_Water"
+      ]
+    },
+    {
+      "source": "https://brickschema.org/schema/Brick#Return_Hot_Water_Temperature_Setpoint",
+      "prediction": "https://brickschema.org/schema/Brick#Return_Hot_Water_Temperature_Setpoint",
+      "expected": [
+        "https://brickschema.org/schema/Brick#Entering_Hot_Water_Temperature_Setpoint"
+      ]
+    },
+    {
+      "source": "https://brickschema.org/schema/Brick#Return_Water",
+      "prediction": "https://brickschema.org/schema/Brick#Return_Water",
+      "expected": [
+        "https://brickschema.org/schema/Brick#Entering_Water"
+      ]
+    },
+    {
+      "source": "https://brickschema.org/schema/Brick#Return_Water_Flow_Sensor",
+      "prediction": "https://brickschema.org/schema/Brick#Return_Water_Flow_Sensor",
+      "expected": [
+        "https://brickschema.org/schema/Brick#Entering_Water_Flow_Sensor"
+      ]
+    },
+    {
+      "source": "https://brickschema.org/schema/Brick#Return_Water_Temperature_Sensor",
+      "prediction": "https://brickschema.org/schema/Brick#Return_Water_Temperature_Sensor",
+      "expected": [
+        "https://brickschema.org/schema/Brick#Entering_Water_Temperature_Sensor"
+      ]
+    },
+    {
+      "source": "https://brickschema.org/schema/Brick#Return_Water_Temperature_Setpoint",
+      "prediction": "https://brickschema.org/schema/Brick#Return_Water_Temperature_Setpoint",
+      "expected": [
+        "https://brickschema.org/schema/Brick#Entering_Water_Temperature_Setpoint"
+      ]
+    },
+    {
+      "source": "https://brickschema.org/schema/Brick#Rooftop",
+      "prediction": "https://brickschema.org/schema/Brick#Rooftop",
+      "expected": [
+        "https://w3id.org/rec#RoofLevel"
+      ]
+    },
+    {
+      "source": "https://brickschema.org/schema/Brick#Room",
+      "prediction": "https://brickschema.org/schema/Brick#Room",
+      "expected": [
+        "https://w3id.org/rec#Room"
+      ]
+    },
+    {
+      "source": "https://brickschema.org/schema/Brick#Security_Service_Room",
+      "prediction": "https://brickschema.org/schema/Brick#Security_Service_Room",
+      "expected": [
+        "https://w3id.org/rec#SecurityRoom"
+      ]
+    },
+    {
+      "source": "https://brickschema.org/schema/Brick#Server_Room",
+      "prediction": "https://brickschema.org/schema/Brick#Server_Room",
+      "expected": [
+        "https://w3id.org/rec#DataServerRoom"
+      ]
+    },
+    {
+      "source": "https://brickschema.org/schema/Brick#Service_Room",
+      "prediction": "https://brickschema.org/schema/Brick#Service_Room",
+      "expected": [
+        "https://w3id.org/rec#UtilitiesRoom"
+      ]
+    },
+    {
+      "source": "https://brickschema.org/schema/Brick#Shared_Office",
+      "prediction": "https://brickschema.org/schema/Brick#Shared_Office",
+      "expected": [
+        "https://w3id.org/rec#OfficeLandscape"
+      ]
+    },
+    {
+      "source": "https://brickschema.org/schema/Brick#Shower",
+      "prediction": "https://brickschema.org/schema/Brick#Shower",
+      "expected": [
+        "https://w3id.org/rec#ShowerRoom"
+      ]
+    },
+    {
+      "source": "https://brickschema.org/schema/Brick#Site",
+      "prediction": "https://brickschema.org/schema/Brick#Site",
+      "expected": [
+        "https://w3id.org/rec#Site"
+      ]
+    },
+    {
+      "source": "https://brickschema.org/schema/Brick#Solar_Radiance_Sensor",
+      "prediction": "https://brickschema.org/schema/Brick#Solar_Radiance_Sensor",
+      "expected": [
+        "https://brickschema.org/schema/Brick#Solar_Irradiance_Sensor"
+      ]
+    },
+    {
+      "source": "https://brickschema.org/schema/Brick#Space",
+      "prediction": "https://brickschema.org/schema/Brick#Space",
+      "expected": [
+        "https://w3id.org/rec#Space"
+      ]
+    },
+    {
+      "source": "https://brickschema.org/schema/Brick#Staircase",
+      "prediction": "https://brickschema.org/schema/Brick#Staircase",
+      "expected": [
+        "https://w3id.org/rec#Stairwell"
+      ]
+    },
+    {
+      "source": "https://brickschema.org/schema/Brick#Storage_Room",
+      "prediction": "https://brickschema.org/schema/Brick#Storage_Room",
+      "expected": [
+        "https://w3id.org/rec#Storage"
+      ]
+    },
+    {
+      "source": "https://brickschema.org/schema/Brick#Storey",
+      "prediction": "https://brickschema.org/schema/Brick#Storey",
+      "expected": [
+        "https://w3id.org/rec#Level"
+      ]
+    },
+    {
+      "source": "https://brickschema.org/schema/Brick#Studio",
+      "prediction": "https://brickschema.org/schema/Brick#Studio",
+      "expected": [
+        "https://w3id.org/rec#RecordingRoom"
+      ]
+    },
+    {
+      "source": "https://brickschema.org/schema/Brick#Supply_Chilled_Water",
+      "prediction": "https://brickschema.org/schema/Brick#Supply_Chilled_Water",
+      "expected": [
+        "https://brickschema.org/schema/Brick#Leaving_Chilled_Water"
+      ]
+    },
+    {
+      "source": "https://brickschema.org/schema/Brick#Supply_Chilled_Water_Temperature_Setpoint",
+      "prediction": "https://brickschema.org/schema/Brick#Supply_Chilled_Water_Temperature_Setpoint",
+      "expected": [
+        "https://brickschema.org/schema/Brick#Leaving_Chilled_Water_Temperature_Setpoint"
+      ]
+    },
+    {
+      "source": "https://brickschema.org/schema/Brick#Supply_Condenser_Water",
+      "prediction": "https://brickschema.org/schema/Brick#Supply_Condenser_Water",
+      "expected": [
+        "https://brickschema.org/schema/Brick#Leaving_Condenser_Water"
+      ]
+    },
+    {
+      "source": "https://brickschema.org/schema/Brick#Supply_Condenser_Water_Flow_Sensor",
+      "prediction": "https://brickschema.org/schema/Brick#Supply_Condenser_Water_Flow_Sensor",
+      "expected": [
+        "https://brickschema.org/schema/Brick#Leaving_Condenser_Water_Flow_Sensor"
+      ]
+    },
+    {
+      "source": "https://brickschema.org/schema/Brick#Supply_Condenser_Water_Temperature_Sensor",
+      "prediction": "https://brickschema.org/schema/Brick#Supply_Condenser_Water_Temperature_Sensor",
+      "expected": [
+        "https://brickschema.org/schema/Brick#Leaving_Condenser_Water_Temperature_Sensor"
+      ]
+    },
+    {
+      "source": "https://brickschema.org/schema/Brick#Supply_Condenser_Water_Temperature_Setpoint",
+      "prediction": "https://brickschema.org/schema/Brick#Supply_Condenser_Water_Temperature_Setpoint",
+      "expected": [
+        "https://brickschema.org/schema/Brick#Leaving_Condenser_Water_Temperature_Setpoint"
+      ]
+    },
+    {
+      "source": "https://brickschema.org/schema/Brick#Supply_Hot_Water",
+      "prediction": "https://brickschema.org/schema/Brick#Supply_Hot_Water",
+      "expected": [
+        "https://brickschema.org/schema/Brick#Leaving_Hot_Water"
+      ]
+    },
+    {
+      "source": "https://brickschema.org/schema/Brick#Supply_Hot_Water_Temperature_Setpoint",
+      "prediction": "https://brickschema.org/schema/Brick#Supply_Hot_Water_Temperature_Setpoint",
+      "expected": [
+        "https://brickschema.org/schema/Brick#Leaving_Hot_Water_Temperature_Setpoint"
+      ]
+    },
+    {
+      "source": "https://brickschema.org/schema/Brick#Supply_Water",
+      "prediction": "https://brickschema.org/schema/Brick#Supply_Water",
+      "expected": [
+        "https://brickschema.org/schema/Brick#Leaving_Water"
+      ]
+    },
+    {
+      "source": "https://brickschema.org/schema/Brick#Supply_Water_Flow_Sensor",
+      "prediction": "https://brickschema.org/schema/Brick#Supply_Water_Flow_Sensor",
+      "expected": [
+        "https://brickschema.org/schema/Brick#Leaving_Water_Flow_Sensor"
+      ]
+    },
+    {
+      "source": "https://brickschema.org/schema/Brick#Supply_Water_Flow_Setpoint",
+      "prediction": "https://brickschema.org/schema/Brick#Supply_Water_Flow_Setpoint",
+      "expected": [
+        "https://brickschema.org/schema/Brick#Leaving_Water_Flow_Setpoint"
+      ]
+    },
+    {
+      "source": "https://brickschema.org/schema/Brick#Switch_Room",
+      "prediction": "https://brickschema.org/schema/Brick#Switch_Room",
+      "expected": [
+        "https://w3id.org/rec#DataServerRoom"
+      ]
+    },
+    {
+      "source": "https://brickschema.org/schema/Brick#Team_Room",
+      "prediction": "https://brickschema.org/schema/Brick#Team_Room",
+      "expected": [
+        "https://w3id.org/rec#TeamRoom"
+      ]
+    },
+    {
+      "source": "https://brickschema.org/schema/Brick#Telecom_Room",
+      "prediction": "https://brickschema.org/schema/Brick#Telecom_Room",
+      "expected": [
+        "https://w3id.org/rec#DataServerRoom"
+      ]
+    },
+    {
+      "source": "https://brickschema.org/schema/Brick#Trace_Heat_Sensor",
+      "prediction": "https://brickschema.org/schema/Brick#Trace_Heat_Sensor",
+      "expected": [
+        "https://brickschema.org/schema/Brick#Sensor"
+      ]
+    },
+    {
+      "source": "https://brickschema.org/schema/Brick#Transformer_Room",
+      "prediction": "https://brickschema.org/schema/Brick#Transformer_Room",
+      "expected": [
+        "https://w3id.org/rec#UtilitiesRoom"
+      ]
+    },
+    {
+      "source": "https://brickschema.org/schema/Brick#Unoccupied_Air_Temperature_Cooling_Setpoint",
+      "prediction": "https://brickschema.org/schema/Brick#Unoccupied_Air_Temperature_Cooling_Setpoint",
+      "expected": [
+        "https://brickschema.org/schema/Brick#Unoccupied_Cooling_Zone_Air_Temperature_Setpoint"
+      ]
+    },
+    {
+      "source": "https://brickschema.org/schema/Brick#Unoccupied_Air_Temperature_Heating_Setpoint",
+      "prediction": "https://brickschema.org/schema/Brick#Unoccupied_Air_Temperature_Heating_Setpoint",
+      "expected": [
+        "https://brickschema.org/schema/Brick#Unoccupied_Heating_Zone_Air_Temperature_Setpoint"
+      ]
+    },
+    {
+      "source": "https://brickschema.org/schema/Brick#Unoccupied_Zone_Air_Temperature_Setpoint",
+      "prediction": "https://brickschema.org/schema/Brick#Unoccupied_Zone_Air_Temperature_Setpoint",
+      "expected": [
+        "https://brickschema.org/schema/Brick#Unoccupied_Target_Zone_Air_Temperature_Setpoint"
+      ]
+    },
+    {
+      "source": "https://brickschema.org/schema/Brick#Visitor_Lobby",
+      "prediction": "https://brickschema.org/schema/Brick#Visitor_Lobby",
+      "expected": [
+        "https://w3id.org/rec#Lobby"
+      ]
+    },
+    {
+      "source": "https://brickschema.org/schema/Brick#Wardrobe",
+      "prediction": "https://brickschema.org/schema/Brick#Wardrobe",
+      "expected": [
+        "https://w3id.org/rec#CloakRoom"
+      ]
+    },
+    {
+      "source": "https://brickschema.org/schema/Brick#Waste_Storage",
+      "prediction": "https://brickschema.org/schema/Brick#Waste_Storage",
+      "expected": [
+        "https://w3id.org/rec#WasteManagementRoom"
+      ]
+    },
+    {
+      "source": "https://brickschema.org/schema/Brick#Workshop",
+      "prediction": "https://brickschema.org/schema/Brick#Workshop",
+      "expected": [
+        "https://w3id.org/rec#Workshop"
+      ]
+    },
+    {
+      "source": "https://brickschema.org/schema/Brick#Zone",
+      "prediction": "https://brickschema.org/schema/Brick#Zone",
+      "expected": [
+        "https://w3id.org/rec#Zone"
+      ]
+    },
+    {
+      "source": "https://brickschema.org/schema/Brick#Zone_Air_Cooling_Temperature_Setpoint",
+      "prediction": "https://brickschema.org/schema/Brick#Zone_Air_Cooling_Temperature_Setpoint",
+      "expected": [
+        "https://brickschema.org/schema/Brick#Cooling_Zone_Air_Temperature_Setpoint"
+      ]
+    },
+    {
+      "source": "https://brickschema.org/schema/Brick#Zone_Air_Heating_Temperature_Setpoint",
+      "prediction": "https://brickschema.org/schema/Brick#Zone_Air_Heating_Temperature_Setpoint",
+      "expected": [
+        "https://brickschema.org/schema/Brick#Heating_Zone_Air_Temperature_Setpoint"
+      ]
+    },
+    {
+      "source": "https://brickschema.org/schema/Brick#Zone_Air_Temperature_Setpoint",
+      "prediction": "https://brickschema.org/schema/Brick#Zone_Air_Temperature_Setpoint",
+      "expected": [
+        "https://brickschema.org/schema/Brick#Target_Zone_Air_Temperature_Setpoint"
+      ]
+    }
+  ],
+  "accuracy": 0.0,
+  "method": "identity baseline: retain each old term, without consulting the new ontology"
+}

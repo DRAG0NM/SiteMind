@@ -1,0 +1,5 @@
+zones: {type: object, description: 区域 → 设定温度、舒适区间、是否硬约束、供冷时段}
+hard_rule: {type: string, description: 硬约束区域的处理规则}
+actions: {type: object, description: 动作词表：set_mode / set_setpoint / ventilate}
+defer_rule: {type: string, description: 推迟预冷的默认时长与代价口径}
+report_style: {type: string, description: 汇报口径}

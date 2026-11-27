@@ -1,0 +1,15 @@
+# 极端场景 2：夏季极端高温，暖通负荷逼近变压器上限（考验削峰、预冷、错峰协同）。数据性质 synthetic。
+scenario_id: extreme_heat_wave
+title: 夏季极端高温，暖通逼近变压器上限
+nature: synthetic
+date: "2026-07-01"
+seed: 102
+initial: {soc: 0.85}
+knowledge: [energy_manual, hvac_manual]
+params:
+  outdoor_offset_c: [{start: "10:00", end: "18:00", delta_c: 11}]   # PVGIS 气温上叠加 11 ℃，午后约 36～37 ℃
+  capacity_kw: {TX2: 760}          # 行政楼与特殊区域变压器运行限额（configured）；平日午后约 670 kW
+  capacity_warn_ratio: 0.95
+events:
+  - {at: "09:30", type: heat_wave, entity_id: "zone:admin", severity: 3, summary: 气象预警：午后极端高温,
+     payload: {effects: []}}

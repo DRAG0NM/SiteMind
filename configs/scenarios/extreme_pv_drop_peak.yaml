@@ -1,0 +1,11 @@
+# 极端场景 3：光伏骤降（云层）+ 峰段电价（考验储能实时补位）。数据性质 synthetic。
+scenario_id: extreme_pv_drop_peak
+title: 光伏骤降 + 峰段电价
+nature: synthetic
+date: "2026-07-02"
+seed: 103
+initial: {soc: 0.75}
+knowledge: [energy_manual, tariff_policy]
+events:
+  - {at: "14:10", type: pv_drop, entity_id: "zone:park", severity: 3, summary: 云层压境，光伏出力骤降到两成,
+     payload: {effects: [{kind: pv_scale, factor: 0.2, minutes: 120}], discharge_kw: 300}}

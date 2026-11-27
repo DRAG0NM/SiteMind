@@ -1,0 +1,115 @@
+{
+  "$defs": {
+    "Interval": {
+      "additionalProperties": false,
+      "description": "左闭右开 UTC 区间 [start, end)。",
+      "properties": {
+        "start": {
+          "format": "date-time",
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d{1,9})?(Z|[+-]00:?00)$",
+          "title": "Start",
+          "type": "string"
+        },
+        "end": {
+          "format": "date-time",
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d{1,9})?(Z|[+-]00:?00)$",
+          "title": "End",
+          "type": "string"
+        }
+      },
+      "required": [
+        "start",
+        "end"
+      ],
+      "title": "Interval",
+      "type": "object"
+    },
+    "RevokeOutcome": {
+      "additionalProperties": false,
+      "description": "撤销预计影响里的一种情况在剩余窗口内的试算结果。",
+      "properties": {
+        "cost_cny": {
+          "title": "Cost Cny",
+          "type": "number"
+        },
+        "violation_minutes": {
+          "minimum": 0,
+          "title": "Violation Minutes",
+          "type": "integer"
+        },
+        "t1_peak_kw": {
+          "minimum": 0,
+          "title": "T1 Peak Kw",
+          "type": "number"
+        }
+      },
+      "required": [
+        "cost_cny",
+        "violation_minutes",
+        "t1_peak_kw"
+      ],
+      "title": "RevokeOutcome",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "action_id": {
+      "maxLength": 200,
+      "minLength": 1,
+      "title": "Action Id",
+      "type": "string"
+    },
+    "run_id": {
+      "maxLength": 200,
+      "minLength": 1,
+      "title": "Run Id",
+      "type": "string"
+    },
+    "window": {
+      "$ref": "#/$defs/Interval"
+    },
+    "revoke": {
+      "$ref": "#/$defs/RevokeOutcome"
+    },
+    "keep": {
+      "$ref": "#/$defs/RevokeOutcome"
+    },
+    "cost_delta_cny": {
+      "title": "Cost Delta Cny",
+      "type": "number"
+    },
+    "violation_minutes_delta": {
+      "title": "Violation Minutes Delta",
+      "type": "integer"
+    },
+    "t1_peak_delta_kw": {
+      "title": "T1 Peak Delta Kw",
+      "type": "number"
+    },
+    "protection": {
+      "default": false,
+      "title": "Protection",
+      "type": "boolean"
+    },
+    "note": {
+      "default": "",
+      "title": "Note",
+      "type": "string"
+    }
+  },
+  "required": [
+    "action_id",
+    "run_id",
+    "window",
+    "revoke",
+    "keep",
+    "cost_delta_cny",
+    "violation_minutes_delta",
+    "t1_peak_delta_kw"
+  ],
+  "title": "RevokePreview",
+  "type": "object",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "plantkg:contracts/1.2.0/RevokePreview"
+}

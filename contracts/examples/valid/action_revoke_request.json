@@ -1,0 +1,8 @@
+{
+  "model": "ActionRevokeRequest",
+  "data": {
+    "reason_kind": "system_wrong",
+    "note": "放电时机判断有误",
+    "confirm_protection": true
+  }
+}

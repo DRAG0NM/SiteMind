@@ -1,0 +1,9 @@
+name: production
+schema_version: 1
+order: 40
+status: placeholder   # 实现在 pack.py（ProductionPack）；注册表还没有登记 DomainPack 实例的入口，由装配方构造后交给 SharedPlanner，入口定了再改 active
+description: production 领域包：单道不可抢占工序在允许窗口内整段平移，operation_window 窗口规则与 pending_jobs 待排清单
+entrypoint: null
+provides:
+  rule_kinds: [operation_window]
+  state: [pending_jobs]

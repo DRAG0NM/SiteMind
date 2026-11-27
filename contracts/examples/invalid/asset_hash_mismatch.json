@@ -1,0 +1,20 @@
+{
+  "model": "AssetVersion",
+  "base": "asset_version_policy",
+  "expect_error": "哈希",
+  "data": {
+    "asset_version_id": "asset://manufacturing/9581b4ac/policy/tou-2026",
+    "content_hash": "sha256:3fea0838ba1b6ab87b341b3af93857ac660efcb027d257a5756b34abf04eeaa2",
+    "industry": "manufacturing",
+    "asset_type": "policy",
+    "source_uri": "file://datasets/policy/tou-2026.pdf",
+    "media_type": "application/pdf",
+    "nature": "configured",
+    "available_at": "2026-06-15T00:00:00Z",
+    "ingested_at": "2026-10-30T01:00:00Z",
+    "entity_ids": [
+      "entity://demo-electronics/grid_connection/MAIN"
+    ],
+    "title": "分时电价政策（示例）"
+  }
+}

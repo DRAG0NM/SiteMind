@@ -1,0 +1,52 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "from_manifest_id": {
+      "maxLength": 200,
+      "minLength": 1,
+      "title": "From Manifest Id",
+      "type": "string"
+    },
+    "to_manifest_id": {
+      "maxLength": 200,
+      "minLength": 1,
+      "title": "To Manifest Id",
+      "type": "string"
+    },
+    "changed": {
+      "additionalProperties": {
+        "items": {
+          "type": "string"
+        },
+        "type": "array"
+      },
+      "title": "Changed",
+      "type": "object"
+    },
+    "affected_plan_ids": {
+      "default": [],
+      "items": {
+        "type": "string"
+      },
+      "title": "Affected Plan Ids",
+      "type": "array"
+    },
+    "unknown": {
+      "default": [],
+      "items": {
+        "type": "string"
+      },
+      "title": "Unknown",
+      "type": "array"
+    }
+  },
+  "required": [
+    "from_manifest_id",
+    "to_manifest_id",
+    "changed"
+  ],
+  "title": "VersionDiff",
+  "type": "object",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "plantkg:contracts/1.2.0/VersionDiff"
+}

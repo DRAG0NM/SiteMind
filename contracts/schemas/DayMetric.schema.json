@@ -1,0 +1,160 @@
+{
+  "$defs": {
+    "AssetStateCounts": {
+      "additionalProperties": false,
+      "properties": {
+        "dormant": {
+          "minimum": 0,
+          "title": "Dormant",
+          "type": "integer"
+        },
+        "identified": {
+          "minimum": 0,
+          "title": "Identified",
+          "type": "integer"
+        },
+        "in_graph": {
+          "minimum": 0,
+          "title": "In Graph",
+          "type": "integer"
+        },
+        "referenced": {
+          "minimum": 0,
+          "title": "Referenced",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "dormant",
+        "identified",
+        "in_graph",
+        "referenced"
+      ],
+      "title": "AssetStateCounts",
+      "type": "object"
+    },
+    "DataNature": {
+      "enum": [
+        "measured",
+        "derived",
+        "configured",
+        "synthetic",
+        "simulated"
+      ],
+      "title": "DataNature",
+      "type": "string"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "metric": {
+      "maxLength": 200,
+      "minLength": 1,
+      "title": "Metric",
+      "type": "string"
+    },
+    "group": {
+      "enum": [
+        "baseline",
+        "independent",
+        "coordinated",
+        "knowledge",
+        "config"
+      ],
+      "title": "Group",
+      "type": "string"
+    },
+    "value": {
+      "anyOf": [
+        {
+          "type": "number"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "Value"
+    },
+    "unit": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Unit"
+    },
+    "note": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Note"
+    },
+    "nature": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/DataNature"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    },
+    "variant": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Variant"
+    },
+    "counts": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/AssetStateCounts"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    },
+    "as_of": {
+      "anyOf": [
+        {
+          "format": "date-time",
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d{1,9})?(Z|[+-]00:?00)$",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "As Of"
+    }
+  },
+  "required": [
+    "metric",
+    "group",
+    "value"
+  ],
+  "title": "DayMetric",
+  "type": "object",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "plantkg:contracts/1.2.0/DayMetric"
+}

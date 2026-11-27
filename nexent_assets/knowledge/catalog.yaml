@@ -1,0 +1,266 @@
+# B26 专家资料清单：一位专家一个 Nexent 知识库，一份资料一条记录。
+# nature 逐份标数据性质（real / derived / synthetic）；source_level 决定检索结果的同级次序：
+# 国家标准/政策 > 设备手册 > 经验记录。真实上传结果（索引名、文件路径）由
+# scripts/nexent_kb_upload.py 写入 nexent_assets/knowledge/indexes.json，不用手改这里。
+version: 1
+description: 四个专家私有知识库的资料清单；文本、表格、图片三类，沉睡资料标 dormant。
+experts:
+  elevator:
+    display_name: plantkg 知识库-电梯
+    agent: plantkg_expert_elevator
+  hvac:
+    display_name: plantkg 知识库-暖通
+    agent: plantkg_expert_hvac
+  energy:
+    display_name: plantkg 知识库-能源
+    agent: plantkg_expert_energy
+  equipment:
+    display_name: plantkg 知识库-设备监测
+    agent: plantkg_expert_equipment
+
+documents:
+  # ---------------------------------------------------------------- 电梯
+  - document_id: elevator-safety-procedure
+    expert: elevator
+    title: 电梯安全技术规程（GB/T 7588.1 要点摘录，演示版）
+    path: data/docs/elevator/elevator-safety-procedure.md
+    kind: text
+    asset_type: process_doc
+    source_level: national_standard
+    publisher: 国家市场监督管理总局（演示摘录）
+    available_at: "2025-01-01T00:00:00Z"
+    nature: synthetic
+    tags: [elevator, safety, standard]
+  - document_id: elevator-maintenance-manual
+    expert: elevator
+    title: 电梯维护保养手册（厂内版，2026）
+    path: data/docs/elevator/elevator-maintenance-manual.md
+    kind: text
+    asset_type: process_doc
+    source_level: equipment_manual
+    publisher: 设备部
+    available_at: "2026-01-15T00:00:00Z"
+    nature: synthetic
+    tags: [elevator, manual]
+  - document_id: elevator-inspection-sheet
+    expert: elevator
+    title: 电梯日常点检表（2026-06）
+    path: data/docs/elevator/elevator-inspection-sheet.csv
+    kind: table
+    asset_type: table
+    source_level: experience_record
+    publisher: 设备部
+    available_at: "2026-06-24T00:00:00Z"
+    nature: synthetic
+    tags: [elevator, inspection]
+    dormant: true
+  - document_id: elevator-entrapment-log
+    expert: elevator
+    title: 电梯困人与急修记录（2026 上半年）
+    path: data/docs/elevator/elevator-entrapment-log.csv
+    kind: table
+    asset_type: table
+    source_level: experience_record
+    publisher: 设备部
+    available_at: "2026-06-28T00:00:00Z"
+    nature: synthetic
+    tags: [elevator, record]
+    dormant: true
+
+  # ---------------------------------------------------------------- 暖通
+  - document_id: hvac-design-parameters
+    expert: hvac
+    title: 暖通空调设计参数与舒适度要求（GB 50736 要点，演示版）
+    path: data/docs/hvac/hvac-design-parameters.md
+    kind: text
+    asset_type: process_doc
+    source_level: national_standard
+    publisher: 住房和城乡建设部（演示摘录）
+    available_at: "2025-03-01T00:00:00Z"
+    nature: synthetic
+    tags: [hvac, standard]
+  - document_id: hvac-chiller-maintenance-manual
+    expert: hvac
+    title: 离心式冷水机组维护手册（厂内版）
+    path: data/docs/hvac/hvac-chiller-maintenance-manual.md
+    kind: text
+    asset_type: process_doc
+    source_level: equipment_manual
+    publisher: 设备部
+    available_at: "2025-09-01T00:00:00Z"
+    nature: synthetic
+    tags: [hvac, manual]
+  - document_id: hvac-zone-setpoints
+    expert: hvac
+    title: 区域温湿度设定值表
+    path: data/docs/hvac/hvac-zone-setpoints.csv
+    kind: table
+    asset_type: table
+    source_level: experience_record
+    publisher: 运行部
+    available_at: "2026-05-20T00:00:00Z"
+    nature: configured
+    tags: [hvac, setpoint]
+  - document_id: hvac-maintenance-history
+    expert: hvac
+    title: 暖通设备维保记录（2026 上半年）
+    path: data/docs/hvac/hvac-maintenance-history.csv
+    kind: table
+    asset_type: table
+    source_level: experience_record
+    publisher: 设备部
+    available_at: "2026-06-20T00:00:00Z"
+    nature: synthetic
+    tags: [hvac, record]
+    dormant: true
+
+  # ---------------------------------------------------------------- 能源
+  # 政策原件：数据契约里没有 real，按 B19 的 tariff 约定标 configured；真实性见 README 与原件来源
+  - document_id: js-2025-426-policy
+    expert: energy
+    title: 江苏省优化工商业分时电价结构通知（苏发改价格发〔2025〕426 号）
+    # 与 B19 共用同一份原件，不复制进 data/docs
+    path: fixtures/packs/tariff/sources/js-2025-426.pdf
+    kind: text
+    asset_type: policy
+    source_level: national_standard
+    publisher: 江苏省发展和改革委员会
+    available_at: "2025-04-28T16:00:00Z"
+    nature: configured
+    license: 政府公开文件
+    # Nexent data-process 解析 PDF 失败（PROCESS_FAILED），不列入必须上传的文档；检索用同目录摘要
+    kb_upload: false
+    tags: [energy, tariff, policy]
+  - document_id: tariff-summary-2025
+    expert: energy
+    title: 江苏分时电价要点（426 号文摘要）
+    path: data/docs/energy/tariff-summary-2025.md
+    kind: text
+    asset_type: policy
+    source_level: national_standard
+    publisher: 能源部（据政策原文缩写）
+    available_at: "2025-04-28T16:00:00Z"
+    nature: derived
+    tags: [energy, tariff]
+  - document_id: bess-operation-manual
+    expert: energy
+    title: 储能系统运行维护手册（厂内版）
+    path: data/docs/energy/bess-operation-manual.md
+    kind: text
+    asset_type: process_doc
+    source_level: equipment_manual
+    publisher: 能源部
+    available_at: "2026-01-01T00:00:00Z"
+    nature: synthetic
+    tags: [energy, storage, manual]
+  - document_id: pv-output-curve
+    expert: energy
+    title: 光伏出力曲线（2026-06-21）
+    path: data/docs/energy/pv-output-curve.png
+    kind: image
+    asset_type: image
+    source_level: experience_record
+    publisher: 能源部（监控导出图）
+    available_at: "2026-06-22T00:00:00Z"
+    nature: derived
+    tags: [energy, pv, image]
+    image_kind: chart
+    description_path: data/docs/energy/pv-output-curve.md
+    description_model: deepseek-v4.1-flash-1017
+
+  # ---------------------------------------------------------------- 设备监测
+  # D54 插曲：旧版规程，版本日期早于 2025 版手册，留给 B30 制造新旧阈值冲突
+  - document_id: compressor-station-procedure-2024
+    expert: equipment
+    title: 空压站运行规程（旧版，2024）
+    path: data/docs/equipment/compressor-station-procedure-2024.md
+    kind: text
+    asset_type: process_doc
+    source_level: equipment_manual
+    publisher: 设备部
+    available_at: "2024-06-01T00:00:00Z"
+    nature: synthetic
+    tags: [equipment, compressor, manual, old_version]
+  - document_id: compressor-maintenance-manual
+    expert: equipment
+    title: 压缩空气系统维护手册（厂内版）
+    path: data/docs/equipment/compressor-maintenance-manual.md
+    kind: text
+    asset_type: process_doc
+    source_level: equipment_manual
+    publisher: 设备部
+    available_at: "2025-11-01T00:00:00Z"
+    nature: synthetic
+    tags: [equipment, compressor, manual]
+  - document_id: compressor-work-orders
+    expert: equipment
+    title: 空压系统历史工单（2025-2026）
+    path: data/docs/equipment/compressor-work-orders.csv
+    kind: table
+    asset_type: table
+    source_level: experience_record
+    publisher: 设备部
+    available_at: "2026-06-19T00:00:00Z"
+    nature: synthetic
+    tags: [equipment, work_order]
+    dormant: true
+  - document_id: compressor-inspection-sheet
+    expert: equipment
+    title: 空压机日常点检表（2026-06）
+    path: data/docs/equipment/compressor-inspection-sheet.csv
+    kind: table
+    asset_type: table
+    source_level: experience_record
+    publisher: 设备部
+    available_at: "2026-06-29T00:00:00Z"
+    nature: synthetic
+    tags: [equipment, inspection]
+    dormant: true
+  # 铭牌照片是实物拍摄（CC0），性质取 measured；识读出的描述是派生资料，见 description_path
+  - document_id: compressor-fan-nameplate
+    expert: equipment
+    title: 空压机冷却风扇电机铭牌
+    path: data/docs/equipment/compressor-fan-nameplate.jpg
+    kind: image
+    asset_type: image
+    source_level: equipment_manual
+    publisher: 设备铭牌（照片）
+    available_at: "2026-02-10T00:00:00Z"
+    nature: measured
+    license: CC0（Wikimedia Commons）
+    tags: [equipment, nameplate, image]
+    image_kind: nameplate
+    description_path: data/docs/equipment/compressor-fan-nameplate.md
+    description_model: deepseek-v4.1-flash-1017
+
+# 资产激活事件：沉睡资料被点检、入图或规则/动作引用的登记。演示命令按顺序执行，
+# 用来展示 沉睡 → 已标识 → 已入图 → 被规则或动作引用 的推进；真实运行由使用方（B29/B30）登记。
+activations:
+  - {document_id: elevator-safety-procedure, stage: in_graph, ref: "kg://factory/graph@v1", at: "2025-05-01T00:00:00Z"}
+  - {document_id: elevator-safety-procedure, stage: referenced, ref: "rule:occupied_car", at: "2026-02-01T00:00:00Z"}
+  - {document_id: elevator-maintenance-manual, stage: in_graph, ref: "kg://factory/graph@v1", at: "2026-01-20T00:00:00Z"}
+  - {document_id: elevator-maintenance-manual, stage: referenced, ref: "rule:elevator_entrapment", at: "2026-06-27T00:00:00Z"}
+  - {document_id: elevator-inspection-sheet, stage: identified, ref: "entity://demo-electronics/elevator/FE-2", at: "2026-06-24T02:00:00Z"}
+  - {document_id: elevator-inspection-sheet, stage: in_graph, ref: "kg://factory/graph@v1", at: "2026-06-24T00:00:00Z"}
+  - {document_id: elevator-inspection-sheet, stage: referenced, ref: "rule:elevator_entrapment", at: "2026-06-30T00:00:00Z"}
+  - {document_id: elevator-entrapment-log, stage: identified, ref: "entity://demo-electronics/elevator/FE-2", at: "2026-06-28T02:00:00Z"}
+  - {document_id: hvac-chiller-maintenance-manual, stage: in_graph, ref: "kg://factory/graph@v1", at: "2025-09-10T00:00:00Z"}
+  - {document_id: hvac-chiller-maintenance-manual, stage: referenced, ref: "action:precool_delay", at: "2026-06-25T00:00:00Z"}
+  - {document_id: hvac-zone-setpoints, stage: referenced, ref: "config:hvac-zone-setpoints", at: "2026-05-20T00:00:00Z"}
+  - {document_id: js-2025-426-policy, stage: identified, ref: "source:policy-426", at: "2025-04-28T16:00:00Z"}
+  - {document_id: js-2025-426-policy, stage: in_graph, ref: "kg://factory/graph@v1", at: "2025-05-01T00:00:00Z"}
+  - {document_id: js-2025-426-policy, stage: referenced, ref: "config:tariff/js-2025-426", at: "2025-06-01T00:00:00Z"}
+  - {document_id: tariff-summary-2025, stage: referenced, ref: "config:tariff/js-2025-426", at: "2025-06-01T00:00:00Z"}
+  - {document_id: bess-operation-manual, stage: in_graph, ref: "kg://factory/graph@v1", at: "2026-01-05T00:00:00Z"}
+  - {document_id: bess-operation-manual, stage: referenced, ref: "action:discharge", at: "2026-06-30T00:00:00Z"}
+  - {document_id: pv-output-curve, stage: in_graph, ref: "kg://factory/graph@v1", at: "2026-06-22T00:00:00Z"}
+  - {document_id: compressor-maintenance-manual, stage: in_graph, ref: "kg://factory/graph@v1", at: "2025-11-10T00:00:00Z"}
+  - {document_id: compressor-maintenance-manual, stage: referenced, ref: "rule:air_leak", at: "2026-06-30T00:00:00Z"}
+  - {document_id: compressor-work-orders, stage: identified, ref: "entity://demo-electronics/air_compressor/AC-2", at: "2026-06-19T02:00:00Z"}
+  - {document_id: compressor-work-orders, stage: in_graph, ref: "kg://factory/graph@v1", at: "2026-06-19T04:00:00Z"}
+  - {document_id: compressor-work-orders, stage: referenced, ref: "rule:air_leak", at: "2026-06-30T00:00:00Z"}
+  - {document_id: compressor-inspection-sheet, stage: identified, ref: "entity://demo-electronics/air_compressor/AC-2", at: "2026-06-29T02:00:00Z"}
+  - {document_id: compressor-inspection-sheet, stage: in_graph, ref: "kg://factory/graph@v1", at: "2026-06-29T04:00:00Z"}
+  - {document_id: compressor-fan-nameplate, stage: in_graph, ref: "kg://factory/graph@v1", at: "2026-02-10T04:00:00Z"}
+  - {document_id: compressor-fan-nameplate, stage: referenced, ref: "action:maintenance", at: "2026-06-30T00:00:00Z"}
+

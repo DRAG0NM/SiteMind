@@ -1,0 +1,130 @@
+# 工厂场景装配（B18）：中型工厂 = 生产车间 + 12 层行政楼 + 特殊区域 + 园区光伏/储能/配电。
+# 依据《愿景与演示剧本》工厂装配表与 2026-11-03 讨论纪要 D15；全部数字按常理编写，标 configured，不是实际选型。
+# 设备实体沿用 B06 的 entity://{厂区}/{类型}/{编号}；厂区段与 configs/plant.yaml、B10/B11 样例一致。
+plant_id: demo-electronics
+site_name: 华东某中型工厂（虚拟装配）
+plant_tz: Asia/Shanghai
+nature: configured
+# 电价类别（configured）：B30 发布期按它校验电价规则，不再从旧规则推断（#205-2）。
+tariff: {category: two_part_industrial_ge315kva, nature: configured}
+
+zones:
+  production: {label: 生产车间, floors: 1}
+  admin: {label: 行政楼, floors: 12}
+  cleanroom: {label: 洁净车间, floors: 1, flags: [hard_climate, no_shed]}
+  hazmat: {label: 危化品仓库, floors: 1, flags: [safety]}
+  datacenter: {label: 数据机房, floors: 1, flags: [safety, no_power_cut]}
+  park: {label: 园区公共, floors: 1}
+
+# 配电拓扑：电网 → 变压器 → 区配电柜 →（子柜）→ 设备。capacity_kva 是变压器容量上限，功率因数按 0.9 折 kW。
+distribution:
+  power_factor: 0.9
+  # 变压器负载率显示上限（configured，#238）：展示页限值刻度用；硬约束仍是 capacity_kva × power_factor 折出的 kW。
+  transformer_load_limit_pct: 85
+  # 电网接入合同容量（configured，#238）：量级参考展示样例 1200 kW，不是实际合同值。
+  contract_capacity_kw: 1200
+  nodes:
+    - {id: GRID, type: grid, label: 10 kV 市电进线}
+    - {id: TX1, type: transformer, parent: GRID, capacity_kva: 2000, label: 1# 变压器（生产）}
+    - {id: TX2, type: transformer, parent: GRID, capacity_kva: 1250, label: 2# 变压器（行政楼与特殊区域）}
+    - {id: LV1, type: bus, parent: TX1, label: 1# 低压母线（接光伏、储能）}
+    - {id: P-PROD, type: panel, parent: LV1, zone: production, label: 生产总配电柜}
+    - {id: P-AIR, type: panel, parent: P-PROD, zone: production, label: 空压站配电柜}
+    - {id: P-HVAC-P, type: panel, parent: P-PROD, zone: production, label: 车间暖通配电柜}
+    - {id: P-LINE, type: panel, parent: P-PROD, zone: production, label: 生产线配电柜}
+    - {id: P-UTIL, type: panel, parent: P-PROD, zone: production, label: 公用工程配电柜}
+    - {id: P-LIFT-F, type: panel, parent: P-PROD, zone: production, label: 货梯配电柜}
+    - {id: P-LT-P, type: panel, parent: P-PROD, zone: production, label: 车间照明配电箱}
+    - {id: P-PARK, type: panel, parent: LV1, zone: park, label: 园区新能源并网柜}
+    - {id: LV2, type: bus, parent: TX2, label: 2# 低压母线}
+    - {id: P-ADMIN, type: panel, parent: LV2, zone: admin, label: 行政楼总配电柜}
+    - {id: P-ADMIN-LIFT, type: panel, parent: P-ADMIN, zone: admin, label: 行政楼电梯配电柜}
+    - {id: P-ADMIN-HVAC, type: panel, parent: P-ADMIN, zone: admin, label: 行政楼暖通配电柜}
+    - {id: P-ADMIN-LT, type: panel, parent: P-ADMIN, zone: admin, label: 行政楼照明配电柜}
+    - {id: P-CR, type: panel, parent: LV2, zone: cleanroom, label: 洁净车间配电柜}
+    - {id: P-HZ, type: panel, parent: LV2, zone: hazmat, label: 危化品仓库配电柜}
+    - {id: P-DC, type: panel, parent: LV2, zone: datacenter, label: 数据机房配电柜（含 UPS）}
+
+# 设备。load 指负荷来源：
+#   d05:<分项>  按 D05 分项形状 × 声明倍数，再按同分项内额定功率占比分到各台（derived）
+#   synthetic:<模型>  D05 没有的分项，按常理编写的作息/人流驱动（synthetic 或 simulated）
+#   none  电源侧设备，不计负荷
+# per_floor: true 表示每层一台，编号自动加两位楼层号（如 AHU-A01）。
+equipment:
+  # 生产车间
+  - {code: AC-1, type: air_compressor, label: 1# 空压机, zone: production, panel: P-AIR, rated_kw: 110, load: d05:compressed_air, ontology_class: brick:Compressor}
+  - {code: AC-2, type: air_compressor, label: 2# 空压机, zone: production, panel: P-AIR, rated_kw: 110, load: d05:compressed_air, ontology_class: brick:Compressor}
+  - {code: AC-3, type: air_compressor, label: 3# 空压机, zone: production, panel: P-AIR, rated_kw: 110, load: d05:compressed_air, ontology_class: brick:Compressor}
+  - {code: AHU-P1, type: ahu, label: 恒温区 1# 空调箱（22±2 ℃）, zone: production, panel: P-HVAC-P, rated_kw: 75, load: d05:hvac, ontology_class: brick:AHU}
+  - {code: AHU-P2, type: ahu, label: 恒温区 2# 空调箱（22±2 ℃）, zone: production, panel: P-HVAC-P, rated_kw: 75, load: d05:hvac, ontology_class: brick:AHU}
+  - {code: EXF-P1, type: exhaust_fan, label: 车间排风机, zone: production, panel: P-HVAC-P, rated_kw: 37, load: d05:hvac, ontology_class: brick:Exhaust_Fan}
+  - {code: LINE-1, type: production_line, label: 1# 冲压线, zone: production, panel: P-LINE, rated_kw: 400, load: d05:process, shiftable: true}
+  - {code: LINE-2, type: production_line, label: 2# 冲压线, zone: production, panel: P-LINE, rated_kw: 400, load: d05:process, shiftable: true}
+  - {code: LINE-3, type: production_line, label: 3# 混料与装配线, zone: production, panel: P-LINE, rated_kw: 300, load: d05:process, shiftable: true}
+  - {code: UTIL-P1, type: pump_station, label: 循环水泵站, zone: production, panel: P-UTIL, rated_kw: 160, load: d05:utilities, ontology_class: brick:Pump}
+  - {code: FE-1, type: freight_elevator, label: 1# 货梯, zone: production, panel: P-LIFT-F, rated_kw: 30, load: synthetic:freight_elevator, ontology_class: brick:Elevator}
+  - {code: FE-2, type: freight_elevator, label: 2# 货梯, zone: production, panel: P-LIFT-F, rated_kw: 30, load: synthetic:freight_elevator, ontology_class: brick:Elevator}
+  - {code: FE-3, type: freight_elevator, label: 3# 货梯, zone: production, panel: P-LIFT-F, rated_kw: 30, load: synthetic:freight_elevator, ontology_class: brick:Elevator}
+  - {code: FE-4, type: freight_elevator, label: 4# 货梯, zone: production, panel: P-LIFT-F, rated_kw: 30, load: synthetic:freight_elevator, ontology_class: brick:Elevator}
+  - {code: LT-P, type: lighting, label: 车间照明, zone: production, panel: P-LT-P, rated_kw: 60, load: synthetic:production_lighting, ontology_class: brick:Luminaire}
+  # 行政楼（12 层）
+  - {code: PE-1, type: passenger_elevator, label: 1# 人梯（低区 1～6 层）, zone: admin, floor: 1, panel: P-ADMIN-LIFT, rated_kw: 22, load: synthetic:passenger_elevator, ontology_class: brick:Elevator}
+  - {code: PE-2, type: passenger_elevator, label: 2# 人梯（低区 1～6 层）, zone: admin, floor: 1, panel: P-ADMIN-LIFT, rated_kw: 22, load: synthetic:passenger_elevator, ontology_class: brick:Elevator}
+  - {code: PE-3, type: passenger_elevator, label: 3# 人梯（低区 1～6 层）, zone: admin, floor: 1, panel: P-ADMIN-LIFT, rated_kw: 22, load: synthetic:passenger_elevator, ontology_class: brick:Elevator}
+  - {code: PE-4, type: passenger_elevator, label: 4# 人梯（高区 7～12 层）, zone: admin, floor: 1, panel: P-ADMIN-LIFT, rated_kw: 22, load: synthetic:passenger_elevator, ontology_class: brick:Elevator}
+  - {code: PE-5, type: passenger_elevator, label: 5# 人梯（高区 7～12 层）, zone: admin, floor: 1, panel: P-ADMIN-LIFT, rated_kw: 22, load: synthetic:passenger_elevator, ontology_class: brick:Elevator}
+  - {code: PE-6, type: passenger_elevator, label: 6# 人梯（高区 7～12 层）, zone: admin, floor: 1, panel: P-ADMIN-LIFT, rated_kw: 22, load: synthetic:passenger_elevator, ontology_class: brick:Elevator}
+  - {code: CH-A1, type: chiller, label: 行政楼冷水机组（夏季 24～26 ℃）, zone: admin, floor: 12, panel: P-ADMIN-HVAC, rated_kw: 260, load: synthetic:office_hvac, ontology_class: brick:Chiller}
+  - {code: AHU-A, type: ahu, label: 行政楼楼层空调箱, zone: admin, panel: P-ADMIN-HVAC, rated_kw: 7.5, load: synthetic:office_hvac, per_floor: true, ontology_class: brick:AHU}
+  - {code: LT-A, type: lighting, label: 行政楼楼层照明, zone: admin, panel: P-ADMIN-LT, rated_kw: 8, load: synthetic:office_lighting, per_floor: true, ontology_class: brick:Luminaire}
+  # 特殊区域
+  - {code: CR-AHU1, type: ahu, label: 洁净车间 1# 恒温恒湿空调箱, zone: cleanroom, panel: P-CR, rated_kw: 90, load: synthetic:cleanroom_hvac, ontology_class: brick:AHU}
+  - {code: CR-AHU2, type: ahu, label: 洁净车间 2# 恒温恒湿空调箱, zone: cleanroom, panel: P-CR, rated_kw: 90, load: synthetic:cleanroom_hvac, ontology_class: brick:AHU}
+  - {code: HZ-EXF1, type: exhaust_fan, label: 危化品仓库防爆排风机, zone: hazmat, panel: P-HZ, rated_kw: 15, load: synthetic:hazmat_ventilation, ontology_class: brick:Exhaust_Fan}
+  - {code: DC-IT1, type: it_load, label: 数据机房 IT 负载, zone: datacenter, panel: P-DC, rated_kw: 80, load: synthetic:datacenter_it}
+  - {code: DC-CRAC1, type: crac, label: 数据机房 1# 精密空调, zone: datacenter, panel: P-DC, rated_kw: 25, load: synthetic:datacenter_cooling, ontology_class: brick:CRAC}
+  - {code: DC-CRAC2, type: crac, label: 数据机房 2# 精密空调, zone: datacenter, panel: P-DC, rated_kw: 25, load: synthetic:datacenter_cooling, ontology_class: brick:CRAC}
+  # 园区公共（电源侧，参数见同目录 pv.yaml、storage.yaml）
+  - {code: PV1, type: pv, label: 园区屋顶光伏 1 MWp, zone: park, panel: P-PARK, rated_kw: 1000, load: none, ontology_class: brick:PV_Panel}
+  - {code: BAT1, type: battery, label: 园区储能 2 MWh / 500 kW, zone: park, panel: P-PARK, rated_kw: 500, load: none, ontology_class: brick:Battery}
+
+# 生产区基础负荷：D05 底座 × 倍数（configured）。底座总量 = max(总进线 mi_a, 叶子合计)，因 mi_a 是扣掉对方厂光伏后的净购电。
+# D05 按电能折算的总进线均值约 232 kW、峰值约 591 kW（avg_power_kw_15m 的 ALL 相是三相平均而非合计，约 78/197 kW，不用）；
+# × 2 后生产区均值约 480 kW、峰值约 1.2 MW。
+production_base:
+  source: d05
+  multiplier: 2.0
+  delay_seconds: 0
+  # 回退底座：D05 不可用时用 B05 的 HIPE 总表（已映射到厂区时间、× B05 负荷因子 25，均值约 400 kW）。
+  # 再 × 1.25 使生产区均值与 D05 底座 × 2（约 500 kW）相当；分项占比取 D05 2025-05-23 起全年按本规则的平均，余项约 0.277。
+  hipe_fallback:
+    meter: MainTerminal
+    multiplier: 1.25
+    category_shares: {compressed_air: 0.109, hvac: 0.114, process: 0.449, utilities: 0.051}
+  # D05 叶子表计按资产类型归入分项；未列出的类型、配电柜、热泵、光伏表不算叶子。
+  categories:
+    compressed_air: [CompressedAir]
+    hvac: [HVAC_AirExtraction, HVAC_AHU]
+    process: [Press_Main, Press_Drive, Press_IntegratedAutomationCell, Press_Heating, Automation_Robot, Automation_Handling, ProcessMixing]
+    utilities: [Utilities]
+  # ahu_a、ahu_b 全年大部分在计量故障区间内，不用；pr_f 计入 p_f（原包 EdgeList: p_f → pr_f），避免重复计数
+  exclude_meters: [ahu_a, ahu_b, pr_f]
+  meter_valid_from: {ex_b: "2025-03-05T00:41:00Z", ahu_c: "2025-03-18T11:14:00Z"}
+
+# 时间映射（同 B05）：D05 UTC → Europe/Dublin 钟面 → 平移日期 → Asia/Shanghai 同一钟面。
+# 源与厂区起始日都是周三（2025-06-04、2026-07-01），工作日与周末对齐。
+time_map: {source_start: "2025-06-04", plant_start: "2026-07-01", source_tz: Europe/Dublin, plant_tz: Asia/Shanghai, dst_repeat_policy: keep_first}
+
+# 作息与人流（synthetic，按常理编写）。时刻为厂区当地钟面。
+schedule:
+  admin_staff: 600                 # 行政楼在岗人数（工作日）
+  weekend_admin_ratio: 0.08
+  morning_peak: ["08:00", "08:45"]  # 早高峰（愿景）
+  lunch: ["11:45", "13:15"]
+  evening_peak: ["17:30", "18:30"]
+  production_shifts: ["00:00", "08:00", "16:00"]   # 三班连续生产，与 D05 连续生产一致
+  production_staff_per_shift: 120
+  shift_change_minutes: 30
+  material_trips_per_hour: 24      # 满负荷时四台货梯合计的物料搬运任务数
+  office_cooling_start: "07:00"    # 行政楼提前预冷
+  office_cooling_end: "19:00"

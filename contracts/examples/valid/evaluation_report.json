@@ -1,0 +1,35 @@
+{
+  "model": "EvaluationReport",
+  "data": {
+    "report_id": "eval-20260701",
+    "eval_days": [
+      "2026-07-01"
+    ],
+    "independent_eval_day": true,
+    "policies": [
+      "B0",
+      "B1",
+      "B2"
+    ],
+    "metrics": {
+      "B0": {
+        "cost_cny": 7120.0,
+        "peak_import_kw": 980.0
+      },
+      "B1": {
+        "cost_cny": 6710.0,
+        "peak_import_kw": 940.0
+      },
+      "B2": {
+        "cost_cny": 6235.4,
+        "peak_import_kw": 905.0
+      }
+    },
+    "comparable": true,
+    "run_ids": [
+      "run-b0",
+      "run-b1",
+      "run-day-20260701"
+    ]
+  }
+}

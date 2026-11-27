@@ -1,0 +1,108 @@
+{
+  "additionalProperties": false,
+  "description": "GET /autonomy/status：paused 为 False 时 by/since/reason 是上一次暂停的信息（没暂停过则为空）。",
+  "properties": {
+    "paused": {
+      "title": "Paused",
+      "type": "boolean"
+    },
+    "scope": {
+      "enum": [
+        "plant",
+        "run"
+      ],
+      "title": "Scope",
+      "type": "string"
+    },
+    "run_id": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Run Id"
+    },
+    "by": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "By"
+    },
+    "since": {
+      "anyOf": [
+        {
+          "format": "date-time",
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d{1,9})?(Z|[+-]00:?00)$",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Since"
+    },
+    "reason": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Reason"
+    },
+    "resumed_by": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Resumed By"
+    },
+    "resumed_at": {
+      "anyOf": [
+        {
+          "format": "date-time",
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d{1,9})?(Z|[+-]00:?00)$",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Resumed At"
+    },
+    "backlog": {
+      "default": 0,
+      "minimum": 0,
+      "title": "Backlog",
+      "type": "integer"
+    }
+  },
+  "required": [
+    "paused",
+    "scope"
+  ],
+  "title": "AutonomyStatus",
+  "type": "object",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "plantkg:contracts/1.2.0/AutonomyStatus"
+}

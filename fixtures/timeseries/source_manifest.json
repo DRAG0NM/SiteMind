@@ -1,0 +1,108 @@
+{
+  "status": "post-repair real-data audit; capacity candidates, not business sign-off",
+  "pvgis": {
+    "url": "https://re.jrc.ec.europa.eu/api/v5_3/seriescalc?lat=32.06&lon=118.80&startyear=2017&endyear=2017&raddatabase=PVGIS-ERA5&pvcalculation=1&peakpower=1&loss=14&angle=30&aspect=0&outputformat=json",
+    "accessed_at_utc_approx": "2026-10-30T13:09:03.988088+00:00",
+    "version": "PVGIS 5.3",
+    "radiation_database": "PVGIS-ERA5",
+    "bytes": 825824,
+    "sha256": "7d4b3a043ae9fb8868973e3c667602baef57c85eadce73547130310f51eb6395",
+    "external_path": "pvgis_2017.json",
+    "unit": "W",
+    "source_peak_power_kWp": 1,
+    "time": "UTC; HH:30; metadata hourly averages",
+    "rows": 8760,
+    "fixture": "pvgis_2017_excerpt.json",
+    "fixture_sha256": "1e76d93658a8528c27cdebe55e6f931431e725bf20ec36b6164c84ebde56c24d",
+    "source_pointer": "/outputs/hourly",
+    "source_indices_zero_based": [
+      4320,
+      4391
+    ],
+    "license_url": "https://joint-research-centre.ec.europa.eu/photovoltaic-geographical-information-system-pvgis/general-information/usage-conditions-data-protection_en"
+  },
+  "hipe": {
+    "status": "downloaded; official MD5 verified; full-week adapter acceptance not performed",
+    "url": "https://zenodo.org/records/14054902/files/hipe_cleaned_v1.0.1_geq_2017-10-23_lt_2017-10-30.zip?download=1",
+    "version": "1.0.1",
+    "license": "CC BY 4.0",
+    "license_source": "https://publikationen.bibliothek.kit.edu/1000176079",
+    "accessed_at_utc_approx": "2026-10-30T13:12:32.905032+00:00",
+    "external_path": "hipe_week.zip",
+    "bytes": 109297827,
+    "md5_official": "535683e5c98f534e5b6d6f286dbe6993",
+    "md5_actual": "535683e5c98f534e5b6d6f286dbe6993",
+    "sha256": "a04344f7edf0593d9c35db68e606babfd77d28522ec0dc37ee081516836bbe2b",
+    "raw_unit": "kW",
+    "source_timezone": "Europe/Berlin, original timestamps include offset",
+    "members": [
+      {
+        "zip_member": "ChipPress_PhaseCount_3_geq_2017-10-23_lt_2017-10-30.csv",
+        "bytes": 252001483,
+        "sha256": "63649adaf578fddf9cb3712d2fdbb8e0f4acd98eb29bc5ad771c94bbeb1f78a7"
+      },
+      {
+        "zip_member": "ChipSaw_PhaseCount_3_geq_2017-10-23_lt_2017-10-30.csv",
+        "bytes": 268901003,
+        "sha256": "d6aa3781279de4c28ac9cac15010b3376e9a06a7e2d8ce1a76357b96b39c87bd"
+      },
+      {
+        "zip_member": "HighTemperatureOven_PhaseCount_3_geq_2017-10-23_lt_2017-10-30.csv",
+        "bytes": 261360907,
+        "sha256": "cbaf41adf28fec20daa987eed1bf65bbc243d7d33101ac08376c0e017eb0c54c"
+      },
+      {
+        "zip_member": "MainTerminal_PhaseCount_3_geq_2017-10-23_lt_2017-10-30.csv",
+        "bytes": 381368174,
+        "sha256": "2a214438929e52d93962c8e36893dd084ceedca486bca4b4a2de2cad1dfbe945"
+      },
+      {
+        "zip_member": "PickAndPlaceUnit_PhaseCount_2_geq_2017-10-23_lt_2017-10-30.csv",
+        "bytes": 80776772,
+        "sha256": "34e1af9ea357887fc4a327180257adc52a5bc47ed8c77b1345a526755d2e74ef"
+      },
+      {
+        "zip_member": "ScreenPrinter_PhaseCount_2_geq_2017-10-23_lt_2017-10-30.csv",
+        "bytes": 68274227,
+        "sha256": "bd4dd84c4aaa96b5ce590808064a31bc9a32d5822f4ae42cdf81de90566fbd6b"
+      },
+      {
+        "zip_member": "SolderingOven_PhaseCount_3_geq_2017-10-23_lt_2017-10-30.csv",
+        "bytes": 265678220,
+        "sha256": "38ed9e79d9c973295603cc89481c162896c80733ff6e77b3a6370683a2428e9e"
+      },
+      {
+        "zip_member": "VacuumOven_PhaseCount_3_geq_2017-10-23_lt_2017-10-30.csv",
+        "bytes": 252232244,
+        "sha256": "31ecf6f54595c3c5e131b807d30d3edbae490c3206a12d8c03cc692b2c87ae38"
+      },
+      {
+        "zip_member": "VacuumPump1_PhaseCount_3_geq_2017-10-23_lt_2017-10-30.csv",
+        "bytes": 196146401,
+        "sha256": "d948f7788ecbbddc6e0ba9bf1e5cc3caa0edeb12a21ed2272473302aa4a286f9"
+      },
+      {
+        "zip_member": "VacuumPump2_PhaseCount_2_geq_2017-10-23_lt_2017-10-30.csv",
+        "bytes": 57559609,
+        "sha256": "dda56369408874fb6f4c6fc3ecc1e755d76f5845b602e7836e6e468797c86a25"
+      },
+      {
+        "zip_member": "WashingMachine_PhaseCount_3_geq_2017-10-23_lt_2017-10-30.csv",
+        "bytes": 286213546,
+        "sha256": "e1cbca155924e1f90832173ff8b57e916803b43904258b4845f08e4e896a7a55"
+      }
+    ],
+    "fixture": "hipe_excerpt.json",
+    "fixture_sha256": "e5580861534bdbf4e9560a1b2a56d1b9744b15dac84908c70d8b4d777be29986"
+  },
+  "synthetic_fixture": {
+    "file": "synthetic_edge_cases.json",
+    "sha256": "50684991a66efec081f4ecbcb91d840dee57ce76d30e75b73fb931e29529f9ac",
+    "nature": "synthetic"
+  },
+  "real_week_report": {
+    "file": "real_week_report.json",
+    "sha256": "fc04fb11bbfa8ef833e3bc0de5284c9b4a4c85660172a7c308b56dcc95b107ca",
+    "status": "post-repair real-data audit; capacity candidates, not business sign-off"
+  }
+}

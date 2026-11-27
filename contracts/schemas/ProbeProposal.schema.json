@@ -1,0 +1,140 @@
+{
+  "$defs": {
+    "ActionReadiness": {
+      "enum": [
+        "ready",
+        "needs_diagnosis",
+        "needs_human"
+      ],
+      "title": "ActionReadiness",
+      "type": "string"
+    },
+    "Interval": {
+      "additionalProperties": false,
+      "description": "左闭右开 UTC 区间 [start, end)。",
+      "properties": {
+        "start": {
+          "format": "date-time",
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d{1,9})?(Z|[+-]00:?00)$",
+          "title": "Start",
+          "type": "string"
+        },
+        "end": {
+          "format": "date-time",
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d{1,9})?(Z|[+-]00:?00)$",
+          "title": "End",
+          "type": "string"
+        }
+      },
+      "required": [
+        "start",
+        "end"
+      ],
+      "title": "Interval",
+      "type": "object"
+    },
+    "ProposedAction": {
+      "additionalProperties": false,
+      "description": "专家提案里的一个动作。",
+      "properties": {
+        "entity_id": {
+          "description": "entity://{厂区}/{类型}/{编号}；不随资料修改而变",
+          "pattern": "^entity://[A-Za-z0-9_-]+/[a-z0-9_-]+/[A-Za-z0-9_.-]+$",
+          "title": "Entity Id",
+          "type": "string"
+        },
+        "command": {
+          "maxLength": 200,
+          "minLength": 1,
+          "title": "Command",
+          "type": "string"
+        },
+        "params": {
+          "additionalProperties": true,
+          "title": "Params",
+          "type": "object"
+        },
+        "interval": {
+          "$ref": "#/$defs/Interval"
+        },
+        "readiness": {
+          "$ref": "#/$defs/ActionReadiness",
+          "default": "ready"
+        },
+        "depends_on": {
+          "default": [],
+          "items": {
+            "type": "string"
+          },
+          "title": "Depends On",
+          "type": "array"
+        }
+      },
+      "required": [
+        "entity_id",
+        "command",
+        "interval"
+      ],
+      "title": "ProposedAction",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "description": "D61 试探提案：慢通道调查给出一个只作用于观察窗口的试探动作，及待检验假设与预期读数反应。",
+  "properties": {
+    "ticket_id": {
+      "maxLength": 200,
+      "minLength": 1,
+      "title": "Ticket Id",
+      "type": "string"
+    },
+    "round": {
+      "minimum": 1,
+      "title": "Round",
+      "type": "integer"
+    },
+    "actions": {
+      "items": {
+        "$ref": "#/$defs/ProposedAction"
+      },
+      "minItems": 1,
+      "title": "Actions",
+      "type": "array"
+    },
+    "window_min": {
+      "default": 3,
+      "minimum": 1,
+      "title": "Window Min",
+      "type": "integer"
+    },
+    "hypothesis": {
+      "title": "Hypothesis",
+      "type": "string"
+    },
+    "expectations": {
+      "default": [],
+      "items": {
+        "type": "string"
+      },
+      "title": "Expectations",
+      "type": "array"
+    },
+    "created_at": {
+      "format": "date-time",
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d{1,9})?(Z|[+-]00:?00)$",
+      "title": "Created At",
+      "type": "string"
+    }
+  },
+  "required": [
+    "ticket_id",
+    "round",
+    "actions",
+    "hypothesis",
+    "created_at"
+  ],
+  "title": "ProbeProposal",
+  "type": "object",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "plantkg:contracts/1.2.0/ProbeProposal"
+}

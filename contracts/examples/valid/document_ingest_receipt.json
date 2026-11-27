@@ -1,0 +1,16 @@
+{
+  "model": "DocumentIngestReceipt",
+  "data": {
+    "document_id": "manual-ac2",
+    "asset_version_id": "asset://manufacturing/4f1bfb5c/process_doc/source",
+    "content_hash": "sha256:4f1bfb5c85e1505070be6de368a1cf2f6a84691c8a1aa24966f6dee066153edd",
+    "expert": "equipment",
+    "nature": "synthetic",
+    "available_at": "2026-11-15T06:10:53Z",
+    "received_at": "2026-11-15T06:10:53Z",
+    "source_name": "manual.txt",
+    "status": "needs_review",
+    "published": false,
+    "note": "synthetic 契约样例，尚未发布"
+  }
+}

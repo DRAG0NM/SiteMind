@@ -1,0 +1,8 @@
+name: evolution
+schema_version: 1
+order: 120
+status: active
+description: B32 纠错候选、trial 回测与版本发布/回滚
+entrypoint: plantkg.evolution:register
+provides:
+  tools: [propose_candidates_evo, backtest, propose_rollback]

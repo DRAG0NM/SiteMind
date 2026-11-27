@@ -1,0 +1,14 @@
+{
+  "model": "DeliveryOutcome",
+  "data": {
+    "outcome": "queued_work_order",
+    "reason": "安全标记触发工单，等人确认后执行",
+    "work_order_ids": [
+      "WO-0001"
+    ],
+    "action_indexes": [
+      0,
+      1
+    ]
+  }
+}

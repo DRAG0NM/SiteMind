@@ -1,0 +1,43 @@
+{
+  "additionalProperties": false,
+  "description": "一种选项顺序下的判别结果。choice 必须是 distribution 的唯一第一名；\n第一名平分或无法判定时 choice 为空，该条结果不能支持自动接纳。",
+  "properties": {
+    "order": {
+      "items": {
+        "type": "string"
+      },
+      "minItems": 1,
+      "title": "Order",
+      "type": "array"
+    },
+    "choice": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "Choice"
+    },
+    "distribution": {
+      "additionalProperties": {
+        "maximum": 1,
+        "minimum": 0,
+        "type": "number"
+      },
+      "title": "Distribution",
+      "type": "object"
+    }
+  },
+  "required": [
+    "order",
+    "choice",
+    "distribution"
+  ],
+  "title": "OrderResult",
+  "type": "object",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "plantkg:contracts/1.2.0/OrderResult"
+}

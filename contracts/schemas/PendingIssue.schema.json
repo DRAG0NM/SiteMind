@@ -1,0 +1,104 @@
+{
+  "$defs": {
+    "PendingIssueReason": {
+      "enum": [
+        "unit_unknown",
+        "subject_unknown",
+        "conflict",
+        "missing_price",
+        "negative_price",
+        "unsupported_kind",
+        "not_reviewed",
+        "not_visible",
+        "out_of_effect",
+        "config_invalid"
+      ],
+      "title": "PendingIssueReason",
+      "type": "string"
+    },
+    "Ref": {
+      "additionalProperties": false,
+      "description": "动作、约束的依据：规则、配置项或资产版本，至少一个（04 ModelBuilder.add_constraint）。",
+      "properties": {
+        "kind": {
+          "enum": [
+            "rule",
+            "config",
+            "asset_version"
+          ],
+          "title": "Kind",
+          "type": "string"
+        },
+        "id": {
+          "maxLength": 200,
+          "minLength": 1,
+          "title": "Id",
+          "type": "string"
+        }
+      },
+      "required": [
+        "kind",
+        "id"
+      ],
+      "title": "Ref",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "issue_id": {
+      "maxLength": 200,
+      "minLength": 1,
+      "title": "Issue Id",
+      "type": "string"
+    },
+    "reason": {
+      "$ref": "#/$defs/PendingIssueReason"
+    },
+    "rule_id": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Rule Id"
+    },
+    "subject": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Subject"
+    },
+    "detail": {
+      "title": "Detail",
+      "type": "string"
+    },
+    "refs": {
+      "default": [],
+      "items": {
+        "$ref": "#/$defs/Ref"
+      },
+      "title": "Refs",
+      "type": "array"
+    }
+  },
+  "required": [
+    "issue_id",
+    "reason",
+    "detail"
+  ],
+  "title": "PendingIssue",
+  "type": "object",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "plantkg:contracts/1.2.0/PendingIssue"
+}

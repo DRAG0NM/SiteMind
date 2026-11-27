@@ -1,0 +1,93 @@
+{
+  "$defs": {
+    "DataNature": {
+      "enum": [
+        "measured",
+        "derived",
+        "configured",
+        "synthetic",
+        "simulated"
+      ],
+      "title": "DataNature",
+      "type": "string"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "filename": {
+      "maxLength": 255,
+      "minLength": 1,
+      "title": "Filename",
+      "type": "string"
+    },
+    "text": {
+      "maxLength": 1048576,
+      "minLength": 1,
+      "title": "Text",
+      "type": "string"
+    },
+    "expert": {
+      "enum": [
+        "elevator",
+        "hvac",
+        "energy",
+        "equipment"
+      ],
+      "title": "Expert",
+      "type": "string"
+    },
+    "source_level": {
+      "default": "experience_record",
+      "enum": [
+        "national_standard",
+        "equipment_manual",
+        "experience_record"
+      ],
+      "title": "Source Level",
+      "type": "string"
+    },
+    "nature": {
+      "$ref": "#/$defs/DataNature",
+      "default": "synthetic"
+    },
+    "document_id": {
+      "anyOf": [
+        {
+          "pattern": "^[a-z0-9][a-z0-9-]{0,63}$",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Document Id"
+    },
+    "entity_ids": {
+      "default": [],
+      "items": {
+        "description": "entity://{厂区}/{类型}/{编号}；不随资料修改而变",
+        "pattern": "^entity://[A-Za-z0-9_-]+/[a-z0-9_-]+/[A-Za-z0-9_.-]+$",
+        "type": "string"
+      },
+      "title": "Entity Ids",
+      "type": "array"
+    },
+    "idempotency_key": {
+      "maxLength": 128,
+      "minLength": 1,
+      "title": "Idempotency Key",
+      "type": "string"
+    }
+  },
+  "required": [
+    "filename",
+    "text",
+    "expert",
+    "idempotency_key"
+  ],
+  "title": "DocumentIngestRequest",
+  "type": "object",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "plantkg:contracts/1.2.0/DocumentIngestRequest"
+}

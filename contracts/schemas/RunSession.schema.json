@@ -1,0 +1,136 @@
+{
+  "$defs": {
+    "Actor": {
+      "additionalProperties": false,
+      "properties": {
+        "actor_id": {
+          "maxLength": 200,
+          "minLength": 1,
+          "title": "Actor Id",
+          "type": "string"
+        },
+        "roles": {
+          "default": [],
+          "items": {
+            "$ref": "#/$defs/Role"
+          },
+          "title": "Roles",
+          "type": "array"
+        },
+        "display_name": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Display Name"
+        }
+      },
+      "required": [
+        "actor_id"
+      ],
+      "title": "Actor",
+      "type": "object"
+    },
+    "Role": {
+      "enum": [
+        "viewer",
+        "operator",
+        "reviewer"
+      ],
+      "title": "Role",
+      "type": "string"
+    }
+  },
+  "additionalProperties": false,
+  "description": "网关为一次 Agent 运行登记的会话（03 §6.1）。ctx 不得出现在工具结果、证据与日志中。",
+  "properties": {
+    "ctx": {
+      "description": "128 位随机数的十六进制；只作索引",
+      "pattern": "^[0-9a-f]{32}$",
+      "title": "Ctx",
+      "type": "string"
+    },
+    "actor": {
+      "$ref": "#/$defs/Actor"
+    },
+    "plant_id": {
+      "maxLength": 200,
+      "minLength": 1,
+      "title": "Plant Id",
+      "type": "string"
+    },
+    "industry_pack": {
+      "maxLength": 200,
+      "minLength": 1,
+      "title": "Industry Pack",
+      "type": "string"
+    },
+    "as_of": {
+      "format": "date-time",
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d{1,9})?(Z|[+-]00:?00)$",
+      "title": "As Of",
+      "type": "string"
+    },
+    "visible_document_paths": {
+      "default": [],
+      "items": {
+        "type": "string"
+      },
+      "title": "Visible Document Paths",
+      "type": "array"
+    },
+    "agent_run_id": {
+      "maxLength": 200,
+      "minLength": 1,
+      "title": "Agent Run Id",
+      "type": "string"
+    },
+    "trace_id": {
+      "maxLength": 200,
+      "minLength": 1,
+      "title": "Trace Id",
+      "type": "string"
+    },
+    "created_at": {
+      "format": "date-time",
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d{1,9})?(Z|[+-]00:?00)$",
+      "title": "Created At",
+      "type": "string"
+    },
+    "expires_at": {
+      "format": "date-time",
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d{1,9})?(Z|[+-]00:?00)$",
+      "title": "Expires At",
+      "type": "string"
+    },
+    "origin": {
+      "default": "gateway",
+      "enum": [
+        "gateway",
+        "mock_default"
+      ],
+      "title": "Origin",
+      "type": "string"
+    }
+  },
+  "required": [
+    "ctx",
+    "actor",
+    "plant_id",
+    "industry_pack",
+    "as_of",
+    "agent_run_id",
+    "trace_id",
+    "created_at",
+    "expires_at"
+  ],
+  "title": "RunSession",
+  "type": "object",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "plantkg:contracts/1.2.0/RunSession"
+}

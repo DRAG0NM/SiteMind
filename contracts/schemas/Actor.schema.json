@@ -1,0 +1,49 @@
+{
+  "$defs": {
+    "Role": {
+      "enum": [
+        "viewer",
+        "operator",
+        "reviewer"
+      ],
+      "title": "Role",
+      "type": "string"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "actor_id": {
+      "maxLength": 200,
+      "minLength": 1,
+      "title": "Actor Id",
+      "type": "string"
+    },
+    "roles": {
+      "default": [],
+      "items": {
+        "$ref": "#/$defs/Role"
+      },
+      "title": "Roles",
+      "type": "array"
+    },
+    "display_name": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Display Name"
+    }
+  },
+  "required": [
+    "actor_id"
+  ],
+  "title": "Actor",
+  "type": "object",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "plantkg:contracts/1.2.0/Actor"
+}

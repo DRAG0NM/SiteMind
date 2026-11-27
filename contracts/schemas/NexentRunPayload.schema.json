@@ -1,0 +1,62 @@
+{
+  "additionalProperties": false,
+  "description": "网关 → Nexent 北向 POST /nb/v1/chat/run 的请求体（v2.8.2 探针实测字段）。\n\ntool_params 形如 {\"agents\": {agent: {\"tools\": {tool: {param: value}}}}}，只给白名单工具注入 ctx，\n知识库检索工具注入 document_paths。这是唯一允许携带注入值的契约，只在网关进程内构造、不落日志。\nrepr/str 与校验报错已脱敏；model_dump 仍含原值（发给 Nexent 需要），只能在出站请求处调用。",
+  "properties": {
+    "agent_name": {
+      "maxLength": 200,
+      "minLength": 1,
+      "title": "Agent Name",
+      "type": "string"
+    },
+    "query": {
+      "minLength": 1,
+      "title": "Query",
+      "type": "string"
+    },
+    "conversation_id": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Conversation Id"
+    },
+    "tool_params": {
+      "anyOf": [
+        {
+          "additionalProperties": {
+            "additionalProperties": {
+              "additionalProperties": {
+                "additionalProperties": {
+                  "additionalProperties": true,
+                  "type": "object"
+                },
+                "type": "object"
+              },
+              "type": "object"
+            },
+            "type": "object"
+          },
+          "type": "object"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Tool Params"
+    }
+  },
+  "required": [
+    "agent_name",
+    "query"
+  ],
+  "title": "NexentRunPayload",
+  "type": "object",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "plantkg:contracts/1.2.0/NexentRunPayload"
+}

@@ -1,0 +1,35 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "time_limit_s": {
+      "exclusiveMinimum": 0,
+      "title": "Time Limit S",
+      "type": "number"
+    },
+    "mip_rel_gap": {
+      "exclusiveMaximum": 1,
+      "exclusiveMinimum": 0,
+      "title": "Mip Rel Gap",
+      "type": "number"
+    },
+    "threads": {
+      "default": 1,
+      "minimum": 1,
+      "title": "Threads",
+      "type": "integer"
+    },
+    "random_seed": {
+      "default": 0,
+      "title": "Random Seed",
+      "type": "integer"
+    }
+  },
+  "required": [
+    "time_limit_s",
+    "mip_rel_gap"
+  ],
+  "title": "SolverBudget",
+  "type": "object",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "plantkg:contracts/1.2.0/SolverBudget"
+}

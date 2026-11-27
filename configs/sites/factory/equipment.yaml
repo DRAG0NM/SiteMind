@@ -1,0 +1,6 @@
+# 设备/空压限值（#238 方案 1、#182 遗留）：导出 day.json 的 config 组指标从这里读，前端限值刻度同源。
+# 数据性质 configured：按常理与展示样例编写，不是设备选型或现场运行记录。
+nature: configured
+compressed_air:
+  floor_mpa: 0.6                    # 管网压力下限：低于此值按供气不足处置
+  leak_threshold_mpa_per_min: 0.08  # 压降速率阈值：超过判泄漏（与 B22 压力趋势判据互补）

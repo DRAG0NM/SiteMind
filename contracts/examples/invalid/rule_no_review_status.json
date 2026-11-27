@@ -1,0 +1,32 @@
+{
+  "model": "Rule",
+  "base": "rule_tariff_policy",
+  "expect_error": "review_status",
+  "data": {
+    "rule_id": "rule-tou-peak-1",
+    "kind": "tariff_period",
+    "subject_ids": [
+      "entity://demo-electronics/grid_connection/MAIN"
+    ],
+    "condition": {
+      "local_time": [
+        "08:00",
+        "11:00"
+      ],
+      "season": "summer"
+    },
+    "quantity": "energy_price",
+    "unit": "CNY/kWh",
+    "value": 1.0812,
+    "effective_from": "2026-06-01T00:00:00Z",
+    "available_at": "2026-06-15T00:00:00Z",
+    "source_asset_version": "asset://manufacturing/9581b4ac/policy/tou-2026",
+    "locator": {
+      "page": 2,
+      "clause": "第三条"
+    },
+    "nature": "configured",
+    "reviewer": "u-reviewer-1",
+    "compiler_version": "tariff-compiler-1"
+  }
+}

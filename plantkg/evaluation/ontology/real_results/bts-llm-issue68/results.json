@@ -1,0 +1,2954 @@
+{
+  "data_kind": "derived",
+  "method": "zero-shot local model, not B30",
+  "gold_sha256": "770cc0ddadf6ce7df25963b7d4e9ff1c2840947152f5e27f6e4db8fde9bdf83f",
+  "seed": 42,
+  "model": {
+    "name": "qwen3.5:4b-q4_K_M",
+    "digest": "d8b0f5e9760cd1682034f292d7ef72ec46f432149be0df7574bf2d6e92e38c04",
+    "details": {
+      "parent_model": "model.gguf",
+      "format": "gguf",
+      "family": "qwen35",
+      "families": [
+        "qwen35"
+      ],
+      "parameter_size": "4.2B",
+      "quantization_level": "Q4_K_M",
+      "context_length": 262144,
+      "embedding_length": 2560,
+      "runner": "llamacpp"
+    },
+    "api_fee": 0,
+    "api_fee_reason": "local Ollama endpoint; machine cost not measured"
+  },
+  "configuration": {
+    "temperature": 0,
+    "num_predict": 1600,
+    "format": "json",
+    "batch_size": 12,
+    "retries": 1
+  },
+  "sample": {
+    "subjects": 150,
+    "relation_pairs": 200,
+    "strategy": "sha256(seed:key) order over observable subjects and asserted pairs",
+    "class_count": 112,
+    "prompt_ids": "short aliases c0.. and r0..; identifiers are opaque hex"
+  },
+  "concept": {
+    "metrics": {
+      "tp": 8,
+      "fp": 142,
+      "fn": 142,
+      "precision": 0.05333333333333334,
+      "recall": 0.05333333333333334,
+      "f1": 0.053333333333333344
+    },
+    "by_class": {
+      "https://brickschema.org/schema/Brick#Air_Handler_Unit": {
+        "tp": 0,
+        "fp": 0,
+        "fn": 1,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "sample_count": 1
+      },
+      "https://brickschema.org/schema/Brick#Air_Temperature_Sensor": {
+        "tp": 0,
+        "fp": 1,
+        "fn": 6,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "sample_count": 7
+      },
+      "https://brickschema.org/schema/Brick#Alarm": {
+        "tp": 0,
+        "fp": 0,
+        "fn": 1,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "sample_count": 1
+      },
+      "https://brickschema.org/schema/Brick#Building": {
+        "tp": 0,
+        "fp": 5,
+        "fn": 0,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "sample_count": 5
+      },
+      "https://brickschema.org/schema/Brick#Building_Electrical_Meter": {
+        "tp": 1,
+        "fp": 17,
+        "fn": 0,
+        "precision": 0.05555555555555555,
+        "recall": 1.0,
+        "f1": 0.10526315789473684,
+        "sample_count": 18
+      },
+      "https://brickschema.org/schema/Brick#Building_Gas_Meter": {
+        "tp": 0,
+        "fp": 3,
+        "fn": 0,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "sample_count": 3
+      },
+      "https://brickschema.org/schema/Brick#Building_Water_Meter": {
+        "tp": 0,
+        "fp": 3,
+        "fn": 0,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "sample_count": 3
+      },
+      "https://brickschema.org/schema/Brick#Chilled_Water_Pump": {
+        "tp": 0,
+        "fp": 3,
+        "fn": 0,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "sample_count": 3
+      },
+      "https://brickschema.org/schema/Brick#Chiller": {
+        "tp": 0,
+        "fp": 1,
+        "fn": 0,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "sample_count": 1
+      },
+      "https://brickschema.org/schema/Brick#Conference_Room": {
+        "tp": 0,
+        "fp": 0,
+        "fn": 1,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "sample_count": 1
+      },
+      "https://brickschema.org/schema/Brick#Cooling_Coil": {
+        "tp": 0,
+        "fp": 1,
+        "fn": 4,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "sample_count": 5
+      },
+      "https://brickschema.org/schema/Brick#Cooling_Command": {
+        "tp": 0,
+        "fp": 0,
+        "fn": 1,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "sample_count": 1
+      },
+      "https://brickschema.org/schema/Brick#Cooling_Valve": {
+        "tp": 0,
+        "fp": 1,
+        "fn": 2,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "sample_count": 3
+      },
+      "https://brickschema.org/schema/Brick#Current_Sensor": {
+        "tp": 0,
+        "fp": 0,
+        "fn": 2,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "sample_count": 2
+      },
+      "https://brickschema.org/schema/Brick#Damper_Position_Sensor": {
+        "tp": 0,
+        "fp": 0,
+        "fn": 2,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "sample_count": 2
+      },
+      "https://brickschema.org/schema/Brick#Discharge_Air_Temperature_Sensor": {
+        "tp": 0,
+        "fp": 0,
+        "fn": 1,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "sample_count": 1
+      },
+      "https://brickschema.org/schema/Brick#Electrical_Circuit": {
+        "tp": 0,
+        "fp": 3,
+        "fn": 1,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "sample_count": 4
+      },
+      "https://brickschema.org/schema/Brick#Electrical_Energy_Sensor": {
+        "tp": 0,
+        "fp": 11,
+        "fn": 1,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "sample_count": 12
+      },
+      "https://brickschema.org/schema/Brick#Electrical_Generation_Meter": {
+        "tp": 0,
+        "fp": 1,
+        "fn": 0,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "sample_count": 1
+      },
+      "https://brickschema.org/schema/Brick#Electrical_Meter": {
+        "tp": 0,
+        "fp": 18,
+        "fn": 2,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "sample_count": 20
+      },
+      "https://brickschema.org/schema/Brick#Electrical_Power_Sensor": {
+        "tp": 0,
+        "fp": 9,
+        "fn": 4,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "sample_count": 13
+      },
+      "https://brickschema.org/schema/Brick#Emergency_Alarm": {
+        "tp": 0,
+        "fp": 0,
+        "fn": 1,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "sample_count": 1
+      },
+      "https://brickschema.org/schema/Brick#Enable_Status": {
+        "tp": 0,
+        "fp": 0,
+        "fn": 4,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "sample_count": 4
+      },
+      "https://brickschema.org/schema/Brick#Enclosed_space": {
+        "tp": 0,
+        "fp": 1,
+        "fn": 1,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "sample_count": 2
+      },
+      "https://brickschema.org/schema/Brick#Fan_Coil_Unit": {
+        "tp": 0,
+        "fp": 2,
+        "fn": 1,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "sample_count": 3
+      },
+      "https://brickschema.org/schema/Brick#Filter": {
+        "tp": 0,
+        "fp": 0,
+        "fn": 3,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "sample_count": 3
+      },
+      "https://brickschema.org/schema/Brick#Filter_Differential_Pressure_Sensor": {
+        "tp": 0,
+        "fp": 0,
+        "fn": 1,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "sample_count": 1
+      },
+      "https://brickschema.org/schema/Brick#Floor": {
+        "tp": 0,
+        "fp": 1,
+        "fn": 0,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "sample_count": 1
+      },
+      "https://brickschema.org/schema/Brick#HVAC_Zone": {
+        "tp": 0,
+        "fp": 5,
+        "fn": 1,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "sample_count": 6
+      },
+      "https://brickschema.org/schema/Brick#Hallway": {
+        "tp": 0,
+        "fp": 0,
+        "fn": 2,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "sample_count": 2
+      },
+      "https://brickschema.org/schema/Brick#Heating_Coil": {
+        "tp": 0,
+        "fp": 3,
+        "fn": 4,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "sample_count": 7
+      },
+      "https://brickschema.org/schema/Brick#Heating_Temperature_Setpoint": {
+        "tp": 0,
+        "fp": 0,
+        "fn": 5,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "sample_count": 5
+      },
+      "https://brickschema.org/schema/Brick#Heating_Valve": {
+        "tp": 0,
+        "fp": 0,
+        "fn": 3,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "sample_count": 3
+      },
+      "https://brickschema.org/schema/Brick#Hot_Water_Pump": {
+        "tp": 0,
+        "fp": 0,
+        "fn": 1,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "sample_count": 1
+      },
+      "https://brickschema.org/schema/Brick#Lobby": {
+        "tp": 0,
+        "fp": 0,
+        "fn": 1,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "sample_count": 1
+      },
+      "https://brickschema.org/schema/Brick#Low_Outside_Air_Temperature_Enable_Setpoint": {
+        "tp": 0,
+        "fp": 0,
+        "fn": 1,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "sample_count": 1
+      },
+      "https://brickschema.org/schema/Brick#Max_Discharge_Air_Temperature_Setpoint_Limit": {
+        "tp": 0,
+        "fp": 0,
+        "fn": 3,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "sample_count": 3
+      },
+      "https://brickschema.org/schema/Brick#Max_Temperature_Setpoint_Limit": {
+        "tp": 0,
+        "fp": 0,
+        "fn": 7,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "sample_count": 7
+      },
+      "https://brickschema.org/schema/Brick#Min_Discharge_Air_Temperature_Setpoint_Limit": {
+        "tp": 0,
+        "fp": 0,
+        "fn": 3,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "sample_count": 3
+      },
+      "https://brickschema.org/schema/Brick#Min_Position_Setpoint_Limit": {
+        "tp": 0,
+        "fp": 0,
+        "fn": 1,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "sample_count": 1
+      },
+      "https://brickschema.org/schema/Brick#Min_Temperature_Setpoint_Limit": {
+        "tp": 0,
+        "fp": 0,
+        "fn": 5,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "sample_count": 5
+      },
+      "https://brickschema.org/schema/Brick#Mode_Command": {
+        "tp": 0,
+        "fp": 0,
+        "fn": 9,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "sample_count": 9
+      },
+      "https://brickschema.org/schema/Brick#Operating_Mode_Status": {
+        "tp": 0,
+        "fp": 0,
+        "fn": 3,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "sample_count": 3
+      },
+      "https://brickschema.org/schema/Brick#Point": {
+        "tp": 7,
+        "fp": 47,
+        "fn": 12,
+        "precision": 0.12962962962962962,
+        "recall": 0.3684210526315789,
+        "f1": 0.19178082191780824,
+        "sample_count": 66
+      },
+      "https://brickschema.org/schema/Brick#Position_Sensor": {
+        "tp": 0,
+        "fp": 0,
+        "fn": 2,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "sample_count": 2
+      },
+      "https://brickschema.org/schema/Brick#Proportional_Gain_Parameter": {
+        "tp": 0,
+        "fp": 0,
+        "fn": 2,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "sample_count": 2
+      },
+      "https://brickschema.org/schema/Brick#Reset_Command": {
+        "tp": 0,
+        "fp": 0,
+        "fn": 2,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "sample_count": 2
+      },
+      "https://brickschema.org/schema/Brick#Restroom": {
+        "tp": 0,
+        "fp": 0,
+        "fn": 2,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "sample_count": 2
+      },
+      "https://brickschema.org/schema/Brick#Return_Damper": {
+        "tp": 0,
+        "fp": 0,
+        "fn": 1,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "sample_count": 1
+      },
+      "https://brickschema.org/schema/Brick#Room": {
+        "tp": 0,
+        "fp": 6,
+        "fn": 0,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "sample_count": 6
+      },
+      "https://brickschema.org/schema/Brick#Room_Air_Temperature_Setpoint": {
+        "tp": 0,
+        "fp": 0,
+        "fn": 1,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "sample_count": 1
+      },
+      "https://brickschema.org/schema/Brick#Solar_Inverter": {
+        "tp": 0,
+        "fp": 0,
+        "fn": 1,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "sample_count": 1
+      },
+      "https://brickschema.org/schema/Brick#Supply_Fan": {
+        "tp": 0,
+        "fp": 0,
+        "fn": 2,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "sample_count": 2
+      },
+      "https://brickschema.org/schema/Brick#System_Enable_Command": {
+        "tp": 0,
+        "fp": 0,
+        "fn": 3,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "sample_count": 3
+      },
+      "https://brickschema.org/schema/Brick#System_Status": {
+        "tp": 0,
+        "fp": 0,
+        "fn": 6,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "sample_count": 6
+      },
+      "https://brickschema.org/schema/Brick#Temperature_Parameter": {
+        "tp": 0,
+        "fp": 0,
+        "fn": 1,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "sample_count": 1
+      },
+      "https://brickschema.org/schema/Brick#Temperature_Setpoint": {
+        "tp": 0,
+        "fp": 0,
+        "fn": 4,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "sample_count": 4
+      },
+      "https://brickschema.org/schema/Brick#Usage_Sensor": {
+        "tp": 0,
+        "fp": 0,
+        "fn": 2,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "sample_count": 2
+      },
+      "https://brickschema.org/schema/Brick#Voltage_Sensor": {
+        "tp": 0,
+        "fp": 0,
+        "fn": 9,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "sample_count": 9
+      },
+      "https://brickschema.org/schema/Brick#Warmest_Zone_Air_Temperature_Sensor": {
+        "tp": 0,
+        "fp": 0,
+        "fn": 1,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "sample_count": 1
+      },
+      "https://brickschema.org/schema/Brick#b1a78aa6_d50d_4c0a_920e_5ff7019ab663_Sensor": {
+        "tp": 0,
+        "fp": 0,
+        "fn": 1,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "sample_count": 1
+      },
+      "https://brickschema.org/schema/Brick#space_Kitchen": {
+        "tp": 0,
+        "fp": 0,
+        "fn": 1,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "sample_count": 1
+      }
+    },
+    "scored": 150,
+    "failed": 0
+  },
+  "relations": {
+    "metrics": {
+      "tp": 27,
+      "fp": 173,
+      "fn": 173,
+      "precision": 0.135,
+      "recall": 0.135,
+      "f1": 0.135
+    },
+    "by_type": {
+      "isPointOf": {
+        "tp": 2,
+        "fp": 3,
+        "fn": 136,
+        "precision": 0.4,
+        "recall": 0.014492753623188406,
+        "f1": 0.027972027972027972
+      },
+      "isPartOf": {
+        "tp": 24,
+        "fp": 61,
+        "fn": 6,
+        "precision": 0.2823529411764706,
+        "recall": 0.8,
+        "f1": 0.41739130434782606
+      },
+      "feeds": {
+        "tp": 1,
+        "fp": 94,
+        "fn": 26,
+        "precision": 0.010526315789473684,
+        "recall": 0.037037037037037035,
+        "f1": 0.01639344262295082
+      },
+      "hasLocation": {
+        "tp": 0,
+        "fp": 15,
+        "fn": 5,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0
+      }
+    },
+    "scored": 200,
+    "failed": 0,
+    "protocol": "gold pair given; only the relation type is predicted"
+  },
+  "identifier_typing_on_same_pairs": {
+    "metrics": {
+      "tp": 55,
+      "fp": 0,
+      "fn": 145,
+      "precision": 1.0,
+      "recall": 0.275,
+      "f1": 0.4313725490196079
+    },
+    "note": "parent-identifier rule restricted to the same sampled pairs, for context only"
+  },
+  "review_curves": {
+    "random": [
+      {
+        "reviewed": 0,
+        "entity_f1": 0.053333333333333344,
+        "relation_f1": 0.06896551724137931
+      },
+      {
+        "reviewed": 1,
+        "entity_f1": 0.06,
+        "relation_f1": 0.06896551724137931
+      },
+      {
+        "reviewed": 2,
+        "entity_f1": 0.06666666666666667,
+        "relation_f1": 0.06896551724137931
+      },
+      {
+        "reviewed": 3,
+        "entity_f1": 0.07333333333333333,
+        "relation_f1": 0.06896551724137931
+      },
+      {
+        "reviewed": 4,
+        "entity_f1": 0.08,
+        "relation_f1": 0.06896551724137931
+      },
+      {
+        "reviewed": 5,
+        "entity_f1": 0.08666666666666667,
+        "relation_f1": 0.06896551724137931
+      },
+      {
+        "reviewed": 6,
+        "entity_f1": 0.09333333333333334,
+        "relation_f1": 0.06896551724137931
+      },
+      {
+        "reviewed": 7,
+        "entity_f1": 0.10000000000000002,
+        "relation_f1": 0.06896551724137931
+      },
+      {
+        "reviewed": 8,
+        "entity_f1": 0.10000000000000002,
+        "relation_f1": 0.10344827586206896
+      },
+      {
+        "reviewed": 9,
+        "entity_f1": 0.10666666666666669,
+        "relation_f1": 0.10344827586206896
+      },
+      {
+        "reviewed": 10,
+        "entity_f1": 0.11333333333333333,
+        "relation_f1": 0.10344827586206896
+      },
+      {
+        "reviewed": 11,
+        "entity_f1": 0.12,
+        "relation_f1": 0.10344827586206896
+      },
+      {
+        "reviewed": 12,
+        "entity_f1": 0.12666666666666668,
+        "relation_f1": 0.13793103448275862
+      },
+      {
+        "reviewed": 13,
+        "entity_f1": 0.13333333333333333,
+        "relation_f1": 0.13793103448275862
+      },
+      {
+        "reviewed": 14,
+        "entity_f1": 0.14,
+        "relation_f1": 0.13793103448275862
+      },
+      {
+        "reviewed": 15,
+        "entity_f1": 0.14666666666666667,
+        "relation_f1": 0.13793103448275862
+      },
+      {
+        "reviewed": 16,
+        "entity_f1": 0.14666666666666667,
+        "relation_f1": 0.13793103448275862
+      },
+      {
+        "reviewed": 17,
+        "entity_f1": 0.15333333333333332,
+        "relation_f1": 0.13793103448275862
+      },
+      {
+        "reviewed": 18,
+        "entity_f1": 0.16,
+        "relation_f1": 0.13793103448275862
+      },
+      {
+        "reviewed": 19,
+        "entity_f1": 0.16666666666666666,
+        "relation_f1": 0.13793103448275862
+      },
+      {
+        "reviewed": 20,
+        "entity_f1": 0.16666666666666666,
+        "relation_f1": 0.13793103448275862
+      },
+      {
+        "reviewed": 21,
+        "entity_f1": 0.17333333333333334,
+        "relation_f1": 0.13793103448275862
+      },
+      {
+        "reviewed": 22,
+        "entity_f1": 0.18,
+        "relation_f1": 0.1724137931034483
+      },
+      {
+        "reviewed": 23,
+        "entity_f1": 0.18666666666666668,
+        "relation_f1": 0.1724137931034483
+      },
+      {
+        "reviewed": 24,
+        "entity_f1": 0.19333333333333333,
+        "relation_f1": 0.1724137931034483
+      },
+      {
+        "reviewed": 25,
+        "entity_f1": 0.20000000000000004,
+        "relation_f1": 0.1724137931034483
+      },
+      {
+        "reviewed": 26,
+        "entity_f1": 0.20666666666666667,
+        "relation_f1": 0.1724137931034483
+      },
+      {
+        "reviewed": 27,
+        "entity_f1": 0.21333333333333337,
+        "relation_f1": 0.1724137931034483
+      },
+      {
+        "reviewed": 28,
+        "entity_f1": 0.22,
+        "relation_f1": 0.1724137931034483
+      },
+      {
+        "reviewed": 29,
+        "entity_f1": 0.22666666666666666,
+        "relation_f1": 0.1724137931034483
+      },
+      {
+        "reviewed": 30,
+        "entity_f1": 0.23333333333333334,
+        "relation_f1": 0.1724137931034483
+      },
+      {
+        "reviewed": 31,
+        "entity_f1": 0.24,
+        "relation_f1": 0.1724137931034483
+      },
+      {
+        "reviewed": 32,
+        "entity_f1": 0.2466666666666667,
+        "relation_f1": 0.1724137931034483
+      },
+      {
+        "reviewed": 33,
+        "entity_f1": 0.25333333333333335,
+        "relation_f1": 0.1724137931034483
+      },
+      {
+        "reviewed": 34,
+        "entity_f1": 0.26,
+        "relation_f1": 0.1724137931034483
+      },
+      {
+        "reviewed": 35,
+        "entity_f1": 0.26666666666666666,
+        "relation_f1": 0.20689655172413793
+      },
+      {
+        "reviewed": 36,
+        "entity_f1": 0.2733333333333333,
+        "relation_f1": 0.20689655172413793
+      },
+      {
+        "reviewed": 37,
+        "entity_f1": 0.28,
+        "relation_f1": 0.20689655172413793
+      },
+      {
+        "reviewed": 38,
+        "entity_f1": 0.2866666666666667,
+        "relation_f1": 0.20689655172413793
+      },
+      {
+        "reviewed": 39,
+        "entity_f1": 0.29333333333333333,
+        "relation_f1": 0.2413793103448276
+      },
+      {
+        "reviewed": 40,
+        "entity_f1": 0.3,
+        "relation_f1": 0.2413793103448276
+      },
+      {
+        "reviewed": 41,
+        "entity_f1": 0.30666666666666664,
+        "relation_f1": 0.2413793103448276
+      },
+      {
+        "reviewed": 42,
+        "entity_f1": 0.31333333333333335,
+        "relation_f1": 0.2413793103448276
+      },
+      {
+        "reviewed": 43,
+        "entity_f1": 0.32,
+        "relation_f1": 0.2413793103448276
+      },
+      {
+        "reviewed": 44,
+        "entity_f1": 0.32666666666666666,
+        "relation_f1": 0.27586206896551724
+      },
+      {
+        "reviewed": 45,
+        "entity_f1": 0.3333333333333333,
+        "relation_f1": 0.27586206896551724
+      },
+      {
+        "reviewed": 46,
+        "entity_f1": 0.3333333333333333,
+        "relation_f1": 0.27586206896551724
+      },
+      {
+        "reviewed": 47,
+        "entity_f1": 0.34,
+        "relation_f1": 0.3448275862068966
+      },
+      {
+        "reviewed": 48,
+        "entity_f1": 0.3466666666666667,
+        "relation_f1": 0.3448275862068966
+      },
+      {
+        "reviewed": 49,
+        "entity_f1": 0.35333333333333333,
+        "relation_f1": 0.3448275862068966
+      },
+      {
+        "reviewed": 50,
+        "entity_f1": 0.36,
+        "relation_f1": 0.3793103448275862
+      },
+      {
+        "reviewed": 51,
+        "entity_f1": 0.36666666666666664,
+        "relation_f1": 0.3793103448275862
+      },
+      {
+        "reviewed": 52,
+        "entity_f1": 0.37333333333333335,
+        "relation_f1": 0.3793103448275862
+      },
+      {
+        "reviewed": 53,
+        "entity_f1": 0.38,
+        "relation_f1": 0.3793103448275862
+      },
+      {
+        "reviewed": 54,
+        "entity_f1": 0.38666666666666666,
+        "relation_f1": 0.3793103448275862
+      },
+      {
+        "reviewed": 55,
+        "entity_f1": 0.3933333333333333,
+        "relation_f1": 0.3793103448275862
+      },
+      {
+        "reviewed": 56,
+        "entity_f1": 0.4000000000000001,
+        "relation_f1": 0.3793103448275862
+      },
+      {
+        "reviewed": 57,
+        "entity_f1": 0.4066666666666667,
+        "relation_f1": 0.3793103448275862
+      },
+      {
+        "reviewed": 58,
+        "entity_f1": 0.41333333333333333,
+        "relation_f1": 0.41379310344827586
+      },
+      {
+        "reviewed": 59,
+        "entity_f1": 0.41999999999999993,
+        "relation_f1": 0.4482758620689655
+      },
+      {
+        "reviewed": 60,
+        "entity_f1": 0.42666666666666675,
+        "relation_f1": 0.4482758620689655
+      },
+      {
+        "reviewed": 61,
+        "entity_f1": 0.43333333333333335,
+        "relation_f1": 0.4482758620689655
+      },
+      {
+        "reviewed": 62,
+        "entity_f1": 0.44,
+        "relation_f1": 0.4482758620689655
+      },
+      {
+        "reviewed": 63,
+        "entity_f1": 0.44,
+        "relation_f1": 0.4482758620689655
+      },
+      {
+        "reviewed": 64,
+        "entity_f1": 0.44666666666666666,
+        "relation_f1": 0.4482758620689655
+      },
+      {
+        "reviewed": 65,
+        "entity_f1": 0.4533333333333333,
+        "relation_f1": 0.4482758620689655
+      },
+      {
+        "reviewed": 66,
+        "entity_f1": 0.46,
+        "relation_f1": 0.4482758620689655
+      },
+      {
+        "reviewed": 67,
+        "entity_f1": 0.4666666666666667,
+        "relation_f1": 0.4482758620689655
+      },
+      {
+        "reviewed": 68,
+        "entity_f1": 0.47333333333333333,
+        "relation_f1": 0.4827586206896552
+      },
+      {
+        "reviewed": 69,
+        "entity_f1": 0.48,
+        "relation_f1": 0.4827586206896552
+      },
+      {
+        "reviewed": 70,
+        "entity_f1": 0.4866666666666667,
+        "relation_f1": 0.4827586206896552
+      },
+      {
+        "reviewed": 71,
+        "entity_f1": 0.4866666666666667,
+        "relation_f1": 0.4827586206896552
+      },
+      {
+        "reviewed": 72,
+        "entity_f1": 0.4933333333333334,
+        "relation_f1": 0.4827586206896552
+      },
+      {
+        "reviewed": 73,
+        "entity_f1": 0.5,
+        "relation_f1": 0.4827586206896552
+      },
+      {
+        "reviewed": 74,
+        "entity_f1": 0.5066666666666667,
+        "relation_f1": 0.4827586206896552
+      },
+      {
+        "reviewed": 75,
+        "entity_f1": 0.5133333333333333,
+        "relation_f1": 0.4827586206896552
+      },
+      {
+        "reviewed": 76,
+        "entity_f1": 0.52,
+        "relation_f1": 0.5172413793103449
+      },
+      {
+        "reviewed": 77,
+        "entity_f1": 0.5266666666666666,
+        "relation_f1": 0.5517241379310345
+      },
+      {
+        "reviewed": 78,
+        "entity_f1": 0.5333333333333333,
+        "relation_f1": 0.5517241379310345
+      },
+      {
+        "reviewed": 79,
+        "entity_f1": 0.54,
+        "relation_f1": 0.5517241379310345
+      },
+      {
+        "reviewed": 80,
+        "entity_f1": 0.5466666666666666,
+        "relation_f1": 0.6551724137931034
+      },
+      {
+        "reviewed": 81,
+        "entity_f1": 0.5533333333333333,
+        "relation_f1": 0.6551724137931034
+      },
+      {
+        "reviewed": 82,
+        "entity_f1": 0.56,
+        "relation_f1": 0.6551724137931034
+      },
+      {
+        "reviewed": 83,
+        "entity_f1": 0.5666666666666667,
+        "relation_f1": 0.6551724137931034
+      },
+      {
+        "reviewed": 84,
+        "entity_f1": 0.5733333333333334,
+        "relation_f1": 0.6551724137931034
+      },
+      {
+        "reviewed": 85,
+        "entity_f1": 0.58,
+        "relation_f1": 0.6551724137931034
+      },
+      {
+        "reviewed": 86,
+        "entity_f1": 0.5866666666666667,
+        "relation_f1": 0.6551724137931034
+      },
+      {
+        "reviewed": 87,
+        "entity_f1": 0.5933333333333334,
+        "relation_f1": 0.6551724137931034
+      },
+      {
+        "reviewed": 88,
+        "entity_f1": 0.6,
+        "relation_f1": 0.6551724137931034
+      },
+      {
+        "reviewed": 89,
+        "entity_f1": 0.6066666666666667,
+        "relation_f1": 0.6551724137931034
+      },
+      {
+        "reviewed": 90,
+        "entity_f1": 0.6133333333333333,
+        "relation_f1": 0.6551724137931034
+      },
+      {
+        "reviewed": 91,
+        "entity_f1": 0.62,
+        "relation_f1": 0.6551724137931034
+      },
+      {
+        "reviewed": 92,
+        "entity_f1": 0.6266666666666667,
+        "relation_f1": 0.6551724137931034
+      },
+      {
+        "reviewed": 93,
+        "entity_f1": 0.6333333333333333,
+        "relation_f1": 0.6551724137931034
+      },
+      {
+        "reviewed": 94,
+        "entity_f1": 0.64,
+        "relation_f1": 0.6551724137931034
+      },
+      {
+        "reviewed": 95,
+        "entity_f1": 0.6466666666666666,
+        "relation_f1": 0.6551724137931034
+      },
+      {
+        "reviewed": 96,
+        "entity_f1": 0.6533333333333333,
+        "relation_f1": 0.6551724137931034
+      },
+      {
+        "reviewed": 97,
+        "entity_f1": 0.66,
+        "relation_f1": 0.6551724137931034
+      },
+      {
+        "reviewed": 98,
+        "entity_f1": 0.6666666666666666,
+        "relation_f1": 0.6551724137931034
+      },
+      {
+        "reviewed": 99,
+        "entity_f1": 0.6733333333333333,
+        "relation_f1": 0.6551724137931034
+      },
+      {
+        "reviewed": 100,
+        "entity_f1": 0.68,
+        "relation_f1": 0.6551724137931034
+      },
+      {
+        "reviewed": 101,
+        "entity_f1": 0.6866666666666666,
+        "relation_f1": 0.6551724137931034
+      },
+      {
+        "reviewed": 102,
+        "entity_f1": 0.6933333333333334,
+        "relation_f1": 0.6896551724137931
+      },
+      {
+        "reviewed": 103,
+        "entity_f1": 0.7,
+        "relation_f1": 0.6896551724137931
+      },
+      {
+        "reviewed": 104,
+        "entity_f1": 0.7066666666666667,
+        "relation_f1": 0.6896551724137931
+      },
+      {
+        "reviewed": 105,
+        "entity_f1": 0.7133333333333335,
+        "relation_f1": 0.6896551724137931
+      },
+      {
+        "reviewed": 106,
+        "entity_f1": 0.72,
+        "relation_f1": 0.6896551724137931
+      },
+      {
+        "reviewed": 107,
+        "entity_f1": 0.7266666666666666,
+        "relation_f1": 0.7241379310344829
+      },
+      {
+        "reviewed": 108,
+        "entity_f1": 0.7266666666666666,
+        "relation_f1": 0.7586206896551724
+      },
+      {
+        "reviewed": 109,
+        "entity_f1": 0.7333333333333333,
+        "relation_f1": 0.7586206896551724
+      },
+      {
+        "reviewed": 110,
+        "entity_f1": 0.74,
+        "relation_f1": 0.7586206896551724
+      },
+      {
+        "reviewed": 111,
+        "entity_f1": 0.7466666666666667,
+        "relation_f1": 0.7586206896551724
+      },
+      {
+        "reviewed": 112,
+        "entity_f1": 0.7533333333333333,
+        "relation_f1": 0.7586206896551724
+      },
+      {
+        "reviewed": 113,
+        "entity_f1": 0.76,
+        "relation_f1": 0.7586206896551724
+      },
+      {
+        "reviewed": 114,
+        "entity_f1": 0.7666666666666667,
+        "relation_f1": 0.7586206896551724
+      },
+      {
+        "reviewed": 115,
+        "entity_f1": 0.7733333333333333,
+        "relation_f1": 0.7586206896551724
+      },
+      {
+        "reviewed": 116,
+        "entity_f1": 0.78,
+        "relation_f1": 0.7586206896551724
+      },
+      {
+        "reviewed": 117,
+        "entity_f1": 0.7866666666666666,
+        "relation_f1": 0.7931034482758621
+      },
+      {
+        "reviewed": 118,
+        "entity_f1": 0.7933333333333333,
+        "relation_f1": 0.7931034482758621
+      },
+      {
+        "reviewed": 119,
+        "entity_f1": 0.8000000000000002,
+        "relation_f1": 0.7931034482758621
+      },
+      {
+        "reviewed": 120,
+        "entity_f1": 0.8066666666666665,
+        "relation_f1": 0.7931034482758621
+      },
+      {
+        "reviewed": 121,
+        "entity_f1": 0.8133333333333334,
+        "relation_f1": 0.7931034482758621
+      },
+      {
+        "reviewed": 122,
+        "entity_f1": 0.82,
+        "relation_f1": 0.8275862068965517
+      },
+      {
+        "reviewed": 123,
+        "entity_f1": 0.8266666666666667,
+        "relation_f1": 0.8275862068965517
+      },
+      {
+        "reviewed": 124,
+        "entity_f1": 0.8266666666666667,
+        "relation_f1": 0.8275862068965517
+      },
+      {
+        "reviewed": 125,
+        "entity_f1": 0.8333333333333334,
+        "relation_f1": 0.8275862068965517
+      },
+      {
+        "reviewed": 126,
+        "entity_f1": 0.8399999999999999,
+        "relation_f1": 0.8275862068965517
+      },
+      {
+        "reviewed": 127,
+        "entity_f1": 0.8466666666666667,
+        "relation_f1": 0.8275862068965517
+      },
+      {
+        "reviewed": 128,
+        "entity_f1": 0.8533333333333335,
+        "relation_f1": 0.8620689655172413
+      },
+      {
+        "reviewed": 129,
+        "entity_f1": 0.8599999999999999,
+        "relation_f1": 0.8620689655172413
+      },
+      {
+        "reviewed": 130,
+        "entity_f1": 0.8666666666666667,
+        "relation_f1": 0.896551724137931
+      },
+      {
+        "reviewed": 131,
+        "entity_f1": 0.8733333333333333,
+        "relation_f1": 0.896551724137931
+      },
+      {
+        "reviewed": 132,
+        "entity_f1": 0.88,
+        "relation_f1": 0.896551724137931
+      },
+      {
+        "reviewed": 133,
+        "entity_f1": 0.8866666666666667,
+        "relation_f1": 0.896551724137931
+      },
+      {
+        "reviewed": 134,
+        "entity_f1": 0.8933333333333333,
+        "relation_f1": 0.896551724137931
+      },
+      {
+        "reviewed": 135,
+        "entity_f1": 0.9,
+        "relation_f1": 0.896551724137931
+      },
+      {
+        "reviewed": 136,
+        "entity_f1": 0.9066666666666666,
+        "relation_f1": 0.896551724137931
+      },
+      {
+        "reviewed": 137,
+        "entity_f1": 0.9133333333333333,
+        "relation_f1": 0.896551724137931
+      },
+      {
+        "reviewed": 138,
+        "entity_f1": 0.92,
+        "relation_f1": 0.896551724137931
+      },
+      {
+        "reviewed": 139,
+        "entity_f1": 0.9266666666666666,
+        "relation_f1": 0.896551724137931
+      },
+      {
+        "reviewed": 140,
+        "entity_f1": 0.9333333333333333,
+        "relation_f1": 0.896551724137931
+      },
+      {
+        "reviewed": 141,
+        "entity_f1": 0.94,
+        "relation_f1": 0.9310344827586207
+      },
+      {
+        "reviewed": 142,
+        "entity_f1": 0.9466666666666667,
+        "relation_f1": 0.9310344827586207
+      },
+      {
+        "reviewed": 143,
+        "entity_f1": 0.9533333333333334,
+        "relation_f1": 0.9310344827586207
+      },
+      {
+        "reviewed": 144,
+        "entity_f1": 0.96,
+        "relation_f1": 0.9310344827586207
+      },
+      {
+        "reviewed": 145,
+        "entity_f1": 0.9666666666666667,
+        "relation_f1": 0.9310344827586207
+      },
+      {
+        "reviewed": 146,
+        "entity_f1": 0.9733333333333334,
+        "relation_f1": 0.9655172413793104
+      },
+      {
+        "reviewed": 147,
+        "entity_f1": 0.98,
+        "relation_f1": 0.9655172413793104
+      },
+      {
+        "reviewed": 148,
+        "entity_f1": 0.9866666666666668,
+        "relation_f1": 0.9655172413793104
+      },
+      {
+        "reviewed": 149,
+        "entity_f1": 0.9933333333333333,
+        "relation_f1": 0.9655172413793104
+      },
+      {
+        "reviewed": 150,
+        "entity_f1": 1.0,
+        "relation_f1": 1.0
+      }
+    ],
+    "uncertainty": [
+      {
+        "reviewed": 0,
+        "entity_f1": 0.053333333333333344,
+        "relation_f1": 0.06896551724137931
+      },
+      {
+        "reviewed": 1,
+        "entity_f1": 0.06,
+        "relation_f1": 0.10344827586206896
+      },
+      {
+        "reviewed": 2,
+        "entity_f1": 0.06666666666666667,
+        "relation_f1": 0.10344827586206896
+      },
+      {
+        "reviewed": 3,
+        "entity_f1": 0.07333333333333333,
+        "relation_f1": 0.10344827586206896
+      },
+      {
+        "reviewed": 4,
+        "entity_f1": 0.08,
+        "relation_f1": 0.10344827586206896
+      },
+      {
+        "reviewed": 5,
+        "entity_f1": 0.08666666666666667,
+        "relation_f1": 0.10344827586206896
+      },
+      {
+        "reviewed": 6,
+        "entity_f1": 0.08666666666666667,
+        "relation_f1": 0.10344827586206896
+      },
+      {
+        "reviewed": 7,
+        "entity_f1": 0.09333333333333334,
+        "relation_f1": 0.20689655172413793
+      },
+      {
+        "reviewed": 8,
+        "entity_f1": 0.10000000000000002,
+        "relation_f1": 0.20689655172413793
+      },
+      {
+        "reviewed": 9,
+        "entity_f1": 0.10666666666666669,
+        "relation_f1": 0.20689655172413793
+      },
+      {
+        "reviewed": 10,
+        "entity_f1": 0.11333333333333333,
+        "relation_f1": 0.20689655172413793
+      },
+      {
+        "reviewed": 11,
+        "entity_f1": 0.12,
+        "relation_f1": 0.20689655172413793
+      },
+      {
+        "reviewed": 12,
+        "entity_f1": 0.12,
+        "relation_f1": 0.20689655172413793
+      },
+      {
+        "reviewed": 13,
+        "entity_f1": 0.12666666666666668,
+        "relation_f1": 0.20689655172413793
+      },
+      {
+        "reviewed": 14,
+        "entity_f1": 0.13333333333333333,
+        "relation_f1": 0.20689655172413793
+      },
+      {
+        "reviewed": 15,
+        "entity_f1": 0.14,
+        "relation_f1": 0.20689655172413793
+      },
+      {
+        "reviewed": 16,
+        "entity_f1": 0.14666666666666667,
+        "relation_f1": 0.20689655172413793
+      },
+      {
+        "reviewed": 17,
+        "entity_f1": 0.15333333333333332,
+        "relation_f1": 0.20689655172413793
+      },
+      {
+        "reviewed": 18,
+        "entity_f1": 0.16,
+        "relation_f1": 0.20689655172413793
+      },
+      {
+        "reviewed": 19,
+        "entity_f1": 0.16666666666666666,
+        "relation_f1": 0.2413793103448276
+      },
+      {
+        "reviewed": 20,
+        "entity_f1": 0.17333333333333334,
+        "relation_f1": 0.2413793103448276
+      },
+      {
+        "reviewed": 21,
+        "entity_f1": 0.18,
+        "relation_f1": 0.2413793103448276
+      },
+      {
+        "reviewed": 22,
+        "entity_f1": 0.18666666666666668,
+        "relation_f1": 0.2413793103448276
+      },
+      {
+        "reviewed": 23,
+        "entity_f1": 0.19333333333333333,
+        "relation_f1": 0.2413793103448276
+      },
+      {
+        "reviewed": 24,
+        "entity_f1": 0.20000000000000004,
+        "relation_f1": 0.27586206896551724
+      },
+      {
+        "reviewed": 25,
+        "entity_f1": 0.20666666666666667,
+        "relation_f1": 0.3103448275862069
+      },
+      {
+        "reviewed": 26,
+        "entity_f1": 0.21333333333333337,
+        "relation_f1": 0.3103448275862069
+      },
+      {
+        "reviewed": 27,
+        "entity_f1": 0.22,
+        "relation_f1": 0.3103448275862069
+      },
+      {
+        "reviewed": 28,
+        "entity_f1": 0.22666666666666666,
+        "relation_f1": 0.3103448275862069
+      },
+      {
+        "reviewed": 29,
+        "entity_f1": 0.23333333333333334,
+        "relation_f1": 0.3103448275862069
+      },
+      {
+        "reviewed": 30,
+        "entity_f1": 0.24,
+        "relation_f1": 0.3103448275862069
+      },
+      {
+        "reviewed": 31,
+        "entity_f1": 0.2466666666666667,
+        "relation_f1": 0.3103448275862069
+      },
+      {
+        "reviewed": 32,
+        "entity_f1": 0.25333333333333335,
+        "relation_f1": 0.3448275862068966
+      },
+      {
+        "reviewed": 33,
+        "entity_f1": 0.26,
+        "relation_f1": 0.3448275862068966
+      },
+      {
+        "reviewed": 34,
+        "entity_f1": 0.26666666666666666,
+        "relation_f1": 0.3448275862068966
+      },
+      {
+        "reviewed": 35,
+        "entity_f1": 0.2733333333333333,
+        "relation_f1": 0.3448275862068966
+      },
+      {
+        "reviewed": 36,
+        "entity_f1": 0.28,
+        "relation_f1": 0.3448275862068966
+      },
+      {
+        "reviewed": 37,
+        "entity_f1": 0.2866666666666667,
+        "relation_f1": 0.3448275862068966
+      },
+      {
+        "reviewed": 38,
+        "entity_f1": 0.29333333333333333,
+        "relation_f1": 0.3448275862068966
+      },
+      {
+        "reviewed": 39,
+        "entity_f1": 0.3,
+        "relation_f1": 0.3448275862068966
+      },
+      {
+        "reviewed": 40,
+        "entity_f1": 0.30666666666666664,
+        "relation_f1": 0.3448275862068966
+      },
+      {
+        "reviewed": 41,
+        "entity_f1": 0.31333333333333335,
+        "relation_f1": 0.3793103448275862
+      },
+      {
+        "reviewed": 42,
+        "entity_f1": 0.32,
+        "relation_f1": 0.3793103448275862
+      },
+      {
+        "reviewed": 43,
+        "entity_f1": 0.32666666666666666,
+        "relation_f1": 0.3793103448275862
+      },
+      {
+        "reviewed": 44,
+        "entity_f1": 0.3333333333333333,
+        "relation_f1": 0.3793103448275862
+      },
+      {
+        "reviewed": 45,
+        "entity_f1": 0.34,
+        "relation_f1": 0.41379310344827586
+      },
+      {
+        "reviewed": 46,
+        "entity_f1": 0.3466666666666667,
+        "relation_f1": 0.41379310344827586
+      },
+      {
+        "reviewed": 47,
+        "entity_f1": 0.35333333333333333,
+        "relation_f1": 0.41379310344827586
+      },
+      {
+        "reviewed": 48,
+        "entity_f1": 0.36,
+        "relation_f1": 0.41379310344827586
+      },
+      {
+        "reviewed": 49,
+        "entity_f1": 0.36666666666666664,
+        "relation_f1": 0.41379310344827586
+      },
+      {
+        "reviewed": 50,
+        "entity_f1": 0.37333333333333335,
+        "relation_f1": 0.41379310344827586
+      },
+      {
+        "reviewed": 51,
+        "entity_f1": 0.38,
+        "relation_f1": 0.41379310344827586
+      },
+      {
+        "reviewed": 52,
+        "entity_f1": 0.38666666666666666,
+        "relation_f1": 0.41379310344827586
+      },
+      {
+        "reviewed": 53,
+        "entity_f1": 0.3933333333333333,
+        "relation_f1": 0.41379310344827586
+      },
+      {
+        "reviewed": 54,
+        "entity_f1": 0.4000000000000001,
+        "relation_f1": 0.41379310344827586
+      },
+      {
+        "reviewed": 55,
+        "entity_f1": 0.4066666666666667,
+        "relation_f1": 0.41379310344827586
+      },
+      {
+        "reviewed": 56,
+        "entity_f1": 0.41333333333333333,
+        "relation_f1": 0.41379310344827586
+      },
+      {
+        "reviewed": 57,
+        "entity_f1": 0.41999999999999993,
+        "relation_f1": 0.41379310344827586
+      },
+      {
+        "reviewed": 58,
+        "entity_f1": 0.42666666666666675,
+        "relation_f1": 0.41379310344827586
+      },
+      {
+        "reviewed": 59,
+        "entity_f1": 0.43333333333333335,
+        "relation_f1": 0.41379310344827586
+      },
+      {
+        "reviewed": 60,
+        "entity_f1": 0.44,
+        "relation_f1": 0.4482758620689655
+      },
+      {
+        "reviewed": 61,
+        "entity_f1": 0.44666666666666666,
+        "relation_f1": 0.4482758620689655
+      },
+      {
+        "reviewed": 62,
+        "entity_f1": 0.4533333333333333,
+        "relation_f1": 0.4482758620689655
+      },
+      {
+        "reviewed": 63,
+        "entity_f1": 0.46,
+        "relation_f1": 0.5172413793103449
+      },
+      {
+        "reviewed": 64,
+        "entity_f1": 0.4666666666666667,
+        "relation_f1": 0.5172413793103449
+      },
+      {
+        "reviewed": 65,
+        "entity_f1": 0.47333333333333333,
+        "relation_f1": 0.5172413793103449
+      },
+      {
+        "reviewed": 66,
+        "entity_f1": 0.48,
+        "relation_f1": 0.5172413793103449
+      },
+      {
+        "reviewed": 67,
+        "entity_f1": 0.4866666666666667,
+        "relation_f1": 0.5172413793103449
+      },
+      {
+        "reviewed": 68,
+        "entity_f1": 0.4933333333333334,
+        "relation_f1": 0.5172413793103449
+      },
+      {
+        "reviewed": 69,
+        "entity_f1": 0.5,
+        "relation_f1": 0.5517241379310345
+      },
+      {
+        "reviewed": 70,
+        "entity_f1": 0.5066666666666667,
+        "relation_f1": 0.5862068965517241
+      },
+      {
+        "reviewed": 71,
+        "entity_f1": 0.5133333333333333,
+        "relation_f1": 0.5862068965517241
+      },
+      {
+        "reviewed": 72,
+        "entity_f1": 0.52,
+        "relation_f1": 0.5862068965517241
+      },
+      {
+        "reviewed": 73,
+        "entity_f1": 0.5266666666666666,
+        "relation_f1": 0.5862068965517241
+      },
+      {
+        "reviewed": 74,
+        "entity_f1": 0.5333333333333333,
+        "relation_f1": 0.5862068965517241
+      },
+      {
+        "reviewed": 75,
+        "entity_f1": 0.54,
+        "relation_f1": 0.5862068965517241
+      },
+      {
+        "reviewed": 76,
+        "entity_f1": 0.5466666666666666,
+        "relation_f1": 0.5862068965517241
+      },
+      {
+        "reviewed": 77,
+        "entity_f1": 0.5533333333333333,
+        "relation_f1": 0.5862068965517241
+      },
+      {
+        "reviewed": 78,
+        "entity_f1": 0.56,
+        "relation_f1": 0.5862068965517241
+      },
+      {
+        "reviewed": 79,
+        "entity_f1": 0.5666666666666667,
+        "relation_f1": 0.5862068965517241
+      },
+      {
+        "reviewed": 80,
+        "entity_f1": 0.5733333333333334,
+        "relation_f1": 0.5862068965517241
+      },
+      {
+        "reviewed": 81,
+        "entity_f1": 0.58,
+        "relation_f1": 0.5862068965517241
+      },
+      {
+        "reviewed": 82,
+        "entity_f1": 0.5866666666666667,
+        "relation_f1": 0.5862068965517241
+      },
+      {
+        "reviewed": 83,
+        "entity_f1": 0.5933333333333334,
+        "relation_f1": 0.5862068965517241
+      },
+      {
+        "reviewed": 84,
+        "entity_f1": 0.6,
+        "relation_f1": 0.5862068965517241
+      },
+      {
+        "reviewed": 85,
+        "entity_f1": 0.6066666666666667,
+        "relation_f1": 0.5862068965517241
+      },
+      {
+        "reviewed": 86,
+        "entity_f1": 0.6133333333333333,
+        "relation_f1": 0.6206896551724138
+      },
+      {
+        "reviewed": 87,
+        "entity_f1": 0.62,
+        "relation_f1": 0.6206896551724138
+      },
+      {
+        "reviewed": 88,
+        "entity_f1": 0.6266666666666667,
+        "relation_f1": 0.6206896551724138
+      },
+      {
+        "reviewed": 89,
+        "entity_f1": 0.6333333333333333,
+        "relation_f1": 0.6206896551724138
+      },
+      {
+        "reviewed": 90,
+        "entity_f1": 0.64,
+        "relation_f1": 0.6206896551724138
+      },
+      {
+        "reviewed": 91,
+        "entity_f1": 0.6466666666666666,
+        "relation_f1": 0.6206896551724138
+      },
+      {
+        "reviewed": 92,
+        "entity_f1": 0.6466666666666666,
+        "relation_f1": 0.6551724137931034
+      },
+      {
+        "reviewed": 93,
+        "entity_f1": 0.6533333333333333,
+        "relation_f1": 0.6551724137931034
+      },
+      {
+        "reviewed": 94,
+        "entity_f1": 0.66,
+        "relation_f1": 0.6551724137931034
+      },
+      {
+        "reviewed": 95,
+        "entity_f1": 0.6666666666666666,
+        "relation_f1": 0.6551724137931034
+      },
+      {
+        "reviewed": 96,
+        "entity_f1": 0.6666666666666666,
+        "relation_f1": 0.6551724137931034
+      },
+      {
+        "reviewed": 97,
+        "entity_f1": 0.6666666666666666,
+        "relation_f1": 0.6551724137931034
+      },
+      {
+        "reviewed": 98,
+        "entity_f1": 0.6733333333333333,
+        "relation_f1": 0.6896551724137931
+      },
+      {
+        "reviewed": 99,
+        "entity_f1": 0.68,
+        "relation_f1": 0.6896551724137931
+      },
+      {
+        "reviewed": 100,
+        "entity_f1": 0.6866666666666666,
+        "relation_f1": 0.6896551724137931
+      },
+      {
+        "reviewed": 101,
+        "entity_f1": 0.6933333333333334,
+        "relation_f1": 0.6896551724137931
+      },
+      {
+        "reviewed": 102,
+        "entity_f1": 0.7,
+        "relation_f1": 0.6896551724137931
+      },
+      {
+        "reviewed": 103,
+        "entity_f1": 0.7066666666666667,
+        "relation_f1": 0.6896551724137931
+      },
+      {
+        "reviewed": 104,
+        "entity_f1": 0.7133333333333335,
+        "relation_f1": 0.7241379310344829
+      },
+      {
+        "reviewed": 105,
+        "entity_f1": 0.72,
+        "relation_f1": 0.7241379310344829
+      },
+      {
+        "reviewed": 106,
+        "entity_f1": 0.7266666666666666,
+        "relation_f1": 0.7241379310344829
+      },
+      {
+        "reviewed": 107,
+        "entity_f1": 0.7333333333333333,
+        "relation_f1": 0.7241379310344829
+      },
+      {
+        "reviewed": 108,
+        "entity_f1": 0.74,
+        "relation_f1": 0.7241379310344829
+      },
+      {
+        "reviewed": 109,
+        "entity_f1": 0.7466666666666667,
+        "relation_f1": 0.7586206896551724
+      },
+      {
+        "reviewed": 110,
+        "entity_f1": 0.7533333333333333,
+        "relation_f1": 0.7931034482758621
+      },
+      {
+        "reviewed": 111,
+        "entity_f1": 0.76,
+        "relation_f1": 0.7931034482758621
+      },
+      {
+        "reviewed": 112,
+        "entity_f1": 0.76,
+        "relation_f1": 0.7931034482758621
+      },
+      {
+        "reviewed": 113,
+        "entity_f1": 0.7666666666666667,
+        "relation_f1": 0.7931034482758621
+      },
+      {
+        "reviewed": 114,
+        "entity_f1": 0.7733333333333333,
+        "relation_f1": 0.8275862068965517
+      },
+      {
+        "reviewed": 115,
+        "entity_f1": 0.7733333333333333,
+        "relation_f1": 0.8275862068965517
+      },
+      {
+        "reviewed": 116,
+        "entity_f1": 0.78,
+        "relation_f1": 0.8275862068965517
+      },
+      {
+        "reviewed": 117,
+        "entity_f1": 0.7866666666666666,
+        "relation_f1": 0.8275862068965517
+      },
+      {
+        "reviewed": 118,
+        "entity_f1": 0.7933333333333333,
+        "relation_f1": 0.8275862068965517
+      },
+      {
+        "reviewed": 119,
+        "entity_f1": 0.8000000000000002,
+        "relation_f1": 0.8275862068965517
+      },
+      {
+        "reviewed": 120,
+        "entity_f1": 0.8066666666666665,
+        "relation_f1": 0.8275862068965517
+      },
+      {
+        "reviewed": 121,
+        "entity_f1": 0.8133333333333334,
+        "relation_f1": 0.8275862068965517
+      },
+      {
+        "reviewed": 122,
+        "entity_f1": 0.8133333333333334,
+        "relation_f1": 0.8620689655172413
+      },
+      {
+        "reviewed": 123,
+        "entity_f1": 0.82,
+        "relation_f1": 0.8620689655172413
+      },
+      {
+        "reviewed": 124,
+        "entity_f1": 0.8266666666666667,
+        "relation_f1": 0.8620689655172413
+      },
+      {
+        "reviewed": 125,
+        "entity_f1": 0.8333333333333334,
+        "relation_f1": 0.8620689655172413
+      },
+      {
+        "reviewed": 126,
+        "entity_f1": 0.8399999999999999,
+        "relation_f1": 0.8620689655172413
+      },
+      {
+        "reviewed": 127,
+        "entity_f1": 0.8466666666666667,
+        "relation_f1": 0.8620689655172413
+      },
+      {
+        "reviewed": 128,
+        "entity_f1": 0.8533333333333335,
+        "relation_f1": 0.896551724137931
+      },
+      {
+        "reviewed": 129,
+        "entity_f1": 0.8599999999999999,
+        "relation_f1": 0.896551724137931
+      },
+      {
+        "reviewed": 130,
+        "entity_f1": 0.8666666666666667,
+        "relation_f1": 0.9310344827586207
+      },
+      {
+        "reviewed": 131,
+        "entity_f1": 0.8733333333333333,
+        "relation_f1": 0.9310344827586207
+      },
+      {
+        "reviewed": 132,
+        "entity_f1": 0.88,
+        "relation_f1": 0.9310344827586207
+      },
+      {
+        "reviewed": 133,
+        "entity_f1": 0.8866666666666667,
+        "relation_f1": 0.9655172413793104
+      },
+      {
+        "reviewed": 134,
+        "entity_f1": 0.8933333333333333,
+        "relation_f1": 0.9655172413793104
+      },
+      {
+        "reviewed": 135,
+        "entity_f1": 0.9,
+        "relation_f1": 0.9655172413793104
+      },
+      {
+        "reviewed": 136,
+        "entity_f1": 0.9066666666666666,
+        "relation_f1": 0.9655172413793104
+      },
+      {
+        "reviewed": 137,
+        "entity_f1": 0.9133333333333333,
+        "relation_f1": 0.9655172413793104
+      },
+      {
+        "reviewed": 138,
+        "entity_f1": 0.92,
+        "relation_f1": 0.9655172413793104
+      },
+      {
+        "reviewed": 139,
+        "entity_f1": 0.9266666666666666,
+        "relation_f1": 0.9655172413793104
+      },
+      {
+        "reviewed": 140,
+        "entity_f1": 0.9333333333333333,
+        "relation_f1": 0.9655172413793104
+      },
+      {
+        "reviewed": 141,
+        "entity_f1": 0.94,
+        "relation_f1": 0.9655172413793104
+      },
+      {
+        "reviewed": 142,
+        "entity_f1": 0.9466666666666667,
+        "relation_f1": 0.9655172413793104
+      },
+      {
+        "reviewed": 143,
+        "entity_f1": 0.9533333333333334,
+        "relation_f1": 0.9655172413793104
+      },
+      {
+        "reviewed": 144,
+        "entity_f1": 0.96,
+        "relation_f1": 0.9655172413793104
+      },
+      {
+        "reviewed": 145,
+        "entity_f1": 0.9666666666666667,
+        "relation_f1": 1.0
+      },
+      {
+        "reviewed": 146,
+        "entity_f1": 0.9733333333333334,
+        "relation_f1": 1.0
+      },
+      {
+        "reviewed": 147,
+        "entity_f1": 0.98,
+        "relation_f1": 1.0
+      },
+      {
+        "reviewed": 148,
+        "entity_f1": 0.9866666666666668,
+        "relation_f1": 1.0
+      },
+      {
+        "reviewed": 149,
+        "entity_f1": 0.9933333333333333,
+        "relation_f1": 1.0
+      },
+      {
+        "reviewed": 150,
+        "entity_f1": 1.0,
+        "relation_f1": 1.0
+      }
+    ],
+    "uncertainty_x_impact": [
+      {
+        "reviewed": 0,
+        "entity_f1": 0.053333333333333344,
+        "relation_f1": 0.06896551724137931
+      },
+      {
+        "reviewed": 1,
+        "entity_f1": 0.06,
+        "relation_f1": 0.1724137931034483
+      },
+      {
+        "reviewed": 2,
+        "entity_f1": 0.06666666666666667,
+        "relation_f1": 0.20689655172413793
+      },
+      {
+        "reviewed": 3,
+        "entity_f1": 0.07333333333333333,
+        "relation_f1": 0.20689655172413793
+      },
+      {
+        "reviewed": 4,
+        "entity_f1": 0.08,
+        "relation_f1": 0.2413793103448276
+      },
+      {
+        "reviewed": 5,
+        "entity_f1": 0.08666666666666667,
+        "relation_f1": 0.2413793103448276
+      },
+      {
+        "reviewed": 6,
+        "entity_f1": 0.09333333333333334,
+        "relation_f1": 0.2413793103448276
+      },
+      {
+        "reviewed": 7,
+        "entity_f1": 0.10000000000000002,
+        "relation_f1": 0.2413793103448276
+      },
+      {
+        "reviewed": 8,
+        "entity_f1": 0.10666666666666669,
+        "relation_f1": 0.2413793103448276
+      },
+      {
+        "reviewed": 9,
+        "entity_f1": 0.10666666666666669,
+        "relation_f1": 0.2413793103448276
+      },
+      {
+        "reviewed": 10,
+        "entity_f1": 0.11333333333333333,
+        "relation_f1": 0.2413793103448276
+      },
+      {
+        "reviewed": 11,
+        "entity_f1": 0.12,
+        "relation_f1": 0.2413793103448276
+      },
+      {
+        "reviewed": 12,
+        "entity_f1": 0.12666666666666668,
+        "relation_f1": 0.2413793103448276
+      },
+      {
+        "reviewed": 13,
+        "entity_f1": 0.12666666666666668,
+        "relation_f1": 0.2413793103448276
+      },
+      {
+        "reviewed": 14,
+        "entity_f1": 0.13333333333333333,
+        "relation_f1": 0.2413793103448276
+      },
+      {
+        "reviewed": 15,
+        "entity_f1": 0.14,
+        "relation_f1": 0.2413793103448276
+      },
+      {
+        "reviewed": 16,
+        "entity_f1": 0.14666666666666667,
+        "relation_f1": 0.2413793103448276
+      },
+      {
+        "reviewed": 17,
+        "entity_f1": 0.15333333333333332,
+        "relation_f1": 0.2413793103448276
+      },
+      {
+        "reviewed": 18,
+        "entity_f1": 0.16,
+        "relation_f1": 0.27586206896551724
+      },
+      {
+        "reviewed": 19,
+        "entity_f1": 0.16666666666666666,
+        "relation_f1": 0.3103448275862069
+      },
+      {
+        "reviewed": 20,
+        "entity_f1": 0.17333333333333334,
+        "relation_f1": 0.3103448275862069
+      },
+      {
+        "reviewed": 21,
+        "entity_f1": 0.18,
+        "relation_f1": 0.3103448275862069
+      },
+      {
+        "reviewed": 22,
+        "entity_f1": 0.18666666666666668,
+        "relation_f1": 0.3103448275862069
+      },
+      {
+        "reviewed": 23,
+        "entity_f1": 0.19333333333333333,
+        "relation_f1": 0.3103448275862069
+      },
+      {
+        "reviewed": 24,
+        "entity_f1": 0.20000000000000004,
+        "relation_f1": 0.3103448275862069
+      },
+      {
+        "reviewed": 25,
+        "entity_f1": 0.20666666666666667,
+        "relation_f1": 0.3448275862068966
+      },
+      {
+        "reviewed": 26,
+        "entity_f1": 0.21333333333333337,
+        "relation_f1": 0.3448275862068966
+      },
+      {
+        "reviewed": 27,
+        "entity_f1": 0.22,
+        "relation_f1": 0.3793103448275862
+      },
+      {
+        "reviewed": 28,
+        "entity_f1": 0.22666666666666666,
+        "relation_f1": 0.4482758620689655
+      },
+      {
+        "reviewed": 29,
+        "entity_f1": 0.23333333333333334,
+        "relation_f1": 0.4482758620689655
+      },
+      {
+        "reviewed": 30,
+        "entity_f1": 0.24,
+        "relation_f1": 0.4482758620689655
+      },
+      {
+        "reviewed": 31,
+        "entity_f1": 0.2466666666666667,
+        "relation_f1": 0.4827586206896552
+      },
+      {
+        "reviewed": 32,
+        "entity_f1": 0.25333333333333335,
+        "relation_f1": 0.4827586206896552
+      },
+      {
+        "reviewed": 33,
+        "entity_f1": 0.26,
+        "relation_f1": 0.4827586206896552
+      },
+      {
+        "reviewed": 34,
+        "entity_f1": 0.26666666666666666,
+        "relation_f1": 0.4827586206896552
+      },
+      {
+        "reviewed": 35,
+        "entity_f1": 0.2733333333333333,
+        "relation_f1": 0.4827586206896552
+      },
+      {
+        "reviewed": 36,
+        "entity_f1": 0.28,
+        "relation_f1": 0.4827586206896552
+      },
+      {
+        "reviewed": 37,
+        "entity_f1": 0.2866666666666667,
+        "relation_f1": 0.4827586206896552
+      },
+      {
+        "reviewed": 38,
+        "entity_f1": 0.29333333333333333,
+        "relation_f1": 0.5172413793103449
+      },
+      {
+        "reviewed": 39,
+        "entity_f1": 0.3,
+        "relation_f1": 0.5517241379310345
+      },
+      {
+        "reviewed": 40,
+        "entity_f1": 0.30666666666666664,
+        "relation_f1": 0.5862068965517241
+      },
+      {
+        "reviewed": 41,
+        "entity_f1": 0.31333333333333335,
+        "relation_f1": 0.6206896551724138
+      },
+      {
+        "reviewed": 42,
+        "entity_f1": 0.32,
+        "relation_f1": 0.6206896551724138
+      },
+      {
+        "reviewed": 43,
+        "entity_f1": 0.32666666666666666,
+        "relation_f1": 0.6206896551724138
+      },
+      {
+        "reviewed": 44,
+        "entity_f1": 0.3333333333333333,
+        "relation_f1": 0.6206896551724138
+      },
+      {
+        "reviewed": 45,
+        "entity_f1": 0.34,
+        "relation_f1": 0.6206896551724138
+      },
+      {
+        "reviewed": 46,
+        "entity_f1": 0.3466666666666667,
+        "relation_f1": 0.6206896551724138
+      },
+      {
+        "reviewed": 47,
+        "entity_f1": 0.35333333333333333,
+        "relation_f1": 0.6206896551724138
+      },
+      {
+        "reviewed": 48,
+        "entity_f1": 0.36,
+        "relation_f1": 0.6206896551724138
+      },
+      {
+        "reviewed": 49,
+        "entity_f1": 0.36666666666666664,
+        "relation_f1": 0.6206896551724138
+      },
+      {
+        "reviewed": 50,
+        "entity_f1": 0.37333333333333335,
+        "relation_f1": 0.6206896551724138
+      },
+      {
+        "reviewed": 51,
+        "entity_f1": 0.38,
+        "relation_f1": 0.6206896551724138
+      },
+      {
+        "reviewed": 52,
+        "entity_f1": 0.38666666666666666,
+        "relation_f1": 0.6206896551724138
+      },
+      {
+        "reviewed": 53,
+        "entity_f1": 0.3933333333333333,
+        "relation_f1": 0.6206896551724138
+      },
+      {
+        "reviewed": 54,
+        "entity_f1": 0.3933333333333333,
+        "relation_f1": 0.6551724137931034
+      },
+      {
+        "reviewed": 55,
+        "entity_f1": 0.4000000000000001,
+        "relation_f1": 0.6896551724137931
+      },
+      {
+        "reviewed": 56,
+        "entity_f1": 0.4066666666666667,
+        "relation_f1": 0.7241379310344829
+      },
+      {
+        "reviewed": 57,
+        "entity_f1": 0.41333333333333333,
+        "relation_f1": 0.7586206896551724
+      },
+      {
+        "reviewed": 58,
+        "entity_f1": 0.41999999999999993,
+        "relation_f1": 0.7931034482758621
+      },
+      {
+        "reviewed": 59,
+        "entity_f1": 0.42666666666666675,
+        "relation_f1": 0.8275862068965517
+      },
+      {
+        "reviewed": 60,
+        "entity_f1": 0.42666666666666675,
+        "relation_f1": 0.8620689655172413
+      },
+      {
+        "reviewed": 61,
+        "entity_f1": 0.43333333333333335,
+        "relation_f1": 0.896551724137931
+      },
+      {
+        "reviewed": 62,
+        "entity_f1": 0.44,
+        "relation_f1": 0.9310344827586207
+      },
+      {
+        "reviewed": 63,
+        "entity_f1": 0.44666666666666666,
+        "relation_f1": 0.9655172413793104
+      },
+      {
+        "reviewed": 64,
+        "entity_f1": 0.4533333333333333,
+        "relation_f1": 0.9655172413793104
+      },
+      {
+        "reviewed": 65,
+        "entity_f1": 0.46,
+        "relation_f1": 0.9655172413793104
+      },
+      {
+        "reviewed": 66,
+        "entity_f1": 0.4666666666666667,
+        "relation_f1": 0.9655172413793104
+      },
+      {
+        "reviewed": 67,
+        "entity_f1": 0.47333333333333333,
+        "relation_f1": 0.9655172413793104
+      },
+      {
+        "reviewed": 68,
+        "entity_f1": 0.48,
+        "relation_f1": 0.9655172413793104
+      },
+      {
+        "reviewed": 69,
+        "entity_f1": 0.4866666666666667,
+        "relation_f1": 0.9655172413793104
+      },
+      {
+        "reviewed": 70,
+        "entity_f1": 0.4933333333333334,
+        "relation_f1": 0.9655172413793104
+      },
+      {
+        "reviewed": 71,
+        "entity_f1": 0.5,
+        "relation_f1": 0.9655172413793104
+      },
+      {
+        "reviewed": 72,
+        "entity_f1": 0.5066666666666667,
+        "relation_f1": 0.9655172413793104
+      },
+      {
+        "reviewed": 73,
+        "entity_f1": 0.5133333333333333,
+        "relation_f1": 0.9655172413793104
+      },
+      {
+        "reviewed": 74,
+        "entity_f1": 0.52,
+        "relation_f1": 0.9655172413793104
+      },
+      {
+        "reviewed": 75,
+        "entity_f1": 0.5266666666666666,
+        "relation_f1": 0.9655172413793104
+      },
+      {
+        "reviewed": 76,
+        "entity_f1": 0.5333333333333333,
+        "relation_f1": 0.9655172413793104
+      },
+      {
+        "reviewed": 77,
+        "entity_f1": 0.54,
+        "relation_f1": 0.9655172413793104
+      },
+      {
+        "reviewed": 78,
+        "entity_f1": 0.5466666666666666,
+        "relation_f1": 0.9655172413793104
+      },
+      {
+        "reviewed": 79,
+        "entity_f1": 0.5533333333333333,
+        "relation_f1": 0.9655172413793104
+      },
+      {
+        "reviewed": 80,
+        "entity_f1": 0.56,
+        "relation_f1": 0.9655172413793104
+      },
+      {
+        "reviewed": 81,
+        "entity_f1": 0.5666666666666667,
+        "relation_f1": 0.9655172413793104
+      },
+      {
+        "reviewed": 82,
+        "entity_f1": 0.5733333333333334,
+        "relation_f1": 0.9655172413793104
+      },
+      {
+        "reviewed": 83,
+        "entity_f1": 0.58,
+        "relation_f1": 0.9655172413793104
+      },
+      {
+        "reviewed": 84,
+        "entity_f1": 0.5866666666666667,
+        "relation_f1": 0.9655172413793104
+      },
+      {
+        "reviewed": 85,
+        "entity_f1": 0.5933333333333334,
+        "relation_f1": 0.9655172413793104
+      },
+      {
+        "reviewed": 86,
+        "entity_f1": 0.6,
+        "relation_f1": 0.9655172413793104
+      },
+      {
+        "reviewed": 87,
+        "entity_f1": 0.6066666666666667,
+        "relation_f1": 0.9655172413793104
+      },
+      {
+        "reviewed": 88,
+        "entity_f1": 0.6133333333333333,
+        "relation_f1": 0.9655172413793104
+      },
+      {
+        "reviewed": 89,
+        "entity_f1": 0.62,
+        "relation_f1": 0.9655172413793104
+      },
+      {
+        "reviewed": 90,
+        "entity_f1": 0.6266666666666667,
+        "relation_f1": 0.9655172413793104
+      },
+      {
+        "reviewed": 91,
+        "entity_f1": 0.6333333333333333,
+        "relation_f1": 0.9655172413793104
+      },
+      {
+        "reviewed": 92,
+        "entity_f1": 0.64,
+        "relation_f1": 0.9655172413793104
+      },
+      {
+        "reviewed": 93,
+        "entity_f1": 0.6466666666666666,
+        "relation_f1": 0.9655172413793104
+      },
+      {
+        "reviewed": 94,
+        "entity_f1": 0.6533333333333333,
+        "relation_f1": 0.9655172413793104
+      },
+      {
+        "reviewed": 95,
+        "entity_f1": 0.66,
+        "relation_f1": 0.9655172413793104
+      },
+      {
+        "reviewed": 96,
+        "entity_f1": 0.6666666666666666,
+        "relation_f1": 0.9655172413793104
+      },
+      {
+        "reviewed": 97,
+        "entity_f1": 0.6733333333333333,
+        "relation_f1": 0.9655172413793104
+      },
+      {
+        "reviewed": 98,
+        "entity_f1": 0.68,
+        "relation_f1": 0.9655172413793104
+      },
+      {
+        "reviewed": 99,
+        "entity_f1": 0.6866666666666666,
+        "relation_f1": 0.9655172413793104
+      },
+      {
+        "reviewed": 100,
+        "entity_f1": 0.6933333333333334,
+        "relation_f1": 0.9655172413793104
+      },
+      {
+        "reviewed": 101,
+        "entity_f1": 0.7,
+        "relation_f1": 0.9655172413793104
+      },
+      {
+        "reviewed": 102,
+        "entity_f1": 0.7066666666666667,
+        "relation_f1": 0.9655172413793104
+      },
+      {
+        "reviewed": 103,
+        "entity_f1": 0.7133333333333335,
+        "relation_f1": 0.9655172413793104
+      },
+      {
+        "reviewed": 104,
+        "entity_f1": 0.72,
+        "relation_f1": 0.9655172413793104
+      },
+      {
+        "reviewed": 105,
+        "entity_f1": 0.72,
+        "relation_f1": 0.9655172413793104
+      },
+      {
+        "reviewed": 106,
+        "entity_f1": 0.72,
+        "relation_f1": 0.9655172413793104
+      },
+      {
+        "reviewed": 107,
+        "entity_f1": 0.7266666666666666,
+        "relation_f1": 0.9655172413793104
+      },
+      {
+        "reviewed": 108,
+        "entity_f1": 0.7333333333333333,
+        "relation_f1": 0.9655172413793104
+      },
+      {
+        "reviewed": 109,
+        "entity_f1": 0.74,
+        "relation_f1": 0.9655172413793104
+      },
+      {
+        "reviewed": 110,
+        "entity_f1": 0.7466666666666667,
+        "relation_f1": 0.9655172413793104
+      },
+      {
+        "reviewed": 111,
+        "entity_f1": 0.7533333333333333,
+        "relation_f1": 0.9655172413793104
+      },
+      {
+        "reviewed": 112,
+        "entity_f1": 0.76,
+        "relation_f1": 0.9655172413793104
+      },
+      {
+        "reviewed": 113,
+        "entity_f1": 0.7666666666666667,
+        "relation_f1": 0.9655172413793104
+      },
+      {
+        "reviewed": 114,
+        "entity_f1": 0.7733333333333333,
+        "relation_f1": 0.9655172413793104
+      },
+      {
+        "reviewed": 115,
+        "entity_f1": 0.78,
+        "relation_f1": 0.9655172413793104
+      },
+      {
+        "reviewed": 116,
+        "entity_f1": 0.7866666666666666,
+        "relation_f1": 0.9655172413793104
+      },
+      {
+        "reviewed": 117,
+        "entity_f1": 0.7866666666666666,
+        "relation_f1": 0.9655172413793104
+      },
+      {
+        "reviewed": 118,
+        "entity_f1": 0.7933333333333333,
+        "relation_f1": 0.9655172413793104
+      },
+      {
+        "reviewed": 119,
+        "entity_f1": 0.7933333333333333,
+        "relation_f1": 0.9655172413793104
+      },
+      {
+        "reviewed": 120,
+        "entity_f1": 0.8000000000000002,
+        "relation_f1": 0.9655172413793104
+      },
+      {
+        "reviewed": 121,
+        "entity_f1": 0.8066666666666665,
+        "relation_f1": 0.9655172413793104
+      },
+      {
+        "reviewed": 122,
+        "entity_f1": 0.8133333333333334,
+        "relation_f1": 0.9655172413793104
+      },
+      {
+        "reviewed": 123,
+        "entity_f1": 0.82,
+        "relation_f1": 0.9655172413793104
+      },
+      {
+        "reviewed": 124,
+        "entity_f1": 0.8266666666666667,
+        "relation_f1": 0.9655172413793104
+      },
+      {
+        "reviewed": 125,
+        "entity_f1": 0.8333333333333334,
+        "relation_f1": 0.9655172413793104
+      },
+      {
+        "reviewed": 126,
+        "entity_f1": 0.8399999999999999,
+        "relation_f1": 0.9655172413793104
+      },
+      {
+        "reviewed": 127,
+        "entity_f1": 0.8466666666666667,
+        "relation_f1": 0.9655172413793104
+      },
+      {
+        "reviewed": 128,
+        "entity_f1": 0.8533333333333335,
+        "relation_f1": 0.9655172413793104
+      },
+      {
+        "reviewed": 129,
+        "entity_f1": 0.8599999999999999,
+        "relation_f1": 0.9655172413793104
+      },
+      {
+        "reviewed": 130,
+        "entity_f1": 0.8666666666666667,
+        "relation_f1": 0.9655172413793104
+      },
+      {
+        "reviewed": 131,
+        "entity_f1": 0.8733333333333333,
+        "relation_f1": 0.9655172413793104
+      },
+      {
+        "reviewed": 132,
+        "entity_f1": 0.88,
+        "relation_f1": 0.9655172413793104
+      },
+      {
+        "reviewed": 133,
+        "entity_f1": 0.8866666666666667,
+        "relation_f1": 0.9655172413793104
+      },
+      {
+        "reviewed": 134,
+        "entity_f1": 0.8933333333333333,
+        "relation_f1": 1.0
+      },
+      {
+        "reviewed": 135,
+        "entity_f1": 0.9,
+        "relation_f1": 1.0
+      },
+      {
+        "reviewed": 136,
+        "entity_f1": 0.9066666666666666,
+        "relation_f1": 1.0
+      },
+      {
+        "reviewed": 137,
+        "entity_f1": 0.9133333333333333,
+        "relation_f1": 1.0
+      },
+      {
+        "reviewed": 138,
+        "entity_f1": 0.92,
+        "relation_f1": 1.0
+      },
+      {
+        "reviewed": 139,
+        "entity_f1": 0.9266666666666666,
+        "relation_f1": 1.0
+      },
+      {
+        "reviewed": 140,
+        "entity_f1": 0.9333333333333333,
+        "relation_f1": 1.0
+      },
+      {
+        "reviewed": 141,
+        "entity_f1": 0.94,
+        "relation_f1": 1.0
+      },
+      {
+        "reviewed": 142,
+        "entity_f1": 0.9466666666666667,
+        "relation_f1": 1.0
+      },
+      {
+        "reviewed": 143,
+        "entity_f1": 0.9533333333333334,
+        "relation_f1": 1.0
+      },
+      {
+        "reviewed": 144,
+        "entity_f1": 0.96,
+        "relation_f1": 1.0
+      },
+      {
+        "reviewed": 145,
+        "entity_f1": 0.9666666666666667,
+        "relation_f1": 1.0
+      },
+      {
+        "reviewed": 146,
+        "entity_f1": 0.9733333333333334,
+        "relation_f1": 1.0
+      },
+      {
+        "reviewed": 147,
+        "entity_f1": 0.98,
+        "relation_f1": 1.0
+      },
+      {
+        "reviewed": 148,
+        "entity_f1": 0.9866666666666668,
+        "relation_f1": 1.0
+      },
+      {
+        "reviewed": 149,
+        "entity_f1": 0.9933333333333333,
+        "relation_f1": 1.0
+      },
+      {
+        "reviewed": 150,
+        "entity_f1": 1.0,
+        "relation_f1": 1.0
+      }
+    ]
+  },
+  "items": 150,
+  "review_items": 150,
+  "review_note": "oracle correction of the whole subject record; uncertainty is the model confidence, impact is prediction-side and not a measured review cost",
+  "request_count": 34,
+  "started_utc": "2026-11-18T14:46:27.420325+00:00",
+  "elapsed_seconds": 202.33,
+  "failed_count": 0,
+  "hash_scheme": "utf8-lf-v1",
+  "prompt_concept_sha256": "58a88560b68dcf2bdc1508b786ff4af05f12d43b386bcde1133db2d207a09623",
+  "prompt_relation_sha256": "3d242815adca6ee79a1a78c408fd79931c691b0600492dc494e87637c701fa03",
+  "concept_prediction_sha256": "d7cf35a3b511b36b8c3c7d0125ac7758bac5bcf65ac7c0e86b592bb6d8aa2057",
+  "relation_prediction_sha256": "1839712cbd031341a0e68075262b124f3f23d5a18f2c7b0b4df2d296bcefcf5e"
+}

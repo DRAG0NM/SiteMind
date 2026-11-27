@@ -1,0 +1,38 @@
+{
+  "model": "PolicyConfig",
+  "data": {
+    "policy_version": "policy-1",
+    "arbitration_weights": {
+      "cny": 1.0,
+      "wait_min": 1.0,
+      "comfort_min": 2.0
+    },
+    "priority_profiles": {
+      "production_hours": [
+        "safety",
+        "production",
+        "comfort",
+        "cost"
+      ],
+      "morning_peak": [
+        "safety",
+        "comfort",
+        "production",
+        "cost"
+      ],
+      "night": [
+        "safety",
+        "cost",
+        "production",
+        "comfort"
+      ]
+    },
+    "confidence_low": 0.3,
+    "confidence_high": 0.7,
+    "sampling_ratio": 0.2,
+    "response_budget": {
+      "layer12_min": 1,
+      "layer3_min": 2
+    }
+  }
+}

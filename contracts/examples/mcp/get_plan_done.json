@@ -1,0 +1,8 @@
+{
+  "tool": "plantkg_get_plan",
+  "arguments": {
+    "plan_id": "plan-20260701",
+    "ctx": "3f9c2a7e5b1d4c8e9a0b6d2f7e1c4a5b"
+  },
+  "result_text": "{\"schema_version\":\"1\",\"ok\":true,\"business_status\":\"done\",\"data\":{\"plan_id\":\"plan-20260701\",\"revision\":1,\"actions\":2,\"cost_cny\":6235.4},\"evidence_ids\":[\"ev-0011\"],\"run_id\":\"run-day-20260701\",\"version_manifest_id\":\"vm-0003\"}"
+}

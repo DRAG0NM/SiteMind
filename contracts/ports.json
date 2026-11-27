@@ -1,0 +1,1146 @@
+{
+  "contract_version": "1.2.0",
+  "ports": {
+    "ActionHandler": {
+      "attributes": {
+        "kind": "PendingActionKind"
+      },
+      "methods": {
+        "apply": {
+          "params": {
+            "action": "PendingAction",
+            "actor": "Actor"
+          },
+          "returns": "ToolResult",
+          "property": false,
+          "doc": null
+        }
+      },
+      "doc": "统一确认端点的执行函数：B15 计划确认、B18 发布/回滚、B24 复核结论，向 B04 注册。"
+    },
+    "Adapter": {
+      "attributes": {
+        "name": "str"
+      },
+      "methods": {
+        "normalize": {
+          "params": {
+            "source_ref": "str",
+            "mapping": "Mapping[str, Any]",
+            "visibility": "Mapping[str, Any]"
+          },
+          "returns": "SourceBundle",
+          "property": false,
+          "doc": null
+        }
+      },
+      "doc": "把原始数据转成规范化来源记录（B05/B21）。"
+    },
+    "AgentResultSource": {
+      "attributes": {},
+      "methods": {
+        "get": {
+          "params": {
+            "kind": "AgentResultKind",
+            "binding": "RunBinding",
+            "payload": "Mapping[str, Any]"
+          },
+          "returns": "Mapping[str, Any]",
+          "property": false,
+          "doc": null
+        }
+      },
+      "doc": "专家运行与主 Agent 研判、第 3 层裁决、追问的结果来源。按 Context.run_mode 经注册表分派：\nlive 由 B23 网关实调；deterministic 由各 kind 的负责分支登记；trial/evaluation 只由 B33 缓存登记。"
+    },
+    "AgentRunReader": {
+      "attributes": {},
+      "methods": {
+        "get": {
+          "params": {
+            "agent_run_id": "str"
+          },
+          "returns": "AgentRunRecord | None",
+          "property": false,
+          "doc": null
+        }
+      },
+      "doc": "按运行编号读取网关保存的 Agent 运行记录。"
+    },
+    "AssetContentReader": {
+      "attributes": {},
+      "methods": {
+        "read_content": {
+          "params": {
+            "context": "Context",
+            "asset_version_id": "str"
+          },
+          "returns": "bytes",
+          "property": false,
+          "doc": null
+        }
+      },
+      "doc": "按资料版本及调用时点读取经散列校验的原文字节。"
+    },
+    "AssetRepository": {
+      "attributes": {},
+      "methods": {
+        "ingest": {
+          "params": {
+            "context": "Context",
+            "source_uri": "str",
+            "asset_type": "str",
+            "available_at": "datetime"
+          },
+          "returns": "AssetVersion",
+          "property": false,
+          "doc": null
+        },
+        "get": {
+          "params": {
+            "context": "Context",
+            "asset_version_id": "str"
+          },
+          "returns": "AssetVersion",
+          "property": false,
+          "doc": null
+        },
+        "list": {
+          "params": {
+            "context": "Context",
+            "cursor": "str | None",
+            "page_size": "int"
+          },
+          "returns": "tuple[Sequence[AssetVersion], str | None]",
+          "property": false,
+          "doc": null
+        },
+        "resolve_entity": {
+          "params": {
+            "context": "Context",
+            "entity_id": "str"
+          },
+          "returns": "Entity",
+          "property": false,
+          "doc": null
+        }
+      },
+      "doc": null
+    },
+    "Backtester": {
+      "attributes": {},
+      "methods": {
+        "run": {
+          "params": {
+            "candidate": "Candidate",
+            "frozen_split": "FrozenSplit",
+            "context": "Context"
+          },
+          "returns": "BacktestReport",
+          "property": false,
+          "doc": null
+        }
+      },
+      "doc": "只在冻结验证日上回测；走 JobRunner。"
+    },
+    "Calibrator": {
+      "attributes": {},
+      "methods": {
+        "fit": {
+          "params": {
+            "results": "Sequence[JudgeResult]",
+            "labels": "Sequence[str]",
+            "split": "FrozenSplit"
+          },
+          "returns": "str",
+          "property": false,
+          "doc": null
+        },
+        "predict": {
+          "params": {
+            "result": "JudgeResult"
+          },
+          "returns": "float | None",
+          "property": false,
+          "doc": null
+        }
+      },
+      "doc": "B23：按后端与模型版本隔离的概率校准。"
+    },
+    "CandidateGenerator": {
+      "attributes": {
+        "kind": "str"
+      },
+      "methods": {
+        "propose": {
+          "params": {
+            "trigger": "Mapping[str, Any]",
+            "base_manifest": "VersionManifest",
+            "context": "Context"
+          },
+          "returns": "Sequence[Candidate]",
+          "property": false,
+          "doc": null
+        }
+      },
+      "doc": null
+    },
+    "ChangeImpact": {
+      "attributes": {},
+      "methods": {
+        "diff": {
+          "params": {
+            "context": "Context",
+            "from_manifest_id": "str",
+            "to_manifest_id": "str"
+          },
+          "returns": "VersionDiff",
+          "property": false,
+          "doc": null
+        }
+      },
+      "doc": "B27：版本差异与受影响计划；未知项明确列出。"
+    },
+    "CtxResolver": {
+      "attributes": {},
+      "methods": {
+        "resolve": {
+          "params": {
+            "ctx": "str | None"
+          },
+          "returns": "Context | None",
+          "property": false,
+          "doc": null
+        }
+      },
+      "doc": "按 ctx 查 RunSession 得到 Context；查不到返回 None，由失败关闭装饰器处理（B02）。"
+    },
+    "DocumentParser": {
+      "attributes": {},
+      "methods": {
+        "parse": {
+          "params": {
+            "asset": "AssetVersion"
+          },
+          "returns": "Sequence[AssetFragment]",
+          "property": false,
+          "doc": null
+        }
+      },
+      "doc": "B21：文本、表格、图文解析。"
+    },
+    "DomainPack": {
+      "attributes": {
+        "name": "str",
+        "rule_kinds": "Sequence[RuleKind]",
+        "tool_specs": "Sequence[ToolSpec]"
+      },
+      "methods": {
+        "contribute": {
+          "params": {
+            "model_builder": "ModelBuilder",
+            "state": "StateSnapshot",
+            "rules": "Sequence[Rule]",
+            "forecasts": "ForecastBundle"
+          },
+          "returns": "ContributionReceipt",
+          "property": false,
+          "doc": null
+        }
+      },
+      "doc": "领域包：pv、storage、tariff、production（之后：environment…）。"
+    },
+    "Evaluator": {
+      "attributes": {},
+      "methods": {
+        "compare": {
+          "params": {
+            "executions": "Sequence[ExecutionResult]",
+            "comparable_baselines": "Sequence[ExecutionResult]"
+          },
+          "returns": "EvaluationReport",
+          "property": false,
+          "doc": null
+        }
+      },
+      "doc": null
+    },
+    "EvidenceSink": {
+      "attributes": {},
+      "methods": {
+        "append": {
+          "params": {
+            "event": "EvidenceEvent"
+          },
+          "returns": "EvidenceEvent",
+          "property": false,
+          "doc": null
+        },
+        "list": {
+          "params": {
+            "run_id": "str | None",
+            "cursor": "str | None",
+            "visibility": "Context"
+          },
+          "returns": "EvidencePage",
+          "property": false,
+          "doc": null
+        },
+        "subscribe": {
+          "params": {
+            "trace_id": "str"
+          },
+          "returns": "Iterator[EvidenceEvent]",
+          "property": false,
+          "doc": null
+        }
+      },
+      "doc": null
+    },
+    "Executor": {
+      "attributes": {},
+      "methods": {
+        "execute": {
+          "params": {
+            "confirmed_plan": "Plan",
+            "context": "Context",
+            "expected_seq": "int",
+            "idempotency_key": "str"
+          },
+          "returns": "ExecutionResult",
+          "property": false,
+          "doc": null
+        }
+      },
+      "doc": "Record 现在、Apply 以后。幂等：同一 idempotency_key 返回同一结果。"
+    },
+    "Explainer": {
+      "attributes": {},
+      "methods": {
+        "explain": {
+          "params": {
+            "context": "Context",
+            "plan_id": "str",
+            "action_id": "str | None",
+            "cursor": "str | None"
+          },
+          "returns": "EvidencePage",
+          "property": false,
+          "doc": null
+        }
+      },
+      "doc": "B19 最小引用、B26 完整投影：动作 → 规则、原文定位、版本与可见时间。"
+    },
+    "Forecaster": {
+      "attributes": {},
+      "methods": {
+        "predict": {
+          "params": {
+            "context": "Context",
+            "horizon": "Interval",
+            "visible_history": "SourceBundle"
+          },
+          "returns": "ForecastBundle",
+          "property": false,
+          "doc": null
+        }
+      },
+      "doc": null
+    },
+    "ForkHook": {
+      "attributes": {},
+      "methods": {
+        "on_fork": {
+          "params": {
+            "parent_run": "RunInfo",
+            "child_run": "RunInfo",
+            "at": "datetime"
+          },
+          "returns": "None",
+          "property": false,
+          "doc": null
+        }
+      },
+      "doc": "分叉回调：B17 在知识发布分叉时调用，B27（事件单、订阅）、B47（临时规则、工单）用 register_hook 登记。"
+    },
+    "Gate": {
+      "attributes": {},
+      "methods": {
+        "assess": {
+          "params": {
+            "plan": "Plan",
+            "forecast_quality": "Mapping[str, float]",
+            "rule_status": "Mapping[str, str]",
+            "baseline": "Plan | None"
+          },
+          "returns": "GateDecision",
+          "property": false,
+          "doc": null
+        },
+        "preview_inputs": {
+          "params": {
+            "context": "Context"
+          },
+          "returns": "Sequence[Mapping[str, Any]]",
+          "property": false,
+          "doc": null
+        }
+      },
+      "doc": null
+    },
+    "Gateway": {
+      "attributes": {},
+      "methods": {
+        "run": {
+          "params": {
+            "actor": "Actor",
+            "query": "str",
+            "agent_name": "str",
+            "as_of": "datetime | None"
+          },
+          "returns": "AsyncIterator[UIEvent]",
+          "property": false,
+          "doc": null
+        },
+        "stop": {
+          "params": {
+            "agent_run_id": "str",
+            "actor": "Actor"
+          },
+          "returns": "None",
+          "property": false,
+          "doc": null
+        }
+      },
+      "doc": "B23：登记会话、注入 ctx 与 document_paths、调 Nexent 北向、合流事件。"
+    },
+    "GraphStore": {
+      "attributes": {},
+      "methods": {
+        "prepare": {
+          "params": {
+            "graph_name": "str",
+            "triples_ttl": "str"
+          },
+          "returns": "str",
+          "property": false,
+          "doc": null
+        },
+        "read_named_graph": {
+          "params": {
+            "context": "Context",
+            "graph_name": "str",
+            "query_id": "str",
+            "params": "Mapping[str, Any]",
+            "cursor": "str | None"
+          },
+          "returns": "tuple[Sequence[Mapping[str, Any]], str | None]",
+          "property": false,
+          "doc": "返回（本页结果，下一页 cursor）。"
+        }
+      },
+      "doc": "B03/B22：版本化命名图；只读查询走白名单/参数化。"
+    },
+    "JobHandlerRegistrar": {
+      "attributes": {},
+      "methods": {
+        "register": {
+          "params": {
+            "kind": "JobKind | str",
+            "handler": "Any",
+            "fallback": "bool"
+          },
+          "returns": "None",
+          "property": false,
+          "doc": null
+        }
+      },
+      "doc": "领域模块向 B04 后台任务队列登记执行函数。"
+    },
+    "JobRunner": {
+      "attributes": {},
+      "methods": {
+        "submit": {
+          "params": {
+            "kind": "JobKind",
+            "payload": "Mapping[str, Any]",
+            "idempotency_key": "str",
+            "context": "Context"
+          },
+          "returns": "Job",
+          "property": false,
+          "doc": null
+        },
+        "get": {
+          "params": {
+            "job_id": "str",
+            "wait_seconds": "float"
+          },
+          "returns": "Job",
+          "property": false,
+          "doc": null
+        },
+        "snapshot": {
+          "params": {
+            "context": "Context",
+            "run_id": "str | None",
+            "status": "JobStatus | str | None",
+            "limit": "int",
+            "offset": "int"
+          },
+          "returns": "JobQueueSnapshot",
+          "property": false,
+          "doc": "按厂区只读枚举任务（#69）：按 run_id 与状态过滤，按提交时间排序，limit/offset 分页。\n\ncontext.plant_id 不是本执行器的厂区时抛 CROSS_PLANT；total 为过滤后、分页前的任务数。"
+        },
+        "health": {
+          "params": {
+            "context": "Context"
+          },
+          "returns": "JobExecutorHealth",
+          "property": false,
+          "doc": "按厂区只读读取执行器健康（#69）：配置线程数、存活线程数、队列深度与是否已关闭。"
+        }
+      },
+      "doc": "后台任务。同一 idempotency_key 返回同一 Job；get 最多等 40 秒。"
+    },
+    "Judge": {
+      "attributes": {
+        "backend": "str"
+      },
+      "methods": {
+        "decide": {
+          "params": {
+            "state": "Mapping[str, Any]",
+            "question": "OntologyCandidate",
+            "options": "Sequence[str]"
+          },
+          "returns": "JudgeResult",
+          "property": false,
+          "doc": null
+        }
+      },
+      "doc": "判别后端：jev（默认）、fallback、fake，由 judge.backend 切换（B23）。"
+    },
+    "KnowledgeIndex": {
+      "attributes": {},
+      "methods": {
+        "index": {
+          "params": {
+            "asset": "AssetVersion",
+            "fragments": "Sequence[AssetFragment]"
+          },
+          "returns": "str",
+          "property": false,
+          "doc": null
+        },
+        "visible_document_paths": {
+          "params": {
+            "context": "Context"
+          },
+          "returns": "Sequence[str]",
+          "property": false,
+          "doc": null
+        }
+      },
+      "doc": "B21/B26：Nexent 知识库桥。可见文档清单由 plantkg 按 as_of 计算。"
+    },
+    "KnowledgePublisher": {
+      "attributes": {},
+      "methods": {
+        "propose_publish": {
+          "params": {
+            "candidate": "Candidate"
+          },
+          "returns": "PendingAction",
+          "property": false,
+          "doc": null
+        }
+      },
+      "doc": "B30 先登记最简实现，B32 登记完整实现替换；只生成待确认的发布提议。"
+    },
+    "LedgerCalculator": {
+      "attributes": {},
+      "methods": {
+        "compute": {
+          "params": {
+            "plan": "Plan",
+            "actuals": "SourceBundle | ForecastBundle",
+            "kind": "Literal['plan', 'execution']",
+            "context": "Context"
+          },
+          "returns": "Ledger",
+          "property": false,
+          "doc": null
+        },
+        "validate": {
+          "params": {
+            "ledger": "Ledger",
+            "rules": "Sequence[Rule]",
+            "original_profiles": "SourceBundle | None"
+          },
+          "returns": "Sequence[str]",
+          "property": false,
+          "doc": null
+        }
+      },
+      "doc": "B08：独立于优化变量重算账本，是 balanced 的唯一判定方。\n\n责任边界：compute 从计划动作与来源数据重算每时段各项电量、残差、SOC 与费用，不读求解器变量值；\nvalidate 做契约层做不到的检查（费用按已审核电价规则另算、平移前后工序电量相等、总表减分表非负、\n计划账本与模型目标一致），问题写入 violations。Ledger 构造时契约再独立复核能量平衡、SOC 递推等\n（Ledger.recheck），两边任一不通过都不能 balanced=True。"
+    },
+    "ModelBuilder": {
+      "attributes": {},
+      "methods": {
+        "time_set": {
+          "params": {},
+          "returns": "Sequence[Interval]",
+          "property": true,
+          "doc": null
+        },
+        "grid_import": {
+          "params": {},
+          "returns": "Expr",
+          "property": true,
+          "doc": null
+        },
+        "grid_export": {
+          "params": {},
+          "returns": "Expr",
+          "property": true,
+          "doc": null
+        },
+        "pv_available": {
+          "params": {},
+          "returns": "tuple[float, ...] | None",
+          "property": true,
+          "doc": "光伏可发预测（kW，每时段一个），只读；v0.8 追加，未提供时为 None。"
+        },
+        "total_load": {
+          "params": {},
+          "returns": "Expr",
+          "property": true,
+          "doc": "总负荷表达式 total_load[t]，所有包贡献完并 finalize 后可用；v0.8 追加。"
+        },
+        "add_var": {
+          "params": {
+            "name": "str",
+            "domain": "VarDomain",
+            "bounds": "tuple[float | None, float | None]",
+            "unit": "Unit",
+            "index": "Sequence[int] | None",
+            "scalar": "bool",
+            "action": "tuple[EntityId, str] | None"
+          },
+          "returns": "Expr",
+          "property": false,
+          "doc": null
+        },
+        "add_constraint": {
+          "params": {
+            "name": "str",
+            "expr": "Expr",
+            "refs": "Sequence[Ref]"
+          },
+          "returns": "None",
+          "property": false,
+          "doc": null
+        },
+        "register_balance": {
+          "params": {
+            "side": "Literal['supply', 'demand']",
+            "expr": "Expr",
+            "label": "str"
+          },
+          "returns": "None",
+          "property": false,
+          "doc": null
+        },
+        "register_cost": {
+          "params": {
+            "expr": "Expr",
+            "label": "str"
+          },
+          "returns": "None",
+          "property": false,
+          "doc": null
+        }
+      },
+      "doc": "包接触共享模型的唯一入口（04 规划模型契约）。目标由 B09 唯一汇总。"
+    },
+    "OntologyBuilder": {
+      "attributes": {},
+      "methods": {
+        "propose_candidates": {
+          "params": {
+            "context": "Context",
+            "subject_ids": "Sequence[str]",
+            "layer": "str"
+          },
+          "returns": "Sequence[OntologyCandidate]",
+          "property": false,
+          "doc": null
+        },
+        "link_entities": {
+          "params": {
+            "context": "Context",
+            "subject_id": "str",
+            "target_id": "str",
+            "relation": "str"
+          },
+          "returns": "OntologyCandidate",
+          "property": false,
+          "doc": null
+        },
+        "validate": {
+          "params": {
+            "context": "Context",
+            "graph_name": "str"
+          },
+          "returns": "Sequence[PendingIssue]",
+          "property": false,
+          "doc": null
+        },
+        "snapshot": {
+          "params": {
+            "context": "Context"
+          },
+          "returns": "str",
+          "property": false,
+          "doc": null
+        }
+      },
+      "doc": "B22：四层本体候选、链接、结构校验与快照。"
+    },
+    "PendingActionStore": {
+      "attributes": {},
+      "methods": {
+        "propose": {
+          "params": {
+            "kind": "PendingActionKind",
+            "payload": "Mapping[str, Any]",
+            "context": "Context",
+            "action_id": "str | None"
+          },
+          "returns": "PendingAction",
+          "property": false,
+          "doc": null
+        },
+        "confirm": {
+          "params": {
+            "action_id": "str",
+            "actor": "Actor",
+            "reason": "str",
+            "expected_revision": "int",
+            "idempotency_key": "str",
+            "edits": "Mapping[str, Any] | None"
+          },
+          "returns": "PendingAction",
+          "property": false,
+          "doc": null
+        },
+        "reject": {
+          "params": {
+            "action_id": "str",
+            "actor": "Actor",
+            "reason": "str",
+            "expected_revision": "int",
+            "idempotency_key": "str",
+            "edits": "Mapping[str, Any] | None"
+          },
+          "returns": "PendingAction",
+          "property": false,
+          "doc": null
+        }
+      },
+      "doc": null
+    },
+    "Planner": {
+      "attributes": {},
+      "methods": {
+        "solve": {
+          "params": {
+            "request": "PlanningRequest"
+          },
+          "returns": "PlanResult",
+          "property": false,
+          "doc": null
+        }
+      },
+      "doc": "唯一共享 MILP（B09）；求解只在 JobRunner 后台任务里执行。"
+    },
+    "ProposalSink": {
+      "attributes": {},
+      "methods": {
+        "save": {
+          "params": {
+            "proposal": "ExpertProposal",
+            "binding": "RunBinding"
+          },
+          "returns": "str",
+          "property": false,
+          "doc": null
+        },
+        "attach_reply": {
+          "params": {
+            "proposal_id": "str",
+            "reply": "ExpertReply"
+          },
+          "returns": "ExpertProposal",
+          "property": false,
+          "doc": null
+        },
+        "get": {
+          "params": {
+            "proposal_id": "str"
+          },
+          "returns": "ExpertProposal",
+          "property": false,
+          "doc": null
+        },
+        "list": {
+          "params": {
+            "ticket_id": "str",
+            "round_": "int | None"
+          },
+          "returns": "list[ExpertProposal]",
+          "property": false,
+          "doc": null
+        }
+      },
+      "doc": "B27：专家提案落库。save 分配 proposal_id；回答经 attach_reply 补诊断与依据，不改数值字段。"
+    },
+    "Repository": {
+      "attributes": {},
+      "methods": {
+        "transaction_short": {
+          "params": {},
+          "returns": "AbstractContextManager[None]",
+          "property": false,
+          "doc": null
+        },
+        "read": {
+          "params": {
+            "context": "Context",
+            "table": "str",
+            "key": "Mapping[str, Any]"
+          },
+          "returns": "Mapping[str, Any] | None",
+          "property": false,
+          "doc": null
+        },
+        "append_once": {
+          "params": {
+            "key": "str",
+            "record": "Mapping[str, Any]"
+          },
+          "returns": "bool",
+          "property": false,
+          "doc": "幂等追加；key 已存在且内容相同返回 False，不同则抛 IDEMPOTENCY_MISMATCH。"
+        }
+      },
+      "doc": "SQLite 单写者仓储（B03）。"
+    },
+    "RuleExtractor": {
+      "attributes": {},
+      "methods": {
+        "extract": {
+          "params": {
+            "context": "Context",
+            "fragments": "Sequence[AssetFragment]"
+          },
+          "returns": "Sequence[RuleCandidate]",
+          "property": false,
+          "doc": null
+        }
+      },
+      "doc": "B25：抽取不批准；候选经复核后才成为 Rule。"
+    },
+    "RuleKind": {
+      "attributes": {
+        "kind": "str",
+        "compiler_version": "str"
+      },
+      "methods": {
+        "compile": {
+          "params": {
+            "rule": "Rule",
+            "context": "Context"
+          },
+          "returns": "ConstraintContribution | PendingIssue",
+          "property": false,
+          "doc": null
+        }
+      },
+      "doc": "由包注册的规则类型与编译器。不能编译时返回 PendingIssue，不静默忽略。"
+    },
+    "RuleMatcher": {
+      "attributes": {},
+      "methods": {
+        "covers": {
+          "params": {
+            "event": "DayEvent"
+          },
+          "returns": "bool",
+          "property": false,
+          "doc": null
+        }
+      },
+      "doc": "B27：判断事件是否已被已发布规则覆盖（B30/B32 的规则 + B25 playbooks）。\n\n快通道只在“有匹配规则且 Jev 门控放行”时走；B27 提供按 playbooks 与事件类型白名单的 fallback 实现。"
+    },
+    "RuleRepository": {
+      "attributes": {},
+      "methods": {
+        "applicable": {
+          "params": {
+            "context": "Context",
+            "window": "Interval",
+            "cursor": "str | None"
+          },
+          "returns": "tuple[Sequence[Rule], str | None]",
+          "property": false,
+          "doc": "返回（对 context.as_of 可见、在 window 内适用、可编译的规则，下一页 cursor）。"
+        },
+        "pending_issues": {
+          "params": {
+            "context": "Context"
+          },
+          "returns": "Sequence[PendingIssue]",
+          "property": false,
+          "doc": null
+        }
+      },
+      "doc": null
+    },
+    "RunSessionStore": {
+      "attributes": {},
+      "methods": {
+        "register": {
+          "params": {
+            "actor": "Actor",
+            "plant_id": "str",
+            "as_of": "datetime",
+            "visible_docs": "Sequence[str]",
+            "ttl_s": "int",
+            "agent_run_id": "str",
+            "trace_id": "str",
+            "industry_pack": "str | None",
+            "origin": "str",
+            "run_id": "str | None",
+            "version_manifest_id": "str | None"
+          },
+          "returns": "RunSession",
+          "property": false,
+          "doc": null
+        },
+        "resolve": {
+          "params": {
+            "ctx": "str"
+          },
+          "returns": "RunSession | None",
+          "property": false,
+          "doc": null
+        },
+        "resolve_binding": {
+          "params": {
+            "ctx": "str"
+          },
+          "returns": "tuple[str, str] | None",
+          "property": false,
+          "doc": null
+        },
+        "expire": {
+          "params": {
+            "ctx": "str"
+          },
+          "returns": "None",
+          "property": false,
+          "doc": null
+        }
+      },
+      "doc": null
+    },
+    "RunStore": {
+      "attributes": {},
+      "methods": {
+        "create_run": {
+          "params": {
+            "context": "Context",
+            "kind": "str",
+            "clock": "Interval",
+            "forked_from": "str | None"
+          },
+          "returns": "RunInfo",
+          "property": false,
+          "doc": null
+        },
+        "get_run": {
+          "params": {
+            "run_id": "str"
+          },
+          "returns": "RunInfo",
+          "property": false,
+          "doc": null
+        }
+      },
+      "doc": null
+    },
+    "SeriesStore": {
+      "attributes": {},
+      "methods": {
+        "write_partition": {
+          "params": {
+            "bundle": "SourceBundle"
+          },
+          "returns": "str",
+          "property": false,
+          "doc": null
+        },
+        "query": {
+          "params": {
+            "context": "Context",
+            "quantity": "str",
+            "window": "Interval"
+          },
+          "returns": "SourceBundle",
+          "property": false,
+          "doc": null
+        }
+      },
+      "doc": "B03：Parquet + DuckDB 时序。"
+    },
+    "StateProvider": {
+      "attributes": {},
+      "methods": {
+        "at": {
+          "params": {
+            "context": "Context",
+            "instant": "datetime"
+          },
+          "returns": "StateSnapshot",
+          "property": false,
+          "doc": null
+        },
+        "advance": {
+          "params": {
+            "context": "Context",
+            "expected_seq": "int",
+            "next_instant": "datetime"
+          },
+          "returns": "StateSnapshot",
+          "property": false,
+          "doc": null
+        }
+      },
+      "doc": "Replay 现在、Sim 以后（03 §1.3）。一个 run 一个回放时钟与状态提交者。"
+    },
+    "TimeSeriesQuery": {
+      "attributes": {},
+      "methods": {
+        "query": {
+          "params": {
+            "context": "Context",
+            "quantity": "str",
+            "window": "Interval",
+            "cursor": "str | None"
+          },
+          "returns": "SourceBundle",
+          "property": false,
+          "doc": null
+        }
+      },
+      "doc": "B07：按 available_at 过滤的只读时序查询（ts_query）。"
+    },
+    "ToolHandler": {
+      "attributes": {
+        "spec": "ToolSpec"
+      },
+      "methods": {},
+      "doc": "注册表工具：MCP 薄入口只做校验、上下文绑定、端口调用与结果转换。"
+    },
+    "TrialRunner": {
+      "attributes": {},
+      "methods": {
+        "trial": {
+          "params": {
+            "snapshot": "StateSnapshot",
+            "candidate": "Sequence[SimAction]",
+            "horizon": "Interval"
+          },
+          "returns": "TrialResult",
+          "property": false,
+          "doc": null
+        }
+      },
+      "doc": "B17：在快照上隔离试算候选动作，不改真实运行。"
+    },
+    "ValidationPolicy": {
+      "attributes": {
+        "version": "str"
+      },
+      "methods": {
+        "judge": {
+          "params": {
+            "candidate": "Candidate",
+            "report": "BacktestReport"
+          },
+          "returns": "Literal['validated', 'rejected']",
+          "property": false,
+          "doc": null
+        }
+      },
+      "doc": "参数候选须更好且硬约束不退化；知识候选按正确性/审核准则（07 Q17）。"
+    },
+    "VersionStore": {
+      "attributes": {},
+      "methods": {
+        "prepare": {
+          "params": {
+            "components": "Mapping[str, Any]",
+            "reason": "str"
+          },
+          "returns": "VersionManifest",
+          "property": false,
+          "doc": null
+        },
+        "check_integrity": {
+          "params": {
+            "manifest_id": "str"
+          },
+          "returns": "VersionManifest",
+          "property": false,
+          "doc": null
+        },
+        "activate": {
+          "params": {
+            "expected_active": "str | None",
+            "candidate": "str",
+            "actor": "Actor",
+            "reason": "str"
+          },
+          "returns": "VersionManifest",
+          "property": false,
+          "doc": null
+        },
+        "active": {
+          "params": {},
+          "returns": "VersionManifest",
+          "property": false,
+          "doc": null
+        },
+        "get": {
+          "params": {
+            "manifest_id": "str"
+          },
+          "returns": "VersionManifest",
+          "property": false,
+          "doc": null
+        },
+        "has_verifier": {
+          "params": {
+            "prefix": "str"
+          },
+          "returns": "bool",
+          "property": false,
+          "doc": null
+        }
+      },
+      "doc": "不可变产物 → 完整性检查 → 短事务激活（03 §1.2）。"
+    }
+  }
+}

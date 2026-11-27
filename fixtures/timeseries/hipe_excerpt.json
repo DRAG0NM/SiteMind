@@ -1,0 +1,216 @@
+{
+  "note": "Selected source columns, not synthetic; line 1 is header. See member hashes in manifest.",
+  "archive_sha256": "a04344f7edf0593d9c35db68e606babfd77d28522ec0dc37ee081516836bbe2b",
+  "rows": [
+    {
+      "member": "MainTerminal_PhaseCount_3_geq_2017-10-23_lt_2017-10-30.csv",
+      "source_line_1_based": 2,
+      "SensorDateTime": "2017-10-23T00:00:03.727+02",
+      "Machine": "MainTerminal",
+      "P_kW": "12.75"
+    },
+    {
+      "member": "MainTerminal_PhaseCount_3_geq_2017-10-23_lt_2017-10-30.csv",
+      "source_line_1_based": 3,
+      "SensorDateTime": "2017-10-23T00:00:09.120+02",
+      "Machine": "MainTerminal",
+      "P_kW": "12.78000020980835"
+    },
+    {
+      "member": "MainTerminal_PhaseCount_3_geq_2017-10-23_lt_2017-10-30.csv",
+      "source_line_1_based": 4,
+      "SensorDateTime": "2017-10-23T00:00:14.630+02",
+      "Machine": "MainTerminal",
+      "P_kW": "13.0"
+    },
+    {
+      "member": "MainTerminal_PhaseCount_3_geq_2017-10-23_lt_2017-10-30.csv",
+      "source_line_1_based": 5,
+      "SensorDateTime": "2017-10-23T00:00:20.110+02",
+      "Machine": "MainTerminal",
+      "P_kW": "13.119999885559082"
+    },
+    {
+      "member": "MainTerminal_PhaseCount_3_geq_2017-10-23_lt_2017-10-30.csv",
+      "source_line_1_based": 6,
+      "SensorDateTime": "2017-10-23T00:00:25.723+02",
+      "Machine": "MainTerminal",
+      "P_kW": "13.220000267028809"
+    },
+    {
+      "member": "MainTerminal_PhaseCount_3_geq_2017-10-23_lt_2017-10-30.csv",
+      "source_line_1_based": 95402,
+      "SensorDateTime": "2017-10-29T02:00:04.047+02",
+      "Machine": "MainTerminal",
+      "P_kW": "5.46999990940094"
+    },
+    {
+      "member": "MainTerminal_PhaseCount_3_geq_2017-10-23_lt_2017-10-30.csv",
+      "source_line_1_based": 95403,
+      "SensorDateTime": "2017-10-29T02:00:09.677+02",
+      "Machine": "MainTerminal",
+      "P_kW": "5.439999938011169"
+    },
+    {
+      "member": "MainTerminal_PhaseCount_3_geq_2017-10-23_lt_2017-10-30.csv",
+      "source_line_1_based": 95404,
+      "SensorDateTime": "2017-10-29T02:00:15.077+02",
+      "Machine": "MainTerminal",
+      "P_kW": "5.479999899864197"
+    },
+    {
+      "member": "MainTerminal_PhaseCount_3_geq_2017-10-23_lt_2017-10-30.csv",
+      "source_line_1_based": 95405,
+      "SensorDateTime": "2017-10-29T02:00:20.493+02",
+      "Machine": "MainTerminal",
+      "P_kW": "5.46999990940094"
+    },
+    {
+      "member": "MainTerminal_PhaseCount_3_geq_2017-10-23_lt_2017-10-30.csv",
+      "source_line_1_based": 95406,
+      "SensorDateTime": "2017-10-29T02:00:25.937+02",
+      "Machine": "MainTerminal",
+      "P_kW": "5.46999990940094"
+    },
+    {
+      "member": "MainTerminal_PhaseCount_3_geq_2017-10-23_lt_2017-10-30.csv",
+      "source_line_1_based": 96056,
+      "SensorDateTime": "2017-10-29T02:00:01.797+01",
+      "Machine": "MainTerminal",
+      "P_kW": "5.159999847412109"
+    },
+    {
+      "member": "MainTerminal_PhaseCount_3_geq_2017-10-23_lt_2017-10-30.csv",
+      "source_line_1_based": 96057,
+      "SensorDateTime": "2017-10-29T02:00:07.257+01",
+      "Machine": "MainTerminal",
+      "P_kW": "5.099999904632568"
+    },
+    {
+      "member": "MainTerminal_PhaseCount_3_geq_2017-10-23_lt_2017-10-30.csv",
+      "source_line_1_based": 96058,
+      "SensorDateTime": "2017-10-29T02:00:13.060+01",
+      "Machine": "MainTerminal",
+      "P_kW": "5.0899999141693115"
+    },
+    {
+      "member": "MainTerminal_PhaseCount_3_geq_2017-10-23_lt_2017-10-30.csv",
+      "source_line_1_based": 96059,
+      "SensorDateTime": "2017-10-29T02:00:18.613+01",
+      "Machine": "MainTerminal",
+      "P_kW": "5.099999904632568"
+    },
+    {
+      "member": "MainTerminal_PhaseCount_3_geq_2017-10-23_lt_2017-10-30.csv",
+      "source_line_1_based": 96060,
+      "SensorDateTime": "2017-10-29T02:00:24.277+01",
+      "Machine": "MainTerminal",
+      "P_kW": "5.099999904632568"
+    },
+    {
+      "member": "VacuumPump1_PhaseCount_3_geq_2017-10-23_lt_2017-10-30.csv",
+      "source_line_1_based": 2,
+      "SensorDateTime": "2017-10-23T00:00:04.647+02",
+      "Machine": "VacuumPump1",
+      "P_kW": "-0.0"
+    },
+    {
+      "member": "VacuumPump1_PhaseCount_3_geq_2017-10-23_lt_2017-10-30.csv",
+      "source_line_1_based": 3,
+      "SensorDateTime": "2017-10-23T00:00:10.123+02",
+      "Machine": "VacuumPump1",
+      "P_kW": "-0.0"
+    },
+    {
+      "member": "VacuumPump1_PhaseCount_3_geq_2017-10-23_lt_2017-10-30.csv",
+      "source_line_1_based": 4,
+      "SensorDateTime": "2017-10-23T00:00:15.550+02",
+      "Machine": "VacuumPump1",
+      "P_kW": "-0.0"
+    },
+    {
+      "member": "VacuumPump1_PhaseCount_3_geq_2017-10-23_lt_2017-10-30.csv",
+      "source_line_1_based": 5,
+      "SensorDateTime": "2017-10-23T00:00:21.107+02",
+      "Machine": "VacuumPump1",
+      "P_kW": "-0.0"
+    },
+    {
+      "member": "VacuumPump1_PhaseCount_3_geq_2017-10-23_lt_2017-10-30.csv",
+      "source_line_1_based": 6,
+      "SensorDateTime": "2017-10-23T00:00:26.640+02",
+      "Machine": "VacuumPump1",
+      "P_kW": "-0.0"
+    },
+    {
+      "member": "VacuumPump1_PhaseCount_3_geq_2017-10-23_lt_2017-10-30.csv",
+      "source_line_1_based": 95402,
+      "SensorDateTime": "2017-10-29T02:00:04.240+02",
+      "Machine": "VacuumPump1",
+      "P_kW": "-0.0"
+    },
+    {
+      "member": "VacuumPump1_PhaseCount_3_geq_2017-10-23_lt_2017-10-30.csv",
+      "source_line_1_based": 95403,
+      "SensorDateTime": "2017-10-29T02:00:09.830+02",
+      "Machine": "VacuumPump1",
+      "P_kW": "-0.0"
+    },
+    {
+      "member": "VacuumPump1_PhaseCount_3_geq_2017-10-23_lt_2017-10-30.csv",
+      "source_line_1_based": 95404,
+      "SensorDateTime": "2017-10-29T02:00:15.227+02",
+      "Machine": "VacuumPump1",
+      "P_kW": "-0.0"
+    },
+    {
+      "member": "VacuumPump1_PhaseCount_3_geq_2017-10-23_lt_2017-10-30.csv",
+      "source_line_1_based": 95405,
+      "SensorDateTime": "2017-10-29T02:00:20.640+02",
+      "Machine": "VacuumPump1",
+      "P_kW": "-0.0"
+    },
+    {
+      "member": "VacuumPump1_PhaseCount_3_geq_2017-10-23_lt_2017-10-30.csv",
+      "source_line_1_based": 95406,
+      "SensorDateTime": "2017-10-29T02:00:26.090+02",
+      "Machine": "VacuumPump1",
+      "P_kW": "-0.0"
+    },
+    {
+      "member": "VacuumPump1_PhaseCount_3_geq_2017-10-23_lt_2017-10-30.csv",
+      "source_line_1_based": 96056,
+      "SensorDateTime": "2017-10-29T02:00:01.947+01",
+      "Machine": "VacuumPump1",
+      "P_kW": "-0.0"
+    },
+    {
+      "member": "VacuumPump1_PhaseCount_3_geq_2017-10-23_lt_2017-10-30.csv",
+      "source_line_1_based": 96057,
+      "SensorDateTime": "2017-10-29T02:00:07.407+01",
+      "Machine": "VacuumPump1",
+      "P_kW": "-0.0"
+    },
+    {
+      "member": "VacuumPump1_PhaseCount_3_geq_2017-10-23_lt_2017-10-30.csv",
+      "source_line_1_based": 96058,
+      "SensorDateTime": "2017-10-29T02:00:13.210+01",
+      "Machine": "VacuumPump1",
+      "P_kW": "-0.0"
+    },
+    {
+      "member": "VacuumPump1_PhaseCount_3_geq_2017-10-23_lt_2017-10-30.csv",
+      "source_line_1_based": 96059,
+      "SensorDateTime": "2017-10-29T02:00:18.797+01",
+      "Machine": "VacuumPump1",
+      "P_kW": "-0.0"
+    },
+    {
+      "member": "VacuumPump1_PhaseCount_3_geq_2017-10-23_lt_2017-10-30.csv",
+      "source_line_1_based": 96060,
+      "SensorDateTime": "2017-10-29T02:00:24.447+01",
+      "Machine": "VacuumPump1",
+      "P_kW": "-0.0"
+    }
+  ]
+}

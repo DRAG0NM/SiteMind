@@ -1,0 +1,92 @@
+{
+  "$defs": {
+    "GateOutcome": {
+      "enum": [
+        "auto_confirmed",
+        "review_required",
+        "rejected"
+      ],
+      "title": "GateOutcome",
+      "type": "string"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "plan_id": {
+      "maxLength": 200,
+      "minLength": 1,
+      "title": "Plan Id",
+      "type": "string"
+    },
+    "revision": {
+      "minimum": 0,
+      "title": "Revision",
+      "type": "integer"
+    },
+    "outcome": {
+      "$ref": "#/$defs/GateOutcome"
+    },
+    "reasons": {
+      "items": {
+        "type": "string"
+      },
+      "minItems": 1,
+      "title": "Reasons",
+      "type": "array"
+    },
+    "policy_version": {
+      "maxLength": 200,
+      "minLength": 1,
+      "title": "Policy Version",
+      "type": "string"
+    },
+    "thresholds": {
+      "additionalProperties": {
+        "type": "number"
+      },
+      "title": "Thresholds",
+      "type": "object"
+    },
+    "assessed_at": {
+      "format": "date-time",
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d{1,9})?(Z|[+-]00:?00)$",
+      "title": "Assessed At",
+      "type": "string"
+    },
+    "pending_action_id": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Pending Action Id"
+    },
+    "policy_outcome": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/GateOutcome"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    }
+  },
+  "required": [
+    "plan_id",
+    "revision",
+    "outcome",
+    "reasons",
+    "policy_version",
+    "assessed_at"
+  ],
+  "title": "GateDecision",
+  "type": "object",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "plantkg:contracts/1.2.0/GateDecision"
+}

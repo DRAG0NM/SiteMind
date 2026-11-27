@@ -1,0 +1,55 @@
+{
+  "additionalProperties": false,
+  "description": "回放状态快照。只读；真值引用不返回在线 Agent。",
+  "properties": {
+    "run_id": {
+      "maxLength": 200,
+      "minLength": 1,
+      "title": "Run Id",
+      "type": "string"
+    },
+    "snapshot_id": {
+      "maxLength": 200,
+      "minLength": 1,
+      "title": "Snapshot Id",
+      "type": "string"
+    },
+    "event_seq": {
+      "minimum": 0,
+      "title": "Event Seq",
+      "type": "integer"
+    },
+    "as_of": {
+      "format": "date-time",
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d{1,9})?(Z|[+-]00:?00)$",
+      "title": "As Of",
+      "type": "string"
+    },
+    "version_manifest_id": {
+      "maxLength": 200,
+      "minLength": 1,
+      "title": "Version Manifest Id",
+      "type": "string"
+    },
+    "pack_states": {
+      "additionalProperties": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "title": "Pack States",
+      "type": "object"
+    }
+  },
+  "required": [
+    "run_id",
+    "snapshot_id",
+    "event_seq",
+    "as_of",
+    "version_manifest_id",
+    "pack_states"
+  ],
+  "title": "StateSnapshot",
+  "type": "object",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "plantkg:contracts/1.2.0/StateSnapshot"
+}

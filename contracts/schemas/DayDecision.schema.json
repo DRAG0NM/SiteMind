@@ -1,0 +1,160 @@
+{
+  "$defs": {
+    "DecisionConflict": {
+      "additionalProperties": false,
+      "properties": {
+        "summary": {
+          "title": "Summary",
+          "type": "string"
+        },
+        "proposal_ids": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Proposal Ids",
+          "type": "array"
+        }
+      },
+      "required": [
+        "summary",
+        "proposal_ids"
+      ],
+      "title": "DecisionConflict",
+      "type": "object"
+    },
+    "DecisionConversion": {
+      "additionalProperties": false,
+      "description": "换算：把各提案（或组合）放到同一把尺子上。",
+      "properties": {
+        "policy_version": {
+          "maxLength": 200,
+          "minLength": 1,
+          "title": "Policy Version",
+          "type": "string"
+        },
+        "scores": {
+          "additionalProperties": {
+            "type": "number"
+          },
+          "title": "Scores",
+          "type": "object"
+        },
+        "infeasible": {
+          "default": [],
+          "items": {
+            "type": "string"
+          },
+          "title": "Infeasible",
+          "type": "array"
+        },
+        "notes": {
+          "default": [],
+          "items": {
+            "type": "string"
+          },
+          "title": "Notes",
+          "type": "array"
+        }
+      },
+      "required": [
+        "policy_version",
+        "scores"
+      ],
+      "title": "DecisionConversion",
+      "type": "object"
+    },
+    "DecisionResult": {
+      "additionalProperties": false,
+      "properties": {
+        "selected_proposal_ids": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Selected Proposal Ids",
+          "type": "array"
+        },
+        "outcome": {
+          "enum": [
+            "executed",
+            "work_order",
+            "to_human",
+            "sampling",
+            "blocked"
+          ],
+          "title": "Outcome",
+          "type": "string"
+        },
+        "summary": {
+          "title": "Summary",
+          "type": "string"
+        }
+      },
+      "required": [
+        "selected_proposal_ids",
+        "outcome",
+        "summary"
+      ],
+      "title": "DecisionResult",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "description": "裁决“冲突 → 换算 → 结果”三步（03 §3.6）。",
+  "properties": {
+    "decision_id": {
+      "maxLength": 200,
+      "minLength": 1,
+      "title": "Decision Id",
+      "type": "string"
+    },
+    "ticket_id": {
+      "maxLength": 200,
+      "minLength": 1,
+      "title": "Ticket Id",
+      "type": "string"
+    },
+    "round": {
+      "minimum": 1,
+      "title": "Round",
+      "type": "integer"
+    },
+    "layer": {
+      "enum": [
+        1,
+        2,
+        3
+      ],
+      "title": "Layer",
+      "type": "integer"
+    },
+    "at": {
+      "format": "date-time",
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d{1,9})?(Z|[+-]00:?00)$",
+      "title": "At",
+      "type": "string"
+    },
+    "conflict": {
+      "$ref": "#/$defs/DecisionConflict"
+    },
+    "conversion": {
+      "$ref": "#/$defs/DecisionConversion"
+    },
+    "result": {
+      "$ref": "#/$defs/DecisionResult"
+    }
+  },
+  "required": [
+    "decision_id",
+    "ticket_id",
+    "round",
+    "layer",
+    "at",
+    "conflict",
+    "conversion",
+    "result"
+  ],
+  "title": "DayDecision",
+  "type": "object",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "plantkg:contracts/1.2.0/DayDecision"
+}

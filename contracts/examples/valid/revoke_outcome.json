@@ -1,0 +1,8 @@
+{
+  "model": "RevokeOutcome",
+  "data": {
+    "cost_cny": 251.36,
+    "violation_minutes": 0,
+    "t1_peak_kw": 1451.2
+  }
+}

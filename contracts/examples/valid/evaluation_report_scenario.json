@@ -1,0 +1,35 @@
+{
+  "model": "EvaluationReport",
+  "data": {
+    "report_id": "eval-scn-20260701",
+    "eval_days": [
+      "2026-07-01"
+    ],
+    "independent_eval_day": true,
+    "policies": [
+      "baseline",
+      "independent",
+      "coordinated"
+    ],
+    "metrics": {
+      "baseline": {
+        "cost_cny": 18620.0,
+        "wait_min": 410.0
+      },
+      "independent": {
+        "cost_cny": 17940.0,
+        "wait_min": 380.0
+      },
+      "coordinated": {
+        "cost_cny": 17210.0,
+        "wait_min": 300.0
+      }
+    },
+    "comparable": true,
+    "run_ids": [
+      "run-scn-base",
+      "run-scn-ind",
+      "run-scn-20260701"
+    ]
+  }
+}

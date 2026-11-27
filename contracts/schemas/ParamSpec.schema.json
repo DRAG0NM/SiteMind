@@ -1,0 +1,64 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "name": {
+      "pattern": "^[a-z][a-z0-9_]*$",
+      "title": "Name",
+      "type": "string"
+    },
+    "type": {
+      "enum": [
+        "string",
+        "integer",
+        "number",
+        "boolean",
+        "object",
+        "array"
+      ],
+      "title": "Type",
+      "type": "string"
+    },
+    "required": {
+      "default": false,
+      "title": "Required",
+      "type": "boolean"
+    },
+    "description": {
+      "title": "Description",
+      "type": "string"
+    },
+    "minimum": {
+      "anyOf": [
+        {
+          "type": "number"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Minimum"
+    },
+    "maximum": {
+      "anyOf": [
+        {
+          "type": "number"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Maximum"
+    }
+  },
+  "required": [
+    "name",
+    "type",
+    "description"
+  ],
+  "title": "ParamSpec",
+  "type": "object",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "plantkg:contracts/1.2.0/ParamSpec"
+}

@@ -1,0 +1,32 @@
+# 能源领域的受信取值（configured；B19 演示装配）。SKILL.md 里引用这些值，不在这里放宽任何硬约束。
+plant_id: demo-electronics
+storage:
+  entity: entity://demo-electronics/battery/BAT1
+  capacity_kwh: 2000
+  charge_kw: 500
+  discharge_kw: 500
+  eta_c: 0.95
+  eta_d: 0.95
+  soc_min: 0.1
+  soc_max: 0.9
+pv:
+  entity: entity://demo-electronics/pv/PV1
+  kwp: 1000
+tariff:
+  category: two_part_industrial_ge315kva
+  timezone: Asia/Shanghai
+  periods: {valley: ["00:00-06:00", "11:00-13:00"], peak: ["14:00-22:00"], sharp: ["19:30-21:30（7、8 月）"]}
+  base_price_note: 演示值 0.62 元/kWh，不是公告值
+lighting:
+  adjustable: true
+  shed_ratio_max: 0.5
+  switch_circuit_command: switch_circuit
+hard_constraints:
+  zones: [cleanroom, datacenter, hazmat]
+  rule: 不停电、不停风、不超硬性温湿度；只能出操作工单由人确认
+response_budget: {layer12_min: 1, layer3_min: 3}
+data_nature:
+  load_base: derived
+  elevator_and_faults: simulated
+  script_events: synthetic
+  tariff_and_params: configured

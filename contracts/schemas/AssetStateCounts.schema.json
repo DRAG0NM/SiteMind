@@ -1,0 +1,35 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "dormant": {
+      "minimum": 0,
+      "title": "Dormant",
+      "type": "integer"
+    },
+    "identified": {
+      "minimum": 0,
+      "title": "Identified",
+      "type": "integer"
+    },
+    "in_graph": {
+      "minimum": 0,
+      "title": "In Graph",
+      "type": "integer"
+    },
+    "referenced": {
+      "minimum": 0,
+      "title": "Referenced",
+      "type": "integer"
+    }
+  },
+  "required": [
+    "dormant",
+    "identified",
+    "in_graph",
+    "referenced"
+  ],
+  "title": "AssetStateCounts",
+  "type": "object",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "plantkg:contracts/1.2.0/AssetStateCounts"
+}

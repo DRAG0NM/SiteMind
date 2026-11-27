@@ -1,0 +1,254 @@
+{
+  "$defs": {
+    "Action": {
+      "additionalProperties": false,
+      "properties": {
+        "action_id": {
+          "maxLength": 200,
+          "minLength": 1,
+          "title": "Action Id",
+          "type": "string"
+        },
+        "object": {
+          "description": "entity://{厂区}/{类型}/{编号}；不随资料修改而变",
+          "pattern": "^entity://[A-Za-z0-9_-]+/[a-z0-9_-]+/[A-Za-z0-9_.-]+$",
+          "title": "Object",
+          "type": "string"
+        },
+        "quantity": {
+          "maxLength": 200,
+          "minLength": 1,
+          "title": "Quantity",
+          "type": "string"
+        },
+        "unit": {
+          "$ref": "#/$defs/Unit"
+        },
+        "value": {
+          "title": "Value",
+          "type": "number"
+        },
+        "interval": {
+          "$ref": "#/$defs/Interval"
+        },
+        "refs": {
+          "items": {
+            "$ref": "#/$defs/Ref"
+          },
+          "minItems": 1,
+          "title": "Refs",
+          "type": "array"
+        },
+        "evidence_ids": {
+          "default": [],
+          "items": {
+            "type": "string"
+          },
+          "title": "Evidence Ids",
+          "type": "array"
+        }
+      },
+      "required": [
+        "action_id",
+        "object",
+        "quantity",
+        "unit",
+        "value",
+        "interval",
+        "refs"
+      ],
+      "title": "Action",
+      "type": "object"
+    },
+    "Interval": {
+      "additionalProperties": false,
+      "description": "左闭右开 UTC 区间 [start, end)。",
+      "properties": {
+        "start": {
+          "format": "date-time",
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d{1,9})?(Z|[+-]00:?00)$",
+          "title": "Start",
+          "type": "string"
+        },
+        "end": {
+          "format": "date-time",
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d{1,9})?(Z|[+-]00:?00)$",
+          "title": "End",
+          "type": "string"
+        }
+      },
+      "required": [
+        "start",
+        "end"
+      ],
+      "title": "Interval",
+      "type": "object"
+    },
+    "PlanStatus": {
+      "enum": [
+        "draft",
+        "review_required",
+        "auto_confirmed",
+        "confirmed",
+        "rejected",
+        "executed",
+        "superseded"
+      ],
+      "title": "PlanStatus",
+      "type": "string"
+    },
+    "Ref": {
+      "additionalProperties": false,
+      "description": "动作、约束的依据：规则、配置项或资产版本，至少一个（04 ModelBuilder.add_constraint）。",
+      "properties": {
+        "kind": {
+          "enum": [
+            "rule",
+            "config",
+            "asset_version"
+          ],
+          "title": "Kind",
+          "type": "string"
+        },
+        "id": {
+          "maxLength": 200,
+          "minLength": 1,
+          "title": "Id",
+          "type": "string"
+        }
+      },
+      "required": [
+        "kind",
+        "id"
+      ],
+      "title": "Ref",
+      "type": "object"
+    },
+    "SolverStatus": {
+      "enum": [
+        "optimal",
+        "feasible",
+        "timeout",
+        "infeasible",
+        "error"
+      ],
+      "title": "SolverStatus",
+      "type": "string"
+    },
+    "Unit": {
+      "description": "内部标准单位。新增单位是契约变更。",
+      "enum": [
+        "kW",
+        "kWh",
+        "1",
+        "CNY",
+        "CNY/kWh",
+        "CNY/kW",
+        "h",
+        "min",
+        "degC",
+        "%",
+        "count",
+        "bar/h",
+        "s"
+      ],
+      "title": "Unit",
+      "type": "string"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "plan_id": {
+      "maxLength": 200,
+      "minLength": 1,
+      "title": "Plan Id",
+      "type": "string"
+    },
+    "revision": {
+      "minimum": 0,
+      "title": "Revision",
+      "type": "integer"
+    },
+    "run_id": {
+      "maxLength": 200,
+      "minLength": 1,
+      "title": "Run Id",
+      "type": "string"
+    },
+    "status": {
+      "$ref": "#/$defs/PlanStatus"
+    },
+    "solver_status": {
+      "$ref": "#/$defs/SolverStatus"
+    },
+    "valid_interval": {
+      "$ref": "#/$defs/Interval"
+    },
+    "version_manifest_id": {
+      "maxLength": 200,
+      "minLength": 1,
+      "title": "Version Manifest Id",
+      "type": "string"
+    },
+    "snapshot_id": {
+      "maxLength": 200,
+      "minLength": 1,
+      "title": "Snapshot Id",
+      "type": "string"
+    },
+    "forecast_ids": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Forecast Ids",
+      "type": "array"
+    },
+    "policy": {
+      "enum": [
+        "B0",
+        "B1",
+        "B2"
+      ],
+      "title": "Policy",
+      "type": "string"
+    },
+    "actions": {
+      "items": {
+        "$ref": "#/$defs/Action"
+      },
+      "title": "Actions",
+      "type": "array"
+    },
+    "objective_terms": {
+      "additionalProperties": {
+        "type": "number"
+      },
+      "title": "Objective Terms",
+      "type": "object"
+    },
+    "created_at": {
+      "format": "date-time",
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d{1,9})?(Z|[+-]00:?00)$",
+      "title": "Created At",
+      "type": "string"
+    }
+  },
+  "required": [
+    "plan_id",
+    "revision",
+    "run_id",
+    "status",
+    "solver_status",
+    "valid_interval",
+    "version_manifest_id",
+    "snapshot_id",
+    "forecast_ids",
+    "policy",
+    "actions",
+    "created_at"
+  ],
+  "title": "Plan",
+  "type": "object",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "plantkg:contracts/1.2.0/Plan"
+}

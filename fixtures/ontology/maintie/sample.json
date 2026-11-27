@@ -1,0 +1,1755 @@
+[
+  {
+    "text": "<id> air conditioner thermostat not working",
+    "tokens": [
+      "<id>",
+      "air",
+      "conditioner",
+      "thermostat",
+      "not",
+      "working"
+    ],
+    "entities": [
+      {
+        "start": 1,
+        "end": 3,
+        "type": "PhysicalObject/EmittingObject/ElectricCoolingObject"
+      },
+      {
+        "start": 3,
+        "end": 4,
+        "type": "PhysicalObject/SensingObject/TemperatureSensingObject"
+      },
+      {
+        "start": 4,
+        "end": 6,
+        "type": "State/UndesirableState/FailedState"
+      }
+    ],
+    "relations": [
+      {
+        "head": 0,
+        "tail": 1,
+        "type": "hasPart"
+      },
+      {
+        "head": 2,
+        "tail": 1,
+        "type": "hasParticipant/hasPatient"
+      }
+    ]
+  },
+  {
+    "text": "<id> air conditioner thermostat unserviceable",
+    "tokens": [
+      "<id>",
+      "air",
+      "conditioner",
+      "thermostat",
+      "unserviceable"
+    ],
+    "entities": [
+      {
+        "start": 1,
+        "end": 3,
+        "type": "PhysicalObject/EmittingObject/ElectricCoolingObject"
+      },
+      {
+        "start": 3,
+        "end": 4,
+        "type": "PhysicalObject/SensingObject/TemperatureSensingObject"
+      },
+      {
+        "start": 4,
+        "end": 5,
+        "type": "State/UndesirableState/FailedState"
+      }
+    ],
+    "relations": [
+      {
+        "head": 0,
+        "tail": 1,
+        "type": "hasPart"
+      },
+      {
+        "head": 2,
+        "tail": 1,
+        "type": "hasParticipant/hasPatient"
+      }
+    ]
+  },
+  {
+    "text": "<id> air conditioner unserviceable",
+    "tokens": [
+      "<id>",
+      "air",
+      "conditioner",
+      "unserviceable"
+    ],
+    "entities": [
+      {
+        "start": 1,
+        "end": 3,
+        "type": "PhysicalObject/EmittingObject/ElectricCoolingObject"
+      },
+      {
+        "start": 3,
+        "end": 4,
+        "type": "State/UndesirableState/FailedState"
+      }
+    ],
+    "relations": [
+      {
+        "head": 1,
+        "tail": 0,
+        "type": "hasParticipant/hasPatient"
+      }
+    ]
+  },
+  {
+    "text": "<id> air conditioner unserviceable when stationary",
+    "tokens": [
+      "<id>",
+      "air",
+      "conditioner",
+      "unserviceable",
+      "when",
+      "stationary"
+    ],
+    "entities": [
+      {
+        "start": 1,
+        "end": 3,
+        "type": "PhysicalObject/EmittingObject/ElectricCoolingObject"
+      },
+      {
+        "start": 3,
+        "end": 4,
+        "type": "State/UndesirableState/FailedState"
+      }
+    ],
+    "relations": [
+      {
+        "head": 1,
+        "tail": 0,
+        "type": "hasParticipant/hasPatient"
+      }
+    ]
+  },
+  {
+    "text": "<id> air conditioner warm",
+    "tokens": [
+      "<id>",
+      "air",
+      "conditioner",
+      "warm"
+    ],
+    "entities": [
+      {
+        "start": 1,
+        "end": 3,
+        "type": "PhysicalObject/EmittingObject/ElectricCoolingObject"
+      },
+      {
+        "start": 3,
+        "end": 4,
+        "type": "State/UndesirableState"
+      }
+    ],
+    "relations": [
+      {
+        "head": 1,
+        "tail": 0,
+        "type": "hasParticipant/hasPatient"
+      }
+    ]
+  },
+  {
+    "text": "<id> air filters plugged",
+    "tokens": [
+      "<id>",
+      "air",
+      "filters",
+      "plugged"
+    ],
+    "entities": [
+      {
+        "start": 1,
+        "end": 3,
+        "type": "PhysicalObject/MatterProcessingObject/MechanicalSeparatingObject"
+      },
+      {
+        "start": 2,
+        "end": 3,
+        "type": "PhysicalObject/MatterProcessingObject/MechanicalSeparatingObject"
+      },
+      {
+        "start": 3,
+        "end": 4,
+        "type": "State/UndesirableState/FailedState"
+      }
+    ],
+    "relations": [
+      {
+        "head": 0,
+        "tail": 1,
+        "type": "isA"
+      },
+      {
+        "head": 2,
+        "tail": 0,
+        "type": "hasParticipant/hasPatient"
+      }
+    ]
+  },
+  {
+    "text": "<id> air freight bogger dogbones TBC",
+    "tokens": [
+      "<id>",
+      "air",
+      "freight",
+      "bogger",
+      "dogbones",
+      "TBC"
+    ],
+    "entities": [
+      {
+        "start": 1,
+        "end": 3,
+        "type": "Activity/SupportingActivity/Admin"
+      },
+      {
+        "start": 4,
+        "end": 5,
+        "type": "PhysicalObject/InterfacingObject/DetachableCoupling"
+      },
+      {
+        "start": 3,
+        "end": 4,
+        "type": "PhysicalObject"
+      }
+    ],
+    "relations": [
+      {
+        "head": 0,
+        "tail": 1,
+        "type": "hasParticipant/hasPatient"
+      },
+      {
+        "head": 2,
+        "tail": 1,
+        "type": "hasPart"
+      }
+    ]
+  },
+  {
+    "text": "<id> air freight for pump TBC",
+    "tokens": [
+      "<id>",
+      "air",
+      "freight",
+      "for",
+      "pump",
+      "TBC"
+    ],
+    "entities": [
+      {
+        "start": 4,
+        "end": 5,
+        "type": "PhysicalObject/GeneratingObject/LiquidFlowGeneratingObject"
+      },
+      {
+        "start": 1,
+        "end": 3,
+        "type": "Activity/SupportingActivity/Admin"
+      }
+    ],
+    "relations": [
+      {
+        "head": 1,
+        "tail": 0,
+        "type": "hasParticipant/hasPatient"
+      }
+    ]
+  },
+  {
+    "text": "<id> air horn disconnected",
+    "tokens": [
+      "<id>",
+      "air",
+      "horn",
+      "disconnected"
+    ],
+    "entities": [
+      {
+        "start": 1,
+        "end": 3,
+        "type": "PhysicalObject/PresentingObject/AcousticDevice"
+      },
+      {
+        "start": 2,
+        "end": 3,
+        "type": "PhysicalObject/PresentingObject/AcousticDevice"
+      },
+      {
+        "start": 3,
+        "end": 4,
+        "type": "State/UndesirableState/FailedState"
+      }
+    ],
+    "relations": [
+      {
+        "head": 0,
+        "tail": 1,
+        "type": "isA"
+      },
+      {
+        "head": 2,
+        "tail": 0,
+        "type": "hasParticipant/hasPatient"
+      }
+    ]
+  },
+  {
+    "text": "<id> air horn doesn't work",
+    "tokens": [
+      "<id>",
+      "air",
+      "horn",
+      "doesn't",
+      "work"
+    ],
+    "entities": [
+      {
+        "start": 1,
+        "end": 3,
+        "type": "PhysicalObject/PresentingObject/AcousticDevice"
+      },
+      {
+        "start": 2,
+        "end": 3,
+        "type": "PhysicalObject/PresentingObject/AcousticDevice"
+      },
+      {
+        "start": 3,
+        "end": 5,
+        "type": "State/UndesirableState/FailedState"
+      }
+    ],
+    "relations": [
+      {
+        "head": 0,
+        "tail": 1,
+        "type": "isA"
+      }
+    ]
+  },
+  {
+    "text": "<id> air horn fault",
+    "tokens": [
+      "<id>",
+      "air",
+      "horn",
+      "fault"
+    ],
+    "entities": [
+      {
+        "start": 1,
+        "end": 3,
+        "type": "PhysicalObject/PresentingObject/AcousticDevice"
+      },
+      {
+        "start": 2,
+        "end": 3,
+        "type": "PhysicalObject/PresentingObject/AcousticDevice"
+      },
+      {
+        "start": 3,
+        "end": 4,
+        "type": "State/UndesirableState"
+      }
+    ],
+    "relations": [
+      {
+        "head": 0,
+        "tail": 1,
+        "type": "isA"
+      },
+      {
+        "head": 2,
+        "tail": 0,
+        "type": "hasParticipant/hasPatient"
+      }
+    ]
+  },
+  {
+    "text": "<id> air horn not working",
+    "tokens": [
+      "<id>",
+      "air",
+      "horn",
+      "not",
+      "working"
+    ],
+    "entities": [
+      {
+        "start": 1,
+        "end": 3,
+        "type": "PhysicalObject/PresentingObject/AcousticDevice"
+      },
+      {
+        "start": 2,
+        "end": 3,
+        "type": "PhysicalObject/PresentingObject/AcousticDevice"
+      },
+      {
+        "start": 3,
+        "end": 5,
+        "type": "State/UndesirableState/FailedState"
+      }
+    ],
+    "relations": [
+      {
+        "head": 0,
+        "tail": 1,
+        "type": "isA"
+      },
+      {
+        "head": 2,
+        "tail": 0,
+        "type": "hasParticipant/hasPatient"
+      }
+    ]
+  },
+  {
+    "text": "<id> air horn not working compressor awaiting",
+    "tokens": [
+      "<id>",
+      "air",
+      "horn",
+      "not",
+      "working",
+      "compressor",
+      "awaiting"
+    ],
+    "entities": [
+      {
+        "start": 1,
+        "end": 3,
+        "type": "PhysicalObject/PresentingObject/AcousticDevice"
+      },
+      {
+        "start": 2,
+        "end": 3,
+        "type": "PhysicalObject/PresentingObject/AcousticDevice"
+      },
+      {
+        "start": 3,
+        "end": 5,
+        "type": "State/UndesirableState/FailedState"
+      },
+      {
+        "start": 5,
+        "end": 6,
+        "type": "PhysicalObject/GeneratingObject/GaseousFlowGeneratingObject"
+      }
+    ],
+    "relations": [
+      {
+        "head": 0,
+        "tail": 1,
+        "type": "isA"
+      },
+      {
+        "head": 2,
+        "tail": 0,
+        "type": "hasParticipant/hasPatient"
+      }
+    ]
+  },
+  {
+    "text": "<id> air horn stuck on",
+    "tokens": [
+      "<id>",
+      "air",
+      "horn",
+      "stuck",
+      "on"
+    ],
+    "entities": [
+      {
+        "start": 1,
+        "end": 3,
+        "type": "PhysicalObject/PresentingObject/AcousticDevice"
+      },
+      {
+        "start": 2,
+        "end": 3,
+        "type": "PhysicalObject/PresentingObject/AcousticDevice"
+      },
+      {
+        "start": 3,
+        "end": 5,
+        "type": "State/UndesirableState/FailedState"
+      }
+    ],
+    "relations": [
+      {
+        "head": 0,
+        "tail": 1,
+        "type": "isA"
+      },
+      {
+        "head": 2,
+        "tail": 0,
+        "type": "hasParticipant/hasPatient"
+      }
+    ]
+  },
+  {
+    "text": "<id> air horn unserviceable",
+    "tokens": [
+      "<id>",
+      "air",
+      "horn",
+      "unserviceable"
+    ],
+    "entities": [
+      {
+        "start": 1,
+        "end": 3,
+        "type": "PhysicalObject/PresentingObject/AcousticDevice"
+      },
+      {
+        "start": 2,
+        "end": 3,
+        "type": "PhysicalObject/PresentingObject/AcousticDevice"
+      },
+      {
+        "start": 3,
+        "end": 4,
+        "type": "State/UndesirableState/FailedState"
+      }
+    ],
+    "relations": [
+      {
+        "head": 0,
+        "tail": 1,
+        "type": "isA"
+      },
+      {
+        "head": 2,
+        "tail": 0,
+        "type": "hasParticipant/hasPatient"
+      }
+    ]
+  },
+  {
+    "text": "<id> air horn working intermittently",
+    "tokens": [
+      "<id>",
+      "air",
+      "horn",
+      "working",
+      "intermittently"
+    ],
+    "entities": [
+      {
+        "start": 1,
+        "end": 3,
+        "type": "PhysicalObject/PresentingObject/AcousticDevice"
+      },
+      {
+        "start": 2,
+        "end": 3,
+        "type": "PhysicalObject/PresentingObject/AcousticDevice"
+      },
+      {
+        "start": 3,
+        "end": 5,
+        "type": "State/UndesirableState/FailedState"
+      }
+    ],
+    "relations": [
+      {
+        "head": 0,
+        "tail": 1,
+        "type": "isA"
+      },
+      {
+        "head": 2,
+        "tail": 0,
+        "type": "hasParticipant/hasPatient"
+      }
+    ]
+  },
+  {
+    "text": "<id> air leak",
+    "tokens": [
+      "<id>",
+      "air",
+      "leak"
+    ],
+    "entities": [
+      {
+        "start": 1,
+        "end": 2,
+        "type": "PhysicalObject/Substance/Gas"
+      },
+      {
+        "start": 2,
+        "end": 3,
+        "type": "Process/UndesirableProcess"
+      }
+    ],
+    "relations": [
+      {
+        "head": 1,
+        "tail": 0,
+        "type": "hasParticipant/hasPatient"
+      }
+    ]
+  },
+  {
+    "text": "<id> air leak near side of door",
+    "tokens": [
+      "<id>",
+      "air",
+      "leak",
+      "near",
+      "side",
+      "of",
+      "door"
+    ],
+    "entities": [
+      {
+        "start": 1,
+        "end": 2,
+        "type": "PhysicalObject/Substance/Gas"
+      },
+      {
+        "start": 2,
+        "end": 3,
+        "type": "Process/UndesirableProcess"
+      },
+      {
+        "start": 6,
+        "end": 7,
+        "type": "PhysicalObject/ControllingObject/SpaceAccessObject"
+      }
+    ],
+    "relations": [
+      {
+        "head": 1,
+        "tail": 0,
+        "type": "hasParticipant/hasPatient"
+      },
+      {
+        "head": 1,
+        "tail": 2,
+        "type": "hasParticipant/hasAgent"
+      }
+    ]
+  },
+  {
+    "text": "<id> air leaking from line outside",
+    "tokens": [
+      "<id>",
+      "air",
+      "leaking",
+      "from",
+      "line",
+      "outside"
+    ],
+    "entities": [
+      {
+        "start": 1,
+        "end": 2,
+        "type": "PhysicalObject/Substance/Gas"
+      },
+      {
+        "start": 2,
+        "end": 3,
+        "type": "Process/UndesirableProcess"
+      },
+      {
+        "start": 4,
+        "end": 5,
+        "type": "PhysicalObject/GuidingObject/ClosedEnclosureGuidingObject"
+      }
+    ],
+    "relations": [
+      {
+        "head": 1,
+        "tail": 0,
+        "type": "hasParticipant/hasPatient"
+      },
+      {
+        "head": 1,
+        "tail": 2,
+        "type": "hasParticipant/hasAgent"
+      }
+    ]
+  },
+  {
+    "text": "<id> air receiver safety valves to be replaced",
+    "tokens": [
+      "<id>",
+      "air",
+      "receiver",
+      "safety",
+      "valves",
+      "to",
+      "be",
+      "replaced"
+    ],
+    "entities": [
+      {
+        "start": 7,
+        "end": 8,
+        "type": "Activity/MaintenanceActivity/Replace"
+      },
+      {
+        "start": 1,
+        "end": 3,
+        "type": "PhysicalObject/StoringObject/EnclosedStationaryStoringObject"
+      },
+      {
+        "start": 3,
+        "end": 5,
+        "type": "PhysicalObject/ControllingObject/SealedFluidSwitchingObject"
+      }
+    ],
+    "relations": [
+      {
+        "head": 0,
+        "tail": 2,
+        "type": "hasParticipant/hasPatient"
+      },
+      {
+        "head": 1,
+        "tail": 2,
+        "type": "hasPart"
+      }
+    ]
+  },
+  {
+    "text": "<id> airhorn not working",
+    "tokens": [
+      "<id>",
+      "airhorn",
+      "not",
+      "working"
+    ],
+    "entities": [
+      {
+        "start": 1,
+        "end": 2,
+        "type": "PhysicalObject/PresentingObject/AcousticDevice"
+      },
+      {
+        "start": 2,
+        "end": 4,
+        "type": "State/UndesirableState/FailedState"
+      }
+    ],
+    "relations": [
+      {
+        "head": 1,
+        "tail": 0,
+        "type": "hasParticipant/hasPatient"
+      }
+    ]
+  },
+  {
+    "text": "<id> alarm on VIMS doesn't work",
+    "tokens": [
+      "<id>",
+      "alarm",
+      "on",
+      "VIMS",
+      "doesn't",
+      "work"
+    ],
+    "entities": [
+      {
+        "start": 4,
+        "end": 6,
+        "type": "State/UndesirableState/FailedState"
+      },
+      {
+        "start": 3,
+        "end": 4,
+        "type": "PhysicalObject/PresentingObject/GraphicalDisplay"
+      },
+      {
+        "start": 1,
+        "end": 2,
+        "type": "PhysicalObject/PresentingObject/AcousticDevice"
+      }
+    ],
+    "relations": [
+      {
+        "head": 1,
+        "tail": 2,
+        "type": "hasPart"
+      },
+      {
+        "head": 0,
+        "tail": 2,
+        "type": "hasParticipant/hasPatient"
+      }
+    ]
+  },
+  {
+    "text": "<id> all dash lights on",
+    "tokens": [
+      "<id>",
+      "all",
+      "dash",
+      "lights",
+      "on"
+    ],
+    "entities": [
+      {
+        "start": 2,
+        "end": 4,
+        "type": "PhysicalObject/EmittingObject/LightObject"
+      },
+      {
+        "start": 3,
+        "end": 4,
+        "type": "PhysicalObject/EmittingObject/LightObject"
+      },
+      {
+        "start": 4,
+        "end": 5,
+        "type": "State/UndesirableState"
+      }
+    ],
+    "relations": [
+      {
+        "head": 0,
+        "tail": 1,
+        "type": "isA"
+      },
+      {
+        "head": 2,
+        "tail": 0,
+        "type": "hasParticipant/hasPatient"
+      }
+    ]
+  },
+  {
+    "text": "<id> alternator drive leaking",
+    "tokens": [
+      "<id>",
+      "alternator",
+      "drive",
+      "leaking"
+    ],
+    "entities": [
+      {
+        "start": 2,
+        "end": 3,
+        "type": "PhysicalObject/DrivingObject/ElectromagneticRotationalDrivingObject"
+      },
+      {
+        "start": 3,
+        "end": 4,
+        "type": "Process/UndesirableProcess"
+      },
+      {
+        "start": 1,
+        "end": 2,
+        "type": "PhysicalObject/GeneratingObject/MechanicalToElectricalEnergyGeneratingObject"
+      }
+    ],
+    "relations": [
+      {
+        "head": 1,
+        "tail": 0,
+        "type": "hasParticipant/hasAgent"
+      },
+      {
+        "head": 2,
+        "tail": 0,
+        "type": "hasPart"
+      }
+    ]
+  },
+  {
+    "text": "<id> alternator failed",
+    "tokens": [
+      "<id>",
+      "alternator",
+      "failed"
+    ],
+    "entities": [
+      {
+        "start": 1,
+        "end": 2,
+        "type": "PhysicalObject/GeneratingObject/MechanicalToElectricalEnergyGeneratingObject"
+      },
+      {
+        "start": 2,
+        "end": 3,
+        "type": "State/UndesirableState/FailedState"
+      }
+    ],
+    "relations": [
+      {
+        "head": 1,
+        "tail": 0,
+        "type": "hasParticipant/hasPatient"
+      }
+    ]
+  },
+  {
+    "text": "<id> alternator not charging",
+    "tokens": [
+      "<id>",
+      "alternator",
+      "not",
+      "charging"
+    ],
+    "entities": [
+      {
+        "start": 1,
+        "end": 2,
+        "type": "PhysicalObject/GeneratingObject/MechanicalToElectricalEnergyGeneratingObject"
+      },
+      {
+        "start": 2,
+        "end": 4,
+        "type": "State/UndesirableState/FailedState"
+      }
+    ],
+    "relations": [
+      {
+        "head": 1,
+        "tail": 0,
+        "type": "hasParticipant/hasPatient"
+      }
+    ]
+  },
+  {
+    "text": "<id> alternator overcharge fault",
+    "tokens": [
+      "<id>",
+      "alternator",
+      "overcharge",
+      "fault"
+    ],
+    "entities": [
+      {
+        "start": 1,
+        "end": 2,
+        "type": "PhysicalObject/GeneratingObject/MechanicalToElectricalEnergyGeneratingObject"
+      },
+      {
+        "start": 2,
+        "end": 4,
+        "type": "State/UndesirableState"
+      },
+      {
+        "start": 3,
+        "end": 4,
+        "type": "State/UndesirableState"
+      }
+    ],
+    "relations": [
+      {
+        "head": 1,
+        "tail": 2,
+        "type": "isA"
+      },
+      {
+        "head": 1,
+        "tail": 0,
+        "type": "hasParticipant/hasPatient"
+      }
+    ]
+  },
+  {
+    "text": "<id> alternator overcharged",
+    "tokens": [
+      "<id>",
+      "alternator",
+      "overcharged"
+    ],
+    "entities": [
+      {
+        "start": 1,
+        "end": 2,
+        "type": "PhysicalObject/GeneratingObject/MechanicalToElectricalEnergyGeneratingObject"
+      },
+      {
+        "start": 2,
+        "end": 3,
+        "type": "State/UndesirableState/FailedState"
+      }
+    ],
+    "relations": [
+      {
+        "head": 1,
+        "tail": 0,
+        "type": "hasParticipant/hasPatient"
+      }
+    ]
+  },
+  {
+    "text": "<id> analyse failed driveline component",
+    "tokens": [
+      "<id>",
+      "analyse",
+      "failed",
+      "driveline",
+      "component"
+    ],
+    "entities": [
+      {
+        "start": 1,
+        "end": 2,
+        "type": "Activity/MaintenanceActivity/Diagnose"
+      },
+      {
+        "start": 2,
+        "end": 3,
+        "type": "State/UndesirableState/FailedState"
+      },
+      {
+        "start": 3,
+        "end": 4,
+        "type": "PhysicalObject/TransformingObject/MechanicalEnergyTransformingObject"
+      }
+    ],
+    "relations": [
+      {
+        "head": 0,
+        "tail": 2,
+        "type": "hasParticipant/hasPatient"
+      },
+      {
+        "head": 1,
+        "tail": 2,
+        "type": "hasParticipant/hasPatient"
+      }
+    ]
+  },
+  {
+    "text": "<id> and <id> lube system faults",
+    "tokens": [
+      "<id>",
+      "and",
+      "<id>",
+      "lube",
+      "system",
+      "faults"
+    ],
+    "entities": [
+      {
+        "start": 5,
+        "end": 6,
+        "type": "State/UndesirableState"
+      },
+      {
+        "start": 3,
+        "end": 5,
+        "type": "PhysicalObject/ProtectingObject/WearProtectingObject"
+      }
+    ],
+    "relations": [
+      {
+        "head": 0,
+        "tail": 1,
+        "type": "hasParticipant/hasPatient"
+      }
+    ]
+  },
+  {
+    "text": "<id> armrest unserviceable",
+    "tokens": [
+      "<id>",
+      "armrest",
+      "unserviceable"
+    ],
+    "entities": [
+      {
+        "start": 2,
+        "end": 3,
+        "type": "State/UndesirableState/FailedState"
+      },
+      {
+        "start": 1,
+        "end": 2,
+        "type": "PhysicalObject/StoringObject/OpenStationaryStoringObject"
+      }
+    ],
+    "relations": [
+      {
+        "head": 0,
+        "tail": 1,
+        "type": "hasParticipant/hasPatient"
+      }
+    ]
+  },
+  {
+    "text": "<id> auto-greaser control unit",
+    "tokens": [
+      "<id>",
+      "auto-greaser",
+      "control",
+      "unit"
+    ],
+    "entities": [
+      {
+        "start": 1,
+        "end": 2,
+        "type": "PhysicalObject/GeneratingObject/LiquidFlowGeneratingObject"
+      },
+      {
+        "start": 2,
+        "end": 4,
+        "type": "PhysicalObject/InformationProcessingObject/ElectricSignalProcessingObject"
+      }
+    ],
+    "relations": [
+      {
+        "head": 0,
+        "tail": 1,
+        "type": "hasPart"
+      }
+    ]
+  },
+  {
+    "text": "<id> auto-greaser leaking oil",
+    "tokens": [
+      "<id>",
+      "auto-greaser",
+      "leaking",
+      "oil"
+    ],
+    "entities": [
+      {
+        "start": 1,
+        "end": 2,
+        "type": "PhysicalObject/GeneratingObject/LiquidFlowGeneratingObject"
+      },
+      {
+        "start": 2,
+        "end": 3,
+        "type": "Process/UndesirableProcess"
+      },
+      {
+        "start": 3,
+        "end": 4,
+        "type": "PhysicalObject/ProtectingObject/WearProtectingObject"
+      }
+    ],
+    "relations": [
+      {
+        "head": 1,
+        "tail": 2,
+        "type": "hasParticipant/hasPatient"
+      },
+      {
+        "head": 1,
+        "tail": 0,
+        "type": "hasParticipant/hasAgent"
+      }
+    ]
+  },
+  {
+    "text": "<id> auto-greaser unserviceable",
+    "tokens": [
+      "<id>",
+      "auto-greaser",
+      "unserviceable"
+    ],
+    "entities": [
+      {
+        "start": 1,
+        "end": 2,
+        "type": "PhysicalObject/GeneratingObject/LiquidFlowGeneratingObject"
+      },
+      {
+        "start": 2,
+        "end": 3,
+        "type": "State/UndesirableState/FailedState"
+      }
+    ],
+    "relations": [
+      {
+        "head": 1,
+        "tail": 0,
+        "type": "hasParticipant/hasPatient"
+      }
+    ]
+  },
+  {
+    "text": "<id> auto-lube error PO",
+    "tokens": [
+      "<id>",
+      "auto-lube",
+      "error",
+      "PO"
+    ],
+    "entities": [
+      {
+        "start": 1,
+        "end": 2,
+        "type": "PhysicalObject/GeneratingObject/LiquidFlowGeneratingObject"
+      },
+      {
+        "start": 2,
+        "end": 3,
+        "type": "State/UndesirableState"
+      }
+    ],
+    "relations": [
+      {
+        "head": 1,
+        "tail": 0,
+        "type": "hasParticipant/hasPatient"
+      }
+    ]
+  },
+  {
+    "text": "<id> auto-lube system repairs",
+    "tokens": [
+      "<id>",
+      "auto-lube",
+      "system",
+      "repairs"
+    ],
+    "entities": [
+      {
+        "start": 1,
+        "end": 3,
+        "type": "PhysicalObject/ProtectingObject/WearProtectingObject"
+      },
+      {
+        "start": 3,
+        "end": 4,
+        "type": "Activity/MaintenanceActivity/Repair"
+      }
+    ],
+    "relations": [
+      {
+        "head": 1,
+        "tail": 0,
+        "type": "hasParticipant/hasPatient"
+      }
+    ]
+  },
+  {
+    "text": "<id> auto-spray feature not working",
+    "tokens": [
+      "<id>",
+      "auto-spray",
+      "feature",
+      "not",
+      "working"
+    ],
+    "entities": [
+      {
+        "start": 3,
+        "end": 5,
+        "type": "State/UndesirableState/FailedState"
+      },
+      {
+        "start": 1,
+        "end": 2,
+        "type": "PhysicalObject/GeneratingObject/LiquidFlowGeneratingObject"
+      }
+    ],
+    "relations": [
+      {
+        "head": 0,
+        "tail": 1,
+        "type": "hasParticipant/hasPatient"
+      }
+    ]
+  },
+  {
+    "text": "<id> auxiliary Cat engine lube service",
+    "tokens": [
+      "<id>",
+      "auxiliary",
+      "Cat",
+      "engine",
+      "lube",
+      "service"
+    ],
+    "entities": [
+      {
+        "start": 3,
+        "end": 4,
+        "type": "PhysicalObject/DrivingObject/CombustionEngine"
+      },
+      {
+        "start": 4,
+        "end": 6,
+        "type": "Activity/MaintenanceActivity/Service"
+      },
+      {
+        "start": 5,
+        "end": 6,
+        "type": "Activity/MaintenanceActivity/Service"
+      }
+    ],
+    "relations": [
+      {
+        "head": 1,
+        "tail": 2,
+        "type": "isA"
+      },
+      {
+        "head": 1,
+        "tail": 0,
+        "type": "hasParticipant/hasPatient"
+      }
+    ]
+  },
+  {
+    "text": "<id> axle temperature fault",
+    "tokens": [
+      "<id>",
+      "axle",
+      "temperature",
+      "fault"
+    ],
+    "entities": [
+      {
+        "start": 2,
+        "end": 4,
+        "type": "State/UndesirableState"
+      },
+      {
+        "start": 3,
+        "end": 4,
+        "type": "State/UndesirableState"
+      },
+      {
+        "start": 1,
+        "end": 2,
+        "type": "PhysicalObject/TransformingObject/MechanicalEnergyTransformingObject"
+      }
+    ],
+    "relations": [
+      {
+        "head": 0,
+        "tail": 2,
+        "type": "hasParticipant/hasPatient"
+      },
+      {
+        "head": 0,
+        "tail": 1,
+        "type": "isA"
+      }
+    ]
+  },
+  {
+    "text": "<id> axle temperature sensor fault",
+    "tokens": [
+      "<id>",
+      "axle",
+      "temperature",
+      "sensor",
+      "fault"
+    ],
+    "entities": [
+      {
+        "start": 4,
+        "end": 5,
+        "type": "State/UndesirableState"
+      },
+      {
+        "start": 2,
+        "end": 4,
+        "type": "PhysicalObject/SensingObject/TemperatureSensingObject"
+      },
+      {
+        "start": 1,
+        "end": 2,
+        "type": "PhysicalObject/TransformingObject/MechanicalEnergyTransformingObject"
+      }
+    ],
+    "relations": [
+      {
+        "head": 2,
+        "tail": 1,
+        "type": "hasPart"
+      },
+      {
+        "head": 0,
+        "tail": 1,
+        "type": "hasParticipant/hasPatient"
+      }
+    ]
+  },
+  {
+    "text": "<id> back rest unserviceable handle broken",
+    "tokens": [
+      "<id>",
+      "back",
+      "rest",
+      "unserviceable",
+      "handle",
+      "broken"
+    ],
+    "entities": [
+      {
+        "start": 3,
+        "end": 4,
+        "type": "State/UndesirableState/FailedState"
+      },
+      {
+        "start": 5,
+        "end": 6,
+        "type": "State/UndesirableState/FailedState"
+      },
+      {
+        "start": 4,
+        "end": 5,
+        "type": "PhysicalObject/HumanInteractionObject/HandInteractionObject"
+      },
+      {
+        "start": 1,
+        "end": 3,
+        "type": "PhysicalObject/StoringObject/OpenStationaryStoringObject"
+      }
+    ],
+    "relations": [
+      {
+        "head": 0,
+        "tail": 3,
+        "type": "hasParticipant/hasPatient"
+      },
+      {
+        "head": 1,
+        "tail": 2,
+        "type": "hasParticipant/hasPatient"
+      }
+    ]
+  },
+  {
+    "text": "<id> backhoe windscreen to be fixed",
+    "tokens": [
+      "<id>",
+      "backhoe",
+      "windscreen",
+      "to",
+      "be",
+      "fixed"
+    ],
+    "entities": [
+      {
+        "start": 2,
+        "end": 3,
+        "type": "PhysicalObject/ControllingObject/SpaceAccessObject"
+      },
+      {
+        "start": 1,
+        "end": 2,
+        "type": "PhysicalObject/MatterProcessingObject/GrindingAndCrushingObject"
+      },
+      {
+        "start": 3,
+        "end": 6,
+        "type": "State/UndesirableState/DegradedState"
+      }
+    ],
+    "relations": [
+      {
+        "head": 1,
+        "tail": 0,
+        "type": "hasPart"
+      },
+      {
+        "head": 2,
+        "tail": 0,
+        "type": "hasParticipant/hasPatient"
+      }
+    ]
+  },
+  {
+    "text": "<id> backlight on dash unserviceable",
+    "tokens": [
+      "<id>",
+      "backlight",
+      "on",
+      "dash",
+      "unserviceable"
+    ],
+    "entities": [
+      {
+        "start": 1,
+        "end": 2,
+        "type": "PhysicalObject/EmittingObject/LightObject"
+      },
+      {
+        "start": 4,
+        "end": 5,
+        "type": "State/UndesirableState/FailedState"
+      },
+      {
+        "start": 3,
+        "end": 4,
+        "type": "PhysicalObject/PresentingObject/ScalarDisplay"
+      }
+    ],
+    "relations": [
+      {
+        "head": 2,
+        "tail": 0,
+        "type": "hasPart"
+      },
+      {
+        "head": 1,
+        "tail": 0,
+        "type": "hasParticipant/hasPatient"
+      }
+    ]
+  },
+  {
+    "text": "<id> backlights on dash blown",
+    "tokens": [
+      "<id>",
+      "backlights",
+      "on",
+      "dash",
+      "blown"
+    ],
+    "entities": [
+      {
+        "start": 1,
+        "end": 2,
+        "type": "PhysicalObject/EmittingObject/LightObject"
+      },
+      {
+        "start": 4,
+        "end": 5,
+        "type": "State/UndesirableState/FailedState"
+      },
+      {
+        "start": 3,
+        "end": 4,
+        "type": "PhysicalObject/PresentingObject/ScalarDisplay"
+      }
+    ],
+    "relations": [
+      {
+        "head": 1,
+        "tail": 0,
+        "type": "hasParticipant/hasPatient"
+      },
+      {
+        "head": 2,
+        "tail": 0,
+        "type": "hasPart"
+      }
+    ]
+  },
+  {
+    "text": "<id> backup alarm not working",
+    "tokens": [
+      "<id>",
+      "backup",
+      "alarm",
+      "not",
+      "working"
+    ],
+    "entities": [
+      {
+        "start": 3,
+        "end": 5,
+        "type": "State/UndesirableState/FailedState"
+      },
+      {
+        "start": 1,
+        "end": 3,
+        "type": "PhysicalObject/PresentingObject/AcousticDevice"
+      }
+    ],
+    "relations": [
+      {
+        "head": 0,
+        "tail": 1,
+        "type": "hasParticipant/hasPatient"
+      }
+    ]
+  },
+  {
+    "text": "<id> batteries discharging",
+    "tokens": [
+      "<id>",
+      "batteries",
+      "discharging"
+    ],
+    "entities": [
+      {
+        "start": 1,
+        "end": 2,
+        "type": "PhysicalObject/GeneratingObject/ChemicalToElectricalEnergyGeneratingObject"
+      },
+      {
+        "start": 2,
+        "end": 3,
+        "type": "Process/UndesirableProcess"
+      }
+    ],
+    "relations": [
+      {
+        "head": 1,
+        "tail": 0,
+        "type": "hasParticipant/hasPatient"
+      }
+    ]
+  },
+  {
+    "text": "<id> batteries out of service",
+    "tokens": [
+      "<id>",
+      "batteries",
+      "out",
+      "of",
+      "service"
+    ],
+    "entities": [
+      {
+        "start": 1,
+        "end": 2,
+        "type": "PhysicalObject/GeneratingObject/ChemicalToElectricalEnergyGeneratingObject"
+      },
+      {
+        "start": 2,
+        "end": 5,
+        "type": "State/UndesirableState/FailedState"
+      }
+    ],
+    "relations": [
+      {
+        "head": 1,
+        "tail": 0,
+        "type": "hasParticipant/hasPatient"
+      }
+    ]
+  },
+  {
+    "text": "<id> batteries unserviceable",
+    "tokens": [
+      "<id>",
+      "batteries",
+      "unserviceable"
+    ],
+    "entities": [
+      {
+        "start": 1,
+        "end": 2,
+        "type": "PhysicalObject/GeneratingObject/ChemicalToElectricalEnergyGeneratingObject"
+      },
+      {
+        "start": 2,
+        "end": 3,
+        "type": "State/UndesirableState/FailedState"
+      }
+    ],
+    "relations": [
+      {
+        "head": 1,
+        "tail": 0,
+        "type": "hasParticipant/hasPatient"
+      }
+    ]
+  },
+  {
+    "text": "<id> battery cover hinges seized",
+    "tokens": [
+      "<id>",
+      "battery",
+      "cover",
+      "hinges",
+      "seized"
+    ],
+    "entities": [
+      {
+        "start": 1,
+        "end": 2,
+        "type": "PhysicalObject/GeneratingObject/ChemicalToElectricalEnergyGeneratingObject"
+      },
+      {
+        "start": 2,
+        "end": 3,
+        "type": "PhysicalObject/CoveringObject/ClosureObject"
+      },
+      {
+        "start": 3,
+        "end": 4,
+        "type": "PhysicalObject/HoldingObject/JointingObject"
+      },
+      {
+        "start": 4,
+        "end": 5,
+        "type": "State/UndesirableState/FailedState"
+      }
+    ],
+    "relations": [
+      {
+        "head": 0,
+        "tail": 1,
+        "type": "hasPart"
+      },
+      {
+        "head": 3,
+        "tail": 2,
+        "type": "hasParticipant/hasPatient"
+      },
+      {
+        "head": 1,
+        "tail": 2,
+        "type": "hasPart"
+      }
+    ]
+  },
+  {
+    "text": "<id> beacon mount is broken",
+    "tokens": [
+      "<id>",
+      "beacon",
+      "mount",
+      "is",
+      "broken"
+    ],
+    "entities": [
+      {
+        "start": 2,
+        "end": 3,
+        "type": "PhysicalObject/HoldingObject/StructuralSupportingObject"
+      },
+      {
+        "start": 4,
+        "end": 5,
+        "type": "State/UndesirableState/FailedState"
+      },
+      {
+        "start": 1,
+        "end": 2,
+        "type": "PhysicalObject/EmittingObject/LightObject"
+      }
+    ],
+    "relations": [
+      {
+        "head": 1,
+        "tail": 0,
+        "type": "hasParticipant/hasPatient"
+      },
+      {
+        "head": 2,
+        "tail": 0,
+        "type": "hasPart"
+      }
+    ]
+  }
+]

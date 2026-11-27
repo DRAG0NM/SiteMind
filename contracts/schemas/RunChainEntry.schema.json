@@ -1,0 +1,92 @@
+{
+  "$defs": {
+    "DataSourceRef": {
+      "additionalProperties": false,
+      "description": "场景运行用到的数据来源与版本（v0.8）。",
+      "properties": {
+        "source": {
+          "maxLength": 200,
+          "minLength": 1,
+          "title": "Source",
+          "type": "string"
+        },
+        "dataset_version": {
+          "maxLength": 200,
+          "minLength": 1,
+          "title": "Dataset Version",
+          "type": "string"
+        }
+      },
+      "required": [
+        "source",
+        "dataset_version"
+      ],
+      "title": "DataSourceRef",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "description": "运行接续链：展示页离线重建分叉。",
+  "properties": {
+    "run_id": {
+      "maxLength": 200,
+      "minLength": 1,
+      "title": "Run Id",
+      "type": "string"
+    },
+    "forked_from": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Forked From"
+    },
+    "forked_at": {
+      "anyOf": [
+        {
+          "format": "date-time",
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d{1,9})?(Z|[+-]00:?00)$",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Forked At"
+    },
+    "knowledge_version": {
+      "anyOf": [
+        {
+          "minimum": 1,
+          "type": "integer"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Knowledge Version"
+    },
+    "data_sources": {
+      "default": [],
+      "items": {
+        "$ref": "#/$defs/DataSourceRef"
+      },
+      "title": "Data Sources",
+      "type": "array"
+    }
+  },
+  "required": [
+    "run_id"
+  ],
+  "title": "RunChainEntry",
+  "type": "object",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "plantkg:contracts/1.2.0/RunChainEntry"
+}

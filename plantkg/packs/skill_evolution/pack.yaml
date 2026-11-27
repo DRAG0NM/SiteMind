@@ -1,0 +1,7 @@
+name: skill_evolution
+schema_version: 1
+order: 121
+status: active
+description: B43 重复成功流程挖掘、候选 Skill 评估与版本记录（沿用 B32 发布/回滚引擎，加载在 evolution 之后）
+entrypoint: plantkg.evolution.skills:register
+provides: {}

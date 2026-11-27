@@ -1,0 +1,20 @@
+{
+  "model": "Context",
+  "base": "context_no_ctx",
+  "expect_error": "actor",
+  "data": {
+    "plant_id": "demo-electronics",
+    "industry_pack": "manufacturing",
+    "actor": {
+      "actor_id": "u-reviewer-1",
+      "roles": [
+        "viewer",
+        "reviewer"
+      ],
+      "display_name": "复核员甲"
+    },
+    "channel": "none",
+    "trace_id": "tr-0002",
+    "as_of": "2026-06-30T10:00:00Z"
+  }
+}

@@ -1,0 +1,245 @@
+{
+  "$defs": {
+    "PendingActionKind": {
+      "enum": [
+        "review_decision",
+        "plan_confirmation",
+        "publish",
+        "rollback",
+        "work_order",
+        "correction",
+        "sampling",
+        "human_decision",
+        "review",
+        "question"
+      ],
+      "title": "PendingActionKind",
+      "type": "string"
+    },
+    "PendingActionStatus": {
+      "enum": [
+        "proposed",
+        "confirmed",
+        "rejected",
+        "expired"
+      ],
+      "title": "PendingActionStatus",
+      "type": "string"
+    },
+    "ProposalOrigin": {
+      "additionalProperties": false,
+      "properties": {
+        "agent_run_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Agent Run Id"
+        },
+        "run_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Run Id"
+        },
+        "trace_id": {
+          "maxLength": 200,
+          "minLength": 1,
+          "title": "Trace Id",
+          "type": "string"
+        },
+        "call_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Call Id"
+        },
+        "tool": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Tool"
+        }
+      },
+      "required": [
+        "trace_id"
+      ],
+      "title": "ProposalOrigin",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "description": "“Agent 提议、工作台确认”的待确认动作（09 D18）。",
+  "properties": {
+    "action_id": {
+      "maxLength": 200,
+      "minLength": 1,
+      "title": "Action Id",
+      "type": "string"
+    },
+    "kind": {
+      "$ref": "#/$defs/PendingActionKind"
+    },
+    "plant_id": {
+      "maxLength": 200,
+      "minLength": 1,
+      "title": "Plant Id",
+      "type": "string"
+    },
+    "payload": {
+      "additionalProperties": true,
+      "title": "Payload",
+      "type": "object"
+    },
+    "proposed_by": {
+      "$ref": "#/$defs/ProposalOrigin"
+    },
+    "proposed_at": {
+      "format": "date-time",
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d{1,9})?(Z|[+-]00:?00)$",
+      "title": "Proposed At",
+      "type": "string"
+    },
+    "expires_at": {
+      "anyOf": [
+        {
+          "format": "date-time",
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d{1,9})?(Z|[+-]00:?00)$",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Expires At"
+    },
+    "status": {
+      "$ref": "#/$defs/PendingActionStatus",
+      "default": "proposed"
+    },
+    "revision": {
+      "default": 0,
+      "minimum": 0,
+      "title": "Revision",
+      "type": "integer"
+    },
+    "target_ref": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Target Ref"
+    },
+    "target_revision": {
+      "anyOf": [
+        {
+          "type": "integer"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Target Revision"
+    },
+    "decided_by": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Decided By"
+    },
+    "decided_at": {
+      "anyOf": [
+        {
+          "format": "date-time",
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d{1,9})?(Z|[+-]00:?00)$",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Decided At"
+    },
+    "reason": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Reason"
+    },
+    "edits": {
+      "anyOf": [
+        {
+          "additionalProperties": true,
+          "type": "object"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Edits"
+    },
+    "idempotency_key": {
+      "maxLength": 200,
+      "minLength": 1,
+      "title": "Idempotency Key",
+      "type": "string"
+    }
+  },
+  "required": [
+    "action_id",
+    "kind",
+    "plant_id",
+    "payload",
+    "proposed_by",
+    "proposed_at",
+    "idempotency_key"
+  ],
+  "title": "PendingAction",
+  "type": "object",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "plantkg:contracts/1.2.0/PendingAction"
+}

@@ -1,0 +1,17 @@
+# 极端场景 1：早高峰拥堵 + 用电突增 + 储能低电量同时发生（考验多专家冲突与三层裁决）。数据性质 synthetic。
+scenario_id: extreme_peak_conflict
+title: 早高峰拥堵 + 用电突增 + 储能低电量
+nature: synthetic
+date: "2026-07-01"
+seed: 101
+initial: {soc: 0.2}
+knowledge: [energy_manual, elevator_manual, hvac_manual]
+params:
+  capacity_kw: {TX1: 1100}   # 生产变压器运行限额（configured），突增后接近上限
+events:
+  - {at: "08:02", type: elevator_congestion, entity_id: "elevator_group:admin_low", severity: 3, summary: 低区人梯拥堵,
+     payload: {effects: [{kind: surge, factor: 3.5, minutes: 45}]}}
+  - {at: "08:02", type: elevator_congestion, entity_id: "elevator_group:admin_high", severity: 3, summary: 高区人梯拥堵,
+     payload: {effects: [{kind: surge, factor: 2.5, minutes: 45}]}}
+  - {at: "08:05", type: load_spike, entity_id: AC-1, severity: 4, summary: 空压机与冲压线同时启动,
+     payload: {effects: [{kind: extra_load, kw: 520, minutes: 50}]}}

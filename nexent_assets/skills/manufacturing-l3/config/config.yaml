@@ -1,0 +1,9 @@
+# 骨架取值（configured，示意）；B19～B22 与 B27 按真实场景补充
+plant_name: 华东某电子厂（虚拟）
+experts:
+  energy: 储能充放、光伏消纳、峰谷电价与需量
+  elevator: 电梯群控、人梯与货梯调度
+  hvac: 区域温度、预冷与错峰
+  equipment: 空压等设备健康、故障研判与维修工单
+event_types: [peak_load, device_fault, temperature_excursion, elevator_congestion, operator_message]
+report_style: 一到三句中文，先结论后依据

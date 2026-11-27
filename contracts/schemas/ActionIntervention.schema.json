@@ -1,0 +1,101 @@
+{
+  "additionalProperties": false,
+  "description": "取消/撤销的记录；重复请求返回同一条。",
+  "properties": {
+    "action_id": {
+      "maxLength": 200,
+      "minLength": 1,
+      "title": "Action Id",
+      "type": "string"
+    },
+    "run_id": {
+      "maxLength": 200,
+      "minLength": 1,
+      "title": "Run Id",
+      "type": "string"
+    },
+    "kind": {
+      "enum": [
+        "cancelled",
+        "revoked"
+      ],
+      "title": "Kind",
+      "type": "string"
+    },
+    "operator": {
+      "title": "Operator",
+      "type": "string"
+    },
+    "at": {
+      "format": "date-time",
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d{1,9})?(Z|[+-]00:?00)$",
+      "title": "At",
+      "type": "string"
+    },
+    "reason_kind": {
+      "anyOf": [
+        {
+          "enum": [
+            "system_wrong",
+            "other"
+          ],
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Reason Kind"
+    },
+    "note": {
+      "default": "",
+      "title": "Note",
+      "type": "string"
+    },
+    "protection": {
+      "default": false,
+      "title": "Protection",
+      "type": "boolean"
+    },
+    "effective_end": {
+      "anyOf": [
+        {
+          "format": "date-time",
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d{1,9})?(Z|[+-]00:?00)$",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Effective End"
+    },
+    "original_end": {
+      "anyOf": [
+        {
+          "format": "date-time",
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d{1,9})?(Z|[+-]00:?00)$",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Original End"
+    }
+  },
+  "required": [
+    "action_id",
+    "run_id",
+    "kind",
+    "operator",
+    "at"
+  ],
+  "title": "ActionIntervention",
+  "type": "object",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "plantkg:contracts/1.2.0/ActionIntervention"
+}

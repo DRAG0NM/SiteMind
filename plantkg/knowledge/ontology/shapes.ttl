@@ -1,0 +1,10 @@
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix brick: <https://brickschema.org/schema/Brick#> .
+@prefix pk: <https://plantkg.dev/ns/ontology#> .
+
+pk:CompressorShape a sh:NodeShape ; sh:targetClass brick:Compressor ;
+    sh:property [ sh:path pk:reviewedBy ; sh:minCount 1 ] .
+pk:TemperatureSensorShape a sh:NodeShape ; sh:targetClass brick:Temperature_Sensor ;
+    sh:property [ sh:path pk:reviewedBy ; sh:minCount 1 ] .
+pk:HVACZoneShape a sh:NodeShape ; sh:targetClass brick:HVAC_Zone ;
+    sh:property [ sh:path pk:reviewedBy ; sh:minCount 1 ] .

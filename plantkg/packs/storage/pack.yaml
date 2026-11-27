@@ -1,0 +1,10 @@
+name: storage
+schema_version: 1
+order: 20
+status: placeholder   # 实现在 pack.py（StoragePack）；注册表还没有登记 DomainPack 实例的入口，由装配方构造后交给 SharedPlanner，入口定了再改 active
+description: 储能领域包：能量递推、SOC/功率/期末边界、充放互斥，备用比例 reserve_ratio 随版本清单取值
+entrypoint: null
+provides:
+  rule_kinds: [storage_soc_window, storage_power_limit]
+  state: [energy_kwh]
+  ledger_terms: [charge, discharge, energy]

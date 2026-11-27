@@ -1,0 +1,139 @@
+{
+  "$defs": {
+    "Interval": {
+      "additionalProperties": false,
+      "description": "左闭右开 UTC 区间 [start, end)。",
+      "properties": {
+        "start": {
+          "format": "date-time",
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d{1,9})?(Z|[+-]00:?00)$",
+          "title": "Start",
+          "type": "string"
+        },
+        "end": {
+          "format": "date-time",
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d{1,9})?(Z|[+-]00:?00)$",
+          "title": "End",
+          "type": "string"
+        }
+      },
+      "required": [
+        "start",
+        "end"
+      ],
+      "title": "Interval",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "description": "场景运行的 15 分钟槽汇总（由 15 条分钟账本求和）。不复用 LedgerEntry，也不走 Ledger.recheck 的\n单条充放互斥：槽内可先充后放，物理校验只在分钟账本上做。",
+  "properties": {
+    "interval": {
+      "$ref": "#/$defs/Interval"
+    },
+    "charge_kwh": {
+      "minimum": 0,
+      "title": "Charge Kwh",
+      "type": "number"
+    },
+    "discharge_kwh": {
+      "minimum": 0,
+      "title": "Discharge Kwh",
+      "type": "number"
+    },
+    "net_storage_kwh": {
+      "title": "Net Storage Kwh",
+      "type": "number"
+    },
+    "load_kwh": {
+      "minimum": 0,
+      "title": "Load Kwh",
+      "type": "number"
+    },
+    "pv_available_kwh": {
+      "minimum": 0,
+      "title": "Pv Available Kwh",
+      "type": "number"
+    },
+    "pv_used_kwh": {
+      "minimum": 0,
+      "title": "Pv Used Kwh",
+      "type": "number"
+    },
+    "grid_import_kwh": {
+      "minimum": 0,
+      "title": "Grid Import Kwh",
+      "type": "number"
+    },
+    "grid_export_kwh": {
+      "minimum": 0,
+      "title": "Grid Export Kwh",
+      "type": "number"
+    },
+    "pv_curtailed_kwh": {
+      "minimum": 0,
+      "title": "Pv Curtailed Kwh",
+      "type": "number"
+    },
+    "soc_end": {
+      "maximum": 1,
+      "minimum": 0,
+      "title": "Soc End",
+      "type": "number"
+    },
+    "cost_cny": {
+      "anyOf": [
+        {
+          "type": "number"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Cost Cny"
+    },
+    "peak_minute_kw": {
+      "minimum": 0,
+      "title": "Peak Minute Kw",
+      "type": "number"
+    },
+    "demand_15m_kw": {
+      "minimum": 0,
+      "title": "Demand 15M Kw",
+      "type": "number"
+    },
+    "minutes_balanced": {
+      "title": "Minutes Balanced",
+      "type": "boolean"
+    },
+    "capacity_violations": {
+      "default": [],
+      "items": {
+        "type": "string"
+      },
+      "title": "Capacity Violations",
+      "type": "array"
+    }
+  },
+  "required": [
+    "interval",
+    "charge_kwh",
+    "discharge_kwh",
+    "net_storage_kwh",
+    "load_kwh",
+    "pv_available_kwh",
+    "pv_used_kwh",
+    "grid_import_kwh",
+    "grid_export_kwh",
+    "pv_curtailed_kwh",
+    "soc_end",
+    "peak_minute_kw",
+    "demand_15m_kw",
+    "minutes_balanced"
+  ],
+  "title": "ScenarioSlotSummary",
+  "type": "object",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "plantkg:contracts/1.2.0/ScenarioSlotSummary"
+}

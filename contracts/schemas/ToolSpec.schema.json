@@ -1,0 +1,152 @@
+{
+  "$defs": {
+    "ParamSpec": {
+      "additionalProperties": false,
+      "properties": {
+        "name": {
+          "pattern": "^[a-z][a-z0-9_]*$",
+          "title": "Name",
+          "type": "string"
+        },
+        "type": {
+          "enum": [
+            "string",
+            "integer",
+            "number",
+            "boolean",
+            "object",
+            "array"
+          ],
+          "title": "Type",
+          "type": "string"
+        },
+        "required": {
+          "default": false,
+          "title": "Required",
+          "type": "boolean"
+        },
+        "description": {
+          "title": "Description",
+          "type": "string"
+        },
+        "minimum": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Minimum"
+        },
+        "maximum": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Maximum"
+        }
+      },
+      "required": [
+        "name",
+        "type",
+        "description"
+      ],
+      "title": "ParamSpec",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "description": "注册表中的工具规格。Nexent 中的名字为 plantkg_ 前缀 + name。",
+  "properties": {
+    "name": {
+      "pattern": "^[a-z][a-z0-9_]*$",
+      "title": "Name",
+      "type": "string"
+    },
+    "plane": {
+      "enum": [
+        "knowledge",
+        "decision",
+        "world",
+        "evolution",
+        "core"
+      ],
+      "title": "Plane",
+      "type": "string"
+    },
+    "provider": {
+      "pattern": "^B\\d{2}$",
+      "title": "Provider",
+      "type": "string"
+    },
+    "extended_by": {
+      "default": [],
+      "items": {
+        "type": "string"
+      },
+      "title": "Extended By",
+      "type": "array"
+    },
+    "description": {
+      "title": "Description",
+      "type": "string"
+    },
+    "mode": {
+      "enum": [
+        "read",
+        "propose",
+        "write",
+        "job"
+      ],
+      "title": "Mode",
+      "type": "string"
+    },
+    "accepts_ctx": {
+      "default": true,
+      "title": "Accepts Ctx",
+      "type": "boolean"
+    },
+    "exposed_to_agent": {
+      "default": true,
+      "title": "Exposed To Agent",
+      "type": "boolean"
+    },
+    "optional": {
+      "default": false,
+      "title": "Optional",
+      "type": "boolean"
+    },
+    "paginated": {
+      "default": false,
+      "title": "Paginated",
+      "type": "boolean"
+    },
+    "params": {
+      "default": [],
+      "items": {
+        "$ref": "#/$defs/ParamSpec"
+      },
+      "title": "Params",
+      "type": "array"
+    }
+  },
+  "required": [
+    "name",
+    "plane",
+    "provider",
+    "description",
+    "mode"
+  ],
+  "title": "ToolSpec",
+  "type": "object",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "plantkg:contracts/1.2.0/ToolSpec"
+}

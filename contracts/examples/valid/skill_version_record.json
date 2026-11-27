@@ -1,0 +1,22 @@
+{
+  "model": "SkillVersionRecord",
+  "data": {
+    "name": "compressor-pressure-drop-procedure",
+    "version": 1,
+    "manifest_id": "vm-9aa3546d88f54337",
+    "candidate_id": "b43-2c5bf6a1835f3ef3",
+    "action": "publish",
+    "verdict": "pass",
+    "failures": [],
+    "at": "2026-11-12T10:38:46Z",
+    "actor": "demo-reviewer",
+    "source_tickets": [
+      "T-B43-1001",
+      "T-B43-1002",
+      "T-B43-1003"
+    ],
+    "run_id": "run-b43-demo-v1",
+    "from_manifest_id": null,
+    "current": true
+  }
+}

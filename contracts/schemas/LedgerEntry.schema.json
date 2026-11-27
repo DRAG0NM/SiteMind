@@ -1,0 +1,169 @@
+{
+  "$defs": {
+    "Interval": {
+      "additionalProperties": false,
+      "description": "左闭右开 UTC 区间 [start, end)。",
+      "properties": {
+        "start": {
+          "format": "date-time",
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d{1,9})?(Z|[+-]00:?00)$",
+          "title": "Start",
+          "type": "string"
+        },
+        "end": {
+          "format": "date-time",
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d{1,9})?(Z|[+-]00:?00)$",
+          "title": "End",
+          "type": "string"
+        }
+      },
+      "required": [
+        "start",
+        "end"
+      ],
+      "title": "Interval",
+      "type": "object"
+    },
+    "LoadCategory": {
+      "description": "负荷分项（v0.8 账本 load_breakdown）。",
+      "enum": [
+        "elevator",
+        "hvac",
+        "air_compressor",
+        "lighting",
+        "process",
+        "base"
+      ],
+      "title": "LoadCategory",
+      "type": "string"
+    }
+  },
+  "additionalProperties": false,
+  "description": "一个时段的交流侧账本（非负量，kW 时段平均、kWh 时段电量）。",
+  "properties": {
+    "interval": {
+      "$ref": "#/$defs/Interval"
+    },
+    "pv_available_kwh": {
+      "minimum": 0,
+      "title": "Pv Available Kwh",
+      "type": "number"
+    },
+    "pv_used_kwh": {
+      "minimum": 0,
+      "title": "Pv Used Kwh",
+      "type": "number"
+    },
+    "pv_curtailed_kwh": {
+      "minimum": 0,
+      "title": "Pv Curtailed Kwh",
+      "type": "number"
+    },
+    "grid_import_kwh": {
+      "minimum": 0,
+      "title": "Grid Import Kwh",
+      "type": "number"
+    },
+    "grid_export_kwh": {
+      "minimum": 0,
+      "title": "Grid Export Kwh",
+      "type": "number"
+    },
+    "charge_kwh": {
+      "minimum": 0,
+      "title": "Charge Kwh",
+      "type": "number"
+    },
+    "discharge_kwh": {
+      "minimum": 0,
+      "title": "Discharge Kwh",
+      "type": "number"
+    },
+    "load_kwh": {
+      "minimum": 0,
+      "title": "Load Kwh",
+      "type": "number"
+    },
+    "energy_start_kwh": {
+      "minimum": 0,
+      "title": "Energy Start Kwh",
+      "type": "number"
+    },
+    "energy_end_kwh": {
+      "minimum": 0,
+      "title": "Energy End Kwh",
+      "type": "number"
+    },
+    "soc_end": {
+      "maximum": 1,
+      "minimum": 0,
+      "title": "Soc End",
+      "type": "number"
+    },
+    "price_cny_per_kwh": {
+      "anyOf": [
+        {
+          "type": "number"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Price Cny Per Kwh"
+    },
+    "cost_cny": {
+      "anyOf": [
+        {
+          "type": "number"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Cost Cny"
+    },
+    "residual_kwh": {
+      "title": "Residual Kwh",
+      "type": "number"
+    },
+    "load_breakdown": {
+      "anyOf": [
+        {
+          "additionalProperties": {
+            "type": "number"
+          },
+          "propertyNames": {
+            "$ref": "#/$defs/LoadCategory"
+          },
+          "type": "object"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Load Breakdown"
+    }
+  },
+  "required": [
+    "interval",
+    "pv_available_kwh",
+    "pv_used_kwh",
+    "pv_curtailed_kwh",
+    "grid_import_kwh",
+    "grid_export_kwh",
+    "charge_kwh",
+    "discharge_kwh",
+    "load_kwh",
+    "energy_start_kwh",
+    "energy_end_kwh",
+    "soc_end",
+    "residual_kwh"
+  ],
+  "title": "LedgerEntry",
+  "type": "object",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "plantkg:contracts/1.2.0/LedgerEntry"
+}

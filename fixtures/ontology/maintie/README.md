@@ -1,0 +1,3 @@
+MaintIE gold first 50 records, from https://github.com/nlp-tlp/maintie at revision 825e7710e4129598da997276a38b3cb40b200bc2, MIT. Bikaun et al., LREC-COLING 2024, https://aclanthology.org/2024.lrec-main.954/. English maintenance work orders, predominantly mining; not Chinese factory records. Full source SHA-256: ef811cf4ffd0c90e6a13b1369e24e9d1d08f9a294d873ab4fb1a580096d7d6e0.
+
+The upstream license copyright line contains placeholders. They are retained verbatim in LICENSE.md; the year and rights holder are unconfirmed. Dataset citation: Tyler K. Bikaun, Tim French, Michael Stewart, Wei Liu, and Melinda Hodkiewicz (2024), https://aclanthology.org/2024.lrec-main.954/. Authorship is attribution and does not establish copyright ownership.

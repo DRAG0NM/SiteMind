@@ -1,0 +1,13 @@
+# 工厂装配的储能配置（B18，B11 load_storage_config 格式）。2 MWh / 500 kW 按愿景中型工厂装配，标 configured，不是已批准选型。
+# 效率与 SOC 区间沿用 fixtures/packs/storage/storage.yaml。
+storage:
+  entity_id: entity://demo-electronics/battery/BAT1
+  capacity_kwh: 2000
+  charge_kw: 500
+  discharge_kw: 500
+  eta_c: 0.95
+  eta_d: 0.95
+  soc_min: 0.1
+  soc_max: 0.9
+  end_soc: null
+  degradation_cny_per_kwh: null

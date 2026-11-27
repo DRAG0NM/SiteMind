@@ -1,0 +1,68 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "ticket_id": {
+      "title": "Ticket Id",
+      "type": "string"
+    },
+    "status": {
+      "title": "Status",
+      "type": "string"
+    },
+    "ticket_status": {
+      "title": "Ticket Status",
+      "type": "string"
+    },
+    "reason": {
+      "title": "Reason",
+      "type": "string"
+    },
+    "checked_at": {
+      "title": "Checked At",
+      "type": "string"
+    },
+    "recovery": {
+      "title": "Recovery",
+      "type": "string"
+    },
+    "evidence": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Evidence",
+      "type": "array"
+    },
+    "episode": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Episode"
+    },
+    "job_observation": {
+      "items": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "title": "Job Observation",
+      "type": "array"
+    }
+  },
+  "required": [
+    "ticket_id",
+    "status",
+    "ticket_status",
+    "reason",
+    "checked_at",
+    "recovery"
+  ],
+  "title": "WatchdogTicket",
+  "type": "object",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "plantkg:contracts/1.2.0/WatchdogTicket"
+}

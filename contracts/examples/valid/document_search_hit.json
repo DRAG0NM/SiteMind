@@ -1,0 +1,11 @@
+{
+  "model": "DocumentSearchHit",
+  "data": {
+    "document_id": "manual-ac2",
+    "asset_version_id": "asset://manufacturing/4f1bfb5c/process_doc/source",
+    "locator": {"line_start": 1},
+    "text": "AC-2 空压机，主管压力5分钟内下降超过0.2 bar。",
+    "score": 1.0,
+    "expert": "equipment"
+  }
+}

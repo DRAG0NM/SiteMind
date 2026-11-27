@@ -1,0 +1,13 @@
+{
+  "model": "FrozenSplit",
+  "data": {
+    "split_id": "split-validation-1",
+    "purpose": "validation",
+    "days": [
+      "2026-07-08",
+      "2026-07-09"
+    ],
+    "frozen_at": "2026-11-05T00:00:00Z",
+    "content_hash": "sha256:9503ab62bece91d9cd4a062a2f8762c9e7cf0bb6bd7635f3fdcc67c8a2efb543"
+  }
+}

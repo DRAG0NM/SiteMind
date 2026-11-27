@@ -1,0 +1,16 @@
+{
+  "model": "SkillSummary",
+  "data": {
+    "name": "compressor-pressure-drop-procedure",
+    "latest_version": 2,
+    "candidate_id": "b43-2c80fad65b8989ee",
+    "manifest_id": "vm-0ba5d01679e0b4a3",
+    "status": "active",
+    "published_at": "2026-11-12T10:38:52Z",
+    "source_tickets": [
+      "T-B43-1001",
+      "T-B43-1002",
+      "T-B43-1003"
+    ]
+  }
+}

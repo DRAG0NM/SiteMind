@@ -1,0 +1,179 @@
+{
+  "$defs": {
+    "ActionReadiness": {
+      "enum": [
+        "ready",
+        "needs_diagnosis",
+        "needs_human"
+      ],
+      "title": "ActionReadiness",
+      "type": "string"
+    },
+    "Interval": {
+      "additionalProperties": false,
+      "description": "左闭右开 UTC 区间 [start, end)。",
+      "properties": {
+        "start": {
+          "format": "date-time",
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d{1,9})?(Z|[+-]00:?00)$",
+          "title": "Start",
+          "type": "string"
+        },
+        "end": {
+          "format": "date-time",
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d{1,9})?(Z|[+-]00:?00)$",
+          "title": "End",
+          "type": "string"
+        }
+      },
+      "required": [
+        "start",
+        "end"
+      ],
+      "title": "Interval",
+      "type": "object"
+    },
+    "ProposedAction": {
+      "additionalProperties": false,
+      "description": "专家提案里的一个动作。",
+      "properties": {
+        "entity_id": {
+          "description": "entity://{厂区}/{类型}/{编号}；不随资料修改而变",
+          "pattern": "^entity://[A-Za-z0-9_-]+/[a-z0-9_-]+/[A-Za-z0-9_.-]+$",
+          "title": "Entity Id",
+          "type": "string"
+        },
+        "command": {
+          "maxLength": 200,
+          "minLength": 1,
+          "title": "Command",
+          "type": "string"
+        },
+        "params": {
+          "additionalProperties": true,
+          "title": "Params",
+          "type": "object"
+        },
+        "interval": {
+          "$ref": "#/$defs/Interval"
+        },
+        "readiness": {
+          "$ref": "#/$defs/ActionReadiness",
+          "default": "ready"
+        },
+        "depends_on": {
+          "default": [],
+          "items": {
+            "type": "string"
+          },
+          "title": "Depends On",
+          "type": "array"
+        }
+      },
+      "required": [
+        "entity_id",
+        "command",
+        "interval"
+      ],
+      "title": "ProposedAction",
+      "type": "object"
+    },
+    "StatusChange": {
+      "additionalProperties": false,
+      "description": "一次状态迁移（#217-3）：只在状态变化时追加，不按分钟写。",
+      "properties": {
+        "status": {
+          "title": "Status",
+          "type": "string"
+        },
+        "at": {
+          "format": "date-time",
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d{1,9})?(Z|[+-]00:?00)$",
+          "title": "At",
+          "type": "string"
+        }
+      },
+      "required": [
+        "status",
+        "at"
+      ],
+      "title": "StatusChange",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "work_order_id": {
+      "maxLength": 200,
+      "minLength": 1,
+      "title": "Work Order Id",
+      "type": "string"
+    },
+    "ticket_id": {
+      "maxLength": 200,
+      "minLength": 1,
+      "title": "Ticket Id",
+      "type": "string"
+    },
+    "created_at": {
+      "format": "date-time",
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d{1,9})?(Z|[+-]00:?00)$",
+      "title": "Created At",
+      "type": "string"
+    },
+    "reason": {
+      "title": "Reason",
+      "type": "string"
+    },
+    "actions": {
+      "default": [],
+      "items": {
+        "$ref": "#/$defs/ProposedAction"
+      },
+      "title": "Actions",
+      "type": "array"
+    },
+    "status": {
+      "enum": [
+        "proposed",
+        "confirmed",
+        "rejected",
+        "expired",
+        "done"
+      ],
+      "title": "Status",
+      "type": "string"
+    },
+    "pending_action_id": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Pending Action Id"
+    },
+    "status_history": {
+      "default": [],
+      "items": {
+        "$ref": "#/$defs/StatusChange"
+      },
+      "title": "Status History",
+      "type": "array"
+    }
+  },
+  "required": [
+    "work_order_id",
+    "ticket_id",
+    "created_at",
+    "reason",
+    "status"
+  ],
+  "title": "WorkOrder",
+  "type": "object",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "plantkg:contracts/1.2.0/WorkOrder"
+}

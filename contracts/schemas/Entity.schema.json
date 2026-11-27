@@ -1,0 +1,57 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "entity_id": {
+      "description": "entity://{厂区}/{类型}/{编号}；不随资料修改而变",
+      "pattern": "^entity://[A-Za-z0-9_-]+/[a-z0-9_-]+/[A-Za-z0-9_.-]+$",
+      "title": "Entity Id",
+      "type": "string"
+    },
+    "entity_type": {
+      "maxLength": 200,
+      "minLength": 1,
+      "title": "Entity Type",
+      "type": "string"
+    },
+    "label": {
+      "title": "Label",
+      "type": "string"
+    },
+    "aliases": {
+      "default": [],
+      "items": {
+        "type": "string"
+      },
+      "title": "Aliases",
+      "type": "array"
+    },
+    "plant_id": {
+      "maxLength": 200,
+      "minLength": 1,
+      "title": "Plant Id",
+      "type": "string"
+    },
+    "ontology_class": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Ontology Class"
+    }
+  },
+  "required": [
+    "entity_id",
+    "entity_type",
+    "label",
+    "plant_id"
+  ],
+  "title": "Entity",
+  "type": "object",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "plantkg:contracts/1.2.0/Entity"
+}

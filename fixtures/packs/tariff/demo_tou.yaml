@@ -1,0 +1,46 @@
+# 演示配置（demo: true）：不是已核实的真实政策，不能用于正式闭环验收（acceptance_blockers 会拦截）。
+# 两条规则分别照搬 jiangsu_pre2025.yaml、jiangsu_2025_426.yaml 的时段结构，把“新版生效”映射进回放窗口（03 §2.3）：
+# 旧版到 2026-07-02 00:00（当地）为止，新版自 2026-07-02 起生效、06-25 起可见。计价基础两版共用 tariff.yaml 的演示值。
+demo: true
+source:
+  title: 演示分时电价（结构取自江苏新旧两版，日期映射进回放窗口）
+  derived_from: [fixtures/packs/tariff/jiangsu_pre2025.yaml, fixtures/packs/tariff/jiangsu_2025_426.yaml]
+rules:
+  - rule_id: demo-tou-old
+    grid_entity: entity://demo-electronics/grid_connection/MAIN
+    category: two_part_industrial_ge315kva
+    timezone: Asia/Shanghai
+    flat_factor: 1.0
+    effective_from: "2025-12-31T16:00:00Z"
+    effective_to: "2026-07-01T16:00:00Z"
+    available_at: "2025-12-31T16:00:00Z"
+    nature: configured
+    review_status: trusted_config
+    reviewer: null
+    review_note: 演示配置
+    locator: {clause: "演示：结构同 jiangsu_pre2025.yaml"}
+    periods:
+      - {name: peak, months: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12], windows: [["08:00", "11:00"], ["17:00", "22:00"]], ratio: 0.72, locator: "演示"}
+      - {name: flat, months: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12], windows: [["11:00", "17:00"], ["22:00", "24:00"]], ratio: 0.0, locator: "演示"}
+      - {name: valley, months: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12], windows: [["00:00", "08:00"]], ratio: -0.58, locator: "演示"}
+  - rule_id: demo-tou-new
+    grid_entity: entity://demo-electronics/grid_connection/MAIN
+    category: two_part_industrial_ge315kva
+    timezone: Asia/Shanghai
+    flat_factor: 1.0
+    effective_from: "2026-07-01T16:00:00Z"
+    available_at: "2026-06-25T00:00:00Z"
+    nature: configured
+    review_status: trusted_config
+    reviewer: null
+    review_note: 演示配置
+    locator: {clause: "演示：结构同 jiangsu_2025_426.yaml"}
+    periods:
+      - {name: peak, months: [6, 7, 8, 12, 1, 2], windows: [["14:00", "22:00"]], ratio: 0.8, locator: "演示"}
+      - {name: flat, months: [6, 7, 8, 12, 1, 2], windows: [["06:00", "11:00"], ["13:00", "14:00"], ["22:00", "24:00"]], ratio: 0.0, locator: "演示"}
+      - {name: valley, months: [6, 7, 8, 12, 1, 2], windows: [["00:00", "06:00"], ["11:00", "13:00"]], ratio: -0.65, locator: "演示"}
+      - {name: peak, months: [3, 4, 5, 9, 10, 11], windows: [["15:00", "22:00"]], ratio: 0.8, locator: "演示"}
+      - {name: flat, months: [3, 4, 5, 9, 10, 11], windows: [["06:00", "10:00"], ["14:00", "15:00"], ["22:00", "02:00"]], ratio: 0.0, locator: "演示"}
+      - {name: valley, months: [3, 4, 5, 9, 10, 11], windows: [["02:00", "06:00"], ["10:00", "14:00"]], ratio: -0.65, locator: "演示"}
+      - {name: sharp, months: [7, 8], windows: [["14:00", "15:00"], ["19:30", "21:30"]], ratio: 0.2, locator: "演示"}
+      - {name: sharp, months: [12, 1], windows: [["18:00", "20:00"]], ratio: 0.2, locator: "演示"}

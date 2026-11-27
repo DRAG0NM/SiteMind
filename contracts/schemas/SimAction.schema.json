@@ -1,0 +1,61 @@
+{
+  "$defs": {
+    "Interval": {
+      "additionalProperties": false,
+      "description": "左闭右开 UTC 区间 [start, end)。",
+      "properties": {
+        "start": {
+          "format": "date-time",
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d{1,9})?(Z|[+-]00:?00)$",
+          "title": "Start",
+          "type": "string"
+        },
+        "end": {
+          "format": "date-time",
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d{1,9})?(Z|[+-]00:?00)$",
+          "title": "End",
+          "type": "string"
+        }
+      },
+      "required": [
+        "start",
+        "end"
+      ],
+      "title": "Interval",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "description": "场景仿真里的设备动作（电梯、暖通、照明、广播等）；经 B17 apply，不走 Plan 与 B15。",
+  "properties": {
+    "entity_id": {
+      "description": "entity://{厂区}/{类型}/{编号}；不随资料修改而变",
+      "pattern": "^entity://[A-Za-z0-9_-]+/[a-z0-9_-]+/[A-Za-z0-9_.-]+$",
+      "title": "Entity Id",
+      "type": "string"
+    },
+    "command": {
+      "maxLength": 200,
+      "minLength": 1,
+      "title": "Command",
+      "type": "string"
+    },
+    "params": {
+      "additionalProperties": true,
+      "title": "Params",
+      "type": "object"
+    },
+    "interval": {
+      "$ref": "#/$defs/Interval"
+    }
+  },
+  "required": [
+    "entity_id",
+    "command",
+    "interval"
+  ],
+  "title": "SimAction",
+  "type": "object",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "plantkg:contracts/1.2.0/SimAction"
+}

@@ -1,0 +1,37 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "reason": {
+      "maxLength": 500,
+      "minLength": 1,
+      "title": "Reason",
+      "type": "string"
+    },
+    "confirm_protection": {
+      "default": false,
+      "title": "Confirm Protection",
+      "type": "boolean"
+    },
+    "run_id": {
+      "anyOf": [
+        {
+          "maxLength": 200,
+          "minLength": 1,
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Run Id"
+    }
+  },
+  "required": [
+    "reason"
+  ],
+  "title": "ActionCancelRequest",
+  "type": "object",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "plantkg:contracts/1.2.0/ActionCancelRequest"
+}

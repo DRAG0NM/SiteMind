@@ -1,0 +1,43 @@
+{
+  "additionalProperties": false,
+  "description": "换算：把各提案（或组合）放到同一把尺子上。",
+  "properties": {
+    "policy_version": {
+      "maxLength": 200,
+      "minLength": 1,
+      "title": "Policy Version",
+      "type": "string"
+    },
+    "scores": {
+      "additionalProperties": {
+        "type": "number"
+      },
+      "title": "Scores",
+      "type": "object"
+    },
+    "infeasible": {
+      "default": [],
+      "items": {
+        "type": "string"
+      },
+      "title": "Infeasible",
+      "type": "array"
+    },
+    "notes": {
+      "default": [],
+      "items": {
+        "type": "string"
+      },
+      "title": "Notes",
+      "type": "array"
+    }
+  },
+  "required": [
+    "policy_version",
+    "scores"
+  ],
+  "title": "DecisionConversion",
+  "type": "object",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "plantkg:contracts/1.2.0/DecisionConversion"
+}

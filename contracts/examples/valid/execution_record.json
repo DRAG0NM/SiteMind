@@ -1,0 +1,16 @@
+{
+  "model": "ExecutionRecord",
+  "data": {
+    "ticket_id": "T-B43-1001",
+    "run_id": "run-b43-v1",
+    "event_type": "compressor_pressure_drop",
+    "entity_id": "entity://demo-electronics/air_compressor/AC-01",
+    "entity_type": "air_compressor",
+    "command": "set_mode",
+    "action_index": 1,
+    "outcome": "approved",
+    "system_error": false,
+    "at": "2026-11-01T09:12:00Z",
+    "nature": "synthetic"
+  }
+}

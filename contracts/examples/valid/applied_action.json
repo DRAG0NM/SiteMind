@@ -1,0 +1,19 @@
+{
+  "model": "AppliedAction",
+  "data": {
+    "action_id": "A-00003",
+    "run_id": "run-day-20260701",
+    "entity_id": "entity://demo-electronics/battery/BESS1",
+    "command": "discharge",
+    "params": {
+      "power_kw": 400.0
+    },
+    "interval": {
+      "start": "2026-07-01T00:06:00Z",
+      "end": "2026-07-01T00:36:00Z"
+    },
+    "stage": "active",
+    "protection": true,
+    "ticket_id": "ticket://TK-0005"
+  }
+}

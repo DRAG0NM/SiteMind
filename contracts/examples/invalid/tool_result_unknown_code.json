@@ -1,0 +1,14 @@
+{
+  "model": "ToolResult",
+  "base": "tool_result_failed",
+  "expect_error": "未登记",
+  "data": {
+    "ok": false,
+    "business_status": "failed",
+    "error": {
+      "code": "PLANTKG_E_WHATEVER",
+      "message": "写入需要经工作台网关发起的运行",
+      "retryable": false
+    }
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "additionalProperties": false,
+  "description": "propose 工具对模型的返回：只给 ID 与摘要，数值不经模型转述。",
+  "properties": {
+    "proposal_id": {
+      "maxLength": 200,
+      "minLength": 1,
+      "title": "Proposal Id",
+      "type": "string"
+    },
+    "summary": {
+      "maxLength": 500,
+      "title": "Summary",
+      "type": "string"
+    }
+  },
+  "required": [
+    "proposal_id",
+    "summary"
+  ],
+  "title": "ProposalReceipt",
+  "type": "object",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "plantkg:contracts/1.2.0/ProposalReceipt"
+}

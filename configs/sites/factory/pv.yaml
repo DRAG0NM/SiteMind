@@ -1,0 +1,5 @@
+# 工厂装配的光伏配置（B18，B10 load_pv_config 格式）。1 MWp 按愿景中型工厂装配，标 configured，不是已批准选型。
+# 比 fixtures/packs/pv/pv.yaml 的 500 kWp 大；B10 消费时 PVGIS 目标装机 target_peak_kwp 应同步取 1000。
+pv:
+  entity_id: entity://demo-electronics/pv/PV1
+  kwp: 1000

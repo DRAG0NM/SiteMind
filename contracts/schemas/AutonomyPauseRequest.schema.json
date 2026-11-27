@@ -1,0 +1,33 @@
+{
+  "additionalProperties": false,
+  "description": "POST /autonomy/pause：run_id 缺省是整厂（live 值守），给了就只暂停该场景运行。",
+  "properties": {
+    "reason": {
+      "maxLength": 500,
+      "minLength": 1,
+      "title": "Reason",
+      "type": "string"
+    },
+    "run_id": {
+      "anyOf": [
+        {
+          "maxLength": 200,
+          "minLength": 1,
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Run Id"
+    }
+  },
+  "required": [
+    "reason"
+  ],
+  "title": "AutonomyPauseRequest",
+  "type": "object",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "plantkg:contracts/1.2.0/AutonomyPauseRequest"
+}

@@ -1,0 +1,29 @@
+# 江苏 426 号之前执行的工商业分时电价（旧版），供 B27/B30 新旧对照登记。只有媒体转述，文号、生效日与尖峰时段都未找到原文：
+# review_status 保持 pending，不进规划。复核人取得原件后补齐文号、生效日、尖峰，并核对比例。
+demo: false
+source:
+  title: 江苏工商业分时电价（426 号之前版本）
+  doc_no: 待核
+  issuer: 江苏省发展和改革委员会（待核）
+  urls:
+    - https://www.gdshe.org/article/24430.html     # 媒体报道：两部制此前峰段上浮 72%、谷段下浮 58%
+    - https://www.sohu.com/a/892278837_121774463   # 媒体报道：取消早高峰、新增午间低谷
+  checked: 2026-10-31 仅媒体转述，时段与比例待原文复核
+rules:
+  - rule_id: tou-js-pre2025-two-part
+    grid_entity: entity://demo-electronics/grid_connection/MAIN
+    category: two_part_industrial_ge315kva
+    timezone: Asia/Shanghai
+    flat_factor: 1.0          # 旧版计价基础为到户电价（新版改为用户购电价格），两版的基础不可混用，见 docs/data/tariff-source.md
+    effective_from: "2023-12-31T16:00:00Z"   # 生效日未核：占位，复核时按原文改
+    effective_to: "2025-05-31T16:00:00Z"     # 由 426 号 2025-06-01 起替代
+    available_at: "2023-12-31T16:00:00Z"
+    nature: configured
+    review_status: pending
+    reviewer: null
+    review_note: 时段（峰 8-11、17-22，平 11-17、22-24，谷 0-8）与两部制比例（+72%/-58%）来自媒体转述；尖峰未编码
+    locator: {clause: "待原文复核"}
+    periods:
+      - {name: peak, months: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12], windows: [["08:00", "11:00"], ["17:00", "22:00"]], ratio: 0.72, locator: "媒体转述：两部制峰段上浮 72%"}
+      - {name: flat, months: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12], windows: [["11:00", "17:00"], ["22:00", "24:00"]], ratio: 0.0, locator: "媒体转述：平段"}
+      - {name: valley, months: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12], windows: [["00:00", "08:00"]], ratio: -0.58, locator: "媒体转述：两部制谷段下浮 58%"}

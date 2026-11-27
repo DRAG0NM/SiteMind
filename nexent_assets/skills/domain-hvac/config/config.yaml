@@ -1,0 +1,14 @@
+# 暖通领域要点（B21，configured）：与 configs/hvac/thermal.yaml 的取值保持一致
+# 区域 → 舒适区间 / 硬约束 / 供冷时段
+zones:
+  production: {label: 车间恒温区, setpoint_c: 22, comfort_c: [20, 24], hard: false, cooling_hours: 全天}
+  admin: {label: 行政楼, setpoint_c: 25, comfort_c: [24, 26], hard: false, cooling_hours: "07:00-19:00"}
+  cleanroom: {label: 洁净车间, setpoint_c: 22, comfort_c: [21, 23], rh_band: [40, 50], hard: true, cooling_hours: 全天}
+  datacenter: {label: 数据机房, setpoint_c: 24, comfort_c: [18, 27], hard: true, cooling_hours: 全天}
+hard_rule: 洁净车间与数据机房是硬约束：不停机、不断供、不改设定温度；削峰只动非硬约束区域
+actions:
+  set_mode: "normal / precool（设定温度低 1 ℃，把冷量提前买入）/ off（这段时间停供冷，温度上浮）"
+  set_setpoint: "setpoint_c 为新的设定温度，一般临时上调 1 ℃、30 分钟"
+  ventilate: "给电梯井道或区域通风，约 3 kW 风机"
+defer_rule: 推迟预冷默认 15 分钟；让出的冷量在窗口之后补回，错峰不是省电
+report_style: 一到三句中文，先结论后依据；只引用 propose 返回的 proposal_id 与摘要

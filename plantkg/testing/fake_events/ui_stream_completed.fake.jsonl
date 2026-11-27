@@ -1,0 +1,7 @@
+{"_fake": true, "event": {"agent_run_id": "ar-fake-0001", "trace_id": "tr-fake-0001", "type": "run_started", "seq": 0, "ts": "2026-10-30T02:00:00Z", "payload": {"agent_name": "plantkg_energy_assistant"}}}
+{"_fake": true, "event": {"agent_run_id": "ar-fake-0001", "trace_id": "tr-fake-0001", "type": "tool_started", "seq": 1, "ts": "2026-10-30T02:00:02Z", "call_id": "call-fake-1", "payload": {"tool": "plantkg_get_plan", "model_params": {"plan_id": "plan-20260701"}}}}
+{"_fake": true, "event": {"agent_run_id": "ar-fake-0001", "trace_id": "tr-fake-0001", "type": "tool_finished", "seq": 2, "ts": "2026-10-30T02:00:03Z", "call_id": "call-fake-1", "payload": {"tool": "plantkg_get_plan", "business_status": "done"}}}
+{"_fake": true, "event": {"agent_run_id": "ar-fake-0001", "trace_id": "tr-fake-0001", "type": "answer_delta", "seq": 3, "ts": "2026-10-30T02:00:05Z", "payload": {"text": "明天 11:00 给电池充电，"}}}
+{"_fake": true, "event": {"agent_run_id": "ar-fake-0001", "trace_id": "tr-fake-0001", "type": "keepalive", "seq": 4, "ts": "2026-10-30T02:00:20Z"}}
+{"_fake": true, "event": {"agent_run_id": "ar-fake-0001", "trace_id": "tr-fake-0001", "type": "answer_delta", "seq": 5, "ts": "2026-10-30T02:00:21Z", "payload": {"text": "因为该时段为低谷电价。"}}}
+{"_fake": true, "event": {"agent_run_id": "ar-fake-0001", "trace_id": "tr-fake-0001", "type": "run_finished", "seq": 6, "ts": "2026-10-30T02:00:22Z", "payload": {"terminal_reason": "completed_from_deltas"}}}

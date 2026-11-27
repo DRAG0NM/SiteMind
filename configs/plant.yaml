@@ -1,0 +1,10 @@
+# 装配清单：本厂区的显式配置（03 §2.1）。数值为示意值，标 configured；B05/B10～B13 开工时按数据核定。
+plant_id: demo-electronics
+industry_pack: manufacturing
+plant_name: 华东某电子厂（虚拟，由公开数据组装）
+
+pv: {adapter: pvgis, kwp: 500, nature: derived}
+storage: {kwh: 1000, kw: 250, eta_c: 0.95, eta_d: 0.95, soc: [0.1, 0.9], nature: configured}
+tariff: {source: null, nature: configured}   # 07 Q08：政策文件未选定，B12 前确定
+time_map: {source_start: "2017-10-23", plant_start: "2026-07-01", align: local_wall_clock}
+provenance_note: 各数据来自不同来源与年份，设备与工序的对应为配置；负荷经声明倍数放大

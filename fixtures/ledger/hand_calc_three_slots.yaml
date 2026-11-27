@@ -1,0 +1,24 @@
+# 手算三时段：验证效率、费用、能量与弃光（B08 任务卡“手算两到三个时段”）。
+# 储能 1000 kWh、η_c = η_d = 0.95、SOC [0.1, 0.9]，初始电量 500 kWh；时段 15 分钟（0.25 h）。
+storage: {capacity_kwh: 1000, eta_c: 0.95, eta_d: 0.95, soc_min: 0.1, soc_max: 0.9}
+energy_start_kwh: 500
+slot_minutes: 15
+start: "2026-07-01T00:00:00Z"
+slots:
+  # 光伏 400 全用；负荷 300 + 充电 200 = 500，缺 100 购电 → 25 kWh × 0.30 = 7.50 元
+  # E = 500 + 0.95 × 200 × 0.25 = 547.5
+  - {pv_available_kw: 400, load_kw: 300, charge_kw: 200, price_cny_per_kwh: 0.30}
+  # 无光伏；负荷 400 − 放电 200 = 购电 200 → 50 kWh × 1.20 = 60.00 元
+  # E = 547.5 − 200 × 0.25 / 0.95 = 494.868421052631...
+  - {pv_available_kw: 0, load_kw: 400, discharge_kw: 200, price_cny_per_kwh: 1.20}
+  # 光伏 600 > 负荷 300，外送上限 0 → 用 300、弃 300（75 kWh），购电 0
+  - {pv_available_kw: 600, load_kw: 300, price_cny_per_kwh: 0.60}
+expected:
+  per_slot:
+    - {pv_used_kwh: 100, pv_curtailed_kwh: 0, grid_import_kwh: 25, cost_cny: 7.5, energy_end_kwh: 547.5}
+    - {pv_used_kwh: 0, pv_curtailed_kwh: 0, grid_import_kwh: 50, cost_cny: 60.0, energy_end_kwh: 494.86842105263156}
+    - {pv_used_kwh: 75, pv_curtailed_kwh: 75, grid_import_kwh: 0, cost_cny: 0.0, energy_end_kwh: 494.86842105263156}
+  total_cost_cny: 67.5
+  peak_import_kw: 200
+  grid_import_kwh: 75
+  soc_end: 0.49486842105263156

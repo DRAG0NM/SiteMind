@@ -1,0 +1,51 @@
+{
+  "additionalProperties": false,
+  "description": "一次专家或主 Agent 运行的绑定（03 §3.0 轮次与过期）。绑定不符的结果只入历史，不执行、不回写。",
+  "properties": {
+    "run_id": {
+      "maxLength": 200,
+      "minLength": 1,
+      "title": "Run Id",
+      "type": "string"
+    },
+    "knowledge_version": {
+      "minimum": 1,
+      "title": "Knowledge Version",
+      "type": "integer"
+    },
+    "ticket_id": {
+      "maxLength": 200,
+      "minLength": 1,
+      "title": "Ticket Id",
+      "type": "string"
+    },
+    "round": {
+      "minimum": 1,
+      "title": "Round",
+      "type": "integer"
+    },
+    "state_version": {
+      "minimum": 0,
+      "title": "State Version",
+      "type": "integer"
+    },
+    "trigger_at": {
+      "format": "date-time",
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d{1,9})?(Z|[+-]00:?00)$",
+      "title": "Trigger At",
+      "type": "string"
+    }
+  },
+  "required": [
+    "run_id",
+    "knowledge_version",
+    "ticket_id",
+    "round",
+    "state_version",
+    "trigger_at"
+  ],
+  "title": "RunBinding",
+  "type": "object",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "plantkg:contracts/1.2.0/RunBinding"
+}

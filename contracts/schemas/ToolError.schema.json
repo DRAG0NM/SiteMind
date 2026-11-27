@@ -1,0 +1,32 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "code": {
+      "pattern": "^PLANTKG_E_[A-Z_]+$",
+      "title": "Code",
+      "type": "string"
+    },
+    "message": {
+      "title": "Message",
+      "type": "string"
+    },
+    "retryable": {
+      "default": false,
+      "title": "Retryable",
+      "type": "boolean"
+    },
+    "details": {
+      "additionalProperties": true,
+      "title": "Details",
+      "type": "object"
+    }
+  },
+  "required": [
+    "code",
+    "message"
+  ],
+  "title": "ToolError",
+  "type": "object",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "plantkg:contracts/1.2.0/ToolError"
+}

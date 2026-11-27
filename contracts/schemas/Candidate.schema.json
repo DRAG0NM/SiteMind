@@ -1,0 +1,148 @@
+{
+  "$defs": {
+    "CandidateKind": {
+      "enum": [
+        "parameter",
+        "knowledge",
+        "skill"
+      ],
+      "title": "CandidateKind",
+      "type": "string"
+    },
+    "CandidateStatus": {
+      "enum": [
+        "proposed",
+        "validated",
+        "rejected",
+        "published",
+        "rolled_back"
+      ],
+      "title": "CandidateStatus",
+      "type": "string"
+    },
+    "ComponentRef": {
+      "additionalProperties": false,
+      "properties": {
+        "ref": {
+          "maxLength": 200,
+          "minLength": 1,
+          "title": "Ref",
+          "type": "string"
+        },
+        "content_hash": {
+          "description": "完整 sha256，去重与完整性校验用",
+          "pattern": "^sha256:[0-9a-f]{64}$",
+          "title": "Content Hash",
+          "type": "string"
+        }
+      },
+      "required": [
+        "ref",
+        "content_hash"
+      ],
+      "title": "ComponentRef",
+      "type": "object"
+    },
+    "ManifestComponent": {
+      "enum": [
+        "ontology",
+        "rules",
+        "parameters",
+        "data_sources",
+        "compilers",
+        "models",
+        "skills",
+        "policy",
+        "sensor_cases"
+      ],
+      "title": "ManifestComponent",
+      "type": "string"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "candidate_id": {
+      "maxLength": 200,
+      "minLength": 1,
+      "title": "Candidate Id",
+      "type": "string"
+    },
+    "kind": {
+      "$ref": "#/$defs/CandidateKind"
+    },
+    "base_manifest_id": {
+      "maxLength": 200,
+      "minLength": 1,
+      "title": "Base Manifest Id",
+      "type": "string"
+    },
+    "changes": {
+      "additionalProperties": {
+        "$ref": "#/$defs/ComponentRef"
+      },
+      "minProperties": 1,
+      "propertyNames": {
+        "$ref": "#/$defs/ManifestComponent"
+      },
+      "title": "Changes",
+      "type": "object"
+    },
+    "status": {
+      "$ref": "#/$defs/CandidateStatus"
+    },
+    "trigger": {
+      "title": "Trigger",
+      "type": "string"
+    },
+    "created_at": {
+      "format": "date-time",
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d{1,9})?(Z|[+-]00:?00)$",
+      "title": "Created At",
+      "type": "string"
+    },
+    "validation_policy_version": {
+      "maxLength": 200,
+      "minLength": 1,
+      "title": "Validation Policy Version",
+      "type": "string"
+    },
+    "backtest_report_id": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Backtest Report Id"
+    },
+    "publish_action_id": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Publish Action Id"
+    }
+  },
+  "required": [
+    "candidate_id",
+    "kind",
+    "base_manifest_id",
+    "changes",
+    "status",
+    "trigger",
+    "created_at",
+    "validation_policy_version"
+  ],
+  "title": "Candidate",
+  "type": "object",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "plantkg:contracts/1.2.0/Candidate"
+}

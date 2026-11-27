@@ -1,0 +1,7 @@
+name: energy
+schema_version: 1
+order: 60
+status: active
+description: 能源专家（B19）：expert_propose:energy 提案钩子（供 plantkg_energy_propose）与场景装配钩子（真实 EnergyExpert 替换 B17 替身）
+entrypoint: plantkg.experts.energy.proposal:install
+provides: {}

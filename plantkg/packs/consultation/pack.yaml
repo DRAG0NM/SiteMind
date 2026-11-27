@@ -1,0 +1,7 @@
+name: consultation
+schema_version: 1
+order: 120
+status: active
+description: 跨域会诊（B29）：专家并行研判、提案落库与回答挂接、预演（提前行动）与分歧标注；确定性 expert/follow_up 结果来源
+entrypoint: plantkg.agent.consultation.consilium:register
+provides: {}

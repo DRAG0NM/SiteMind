@@ -1,0 +1,20 @@
+{
+  "model": "TrialResult",
+  "data": {
+    "feasible": false,
+    "violations": [
+      {
+        "kind": "capacity",
+        "entity_id": "entity://demo-electronics/transformer/T1",
+        "at": "2026-07-01T00:06:00Z",
+        "detail": "负载率 104%"
+      }
+    ],
+    "soft_cost": {
+      "cny": 12.0,
+      "wait_min": 35.0,
+      "comfort_min": 0
+    },
+    "minute_ledger": []
+  }
+}

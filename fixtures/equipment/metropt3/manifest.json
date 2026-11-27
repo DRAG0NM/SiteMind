@@ -1,0 +1,72 @@
+{
+ "dataset": "MetroPT-3",
+ "uci_id": 791,
+ "license": "CC BY 4.0",
+ "citation": "Davari, N., Veloso, B., Ribeiro, R., & Gama, J. (2021). MetroPT-3 Dataset [Dataset]. UCI Machine Learning Repository. https://doi.org/10.24432/C5VW3R.",
+ "sampling_seconds": 10,
+ "nature": "synthetic",
+ "note": "按 MetroPT-3 公开统计仿写，运行 scripts/data/fetch_metropt3.py 后替换为真实切片",
+ "source_note": "地铁空压机（APU），非本厂设备；本厂只借用泄漏时段的信号形状与统计，按额定参数缩放后注入",
+ "official_leak_window": "2020-05-29T23:30:00～2020-05-30T06:00:00",
+ "baseline_window": "2020-05-27T23:30:00～2020-05-28T06:00:00（前两晚同一时段，夜间对夜间）",
+ "excluded_window_note": "2020-07-15 泄漏前几小时运转占比已近 100%，不作对照",
+ "target_statistics": {
+  "running_ratio": [
+   0.23,
+   1.0
+  ],
+  "current_mean_a": [
+   1.0,
+   5.6
+  ],
+  "oil_c": [
+   65,
+   76
+  ]
+ },
+ "columns": {
+  "timestamp": "UTC",
+  "motor_current": "A",
+  "oil_temperature": "℃",
+  "reservoir_pressure_bar": "bar",
+  "compressor_on": "motor_current > 2 A 判为运转"
+ },
+ "windows": {
+  "baseline": {
+   "file": "baseline_2020-05-27_2330_to_2020-05-28_0600.csv",
+   "sha256": "3c99e90449cb7903855d41163c1c02ca0ff86288449bfcfadfc7b9a4e011708b",
+   "start": "2020-05-27T23:30:00",
+   "end": "2020-05-28T05:59:50",
+   "stats": {
+    "samples": 2340,
+    "minutes": 390.0,
+    "running_ratio": 0.2333,
+    "current_mean_a": 1.018,
+    "oil_mean_c": 65.09,
+    "oil_start_c": 65.55,
+    "oil_end_c": 65.08,
+    "pressure_start_bar": 8.357,
+    "pressure_end_bar": 8.69,
+    "pressure_drop_bar_per_h": 0.0014
+   }
+  },
+  "leak": {
+   "file": "leak_2020-05-29_2330_to_2020-05-30_0600.csv",
+   "sha256": "01170d8fae523ec16025106985a41c09396eeac04bd38c543db6c5765dbcfb13",
+   "start": "2020-05-29T23:30:00",
+   "end": "2020-05-30T05:59:50",
+   "stats": {
+    "samples": 2340,
+    "minutes": 390.0,
+    "running_ratio": 1.0,
+    "current_mean_a": 5.599,
+    "oil_mean_c": 70.5,
+    "oil_start_c": 64.56,
+    "oil_end_c": 76.13,
+    "pressure_start_bar": 8.359,
+    "pressure_end_bar": 4.443,
+    "pressure_drop_bar_per_h": -0.6
+   }
+  }
+ }
+}

@@ -1,0 +1,26 @@
+# 极端场景“传感器说谎”（B22 / #236）：压力传感器卡死，压力读数骤降但电流与产线正常。
+# 数据性质 synthetic：事件、时刻与传感器故障按常理编写；负荷底座来自 B18（D05 × 倍数 derived + 作息合成），光伏与气温来自 PVGIS。
+# 10:04 压力骤降告警 → 观测层判读数可疑并给试探提案 → 短时启动备用机 AC-1 → 试探判压力读数不动、推算值变化 → 判传感器卡死。
+scenario_id: extreme_sensor_lie
+title: 极端场景：传感器说谎（压力表卡死）
+nature: synthetic
+description: 压力传感器卡死值 5.6 bar，10:04 报压力骤降；设备专家先短时启动备用机试探，再按新读数判传感器卡死、改用推算值不停机
+date: "2026-07-01"
+days: 1
+seed: 20260701
+initial:
+  soc: 0.5
+params:
+  capacity_kw: {TX1: 1150}   # 与演示日一致的生产变压器运行限额（configured）
+
+# AC-1 开局停机：试探“启动备用机”才是真的由停转开，世界才有可区分的变化
+initial_actions:
+  - {entity: AC-1, command: stop}
+# 观测层传感器故障（B22）：压力表从 09:40 起卡在 5.6 bar
+sensor_faults:
+  - {sensor_id: AIR-HDR.P, kind: stuck, at: "09:40", params: {value: 5.6}}
+
+# 压力骤降告警；不注入物理泄漏（effects 为空），真实压力与电流都正常
+events:
+  - {at: "10:04", id: sensor-lie, type: compressor_pressure_drop, entity_id: AC-2, severity: 3,
+     summary: 空压站压力骤降，但电流与产线正常, payload: {effects: []}}

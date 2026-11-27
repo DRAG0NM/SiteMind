@@ -1,0 +1,11 @@
+{
+  "dataset_sha256": "770cc0ddadf6ce7df25963b7d4e9ff1c2840947152f5e27f6e4db8fde9bdf83f",
+  "asserted_concepts": 1115,
+  "subjects": 1115,
+  "relation_counts": {
+    "isPointOf": 894,
+    "feeds": 173,
+    "isPartOf": 194,
+    "hasLocation": 35
+  }
+}

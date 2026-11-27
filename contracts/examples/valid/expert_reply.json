@@ -1,0 +1,8 @@
+{
+  "model": "ExpertReply",
+  "data": {
+    "status": "needs_clarification",
+    "proposal_id": "proposal://pp-0001",
+    "question": "T1 越限是否由空压机启动造成？"
+  }
+}

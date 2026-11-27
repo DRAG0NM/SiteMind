@@ -1,0 +1,44 @@
+{
+  "additionalProperties": false,
+  "description": "POST /actions/{id}/confirm 与 /reject 的请求体。actor 从工作台登录会话获得。",
+  "properties": {
+    "reason": {
+      "minLength": 1,
+      "title": "Reason",
+      "type": "string"
+    },
+    "expected_revision": {
+      "minimum": 0,
+      "title": "Expected Revision",
+      "type": "integer"
+    },
+    "idempotency_key": {
+      "maxLength": 200,
+      "minLength": 1,
+      "title": "Idempotency Key",
+      "type": "string"
+    },
+    "edits": {
+      "anyOf": [
+        {
+          "additionalProperties": true,
+          "type": "object"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Edits"
+    }
+  },
+  "required": [
+    "reason",
+    "expected_revision",
+    "idempotency_key"
+  ],
+  "title": "ActionDecisionRequest",
+  "type": "object",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "plantkg:contracts/1.2.0/ActionDecisionRequest"
+}

@@ -1,0 +1,27 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "agent_run_id": {
+      "maxLength": 200,
+      "minLength": 1,
+      "title": "Agent Run Id",
+      "type": "string"
+    },
+    "status": {
+      "enum": [
+        "stopping",
+        "already_finished"
+      ],
+      "title": "Status",
+      "type": "string"
+    }
+  },
+  "required": [
+    "agent_run_id",
+    "status"
+  ],
+  "title": "AgentRunStopped",
+  "type": "object",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "plantkg:contracts/1.2.0/AgentRunStopped"
+}

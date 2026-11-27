@@ -1,0 +1,173 @@
+{
+  "$defs": {
+    "DataNature": {
+      "enum": [
+        "measured",
+        "derived",
+        "configured",
+        "synthetic",
+        "simulated"
+      ],
+      "title": "DataNature",
+      "type": "string"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "document_id": {
+      "title": "Document Id",
+      "type": "string"
+    },
+    "asset_version_id": {
+      "description": "asset://{行业}/{来源哈希前8位}/{类型}/{定位}；内容变即新版本",
+      "pattern": "^asset://[a-z0-9_-]+/[0-9a-f]{8}/[a-z0-9_-]+/.+$",
+      "title": "Asset Version Id",
+      "type": "string"
+    },
+    "content_hash": {
+      "description": "完整 sha256，去重与完整性校验用",
+      "pattern": "^sha256:[0-9a-f]{64}$",
+      "title": "Content Hash",
+      "type": "string"
+    },
+    "parent_version_id": {
+      "anyOf": [
+        {
+          "description": "asset://{行业}/{来源哈希前8位}/{类型}/{定位}；内容变即新版本",
+          "pattern": "^asset://[a-z0-9_-]+/[0-9a-f]{8}/[a-z0-9_-]+/.+$",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Parent Version Id"
+    },
+    "expert": {
+      "title": "Expert",
+      "type": "string"
+    },
+    "nature": {
+      "$ref": "#/$defs/DataNature"
+    },
+    "available_at": {
+      "format": "date-time",
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d{1,9})?(Z|[+-]00:?00)$",
+      "title": "Available At",
+      "type": "string"
+    },
+    "status": {
+      "title": "Status",
+      "type": "string"
+    },
+    "candidate_ids": {
+      "default": [],
+      "items": {
+        "type": "string"
+      },
+      "title": "Candidate Ids",
+      "type": "array"
+    },
+    "ontology_candidate_ids": {
+      "default": [],
+      "items": {
+        "type": "string"
+      },
+      "title": "Ontology Candidate Ids",
+      "type": "array"
+    },
+    "entity_ids": {
+      "default": [],
+      "items": {
+        "description": "entity://{厂区}/{类型}/{编号}；不随资料修改而变",
+        "pattern": "^entity://[A-Za-z0-9_-]+/[a-z0-9_-]+/[A-Za-z0-9_.-]+$",
+        "type": "string"
+      },
+      "title": "Entity Ids",
+      "type": "array"
+    },
+    "deduplicated": {
+      "default": false,
+      "title": "Deduplicated",
+      "type": "boolean"
+    },
+    "published": {
+      "default": false,
+      "title": "Published",
+      "type": "boolean"
+    },
+    "note": {
+      "default": "",
+      "title": "Note",
+      "type": "string"
+    },
+    "received_at": {
+      "anyOf": [
+        {
+          "format": "date-time",
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d{1,9})?(Z|[+-]00:?00)$",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Received At"
+    },
+    "source_name": {
+      "default": "",
+      "title": "Source Name",
+      "type": "string"
+    },
+    "source_level": {
+      "default": "experience_record",
+      "title": "Source Level",
+      "type": "string"
+    },
+    "action_ids": {
+      "default": [],
+      "items": {
+        "type": "string"
+      },
+      "title": "Action Ids",
+      "type": "array"
+    },
+    "manifest_ids": {
+      "default": [],
+      "items": {
+        "type": "string"
+      },
+      "title": "Manifest Ids",
+      "type": "array"
+    },
+    "reviews": {
+      "additionalProperties": {
+        "type": "string"
+      },
+      "title": "Reviews",
+      "type": "object"
+    },
+    "backtests": {
+      "additionalProperties": {
+        "type": "string"
+      },
+      "title": "Backtests",
+      "type": "object"
+    }
+  },
+  "required": [
+    "document_id",
+    "asset_version_id",
+    "content_hash",
+    "expert",
+    "nature",
+    "available_at",
+    "status"
+  ],
+  "title": "DocumentIngestReceipt",
+  "type": "object",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "plantkg:contracts/1.2.0/DocumentIngestReceipt"
+}

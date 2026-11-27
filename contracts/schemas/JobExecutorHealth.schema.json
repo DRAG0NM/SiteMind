@@ -1,0 +1,35 @@
+{
+  "additionalProperties": false,
+  "description": "JobRunner 只读执行器健康（#69）：线程数与队列深度。",
+  "properties": {
+    "configured_workers": {
+      "minimum": 0,
+      "title": "Configured Workers",
+      "type": "integer"
+    },
+    "alive_workers": {
+      "minimum": 0,
+      "title": "Alive Workers",
+      "type": "integer"
+    },
+    "queue_depth": {
+      "minimum": 0,
+      "title": "Queue Depth",
+      "type": "integer"
+    },
+    "closed": {
+      "default": false,
+      "title": "Closed",
+      "type": "boolean"
+    }
+  },
+  "required": [
+    "configured_workers",
+    "alive_workers",
+    "queue_depth"
+  ],
+  "title": "JobExecutorHealth",
+  "type": "object",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "plantkg:contracts/1.2.0/JobExecutorHealth"
+}

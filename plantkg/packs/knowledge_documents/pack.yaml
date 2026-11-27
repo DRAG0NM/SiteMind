@@ -1,0 +1,10 @@
+# B26 领域包：专家私有知识库。入口在 plantkg/knowledge/documents/pack.py，
+# 登记 workorder_search；nexent.enabled 时再登记按专家注入 document_paths 的钩子。
+name: knowledge_documents
+schema_version: 1
+order: 100
+status: active
+description: 专家私有知识库（B26）：按专家注入 document_paths、历史工单检索 workorder_search
+entrypoint: plantkg.knowledge.documents.pack:install
+provides:
+  tools: [workorder_search]

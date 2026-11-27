@@ -1,0 +1,16 @@
+{
+  "model": "RunInfo",
+  "data": {
+    "run_id": "run-day-20260701",
+    "plant_id": "demo-electronics",
+    "kind": "replay_day",
+    "version_manifest_id": "vm-0003",
+    "clock": {
+      "start": "2026-06-30T16:00:00Z",
+      "end": "2026-07-01T16:00:00Z"
+    },
+    "as_of": "2026-06-30T10:00:00Z",
+    "status": "running",
+    "created_at": "2026-10-30T02:00:00Z"
+  }
+}

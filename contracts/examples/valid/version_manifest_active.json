@@ -1,0 +1,32 @@
+{
+  "model": "VersionManifest",
+  "data": {
+    "version_manifest_id": "vm-0003",
+    "components": {
+      "ontology": {
+        "ref": "ontology@v2",
+        "content_hash": "sha256:b16b13f2f79e168d21b8d9042c6a4fde78754a1ec7cb29acfbfe28e97609b6b0"
+      },
+      "rules": {
+        "ref": "rules@v3",
+        "content_hash": "sha256:4d15f0a8408034b15b01dcab17a1c51cd3f9b609900750b5a382963546c9d6e2"
+      },
+      "parameters": {
+        "ref": "params@v1",
+        "content_hash": "sha256:ccf33ef510d0517efa6cdddddd01865cd37b1f7c81586f73659162e87f15a5a0"
+      },
+      "data_sources": {
+        "ref": "sources@v1",
+        "content_hash": "sha256:0c0b4342758440c832de2ff5ceaf7ddc7bd9aa18c95aa71785444a5acaf870fa"
+      }
+    },
+    "status": "active",
+    "previous_active_id": "vm-0002",
+    "ever_active": true,
+    "created_at": "2026-10-30T00:00:00Z",
+    "activated_at": "2026-10-30T00:01:00Z",
+    "activated_by": "u-reviewer-1",
+    "reason": "发布电价规则 v3",
+    "manifest_hash": "sha256:44e4104dca1ecca2e8c28d2438da097d55cce652fe3961bf5245ca02786da41d"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "additionalProperties": false,
+  "description": "账本复核 SOC 所需的储能参数（来自版本清单固定的配置）。",
+  "properties": {
+    "capacity_kwh": {
+      "exclusiveMinimum": 0,
+      "title": "Capacity Kwh",
+      "type": "number"
+    },
+    "eta_c": {
+      "exclusiveMinimum": 0,
+      "maximum": 1,
+      "title": "Eta C",
+      "type": "number"
+    },
+    "eta_d": {
+      "exclusiveMinimum": 0,
+      "maximum": 1,
+      "title": "Eta D",
+      "type": "number"
+    },
+    "soc_min": {
+      "maximum": 1,
+      "minimum": 0,
+      "title": "Soc Min",
+      "type": "number"
+    },
+    "soc_max": {
+      "maximum": 1,
+      "minimum": 0,
+      "title": "Soc Max",
+      "type": "number"
+    }
+  },
+  "required": [
+    "capacity_kwh",
+    "eta_c",
+    "eta_d",
+    "soc_min",
+    "soc_max"
+  ],
+  "title": "StorageParams",
+  "type": "object",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "plantkg:contracts/1.2.0/StorageParams"
+}

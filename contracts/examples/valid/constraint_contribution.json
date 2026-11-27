@@ -1,0 +1,17 @@
+{
+  "model": "ConstraintContribution",
+  "data": {
+    "rule_id": "rule-job1-window",
+    "pack": "production",
+    "constraint_names": [
+      "production.JOB1.window"
+    ],
+    "refs": [
+      {
+        "kind": "rule",
+        "id": "rule-job1-window"
+      }
+    ],
+    "compiler_version": "operation-window-1"
+  }
+}

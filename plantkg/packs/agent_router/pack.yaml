@@ -1,0 +1,8 @@
+name: agent_router
+schema_version: 1
+order: 110
+status: active
+description: 值守层（B27）：程序准入、事件流订阅、快慢双通道研判、事件单与派发；状态存 SQLite，含召回与慢通道调查工具
+entrypoint: plantkg.agent.router.pack:register
+provides:
+  tools: [recall, trial, ask_operator, escalate, ts_query]

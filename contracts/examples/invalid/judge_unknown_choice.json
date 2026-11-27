@@ -1,0 +1,75 @@
+{
+  "model": "JudgeResult",
+  "base": "judge_result",
+  "expect_error": "门控",
+  "data": {
+    "candidate_id": "oc-0001",
+    "choice": "其他",
+    "score": 0.91,
+    "prob": 0.88,
+    "coverage": 1.0,
+    "backend": "jev",
+    "model": "decision-model-preview",
+    "calibration_version": "cal-jev-1",
+    "orders": [
+      {
+        "order": [
+          "Supply_Air_Temperature_Sensor",
+          "Return_Air_Temperature_Sensor",
+          "Mixed_Air_Temperature_Sensor"
+        ],
+        "choice": "Supply_Air_Temperature_Sensor",
+        "distribution": {
+          "Supply_Air_Temperature_Sensor": 0.9,
+          "Return_Air_Temperature_Sensor": 0.06,
+          "Mixed_Air_Temperature_Sensor": 0.04
+        }
+      },
+      {
+        "order": [
+          "Mixed_Air_Temperature_Sensor",
+          "Supply_Air_Temperature_Sensor",
+          "Return_Air_Temperature_Sensor"
+        ],
+        "choice": "Supply_Air_Temperature_Sensor",
+        "distribution": {
+          "Supply_Air_Temperature_Sensor": 0.92,
+          "Return_Air_Temperature_Sensor": 0.05,
+          "Mixed_Air_Temperature_Sensor": 0.03
+        }
+      },
+      {
+        "order": [
+          "Return_Air_Temperature_Sensor",
+          "Mixed_Air_Temperature_Sensor",
+          "Supply_Air_Temperature_Sensor"
+        ],
+        "choice": "Supply_Air_Temperature_Sensor",
+        "distribution": {
+          "Supply_Air_Temperature_Sensor": 0.91,
+          "Return_Air_Temperature_Sensor": 0.05,
+          "Mixed_Air_Temperature_Sensor": 0.04
+        }
+      }
+    ],
+    "order_agree": true,
+    "cross_backend_agree": null,
+    "top_k": [
+      {
+        "option": "Supply_Air_Temperature_Sensor",
+        "prob": 0.91
+      },
+      {
+        "option": "Return_Air_Temperature_Sensor",
+        "prob": 0.055
+      },
+      {
+        "option": "Mixed_Air_Temperature_Sensor",
+        "prob": 0.035
+      }
+    ],
+    "candidate_recall_source": "vector",
+    "vector_top": "Supply_Air_Temperature_Sensor",
+    "gate_accept": true
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "op": {
+      "title": "Op",
+      "type": "string"
+    },
+    "params": {
+      "additionalProperties": true,
+      "title": "Params",
+      "type": "object"
+    },
+    "version": {
+      "title": "Version",
+      "type": "string"
+    },
+    "note": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Note"
+    }
+  },
+  "required": [
+    "op",
+    "version"
+  ],
+  "title": "TransformStep",
+  "type": "object",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "plantkg:contracts/1.2.0/TransformStep"
+}

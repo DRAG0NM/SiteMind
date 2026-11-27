@@ -1,0 +1,524 @@
+{
+  "$defs": {
+    "ExecutedAction": {
+      "additionalProperties": false,
+      "properties": {
+        "action_id": {
+          "maxLength": 200,
+          "minLength": 1,
+          "title": "Action Id",
+          "type": "string"
+        },
+        "planned_value": {
+          "title": "Planned Value",
+          "type": "number"
+        },
+        "executed_value": {
+          "title": "Executed Value",
+          "type": "number"
+        },
+        "unit": {
+          "$ref": "#/$defs/Unit"
+        },
+        "interval": {
+          "$ref": "#/$defs/Interval"
+        },
+        "curtailed": {
+          "default": 0.0,
+          "title": "Curtailed",
+          "type": "number"
+        },
+        "reason": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Reason"
+        }
+      },
+      "required": [
+        "action_id",
+        "planned_value",
+        "executed_value",
+        "unit",
+        "interval"
+      ],
+      "title": "ExecutedAction",
+      "type": "object"
+    },
+    "Interval": {
+      "additionalProperties": false,
+      "description": "左闭右开 UTC 区间 [start, end)。",
+      "properties": {
+        "start": {
+          "format": "date-time",
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d{1,9})?(Z|[+-]00:?00)$",
+          "title": "Start",
+          "type": "string"
+        },
+        "end": {
+          "format": "date-time",
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d{1,9})?(Z|[+-]00:?00)$",
+          "title": "End",
+          "type": "string"
+        }
+      },
+      "required": [
+        "start",
+        "end"
+      ],
+      "title": "Interval",
+      "type": "object"
+    },
+    "Ledger": {
+      "additionalProperties": false,
+      "description": "账本。balanced 由 B08 LedgerCalculator 判定；契约再独立复核能量平衡、光伏守恒、跨时段连续、\n充放互斥与（给定储能参数时的）SOC 递推。费用按电价规则另算、平移守恒、总表减分表非负等需要外部数据，\n由 B08 validate 负责并写入 violations。",
+      "properties": {
+        "ledger_id": {
+          "maxLength": 200,
+          "minLength": 1,
+          "title": "Ledger Id",
+          "type": "string"
+        },
+        "kind": {
+          "enum": [
+            "plan",
+            "execution"
+          ],
+          "title": "Kind",
+          "type": "string"
+        },
+        "run_id": {
+          "maxLength": 200,
+          "minLength": 1,
+          "title": "Run Id",
+          "type": "string"
+        },
+        "plan_id": {
+          "maxLength": 200,
+          "minLength": 1,
+          "title": "Plan Id",
+          "type": "string"
+        },
+        "plan_revision": {
+          "minimum": 0,
+          "title": "Plan Revision",
+          "type": "integer"
+        },
+        "version_manifest_id": {
+          "maxLength": 200,
+          "minLength": 1,
+          "title": "Version Manifest Id",
+          "type": "string"
+        },
+        "entries": {
+          "items": {
+            "$ref": "#/$defs/LedgerEntry"
+          },
+          "minItems": 1,
+          "title": "Entries",
+          "type": "array"
+        },
+        "total_cost_cny": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Total Cost Cny"
+        },
+        "peak_import_kw": {
+          "minimum": 0,
+          "title": "Peak Import Kw",
+          "type": "number"
+        },
+        "tolerance_policy_version": {
+          "maxLength": 200,
+          "minLength": 1,
+          "title": "Tolerance Policy Version",
+          "type": "string"
+        },
+        "calculator_version": {
+          "maxLength": 200,
+          "minLength": 1,
+          "title": "Calculator Version",
+          "type": "string"
+        },
+        "source_refs": {
+          "items": {
+            "type": "string"
+          },
+          "minItems": 1,
+          "title": "Source Refs",
+          "type": "array"
+        },
+        "storage": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/StorageParams"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "balanced": {
+          "title": "Balanced",
+          "type": "boolean"
+        },
+        "violations": {
+          "default": [],
+          "items": {
+            "type": "string"
+          },
+          "title": "Violations",
+          "type": "array"
+        },
+        "objective_gap_cny": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Objective Gap Cny"
+        },
+        "objective_value_cny": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Objective Value Cny"
+        },
+        "objective_terms": {
+          "anyOf": [
+            {
+              "additionalProperties": {
+                "type": "number"
+              },
+              "type": "object"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Objective Terms"
+        }
+      },
+      "required": [
+        "ledger_id",
+        "kind",
+        "run_id",
+        "plan_id",
+        "plan_revision",
+        "version_manifest_id",
+        "entries",
+        "total_cost_cny",
+        "peak_import_kw",
+        "tolerance_policy_version",
+        "calculator_version",
+        "source_refs",
+        "balanced"
+      ],
+      "title": "Ledger",
+      "type": "object"
+    },
+    "LedgerEntry": {
+      "additionalProperties": false,
+      "description": "一个时段的交流侧账本（非负量，kW 时段平均、kWh 时段电量）。",
+      "properties": {
+        "interval": {
+          "$ref": "#/$defs/Interval"
+        },
+        "pv_available_kwh": {
+          "minimum": 0,
+          "title": "Pv Available Kwh",
+          "type": "number"
+        },
+        "pv_used_kwh": {
+          "minimum": 0,
+          "title": "Pv Used Kwh",
+          "type": "number"
+        },
+        "pv_curtailed_kwh": {
+          "minimum": 0,
+          "title": "Pv Curtailed Kwh",
+          "type": "number"
+        },
+        "grid_import_kwh": {
+          "minimum": 0,
+          "title": "Grid Import Kwh",
+          "type": "number"
+        },
+        "grid_export_kwh": {
+          "minimum": 0,
+          "title": "Grid Export Kwh",
+          "type": "number"
+        },
+        "charge_kwh": {
+          "minimum": 0,
+          "title": "Charge Kwh",
+          "type": "number"
+        },
+        "discharge_kwh": {
+          "minimum": 0,
+          "title": "Discharge Kwh",
+          "type": "number"
+        },
+        "load_kwh": {
+          "minimum": 0,
+          "title": "Load Kwh",
+          "type": "number"
+        },
+        "energy_start_kwh": {
+          "minimum": 0,
+          "title": "Energy Start Kwh",
+          "type": "number"
+        },
+        "energy_end_kwh": {
+          "minimum": 0,
+          "title": "Energy End Kwh",
+          "type": "number"
+        },
+        "soc_end": {
+          "maximum": 1,
+          "minimum": 0,
+          "title": "Soc End",
+          "type": "number"
+        },
+        "price_cny_per_kwh": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Price Cny Per Kwh"
+        },
+        "cost_cny": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Cost Cny"
+        },
+        "residual_kwh": {
+          "title": "Residual Kwh",
+          "type": "number"
+        },
+        "load_breakdown": {
+          "anyOf": [
+            {
+              "additionalProperties": {
+                "type": "number"
+              },
+              "propertyNames": {
+                "$ref": "#/$defs/LoadCategory"
+              },
+              "type": "object"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Load Breakdown"
+        }
+      },
+      "required": [
+        "interval",
+        "pv_available_kwh",
+        "pv_used_kwh",
+        "pv_curtailed_kwh",
+        "grid_import_kwh",
+        "grid_export_kwh",
+        "charge_kwh",
+        "discharge_kwh",
+        "load_kwh",
+        "energy_start_kwh",
+        "energy_end_kwh",
+        "soc_end",
+        "residual_kwh"
+      ],
+      "title": "LedgerEntry",
+      "type": "object"
+    },
+    "LoadCategory": {
+      "description": "负荷分项（v0.8 账本 load_breakdown）。",
+      "enum": [
+        "elevator",
+        "hvac",
+        "air_compressor",
+        "lighting",
+        "process",
+        "base"
+      ],
+      "title": "LoadCategory",
+      "type": "string"
+    },
+    "StorageParams": {
+      "additionalProperties": false,
+      "description": "账本复核 SOC 所需的储能参数（来自版本清单固定的配置）。",
+      "properties": {
+        "capacity_kwh": {
+          "exclusiveMinimum": 0,
+          "title": "Capacity Kwh",
+          "type": "number"
+        },
+        "eta_c": {
+          "exclusiveMinimum": 0,
+          "maximum": 1,
+          "title": "Eta C",
+          "type": "number"
+        },
+        "eta_d": {
+          "exclusiveMinimum": 0,
+          "maximum": 1,
+          "title": "Eta D",
+          "type": "number"
+        },
+        "soc_min": {
+          "maximum": 1,
+          "minimum": 0,
+          "title": "Soc Min",
+          "type": "number"
+        },
+        "soc_max": {
+          "maximum": 1,
+          "minimum": 0,
+          "title": "Soc Max",
+          "type": "number"
+        }
+      },
+      "required": [
+        "capacity_kwh",
+        "eta_c",
+        "eta_d",
+        "soc_min",
+        "soc_max"
+      ],
+      "title": "StorageParams",
+      "type": "object"
+    },
+    "Unit": {
+      "description": "内部标准单位。新增单位是契约变更。",
+      "enum": [
+        "kW",
+        "kWh",
+        "1",
+        "CNY",
+        "CNY/kWh",
+        "CNY/kW",
+        "h",
+        "min",
+        "degC",
+        "%",
+        "count",
+        "bar/h",
+        "s"
+      ],
+      "title": "Unit",
+      "type": "string"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "run_id": {
+      "maxLength": 200,
+      "minLength": 1,
+      "title": "Run Id",
+      "type": "string"
+    },
+    "plan_id": {
+      "maxLength": 200,
+      "minLength": 1,
+      "title": "Plan Id",
+      "type": "string"
+    },
+    "plan_revision": {
+      "minimum": 0,
+      "title": "Plan Revision",
+      "type": "integer"
+    },
+    "event_seq": {
+      "minimum": 0,
+      "title": "Event Seq",
+      "type": "integer"
+    },
+    "executed": {
+      "items": {
+        "$ref": "#/$defs/ExecutedAction"
+      },
+      "title": "Executed",
+      "type": "array"
+    },
+    "rejected": {
+      "default": [],
+      "items": {
+        "type": "string"
+      },
+      "title": "Rejected",
+      "type": "array"
+    },
+    "ledger": {
+      "$ref": "#/$defs/Ledger"
+    },
+    "soc_deviation": {
+      "default": 0.0,
+      "title": "Soc Deviation",
+      "type": "number"
+    },
+    "forecast_error": {
+      "additionalProperties": {
+        "type": "number"
+      },
+      "title": "Forecast Error",
+      "type": "object"
+    },
+    "idempotency_key": {
+      "maxLength": 200,
+      "minLength": 1,
+      "title": "Idempotency Key",
+      "type": "string"
+    }
+  },
+  "required": [
+    "run_id",
+    "plan_id",
+    "plan_revision",
+    "event_seq",
+    "executed",
+    "ledger",
+    "idempotency_key"
+  ],
+  "title": "ExecutionResult",
+  "type": "object",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "plantkg:contracts/1.2.0/ExecutionResult"
+}

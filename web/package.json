@@ -1,0 +1,43 @@
+{
+  "name": "plantkg-command-center",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host 127.0.0.1",
+    "dev:showcase": "vite --config vite.showcase.config.ts --host 127.0.0.1",
+    "build": "tsc -b && vite build",
+    "build:showcase": "tsc -b && vite build --config vite.showcase.config.ts",
+    "preview:showcase": "vite preview --config vite.showcase.config.ts --port 4173",
+    "test": "vitest run",
+    "gen:types": "node scripts/gen-types.mjs"
+  },
+  "dependencies": {
+    "@antv/g6": "^5.1.1",
+    "@tailwindcss/vite": "^4.0.0",
+    "@vitejs/plugin-react": "^6.2.1",
+    "clsx": "^2.1.1",
+    "echarts": "^6.0.0",
+    "lucide-react": "^0.468.0",
+    "motion": "^12.0.0",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0",
+    "tailwind-merge": "^3.0.0",
+    "tailwindcss": "^4.0.0",
+    "typescript": "~5.9.3",
+    "vite": "^8.3.6",
+    "zustand": "^5.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^26.6.6",
+    "@types/react": "^19.2.0",
+    "@types/react-dom": "^19.2.0",
+    "jsdom": "^27.4.0",
+    "json-schema-to-typescript": "^16.0.0",
+    "vite-plugin-singlefile": "^2.3.4",
+    "vitest": "^4.0.0"
+  },
+  "engines": {
+    "node": "^20.19.0 || ^22.12.0 || >=24.0.0"
+  }
+}

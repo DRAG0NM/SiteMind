@@ -1,0 +1,4 @@
+plant_name: {type: string, description: 厂区名称}
+experts: {type: object, description: 领域 → 负责范围}
+event_types: {type: array, description: 准入的事件类型}
+report_style: {type: string, description: 汇报口径}

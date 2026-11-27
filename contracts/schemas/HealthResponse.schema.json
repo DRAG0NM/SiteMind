@@ -1,0 +1,57 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "status": {
+      "enum": [
+        "ok",
+        "degraded"
+      ],
+      "title": "Status",
+      "type": "string"
+    },
+    "profile": {
+      "enum": [
+        "mock",
+        "dev",
+        "demo",
+        "prod",
+        "evaluation"
+      ],
+      "title": "Profile",
+      "type": "string"
+    },
+    "service_version": {
+      "title": "Service Version",
+      "type": "string"
+    },
+    "contract_version": {
+      "title": "Contract Version",
+      "type": "string"
+    },
+    "dependencies": {
+      "additionalProperties": {
+        "enum": [
+          "ok",
+          "disabled",
+          "unavailable",
+          "unchecked",
+          "placeholder",
+          "fake"
+        ],
+        "type": "string"
+      },
+      "title": "Dependencies",
+      "type": "object"
+    }
+  },
+  "required": [
+    "status",
+    "profile",
+    "service_version",
+    "contract_version"
+  ],
+  "title": "HealthResponse",
+  "type": "object",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "plantkg:contracts/1.2.0/HealthResponse"
+}

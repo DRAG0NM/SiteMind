@@ -1,0 +1,7 @@
+name: evidence_chain
+schema_version: 1
+order: 140
+status: active
+description: B31 场景动作和裁决的证据记录钩子
+entrypoint: plantkg.knowledge.evidence.hooks:register
+provides: {}

@@ -1,0 +1,46 @@
+{
+ "note": "HIPE VacuumPump1 一次完整运行（源 2017-10-23 09:45～12:45 Europe/Berlin，按当地钟面映射到 2026-07-01 Asia/Shanghai）；只作工序形状，峰值归一为 1。由 operation_shape 从 B05 HipeAdapter 输出生成。",
+ "license": "CC BY 4.0",
+ "source_id": "hipe",
+ "source_version": "1.0.1",
+ "source_bundle_id": "b05-hipe-2521f114b56a84f50fbc7b8a",
+ "content_hash": "sha256:d948f7788ecbbddc6e0ba9bf1e5cc3caa0edeb12a21ed2272473302aa4a286f9",
+ "meter": "VacuumPump1",
+ "line_range": [
+  6387,
+  8335
+ ],
+ "interval": {
+  "start": "2026-07-01T01:45:00Z",
+  "end": "2026-07-01T04:45:00Z"
+ },
+ "factor": 25.0,
+ "configured_kw": [
+  20.579858,
+  23.55675,
+  22.387049,
+  22.164295,
+  22.10456,
+  22.010364,
+  22.053281,
+  21.938698,
+  21.712353,
+  21.608198,
+  21.798932,
+  7.585128
+ ],
+ "fractions": [
+  0.873629,
+  1.0,
+  0.950345,
+  0.940889,
+  0.938354,
+  0.934355,
+  0.936177,
+  0.931313,
+  0.921704,
+  0.917283,
+  0.925379,
+  0.321994
+ ]
+}

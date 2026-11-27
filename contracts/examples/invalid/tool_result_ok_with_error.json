@@ -1,0 +1,24 @@
+{
+  "model": "ToolResult",
+  "base": "tool_result_done",
+  "expect_error": "error",
+  "data": {
+    "ok": true,
+    "business_status": "done",
+    "data": {
+      "plan_id": "plan-20260701",
+      "revision": 1,
+      "actions": 2,
+      "cost_cny": 6235.4
+    },
+    "evidence_ids": [
+      "ev-0011"
+    ],
+    "run_id": "run-day-20260701",
+    "version_manifest_id": "vm-0003",
+    "error": {
+      "code": "PLANTKG_E_INTERNAL",
+      "message": "x"
+    }
+  }
+}

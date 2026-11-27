@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "MaintIE frozen predictions keyed by original record index",
+  "type": "object",
+  "propertyNames": {"pattern": "^(0|[1-9][0-9]*)$"},
+  "additionalProperties": {
+    "type": "object",
+    "required": ["entities", "relations", "uncertainty", "impact"],
+    "properties": {
+      "entities": {
+        "type": "array",
+        "items": {
+          "type": "object", "required": ["start", "end", "type"],
+          "properties": {
+            "start": {"type": "integer", "minimum": 0},
+            "end": {"type": "integer", "minimum": 1},
+            "type": {"type": "string", "pattern": "^(PhysicalObject|Activity|State|Process|Property)(/.*)?$"}
+          }
+        }
+      },
+      "relations": {
+        "type": "array",
+        "items": {
+          "type": "object", "required": ["head", "tail", "type"],
+          "properties": {
+            "head": {"type": "integer", "minimum": 0},
+            "tail": {"type": "integer", "minimum": 0},
+            "type": {"type": "string", "pattern": "^(isA|contains|hasPart|hasParticipant|hasProperty)(/.*)?$"}
+          }
+        }
+      },
+      "uncertainty": {"type": "number", "minimum": 0},
+      "impact": {"type": "number", "minimum": 0}
+    }
+  }
+}

@@ -1,0 +1,8 @@
+name: equipment
+schema_version: 1
+order: 90
+status: active
+description: 设备监测专家（B22）：空压泄漏、电机过载与计量异常研判；切换备用机与维修工单。propose 工具由 B23 包装登记；场景专家与故障/观测仿真器经 SCENARIO_HOOK/SIM_HOOK 接入。
+entrypoint: plantkg.experts.equipment:install
+provides:
+  tools: [sensor_query]

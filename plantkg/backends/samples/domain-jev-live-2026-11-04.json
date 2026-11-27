@@ -1,0 +1,103 @@
+{
+  "run_id": "b24-domain-smoke",
+  "event_id": "b24-power-surge",
+  "source_ref": "config://b24/power-surge-demo-v1",
+  "event_nature": "synthetic",
+  "result_origin": "live",
+  "real_call_status": "performed",
+  "result": {
+    "candidate_id": "b24-power-surge",
+    "choice": "equipment",
+    "score": 0.9501980198019803,
+    "prob": null,
+    "coverage": 1.0,
+    "backend": "jev",
+    "model": "decision-model-preview",
+    "calibration_version": null,
+    "orders": [
+      {
+        "order": [
+          "energy",
+          "elevator",
+          "hvac",
+          "equipment"
+        ],
+        "choice": "equipment",
+        "distribution": {
+          "energy": 0.01,
+          "elevator": 0.0,
+          "hvac": 0.0,
+          "equipment": 0.99
+        }
+      },
+      {
+        "order": [
+          "elevator",
+          "hvac",
+          "equipment",
+          "energy"
+        ],
+        "choice": "equipment",
+        "distribution": {
+          "energy": 0.04950495049504951,
+          "elevator": 0.009900990099009901,
+          "hvac": 0.0,
+          "equipment": 0.9405940594059405
+        }
+      },
+      {
+        "order": [
+          "equipment",
+          "hvac",
+          "elevator",
+          "energy"
+        ],
+        "choice": "equipment",
+        "distribution": {
+          "energy": 0.06,
+          "elevator": 0.02,
+          "hvac": 0.0,
+          "equipment": 0.92
+        }
+      }
+    ],
+    "order_agree": true,
+    "cross_backend_agree": null,
+    "top_k": [
+      {
+        "option": "equipment",
+        "prob": 0.9501980198019803
+      },
+      {
+        "option": "energy",
+        "prob": 0.03983498349834983
+      },
+      {
+        "option": "elevator",
+        "prob": 0.009966996699669967
+      }
+    ],
+    "candidate_recall_source": "manual",
+    "vector_top": null,
+    "gate_accept": true,
+    "gate_kind": "domain",
+    "distribution": {
+      "energy": 0.03983498349834983,
+      "elevator": 0.009966996699669967,
+      "hvac": 0.0,
+      "equipment": 0.9501980198019803
+    }
+  },
+  "recorded_date": "2026-11-04",
+  "timezone": "Asia/Shanghai",
+  "request_count": 3,
+  "live_call_budget": 3,
+  "authorization": "用户追加授权：使用现有额度调用 3 次",
+  "input_content": "08:05 行政楼早高峰电梯拥堵，车间空压机启动，总用电突增逼近变压器上限，储能 SOC 20%。",
+  "instructions": "Identify the domain most responsible for the sudden power increase.",
+  "notes": [
+    "原始分布逐顺序归一后平均，不是校准概率",
+    "单条合成事件，无独立真值，不能据此报告准确率",
+    "本记录未采集墙钟耗时、服务端 latency_ms 或 token 数，不报告延迟与费用金额"
+  ]
+}

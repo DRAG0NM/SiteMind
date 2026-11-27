@@ -1,0 +1,31 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "agent_run_id": {
+      "maxLength": 200,
+      "minLength": 1,
+      "title": "Agent Run Id",
+      "type": "string"
+    },
+    "trace_id": {
+      "maxLength": 200,
+      "minLength": 1,
+      "title": "Trace Id",
+      "type": "string"
+    },
+    "stream": {
+      "const": "text/event-stream",
+      "default": "text/event-stream",
+      "title": "Stream",
+      "type": "string"
+    }
+  },
+  "required": [
+    "agent_run_id",
+    "trace_id"
+  ],
+  "title": "AgentRunAccepted",
+  "type": "object",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "plantkg:contracts/1.2.0/AgentRunAccepted"
+}

@@ -1,0 +1,128 @@
+{
+  "$defs": {
+    "DataNature": {
+      "enum": [
+        "measured",
+        "derived",
+        "configured",
+        "synthetic",
+        "simulated"
+      ],
+      "title": "DataNature",
+      "type": "string"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "asset_version_id": {
+      "description": "asset://{行业}/{来源哈希前8位}/{类型}/{定位}；内容变即新版本",
+      "pattern": "^asset://[a-z0-9_-]+/[0-9a-f]{8}/[a-z0-9_-]+/.+$",
+      "title": "Asset Version Id",
+      "type": "string"
+    },
+    "content_hash": {
+      "description": "完整 sha256，去重与完整性校验用",
+      "pattern": "^sha256:[0-9a-f]{64}$",
+      "title": "Content Hash",
+      "type": "string"
+    },
+    "industry": {
+      "maxLength": 200,
+      "minLength": 1,
+      "title": "Industry",
+      "type": "string"
+    },
+    "asset_type": {
+      "maxLength": 200,
+      "minLength": 1,
+      "title": "Asset Type",
+      "type": "string"
+    },
+    "source_uri": {
+      "title": "Source Uri",
+      "type": "string"
+    },
+    "media_type": {
+      "title": "Media Type",
+      "type": "string"
+    },
+    "nature": {
+      "$ref": "#/$defs/DataNature"
+    },
+    "available_at": {
+      "format": "date-time",
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d{1,9})?(Z|[+-]00:?00)$",
+      "title": "Available At",
+      "type": "string"
+    },
+    "ingested_at": {
+      "format": "date-time",
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d{1,9})?(Z|[+-]00:?00)$",
+      "title": "Ingested At",
+      "type": "string"
+    },
+    "parent_version_id": {
+      "anyOf": [
+        {
+          "description": "asset://{行业}/{来源哈希前8位}/{类型}/{定位}；内容变即新版本",
+          "pattern": "^asset://[a-z0-9_-]+/[0-9a-f]{8}/[a-z0-9_-]+/.+$",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Parent Version Id"
+    },
+    "entity_ids": {
+      "default": [],
+      "items": {
+        "description": "entity://{厂区}/{类型}/{编号}；不随资料修改而变",
+        "pattern": "^entity://[A-Za-z0-9_-]+/[a-z0-9_-]+/[A-Za-z0-9_.-]+$",
+        "type": "string"
+      },
+      "title": "Entity Ids",
+      "type": "array"
+    },
+    "license": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "License"
+    },
+    "title": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Title"
+    }
+  },
+  "required": [
+    "asset_version_id",
+    "content_hash",
+    "industry",
+    "asset_type",
+    "source_uri",
+    "media_type",
+    "nature",
+    "available_at",
+    "ingested_at"
+  ],
+  "title": "AssetVersion",
+  "type": "object",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "plantkg:contracts/1.2.0/AssetVersion"
+}

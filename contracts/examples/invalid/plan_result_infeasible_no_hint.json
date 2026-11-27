@@ -1,0 +1,21 @@
+{
+  "model": "PlanResult",
+  "base": "plan_result_infeasible",
+  "expect_error": "冲突线索",
+  "data": {
+    "solver_status": "infeasible",
+    "plan": null,
+    "solver": {
+      "name": "highs",
+      "version": "1.15.1",
+      "params": {
+        "time_limit": 20,
+        "mip_rel_gap": 0.001,
+        "threads": 1,
+        "random_seed": 0
+      }
+    },
+    "elapsed_s": 0.08,
+    "conflict_hints": []
+  }
+}

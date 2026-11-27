@@ -1,0 +1,62 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "metric": {
+      "maxLength": 200,
+      "minLength": 1,
+      "title": "Metric",
+      "type": "string"
+    },
+    "dataset": {
+      "maxLength": 200,
+      "minLength": 1,
+      "title": "Dataset",
+      "type": "string"
+    },
+    "split_id": {
+      "maxLength": 200,
+      "minLength": 1,
+      "title": "Split Id",
+      "type": "string"
+    },
+    "points": {
+      "items": {
+        "maxItems": 2,
+        "minItems": 2,
+        "prefixItems": [
+          {
+            "type": "number"
+          },
+          {
+            "type": "number"
+          }
+        ],
+        "type": "array"
+      },
+      "title": "Points",
+      "type": "array"
+    },
+    "note": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Note"
+    }
+  },
+  "required": [
+    "metric",
+    "dataset",
+    "split_id",
+    "points"
+  ],
+  "title": "MetricSeries",
+  "type": "object",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "plantkg:contracts/1.2.0/MetricSeries"
+}

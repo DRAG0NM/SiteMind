@@ -1,0 +1,26 @@
+{
+  "model": "RuleCandidate",
+  "data": {
+    "candidate_id": "rc-0001",
+    "draft": {
+      "kind": "tariff_period",
+      "value": 1.0812,
+      "unit": "CNY/kWh"
+    },
+    "alternatives": [
+      {
+        "kind": "tariff_period",
+        "value": 1081.2,
+        "unit": "CNY/kWh",
+        "why": "单位误读 元/MWh"
+      }
+    ],
+    "extractor_version": "extract-1",
+    "source_asset_version": "asset://manufacturing/9581b4ac/policy/tou-2026",
+    "locator": {
+      "page": 2,
+      "clause": "第三条"
+    },
+    "confidence": 0.82
+  }
+}

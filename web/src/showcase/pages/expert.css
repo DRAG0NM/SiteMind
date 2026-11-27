@@ -1,0 +1,484 @@
+/* 五个内容页共用样式：分节线组织、窄体数字、只用 theme.css 的主题变量。 */
+
+.ex-page {
+  grid-column: 1 / -1;
+  align-self: stretch;
+  box-sizing: border-box;
+  height: 100%;
+  padding: 12px;
+  min-width: 0;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  overflow: hidden;
+  scrollbar-width: thin;
+  scrollbar-color: var(--line-strong) transparent;
+}
+.ex-page::-webkit-scrollbar { width: 8px; height: 8px; }
+.ex-page::-webkit-scrollbar-thumb { background: var(--line-strong); border-radius: 4px; }
+.ex-page::-webkit-scrollbar-track { background: transparent; }
+
+/* ---------- KPI ---------- */
+.ex-kpis {
+  flex: none;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+}
+/* 能源页多一个“光伏今日发电”读数，与其他页的四列区分开。 */
+.ex-kpis-5 { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+.ex-kpi {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  padding: 10px 16px 11px;
+  background: rgba(18, 23, 29, 0.95);
+  border: 1px solid var(--line);
+  border-radius: var(--r-panel);
+}
+.ex-kpi-label { font-size: 13px; color: var(--text-2); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.ex-kpi-line { display: flex; align-items: baseline; gap: 6px; min-width: 0; }
+.ex-kpi-line b {
+  font-family: var(--num);
+  font-size: 34px;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.01em;
+  line-height: 1.1;
+  color: var(--text);
+}
+.ex-kpi-unit { font-size: 13px; color: var(--text-3); white-space: nowrap; }
+.ex-kpi-note { font-size: 12px; color: var(--text-3); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.ex-kpi.accent .ex-kpi-line b { color: var(--accent); }
+
+/* ---------- 面板与分节 ---------- */
+.ex-panel {
+  min-width: 0;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  background: rgba(18, 23, 29, 0.95);
+  border: 1px solid var(--line);
+  border-radius: var(--r-panel);
+}
+.ex-head {
+  flex: none;
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  min-width: 0;
+  padding: 11px 16px;
+  border-bottom: 1px solid var(--line-soft);
+}
+.ex-head h2 { margin: 0; font-size: 16px; font-weight: 700; white-space: nowrap; }
+.ex-sub,
+.ex-meta {
+  min-width: 0;
+  font-size: 13px;
+  color: var(--text-3);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.ex-meta { margin-left: auto; flex: none; }
+.ex-meter { flex: none; font-family: var(--num); font-size: 13px; font-variant-numeric: tabular-nums; color: var(--text-3); }
+.ex-push { margin-left: auto; flex: none; }
+.ex-body {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 12px 16px;
+}
+.ex-body.flush { padding: 0; }
+
+.ex-label { font-size: 13px; color: var(--text-2); }
+.ex-text { margin: 0; font-size: 14px; line-height: 1.7; color: var(--text-2); overflow-wrap: anywhere; }
+.ex-dim { color: var(--text-3); }
+.ex-empty {
+  padding: 14px 16px;
+  font-size: 13px;
+  line-height: 1.7;
+  color: var(--text-3);
+  overflow-wrap: anywhere;
+}
+.ex-empty-inline { padding: 10px 0; font-size: 13px; line-height: 1.7; color: var(--text-3); }
+.ex-note { font-size: 12px; line-height: 1.6; color: var(--text-3); overflow-wrap: anywhere; }
+.ex-foot { flex: none; padding: 10px 16px; border-top: 1px solid var(--line-soft); font-size: 12px; line-height: 1.6; color: var(--text-3); }
+.ex-col { min-width: 0; min-height: 0; display: flex; flex-direction: column; gap: 12px; }
+.ex-col > .ex-panel { flex: none; }
+.ex-col.scroll { overflow: auto; scrollbar-width: thin; }
+
+/* ---------- 小按钮 ---------- */
+.ex-btn {
+  height: 28px;
+  padding: 0 10px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  border: 1px solid var(--line-strong);
+  border-radius: var(--r-btn);
+  background: var(--panel-2);
+  color: var(--text-2);
+  font: inherit;
+  font-size: 13px;
+  white-space: nowrap;
+  transition: border-color var(--t-fast), background var(--t-fast), color var(--t-fast);
+}
+.ex-btn:hover { border-color: var(--line-hover); background: var(--panel-3); color: var(--text); }
+.ex-btn:active { background: var(--panel); }
+.ex-btn.on { border-color: var(--text); background: var(--panel-3); color: var(--text); }
+.ex-btn.on:hover { border-color: var(--text); color: var(--text); }
+.ex-btn:disabled,
+.ex-btn[aria-disabled='true'] { opacity: 0.45; cursor: not-allowed; }
+.ex-btn:disabled:hover { border-color: var(--line-strong); background: var(--panel-2); color: var(--text-2); }
+
+.ex-tag {
+  display: inline-flex;
+  align-items: center;
+  height: 20px;
+  padding: 0 7px;
+  border: 1px solid var(--line);
+  border-radius: var(--r-btn);
+  font-size: 12px;
+  color: var(--text-2);
+  white-space: nowrap;
+}
+.ex-tag.on { border-color: var(--agent); background: var(--agent-wash); color: var(--agent); }
+.ex-tag.hot { border-color: var(--accent); background: var(--accent-wash); color: var(--accent); }
+.ex-pending { display: flex; align-items: center; gap: 10px; padding: 7px 12px; margin-top: 8px; border: 1px solid var(--accent-wash-line); border-radius: var(--r-btn); background: var(--accent-wash); }
+.ex-pending-text { flex: 1; min-width: 0; font-size: 13px; line-height: 1.55; color: var(--accent-pale); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.ex-tag.off { color: var(--text-3); }
+
+/* ---------- 表格 ---------- */
+.ex-scroll { flex: 1; min-width: 0; min-height: 0; overflow: auto; scrollbar-width: thin; }
+.ex-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+.ex-table th {
+  padding: 5px 8px;
+  background: var(--panel-2);
+  color: var(--text-2);
+  font-size: 12px;
+  font-weight: 500;
+  text-align: left;
+  white-space: nowrap;
+}
+.ex-table td {
+  padding: 5px 8px;
+  border-bottom: 1px solid var(--line-soft);
+  color: var(--text-2);
+  vertical-align: top;
+  overflow-wrap: anywhere;
+}
+.ex-table tr:last-child td { border-bottom: 0; }
+.ex-table .n { color: var(--text); }
+.ex-table tr.on td { background: var(--panel-3); }
+.ex-table .ex-strong { color: var(--text); font-weight: 600; }
+.ex-empty-cell { color: var(--text-3) !important; padding: 14px 8px !important; }
+.ex-mini { position: relative; height: 3px; margin-top: 5px; min-width: 36px; background: var(--line); }
+.ex-mini i { position: absolute; left: 0; top: 0; bottom: 0; background: var(--accent); }
+.ex-event { display: flex; align-items: baseline; gap: 8px; padding: 8px 16px; border-bottom: 1px solid var(--line-soft); }
+.ex-event:last-child { border-bottom: 0; }
+.ex-event > .n { flex: none; font-size: 12px; color: var(--text-3); }
+.ex-event > .ex-tag { flex: none; }
+.ex-event .ex-text { flex: 1; min-width: 0; font-size: 13px; line-height: 1.6; }
+.ex-chart-block { flex: 1; min-height: 220px; display: flex; flex-direction: column; gap: 8px; padding: 12px 16px 14px; }
+
+/* ---------- 主 Agent：裁决条、决策链、候选方案 ---------- */
+.ex-agent-main { flex: 1 1 auto; min-height: 0; display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr); gap: 12px; }
+.ex-main { flex: 1 1 auto; min-height: 0; display: grid; grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr); gap: 12px; }
+.ex-equipment-left {
+  min-width: 0;
+  min-height: 0;
+  display: grid;
+  grid-template-rows: minmax(238px, 1fr) minmax(258px, 1.1fr);
+  gap: 12px;
+  overflow: hidden;
+}
+.ex-agent-left { min-width: 0; min-height: 0; display: flex; flex-direction: column; gap: 12px; }
+/* 裁决面板吃掉剩余高度，内容多了在面板内部滚动；自主等级和问答固定在首屏内。 */
+.ex-decision { flex: 1 1 auto; min-height: 0; overflow: hidden; }
+.ex-decision-body { flex: 1 1 auto; min-height: 0; overflow-y: auto; display: flex; flex-direction: column; gap: 12px; padding: 12px 16px 16px; }
+.ex-verdict {
+  flex: none;
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  padding: 8px 14px;
+  border: 1px solid var(--agent-band-line);
+  border-radius: var(--r-btn);
+  background: var(--agent-band);
+  min-width: 0;
+}
+.ex-verdict b { font-size: 14px; color: var(--agent); white-space: nowrap; }
+.ex-verdict span { font-size: 13px; color: var(--agent-hi); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.ex-split {
+  flex: none;
+  min-height: 0;
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.25fr);
+  gap: 18px;
+}
+.ex-chain, .ex-candidates { min-width: 0; min-height: 0; display: flex; flex-direction: column; gap: 6px; }
+.ex-chain-list { flex: none; margin: 0; padding: 0; list-style: none; }
+.ex-chain-list li {
+  display: grid;
+  grid-template-columns: 16px minmax(0, 1fr) auto;
+  gap: 8px;
+  align-items: baseline;
+  padding: 7px 0;
+  border-bottom: 1px solid var(--line-soft);
+}
+.ex-chain-list li:last-child { border-bottom: 0; }
+.ex-step-n { font-size: 13px; color: var(--text-2); }
+.ex-step-main { min-width: 0; display: flex; flex-direction: column; gap: 1px; }
+.ex-step-main b { font-size: 14px; font-weight: 500; color: var(--text); }
+.ex-step-main small { font-size: 12px; line-height: 1.5; color: var(--text-3); overflow-wrap: anywhere; }
+.ex-step-meta { font-size: 12px; color: var(--text-2); white-space: nowrap; }
+
+/* ---------- 自主等级 ---------- */
+.ex-levels { flex: 0 1 auto; min-height: 0; overflow: hidden; }
+.ex-levels-body { min-height: 0; overflow-y: auto; padding: 12px 16px 14px; display: flex; flex-direction: column; gap: 8px; }
+.ex-levels-board { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+.ex-level-col {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 8px 10px 6px;
+  border: 1px solid var(--line-soft);
+  border-radius: var(--r-btn);
+  background: var(--panel-2);
+}
+.ex-level-head { display: flex; align-items: baseline; gap: 8px; padding-bottom: 5px; margin-bottom: 3px; border-bottom: 1px solid var(--line-soft); }
+.ex-level-head span { font-size: 12px; color: var(--text-2); }
+.ex-level-head b { margin-left: auto; font-size: 12px; color: var(--text-2); white-space: nowrap; }
+.ex-level-item {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  padding: 3px 0;
+  border-bottom: 1px solid var(--line-soft);
+  font-size: 13px;
+  color: var(--text);
+}
+.ex-level-item:last-child { border-bottom: 0; }
+.ex-level-item small { margin-left: auto; font-size: 12px; color: var(--text-3); white-space: nowrap; }
+.ex-level-none { padding: 4px 0; font-size: 12px; color: var(--text-3); }
+
+/* ---------- 运维问答 ---------- */
+.ex-qa { flex: 1; }
+.ex-thread { flex: 1; min-height: 0; display: flex; flex-direction: column; gap: 10px; padding: 12px 16px; overflow: auto; scrollbar-width: thin; }
+.ex-bubble-q {
+  align-self: flex-end;
+  max-width: 92%;
+  padding: 9px 14px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: var(--panel-2);
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--text);
+  overflow-wrap: anywhere;
+}
+.ex-bubble-a {
+  padding: 12px 14px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: var(--panel-2);
+  font-size: 14px;
+  line-height: 1.75;
+  color: var(--text-2);
+  overflow-wrap: anywhere;
+}
+.ex-bubble-meta { display: flex; flex-wrap: wrap; gap: 4px 10px; margin-bottom: 8px; font-size: 12px; color: var(--text-3); }
+.ex-tools { display: flex; flex-direction: column; gap: 4px; margin-bottom: 10px; padding: 8px 10px; border-radius: var(--r-btn); background: var(--bg); }
+.ex-tool { display: flex; gap: 8px; align-items: baseline; font-size: 12px; line-height: 1.5; color: var(--text-2); }
+.ex-tool i { flex: none; width: 6px; height: 6px; border-radius: 50%; background: var(--agent); margin-top: 6px; }
+.ex-tool small { margin-left: auto; font-family: var(--num); font-variant-numeric: tabular-nums; color: var(--text-3); white-space: nowrap; }
+.ex-refs { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
+.ex-presets { flex: none; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; padding: 12px 16px; border-top: 1px solid var(--line-soft); }
+.ex-preset { height: auto; min-height: 30px; padding: 6px 10px; white-space: normal; text-align: left; line-height: 1.4; }
+
+/* ---------- 专家判断 ---------- */
+.ex-judge { min-height: 0; }
+.ex-judge-body { padding: 12px 16px 14px; gap: 10px; }
+.ex-facts { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+.ex-facts.two { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.ex-fact {
+  min-width: 0;
+  padding: 8px 10px;
+  border-radius: var(--r-btn);
+  background: var(--panel-2);
+}
+.ex-fact span { display: block; font-size: 12px; color: var(--text-3); }
+.ex-fact b { display: block; margin-top: 2px; font-size: 14px; font-weight: 500; line-height: 1.45; color: var(--text); overflow-wrap: anywhere; }
+.ex-fact b.n { font-weight: 600; }
+.ex-fact b.or { color: var(--accent); }
+.ex-actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: auto; padding-top: 4px; }
+
+/* ---------- 图表 ---------- */
+.ex-chart-wrap,
+.ex-flow-wrap,
+.ex-price-chart { position: relative; display: flex; }
+.ex-chart-wrap { flex: 1 1 0; min-height: 180px; }
+.ex-chart,
+.ex-flow { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+.ex-chart text { font-family: var(--sans); font-size: 12px; fill: var(--text-3); }
+.ex-chart .ex-axis { stroke: var(--line); stroke-width: 1; }
+.ex-chart .ex-grid { stroke: var(--line-soft); stroke-width: 1; stroke-dasharray: 3 4; }
+.ex-chart .ex-series { fill: none; stroke: var(--text); stroke-width: 2; stroke-linejoin: round; }
+.ex-chart .ex-series.dash { stroke: var(--line-hover); stroke-dasharray: 6 5; }
+.ex-chart .ex-series.soft { stroke: var(--text-3); }
+.ex-chart .ex-cursor { stroke: var(--text); stroke-width: 1; }
+.ex-chart .ex-limit { stroke: var(--accent); stroke-width: 1; stroke-dasharray: 5 4; }
+.ex-chart .ex-band-peak { fill: var(--accent-wash); }
+.ex-chart .ex-band-flat { fill: var(--panel-3); }
+.ex-chart .ex-band-off { fill: var(--bar); }
+.ex-chart .ex-rule-band { fill: var(--accent-wash); opacity: 0.5; stroke: var(--accent); stroke-width: 1; stroke-dasharray: 4 3; }
+.ex-chart .ex-dot { fill: var(--accent); }
+.ex-chart .ex-val { fill: var(--text); font-family: var(--num); font-size: 11px; font-variant-numeric: tabular-nums; }
+.ex-chart .ex-warn { fill: var(--accent); }
+.ex-legend { flex: none; display: flex; flex-wrap: wrap; gap: 4px 14px; font-size: 12px; color: var(--text-3); }
+.ex-legend i { display: inline-block; width: 10px; height: 10px; margin-right: 5px; vertical-align: -1px; border-radius: 2px; background: var(--panel-3); }
+.ex-legend i.peak { background: var(--accent-wash); border: 1px solid var(--accent); }
+.ex-legend i.flat { background: var(--panel-3); border: 1px solid var(--line); }
+.ex-legend i.off { background: var(--bar); border: 1px solid var(--line-soft); }
+.ex-legend i.line { height: 0; background: none; border-top: 2px solid var(--text); border-radius: 0; vertical-align: 2px; }
+.ex-legend i.line.dash { border-top: 2px dashed var(--line-hover); }
+.ex-legend i.line.soft { border-top-color: var(--text-3); }
+.ex-legend i.line.limit { border-top: 2px dashed var(--accent); }
+.ex-key { display: inline-block; width: 14px; height: 0; margin-right: 5px; vertical-align: 2px; border-top: 2px solid var(--text); }
+.ex-key.dash { border-top: 2px dashed var(--line-hover); }
+
+/* ---------- 能量流 ---------- */
+.ex-divider { flex: none; border-top: 1px solid var(--line-soft); }
+.ex-subhead { flex: none; display: flex; align-items: baseline; gap: 10px; min-width: 0; }
+.ex-subhead b { font-size: 15px; font-weight: 700; white-space: nowrap; }
+.ex-subhead span { min-width: 0; font-size: 12px; color: var(--text-3); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.ex-subhead .ex-metaclock { margin-left: auto; flex: none; font-family: var(--num); font-variant-numeric: tabular-nums; }
+.ex-price-chart { flex: none; height: 160px; }
+.ex-flow-wrap { flex: 1 1 0; min-height: 220px; }
+.ex-flow text { font-family: var(--sans); font-size: 12px; fill: var(--text-2); }
+.ex-flow .ex-flow-val { fill: var(--text); font-family: var(--num); font-size: 13px; font-variant-numeric: tabular-nums; }
+.ex-flow .ex-flow-agent { fill: var(--agent); }
+.ex-flow .ex-wire { fill: none; stroke: var(--line-hover); stroke-linecap: round; }
+.ex-flow .ex-wire.agent { stroke: var(--agent); stroke-dasharray: 7 6; }
+.ex-flow .ex-wire.charge { stroke: var(--text-3); stroke-dasharray: 3 4; }
+.ex-flow .ex-t1 { fill: var(--panel-3); stroke: var(--accent); stroke-width: 1; }
+.ex-flow .ex-t1-label { fill: var(--text); font-size: 16px; font-weight: 700; }
+.ex-flow .ex-t1-val { fill: var(--accent); font-family: var(--num); font-size: 18px; font-weight: 600; }
+
+/* ---------- 分区温度 ---------- */
+.ex-temp-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(128px, 1fr)); gap: 8px; }
+.ex-temp {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 9px 12px;
+  border: 1px solid var(--line);
+  border-radius: var(--r-btn);
+  background: var(--panel-2);
+}
+.ex-temp.on { border-color: var(--accent); background: var(--accent-wash); }
+.ex-temp-name { font-size: 12px; color: var(--text-2); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.ex-temp-value { display: flex; align-items: baseline; gap: 4px; }
+.ex-temp-value b { font-family: var(--num); font-size: 26px; font-weight: 600; font-variant-numeric: tabular-nums; line-height: 1.15; color: var(--text); }
+.ex-temp-value span { font-size: 12px; color: var(--text-3); }
+.ex-temp-note { font-size: 12px; color: var(--text-3); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.ex-rule-tag { font-size: 12px; color: var(--accent); }
+
+/* ---------- 知识卡与工单 ---------- */
+.ex-know-head { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.ex-order { display: flex; flex-direction: column; gap: 6px; padding: 10px 12px; border: 1px solid var(--line); border-radius: var(--r-btn); background: var(--panel-2); }
+.ex-order-head { display: flex; align-items: baseline; gap: 8px; }
+.ex-order-head b { font-family: var(--num); font-size: 13px; color: var(--text); margin-right: auto; }
+.ex-order-meta { display: flex; flex-wrap: wrap; gap: 4px 12px; font-size: 12px; color: var(--text-3); }
+.ex-order-meta span { min-width: 0; overflow-wrap: anywhere; }
+
+/* ---------- 窄屏 ---------- */
+@media (max-width: 1440px) {
+  .ex-head { padding: 8px 12px; }
+  .ex-decision-body { padding: 8px 12px 12px; gap: 8px; }
+  .ex-verdict { padding: 6px 11px; }
+  .ex-split { gap: 12px; }
+  .ex-chain-list li { padding: 5px 0; }
+  .ex-levels-body { padding: 8px 12px 10px; }
+  .ex-level-col { padding: 6px 8px 4px; }
+  .ex-level-item { padding: 2px 0; }
+  .ex-judge-body { padding: 10px 12px 12px; }
+  .ex-fact { padding: 7px 9px; }
+  .ex-preset { min-height: 26px; padding: 4px 9px; }
+  .ex-body { padding: 10px 12px; }
+}
+@media (max-width: 1360px) {
+  .ex-page { gap: 8px; }
+  .ex-kpis { gap: 8px; }
+  .ex-kpi { padding: 8px 12px 9px; }
+  .ex-kpi-line b { font-size: 28px; }
+  .ex-agent-main, .ex-main { gap: 8px; }
+  .ex-col { gap: 8px; }
+  .ex-head { padding: 9px 12px; }
+  .ex-body { padding: 10px 12px; }
+  .ex-decision-body { padding: 10px 12px 12px; }
+  .ex-levels-body { padding: 10px 12px 12px; }
+  .ex-thread, .ex-presets { padding-left: 12px; padding-right: 12px; }
+  .ex-split { gap: 12px; }
+  .ex-temp-value b { font-size: 23px; }
+}
+@media (max-width: 1080px) {
+  .ex-page { overflow: auto; }
+  .ex-agent-main,
+  .ex-main { grid-template-columns: minmax(0, 1fr); }
+  .ex-main { flex: none; }
+  .ex-equipment-left { grid-template-rows: minmax(220px, auto) minmax(240px, auto); overflow: visible; }
+  .ex-col.scroll { overflow: visible; }
+  .ex-chart-wrap { min-height: 190px; }
+}
+/* 1366×768 这类矮屏：压住图表与左列最小高度，让底部面板留在播放条上方。 */
+@media (max-height: 820px) {
+  .ex-chart-wrap { min-height: 120px; }
+  .ex-chart-block { min-height: 170px; }
+  .ex-flow-wrap { min-height: 160px; }
+  .ex-price-chart { height: 130px; }
+  .ex-equipment-left { grid-template-rows: minmax(210px, 1fr) minmax(240px, 1.1fr); }
+}
+@media (max-width: 720px) {
+  .ex-page { padding: 8px; gap: 8px; }
+  .ex-kpis { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .ex-kpi-line b { font-size: 26px; }
+  .ex-head { flex-wrap: wrap; row-gap: 4px; }
+  .ex-head h2 { white-space: normal; }
+  .ex-sub { flex-basis: 100%; white-space: normal; }
+  .ex-push { margin-left: 0; }
+  .ex-split { grid-template-columns: minmax(0, 1fr); }
+  .ex-verdict { flex-direction: column; gap: 2px; }
+  .ex-verdict span { white-space: normal; }
+  .ex-presets { grid-template-columns: minmax(0, 1fr); }
+  .ex-facts, .ex-facts.two { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .ex-levels-board { grid-template-columns: minmax(0, 1fr); }
+  .ex-temp-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .ex-chain-list li { grid-template-columns: 14px minmax(0, 1fr); }
+  .ex-step-meta { grid-column: 2; }
+  .ex-bubble-q { max-width: 100%; }
+}
+
+/* 传感器读数质量：质量分、残差、候选假设与试探过程 */
+.ex-sensor .ex-label { display: block; margin-bottom: 6px; }
+.ex-candidates { margin-top: 10px; }
+.ex-chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.ex-chip {
+  display: inline-flex; align-items: center; padding: 2px 8px; border: 1px solid var(--line);
+  border-radius: 999px; font-size: 12px; color: var(--text); background: var(--panel-2, transparent);
+}
+.ex-chip.off { color: var(--text-3); text-decoration: line-through; }
+.ex-verify { margin: 0; padding-left: 18px; font-size: 12px; line-height: 1.8; color: var(--text-2); }
+.ex-probe { margin-top: 10px; display: flex; flex-direction: column; gap: 6px; }
+.ex-probe-row { border-top: 1px solid var(--line); padding-top: 6px; }
+.ex-probe-head { display: flex; align-items: baseline; gap: 8px; flex-wrap: wrap; }
+.ex-probe-head b { font-size: 13px; font-weight: 600; }
+.ex-probe-row .ex-text { margin: 2px 0 0; font-size: 12px; line-height: 1.6; color: var(--text-2); }

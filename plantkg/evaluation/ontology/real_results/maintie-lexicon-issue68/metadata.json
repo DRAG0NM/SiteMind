@@ -1,0 +1,15 @@
+{
+  "source_kind": "train_lexicon",
+  "model": null,
+  "seed": 42,
+  "split": "test",
+  "source_sha256": "ef811cf4ffd0c90e6a13b1369e24e9d1d08f9a294d873ab4fb1a580096d7d6e0",
+  "prediction_sha256": "edcc3c45ae0713771d38c2ec196f2dd5baddda086402fa94b8a3a837aea41f78",
+  "hash_scheme": "utf8-lf-v1",
+  "valid_count": 216,
+  "lexicon_phrases": 761,
+  "relation_priors": 11,
+  "uncertainty": "one minus the mean train label share of the matched surfaces",
+  "impact": "predicted entity token coverage; a heuristic proxy, not a measured review cost",
+  "method": "supervised lexical baseline: train-only surface lexicon and label-pair relation prior; not B30 and not a zero-shot model"
+}

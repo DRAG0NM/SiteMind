@@ -1,0 +1,33 @@
+# B32 快回测短剧本：演示发布只跑常见事件类型，时间窗压到 1 小时内。
+# 数据性质 synthetic：事件、时刻与参数按常理编写；full 回测仍走 configs/scenarios/*.yaml 的默认场景集。
+scenario_id: b32_fast_demo
+title: B32 快回测短剧本
+nature: synthetic
+description: 演示发布用快回测；只验证常见事件类型下的目标类处理与非退化，报告标 scope=fast_window
+date: "2026-07-01"
+days: 1
+seed: 32
+initial:
+  soc: 0.2
+knowledge: []
+policy:
+  response_budget: {layer12_min: 1, layer3_min: 3}
+  autonomy_levels:
+    elevator_congestion: L2
+    load_spike: L2
+    lighting_fault: L2
+    compressor_pressure_drop: L2
+    equipment_fault: L2
+    power_quality_dip: L2
+    heat_wave: L2
+    pv_drop: L2
+    capacity_shed_request: L2
+    elevator_trapped: L2
+    unknown_combo: L0
+events:
+  - {at: "00:02", id: fast-elevator, type: elevator_congestion, entity_id: "elevator_group:admin_low", severity: 3, summary: 快回测拥堵}
+  - {at: "00:04", id: fast-spike, type: load_spike, entity_id: AC-2, severity: 4, summary: 快回测负载突增}
+  - {at: "00:06", id: fast-light, type: lighting_fault, entity_id: LT-A03, severity: 2, summary: 快回测照明故障}
+  - {at: "00:08", id: fast-leak, type: compressor_pressure_drop, entity_id: AC-2, severity: 3, summary: 快回测压力下降}
+  - {at: "00:10", id: fast-combo, type: unknown_combo, entity_id: LT-P, severity: 3, summary: 快回测组合异常}
+  - {at: "00:12", id: fast-trapped, type: elevator_trapped, entity_id: FE-2, severity: 5, summary: 快回测困人}

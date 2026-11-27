@@ -1,0 +1,12 @@
+# 极端场景 5：电梯困人（考验安全否决、操作工单与协同处置）。数据性质 synthetic。
+scenario_id: extreme_elevator_trapped
+title: 电梯困人
+nature: synthetic
+date: "2026-07-01"
+seed: 105
+initial: {soc: 0.5}
+knowledge: [elevator_manual]
+events:
+  - {at: "10:00", id: trapped, type: elevator_trapped, entity_id: FE-2, severity: 5, summary: 2 号货梯停在两层之间，轿厢内有人}
+operator_actions:
+  - {at: "10:12", kind: confirm, payload: {event: trapped}}

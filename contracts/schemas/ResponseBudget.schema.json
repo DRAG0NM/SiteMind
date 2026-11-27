@@ -1,0 +1,24 @@
+{
+  "additionalProperties": false,
+  "description": "仿真响应预算（仿真分钟），取实测墙钟 p95 向上取整。",
+  "properties": {
+    "layer12_min": {
+      "minimum": 0,
+      "title": "Layer12 Min",
+      "type": "integer"
+    },
+    "layer3_min": {
+      "minimum": 0,
+      "title": "Layer3 Min",
+      "type": "integer"
+    }
+  },
+  "required": [
+    "layer12_min",
+    "layer3_min"
+  ],
+  "title": "ResponseBudget",
+  "type": "object",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "plantkg:contracts/1.2.0/ResponseBudget"
+}

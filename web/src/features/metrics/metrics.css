@@ -1,0 +1,115 @@
+/* B35 数字对比视图：沿用控制台面板与分节，颜色只用 shared/theme.css 的 token。 */
+
+.metrics {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 10px;
+  overflow: auto;
+}
+
+/* ---------- 标题与来源 ---------- */
+.mx-hero { flex: none; }
+.mx-hero-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 10px 14px;
+}
+.mx-hero-row .sec-title { flex-wrap: wrap; min-width: 0; }
+.mx-badges { display: inline-flex; flex-wrap: wrap; align-items: center; gap: 8px; }
+.mx-saved { margin-left: auto; display: flex; align-items: baseline; gap: 8px; }
+.mx-saved b { font-size: 30px; line-height: 1; }
+.mx-saved .lb { white-space: nowrap; }
+.mx-source {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 6px 10px;
+  padding-top: 8px;
+  padding-bottom: 8px;
+}
+.mx-source .lb { flex: none; }
+.mx-source-text { min-width: 0; }
+.mx-loading { margin: 0; padding: 10px 16px; }
+
+/* ---------- 表 + 曲线 ---------- */
+.mx-top {
+  flex: none;
+  display: grid;
+  grid-template-columns: minmax(0, 1.35fr) minmax(320px, 1fr);
+  gap: 10px;
+  align-items: stretch;
+}
+.mx-table-panel { min-width: 0; min-height: 0; }
+.mx-table-wrap { flex: 1; min-height: 0; overflow: auto; }
+.mx-table { width: 100%; border-collapse: collapse; font-size: 14px; }
+.mx-table thead th {
+  padding: 8px 12px;
+  border-bottom: 1px solid var(--line-soft);
+  color: var(--text-2);
+  font-size: 13px;
+  font-weight: 500;
+  text-align: right;
+  white-space: nowrap;
+}
+.mx-table thead th:first-child,
+.mx-table tbody th { text-align: left; }
+.mx-table thead th .dm { display: block; font-size: 11px; font-weight: 400; }
+.mx-table tbody th,
+.mx-table tbody td {
+  padding: 10px 12px;
+  border-bottom: 1px solid var(--line-soft);
+  text-align: right;
+  white-space: nowrap;
+}
+.mx-table tbody th { color: var(--text); font-weight: 500; }
+.mx-table tbody tr:last-child th,
+.mx-table tbody tr:last-child td { border-bottom: 0; }
+.mx-table tbody tr:hover th,
+.mx-table tbody tr:hover td { background: rgba(23, 29, 36, 0.6); }
+.mx-table .mx-unit { color: var(--text-3); font-weight: 400; }
+.mx-table .mx-delta { color: var(--text-2); }
+
+.mx-curve-panel { min-width: 0; min-height: 0; }
+.mx-curve-panel .sec-title { flex-wrap: wrap; }
+.mx-note { margin: 6px 0 0; }
+.mx-curve-body {
+  flex: 1;
+  min-height: 200px;
+  padding: 6px 12px 12px;
+}
+.mx-curve-body .mx-chart-body { height: 100%; min-height: 190px; }
+
+/* ---------- 柱状图 ---------- */
+.mx-bars-panel { flex: none; }
+.mx-bars {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+  padding: 10px 16px 14px;
+}
+.mx-bar {
+  min-width: 0;
+  padding: 8px 8px 2px;
+  border: 1px solid var(--line-soft);
+  border-radius: var(--r-btn);
+  background: rgba(23, 29, 36, 0.55);
+}
+.mx-bar-head { display: flex; align-items: baseline; gap: 8px; padding: 0 4px; }
+.mx-bar-head b { font-size: 13px; }
+.mx-bar-head .dm { margin-left: auto; font-size: 12px; }
+.mx-chart-body { width: 100%; height: 132px; }
+
+/* ---------- 窄屏 ---------- */
+@media (max-width: 1280px) {
+  .mx-top { grid-template-columns: minmax(0, 1fr); }
+  .mx-bars { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 760px) {
+  .mx-hero-row .sec-title { font-size: 15px; }
+  .mx-saved { margin-left: 0; }
+  .mx-bars { grid-template-columns: minmax(0, 1fr); }
+}

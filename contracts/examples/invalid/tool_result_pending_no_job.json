@@ -1,0 +1,12 @@
+{
+  "model": "ToolResult",
+  "base": "tool_result_pending",
+  "expect_error": "job_id",
+  "data": {
+    "ok": true,
+    "business_status": "pending",
+    "run_id": "run-day-20260701",
+    "version_manifest_id": "vm-0003",
+    "notice": "求解在后台继续；用同一 job_id 调 plantkg_get_job"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "tool": "plantkg_propose_plan_confirmation",
+  "arguments": {
+    "plan_id": "plan-20260701",
+    "expected_revision": 1,
+    "rationale": "门控转人工",
+    "ctx": ""
+  },
+  "result_text": "PLANTKG_E_NO_CTX: 写入需要经工作台网关发起的运行\n{\"schema_version\":\"1\",\"ok\":false,\"business_status\":\"failed\",\"error\":{\"code\":\"PLANTKG_E_NO_CTX\",\"message\":\"写入需要经工作台网关发起的运行\",\"retryable\":false,\"details\":{}},\"evidence_ids\":[]}"
+}

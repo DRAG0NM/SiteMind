@@ -1,0 +1,21 @@
+{
+  "model": "Candidate",
+  "base": "candidate_validated",
+  "expect_error": "待确认动作",
+  "data": {
+    "candidate_id": "cand-k-0001",
+    "kind": "parameter",
+    "base_manifest_id": "vm-0003",
+    "changes": {
+      "parameters": {
+        "ref": "params@v2",
+        "content_hash": "sha256:c208f53618621c4e772747181d3a900c6dd86a53c616a7797d41b89acab37b02"
+      }
+    },
+    "status": "published",
+    "trigger": "连续 3 天光伏实际低于预测",
+    "created_at": "2026-10-30T03:00:00Z",
+    "validation_policy_version": "param-policy-1",
+    "backtest_report_id": "bt-0001"
+  }
+}

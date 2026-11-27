@@ -1,0 +1,95 @@
+/* 资料拖入与图谱生长：左列拖放 + 画布，右列新增节点/边清单。
+   颜色只用 shared/theme.css 的 token（深灰 + 单一工业橙），不另起一套。 */
+.kd {
+  flex: 1 1 auto;
+  height: 100%;
+  min-height: 0;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 380px;
+  gap: 10px;
+  padding: 10px;
+  font-size: 15px;
+  overflow: hidden;
+}
+.kd-main { display: flex; flex-direction: column; gap: 10px; min-width: 0; min-height: 0; }
+
+/* ---------- 拖放与进度 ---------- */
+.kd-drop { flex: none; }
+.kd-intro { margin: 8px 0 0; line-height: 1.6; }
+.kd-zone {
+  margin-top: 10px;
+  padding: 16px;
+  border: 1px dashed var(--line-strong);
+  border-radius: var(--r-btn);
+  background: var(--panel-2);
+  cursor: pointer;
+  transition: border-color var(--t-fast), background var(--t-fast);
+}
+.kd-zone:hover, .kd-zone.over { border-color: var(--accent); background: var(--accent-wash); }
+.kd-zone b { font-size: 16px; }
+.kd-zone .dm { margin: 6px 0 0; }
+.kd-progress { display: flex; align-items: center; gap: 12px; margin-top: 12px; }
+.kd-phase { flex: none; min-width: 48px; }
+.kd-bar { flex: 1 1 auto; margin: 0; }
+.kd-progress b { flex: none; min-width: 42px; text-align: right; }
+.kd-upload { margin: 10px 0 0; line-height: 1.6; }
+.kd-note { margin: 4px 0 0; color: var(--accent); line-height: 1.6; }
+.kd-stats { margin: 6px 0 0; }
+
+/* ---------- 图谱画布 ---------- */
+.kd-graph-panel { flex: 1 1 auto; min-height: 0; }
+.kd-graph-head { display: flex; align-items: baseline; justify-content: space-between; gap: 10px; }
+.kd-graph-body { position: relative; flex: 1 1 auto; min-height: 0; }
+.kd-graph { position: absolute; inset: 0; overflow: hidden; }
+.kd-canvas { position: absolute; inset: 0; overflow: hidden; }
+.kd-graph-empty {
+  position: absolute; inset: 0;
+  display: grid; place-items: center;
+  padding: 24px; text-align: center; line-height: 1.6;
+}
+.kd-graph-flat {
+  position: absolute; inset: 0;
+  overflow-y: auto; scrollbar-width: thin; scrollbar-color: var(--line-strong) transparent;
+  background: var(--panel);
+  padding: 12px 16px;
+}
+.kd-flat-note { margin: 0 0 8px; line-height: 1.6; }
+.kd-flat-list { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 8px; }
+.kd-flat-item {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 5px 9px;
+  border: 1px solid var(--line); border-radius: var(--r-btn);
+  background: var(--panel-2);
+  font-size: 13px;
+}
+.kd-flat-item b { font-weight: 600; overflow-wrap: anywhere; }
+.kd-flat-item .nature-badge { height: 20px; }
+
+/* ---------- 右列清单 ---------- */
+.kd-side { display: flex; flex-direction: column; gap: 10px; min-width: 0; min-height: 0; }
+.kd-nodes-panel { flex: 3 1 0; min-height: 0; }
+.kd-edges-panel { flex: 2 1 0; min-height: 0; }
+.kd-listhead { flex: none; }
+.kd-list { flex: 1 1 auto; min-height: 0; overflow-y: auto; overflow-x: hidden; scrollbar-width: thin; scrollbar-color: var(--line-strong) transparent; }
+
+.kd-node { padding: 9px 16px; border-bottom: 1px solid var(--line-soft); animation: kd-node-in var(--t-mid) ease-out; }
+.kd-node:last-child { border-bottom: 0; }
+.kd-node-top { display: flex; align-items: center; flex-wrap: wrap; gap: 8px; min-width: 0; }
+.kd-node-top b { min-width: 0; font-size: 14px; overflow-wrap: anywhere; }
+.kd-index { flex: none; min-width: 18px; color: var(--text-3); font-size: 13px; }
+.kd .kd-kind { height: 22px; padding: 0 7px; flex: none; font-size: 12px; }
+.kd-node-top .nature-badge { height: 20px; }
+.kd-node-reason { margin-top: 5px; line-height: 1.5; overflow-wrap: anywhere; }
+.kd-node-detail { margin-top: 3px; line-height: 1.5; overflow-wrap: anywhere; }
+.kd-quote {
+  margin-top: 5px; padding-left: 8px;
+  border-left: 1px solid var(--line-strong);
+  color: var(--text-3); font-size: 12px; line-height: 1.55; overflow-wrap: anywhere;
+}
+.kd-empty { padding: 12px 16px; line-height: 1.6; }
+
+.kd-edge { display: flex; align-items: center; gap: 8px; padding: 8px 16px; border-bottom: 1px solid var(--line-soft); }
+.kd-edge:last-child { border-bottom: 0; }
+.kd .kd-edge-path { min-width: 0; font-size: 13px; overflow-wrap: anywhere; }
+
+@keyframes kd-node-in { from { opacity: 0; transform: translateY(3px); } }

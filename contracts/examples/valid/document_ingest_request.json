@@ -1,0 +1,11 @@
+{
+  "model": "DocumentIngestRequest",
+  "data": {
+    "filename": "manual.txt",
+    "text": "AC-2 空压机，主管压力5分钟内下降超过0.2 bar。",
+    "expert": "equipment",
+    "nature": "synthetic",
+    "document_id": "manual-ac2",
+    "idempotency_key": "manual-ac2-v1"
+  }
+}

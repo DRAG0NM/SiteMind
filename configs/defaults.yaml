@@ -1,0 +1,89 @@
+# 全部 profile 的默认值。优先级：defaults → plant → scenario → 非敏感 CLI 覆盖。
+# 密钥只从环境变量读（*_env 字段写变量名），不写进任何 yaml。
+profile: mock
+timezone: Asia/Shanghai
+time_policy: {internal: UTC, interval: left_closed_right_open}
+packs: auto  # 扫描 plantkg/packs/*/pack.yaml，按 order 启用；新包放进目录即生效。要指定子集时写成列表
+
+server: {host: 127.0.0.1, port: 8700, mcp_path: /mcp}
+
+planning:
+  horizon_hours: 24
+  step_minutes: 15
+  solver: highs
+  solver_budget: {time_limit_s: 20, mip_rel_gap: 1.0e-3, threads: 1, random_seed: 0}
+  background_budget: {time_limit_s: 300}
+  export_limit_kw: 0  # 本期不外送；>0 前须补外送并网点实体与执行链路
+
+# B14 固定误差带宽（相对点值 ±10%）。没有历史误差校准证据，标 configured，门控仍按未校准处理
+forecasting: {interval_band_ratio: 0.10}
+
+world:
+  state_provider: replay
+  executor: record
+  # 无 ctx 的只读降级查询用的查看时点（回放演示日 D-1 18:00）；不用现实当前时间，防未来泄漏
+  default_as_of: "2026-06-30T10:00:00Z"
+
+data: {load_scale: {factor: null, nature: configured}}
+knowledge: {rules: trusted_yaml}
+
+judge:
+  backend: fake
+  jev: {model: decision-model-preview, region: cn-beijing, workspace_env: BAILIAN_WS, api_key_env: DASHSCOPE_API_KEY, orders: 3}
+
+storage: {enabled: false, sqlite: runtime/catalog.db, graph: runtime/graph, series: runtime/series}
+# B04 待确认动作：确认人须在 reviewers 中（团队两人，plant.yaml 或场景里填）；本机运维令牌文件供 actions 命令行使用
+actions: {reviewers: [], ttl_s: 86400, token_file: runtime/operator.token}
+
+nexent:
+  version: 2.8.2
+  enabled: false
+  base_url: http://127.0.0.1:5010
+  api_key_env: NEXENT_API_KEY
+  eval_api_key_env: NEXENT_EVAL_API_KEY
+  tool_prefix: plantkg_
+  max_steps: 12
+
+gateway: {tool_deadline_s: 40, job_wait_max_s: 40, keepalive_s: 15, session_ttl_s: 3600}
+model: {chat_model: deepseek-v4.1-flash-1017}
+embedding: {model: qwen3.7-text-embedding-flash}
+
+# B32 纠错进化：快回测窗口与反馈累计阈值（configured，按演示与常理设定）
+evolution:
+  fast_window_min: 120      # 没有目标类事件时，快回测固定推进的短窗口
+  fast_tail_min: 30         # 有目标类事件时，最后一个目标事件之后的收尾余量
+  autonomy_upgrade_after: 3 # 连续批准/抽查无误累计到该次数生成“升一级”候选
+  feedback_window: 50       # 抽查错误率统计窗口
+  sampling_error_high: 0.2  # 错误率高于此值收紧置信度阈值与抽查比例
+  sampling_error_low: 0.05  # 错误率低于此值放宽
+  autonomy_downgrade_min: 2 # 窗口内至少这么多次“系统判断有误”的驳回/纠错，且错误率超过上限，才生成降级候选
+  skill_min_successes: 3    # B43：同一处置流程在窗口内重复成功到该次数才挖成候选 Skill
+  nature: configured
+  # 第一份 policy 组件的模板：与演示剧本的默认 policy 一致，避免候选 policy 缺省成 L0 误伤其他类别
+  default_policy:
+    arbitration_weights: {cny: 1.0, wait_min: 0.5, comfort_min: 0.8}
+    priority_profiles: {default: [safety, production, comfort, cost]}
+    response_budget: {layer12_min: 1, layer3_min: 3}
+    autonomy_levels:
+      elevator_congestion: L2
+      load_spike: L2
+      sim_limit: L2
+      lighting_fault: L2
+      compressor_pressure_drop: L2
+      equipment_fault: L2
+      power_quality_dip: L2
+      heat_wave: L2
+      pv_drop: L2
+      capacity_shed_request: L2
+      elevator_trapped: L2
+      unknown_combo: L0
+
+security:
+  default_write: deny
+  trusted_context_required: true
+  ctx_required_for_write: true
+  # 只在 mock/dev 打开：Nexent 调试页无网关会话时用默认 ctx 测写工具；prod 必须关闭
+  default_ctx: {enabled: false, actor_id: dev-reviewer, roles: [viewer, operator, reviewer]}
+
+logging: {level: INFO}
+extensions: []

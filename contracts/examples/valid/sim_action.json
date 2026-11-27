@@ -1,0 +1,14 @@
+{
+  "model": "SimAction",
+  "data": {
+    "entity_id": "entity://demo-electronics/elevator_group/EG-PROD",
+    "command": "set_mode",
+    "params": {
+      "mode": "up_peak"
+    },
+    "interval": {
+      "start": "2026-07-01T00:06:00Z",
+      "end": "2026-07-01T00:30:00Z"
+    }
+  }
+}

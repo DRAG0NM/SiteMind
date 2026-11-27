@@ -1,0 +1,4 @@
+# 光伏包样例配置（B10）。装机 500 kWp 是候选值（configured，见 configs/plant.yaml 与 docs/data/timeseries.md），不是已批准选型。
+pv:
+  entity_id: entity://demo-electronics/pv/PV1
+  kwp: 500

@@ -1,0 +1,400 @@
+{
+  "$defs": {
+    "Bounds": {
+      "additionalProperties": false,
+      "properties": {
+        "lower": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Lower"
+        },
+        "upper": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Upper"
+        }
+      },
+      "title": "Bounds",
+      "type": "object"
+    },
+    "DataNature": {
+      "enum": [
+        "measured",
+        "derived",
+        "configured",
+        "synthetic",
+        "simulated"
+      ],
+      "title": "DataNature",
+      "type": "string"
+    },
+    "Interval": {
+      "additionalProperties": false,
+      "description": "左闭右开 UTC 区间 [start, end)。",
+      "properties": {
+        "start": {
+          "format": "date-time",
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d{1,9})?(Z|[+-]00:?00)$",
+          "title": "Start",
+          "type": "string"
+        },
+        "end": {
+          "format": "date-time",
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d{1,9})?(Z|[+-]00:?00)$",
+          "title": "End",
+          "type": "string"
+        }
+      },
+      "required": [
+        "start",
+        "end"
+      ],
+      "title": "Interval",
+      "type": "object"
+    },
+    "Locator": {
+      "additionalProperties": false,
+      "description": "原文定位：页码、条款、表格单元格、图片框、行或时间区间，至少给一项。",
+      "properties": {
+        "page": {
+          "anyOf": [
+            {
+              "minimum": 1,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Page"
+        },
+        "clause": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Clause"
+        },
+        "cell": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Cell"
+        },
+        "bbox": {
+          "anyOf": [
+            {
+              "maxItems": 4,
+              "minItems": 4,
+              "prefixItems": [
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "number"
+                }
+              ],
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Bbox"
+        },
+        "line_start": {
+          "anyOf": [
+            {
+              "minimum": 1,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Line Start"
+        },
+        "line_end": {
+          "anyOf": [
+            {
+              "minimum": 1,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Line End"
+        },
+        "time_range": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Interval"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "meter": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Meter"
+        }
+      },
+      "title": "Locator",
+      "type": "object"
+    },
+    "ReviewStatus": {
+      "enum": [
+        "pending",
+        "auto_accepted",
+        "approved",
+        "rejected",
+        "trusted_config"
+      ],
+      "title": "ReviewStatus",
+      "type": "string"
+    },
+    "Unit": {
+      "description": "内部标准单位。新增单位是契约变更。",
+      "enum": [
+        "kW",
+        "kWh",
+        "1",
+        "CNY",
+        "CNY/kWh",
+        "CNY/kW",
+        "h",
+        "min",
+        "degC",
+        "%",
+        "count",
+        "bar/h",
+        "s"
+      ],
+      "title": "Unit",
+      "type": "string"
+    }
+  },
+  "additionalProperties": false,
+  "description": "可编译规则（03 §4.4）。单位不明、对象不明或冲突的规则进待处理清单，不在这里出现。",
+  "properties": {
+    "rule_id": {
+      "maxLength": 200,
+      "minLength": 1,
+      "title": "Rule Id",
+      "type": "string"
+    },
+    "kind": {
+      "maxLength": 200,
+      "minLength": 1,
+      "title": "Kind",
+      "type": "string"
+    },
+    "subject_ids": {
+      "items": {
+        "description": "entity://{厂区}/{类型}/{编号}；不随资料修改而变",
+        "pattern": "^entity://[A-Za-z0-9_-]+/[a-z0-9_-]+/[A-Za-z0-9_.-]+$",
+        "type": "string"
+      },
+      "minItems": 1,
+      "title": "Subject Ids",
+      "type": "array"
+    },
+    "condition": {
+      "additionalProperties": true,
+      "title": "Condition",
+      "type": "object"
+    },
+    "quantity": {
+      "maxLength": 200,
+      "minLength": 1,
+      "title": "Quantity",
+      "type": "string"
+    },
+    "unit": {
+      "$ref": "#/$defs/Unit"
+    },
+    "bounds": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/Bounds"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    },
+    "value": {
+      "anyOf": [
+        {
+          "type": "number"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Value"
+    },
+    "effective_from": {
+      "format": "date-time",
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d{1,9})?(Z|[+-]00:?00)$",
+      "title": "Effective From",
+      "type": "string"
+    },
+    "effective_to": {
+      "anyOf": [
+        {
+          "format": "date-time",
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d{1,9})?(Z|[+-]00:?00)$",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Effective To"
+    },
+    "available_at": {
+      "format": "date-time",
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d{1,9})?(Z|[+-]00:?00)$",
+      "title": "Available At",
+      "type": "string"
+    },
+    "source_asset_version": {
+      "anyOf": [
+        {
+          "description": "asset://{行业}/{来源哈希前8位}/{类型}/{定位}；内容变即新版本",
+          "pattern": "^asset://[a-z0-9_-]+/[0-9a-f]{8}/[a-z0-9_-]+/.+$",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Source Asset Version"
+    },
+    "config_ref": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Config Ref"
+    },
+    "locator": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/Locator"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    },
+    "nature": {
+      "$ref": "#/$defs/DataNature"
+    },
+    "review_status": {
+      "$ref": "#/$defs/ReviewStatus"
+    },
+    "reviewer": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Reviewer"
+    },
+    "compiler_version": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Compiler Version"
+    },
+    "rule_version": {
+      "default": 1,
+      "minimum": 1,
+      "title": "Rule Version",
+      "type": "integer"
+    }
+  },
+  "required": [
+    "rule_id",
+    "kind",
+    "subject_ids",
+    "quantity",
+    "unit",
+    "effective_from",
+    "available_at",
+    "nature",
+    "review_status"
+  ],
+  "title": "Rule",
+  "type": "object",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "plantkg:contracts/1.2.0/Rule"
+}

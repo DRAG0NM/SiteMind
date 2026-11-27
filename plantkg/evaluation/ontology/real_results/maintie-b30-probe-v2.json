@@ -1,0 +1,1311 @@
+{
+  "source_sha256": "ef811cf4ffd0c90e6a13b1369e24e9d1d08f9a294d873ab4fb1a580096d7d6e0",
+  "split": "test",
+  "seed": 42,
+  "items": 216,
+  "candidates": 0,
+  "factory_items": 35,
+  "factory_candidates": 0,
+  "elapsed_seconds_measured": 0.0043312719999448746,
+  "token_usage": null,
+  "human_minutes": null,
+  "output_schema": "RuleCandidate, not MaintIE entity spans or relations",
+  "records": [
+    {
+      "id": 1,
+      "factory_subset": true,
+      "candidate_count": 0,
+      "kinds": []
+    },
+    {
+      "id": 7,
+      "factory_subset": true,
+      "candidate_count": 0,
+      "kinds": []
+    },
+    {
+      "id": 12,
+      "factory_subset": true,
+      "candidate_count": 0,
+      "kinds": []
+    },
+    {
+      "id": 17,
+      "factory_subset": false,
+      "candidate_count": 0,
+      "kinds": []
+    },
+    {
+      "id": 18,
+      "factory_subset": false,
+      "candidate_count": 0,
+      "kinds": []
+    },
+    {
+      "id": 37,
+      "factory_subset": false,
+      "candidate_count": 0,
+      "kinds": []
+    },
+    {
+      "id": 41,
+      "factory_subset": false,
+      "candidate_count": 0,
+      "kinds": []
+    },
+    {
+      "id": 44,
+      "factory_subset": false,
+      "candidate_count": 0,
+      "kinds": []
+    },
+    {
+      "id": 62,
+      "factory_subset": false,
+      "candidate_count": 0,
+      "kinds": []
+    },
+    {
+      "id": 67,
+      "factory_subset": false,
+      "candidate_count": 0,
+      "kinds": []
+    },
+    {
+      "id": 72,
+      "factory_subset": false,
+      "candidate_count": 0,
+      "kinds": []
+    },
+    {
+      "id": 81,
+      "factory_subset": false,
+      "candidate_count": 0,
+      "kinds": []
+    },
+    {
+      "id": 82,
+      "factory_subset": false,
+      "candidate_count": 0,
+      "kinds": []
+    },
+    {
+      "id": 89,
+      "factory_subset": false,
+      "candidate_count": 0,
+      "kinds": []
+    },
+    {
+      "id": 91,
+      "factory_subset": false,
+      "candidate_count": 0,
+      "kinds": []
+    },
+    {
+      "id": 95,
+      "factory_subset": false,
+      "candidate_count": 0,
+      "kinds": []
+    },
+    {
+      "id": 98,
+      "factory_subset": false,
+      "candidate_count": 0,
+      "kinds": []
+    },
+    {
+      "id": 112,
+      "factory_subset": false,
+      "candidate_count": 0,
+      "kinds": []
+    },
+    {
+      "id": 113,
+      "factory_subset": false,
+      "candidate_count": 0,
+      "kinds": []
+    },
+    {
+      "id": 114,
+      "factory_subset": false,
+      "candidate_count": 0,
+      "kinds": []
+    },
+    {
+      "id": 116,
+      "factory_subset": false,
+      "candidate_count": 0,
+      "kinds": []
+    },
+    {
+      "id": 119,
+      "factory_subset": false,
+      "candidate_count": 0,
+      "kinds": []
+    },
+    {
+      "id": 120,
+      "factory_subset": false,
+      "candidate_count": 0,
+      "kinds": []
+    },
+    {
+      "id": 124,
+      "factory_subset": false,
+      "candidate_count": 0,
+      "kinds": []
+    },
+    {
+      "id": 126,
+      "factory_subset": false,
+      "candidate_count": 0,
+      "kinds": []
+    },
+    {
+      "id": 128,
+      "factory_subset": false,
+      "candidate_count": 0,
+      "kinds": []
+    },
+    {
+      "id": 133,
+      "factory_subset": false,
+      "candidate_count": 0,
+      "kinds": []
+    },
+    {
+      "id": 142,
+      "factory_subset": false,
+      "candidate_count": 0,
+      "kinds": []
+    },
+    {
+      "id": 149,
+      "factory_subset": false,
+      "candidate_count": 0,
+      "kinds": []
+    },
+    {
+      "id": 152,
+      "factory_subset": false,
+      "candidate_count": 0,
+      "kinds": []
+    },
+    {
+      "id": 154,
+      "factory_subset": false,
+      "candidate_count": 0,
+      "kinds": []
+    },
+    {
+      "id": 155,
+      "factory_subset": false,
+      "candidate_count": 0,
+      "kinds": []
+    },
+    {
+      "id": 156,
+      "factory_subset": true,
+      "candidate_count": 0,
+      "kinds": []
+    },
+    {
+      "id": 157,
+      "factory_subset": true,
+      "candidate_count": 0,
+      "kinds": []
+    },
+    {
+      "id": 160,
+      "factory_subset": false,
+      "candidate_count": 0,
+      "kinds": []
+    },
+    {
+      "id": 162,
+      "factory_subset": false,
+      "candidate_count": 0,
+      "kinds": []
+    },
+    {
+      "id": 163,
+      "factory_subset": false,
+      "candidate_count": 0,
+      "kinds": []
+    },
+    {
+      "id": 166,
+      "factory_subset": false,
+      "candidate_count": 0,
+      "kinds": []
+    },
+    {
+      "id": 172,
+      "factory_subset": false,
+      "candidate_count": 0,
+      "kinds": []
+    },
+    {
+      "id": 177,
+      "factory_subset": false,
+      "candidate_count": 0,
+      "kinds": []
+    },
+    {
+      "id": 178,
+      "factory_subset": false,
+      "candidate_count": 0,
+      "kinds": []
+    },
+    {
+      "id": 185,
+      "factory_subset": false,
+      "candidate_count": 0,
+      "kinds": []
+    },
+    {
+      "id": 189,
+      "factory_subset": false,
+      "candidate_count": 0,
+      "kinds": []
+    },
+    {
+      "id": 194,
+      "factory_subset": false,
+      "candidate_count": 0,
+      "kinds": []
+    },
+    {
+      "id": 198,
+      "factory_subset": true,
+      "candidate_count": 0,
+      "kinds": []
+    },
+    {
+      "id": 205,
+      "factory_subset": false,
+      "candidate_count": 0,
+      "kinds": []
+    },
+    {
+      "id": 217,
+      "factory_subset": false,
+      "candidate_count": 0,
+      "kinds": []
+    },
+    {
+      "id": 227,
+      "factory_subset": false,
+      "candidate_count": 0,
+      "kinds": []
+    },
+    {
+      "id": 232,
+      "factory_subset": false,
+      "candidate_count": 0,
+      "kinds": []
+    },
+    {
+      "id": 236,
+      "factory_subset": false,
+      "candidate_count": 0,
+      "kinds": []
+    },
+    {
+      "id": 237,
+      "factory_subset": false,
+      "candidate_count": 0,
+      "kinds": []
+    },
+    {
+      "id": 240,
+      "factory_subset": false,
+      "candidate_count": 0,
+      "kinds": []
+    },
+    {
+      "id": 250,
+      "factory_subset": false,
+      "candidate_count": 0,
+      "kinds": []
+    },
+    {
+      "id": 270,
+      "factory_subset": true,
+      "candidate_count": 0,
+      "kinds": []
+    },
+    {
+      "id": 271,
+      "factory_subset": true,
+      "candidate_count": 0,
+      "kinds": []
+    },
+    {
+      "id": 282,
+      "factory_subset": false,
+      "candidate_count": 0,
+      "kinds": []
+    },
+    {
+      "id": 287,
+      "factory_subset": false,
+      "candidate_count": 0,
+      "kinds": []
+    },
+    {
+      "id": 293,
+      "factory_subset": true,
+      "candidate_count": 0,
+      "kinds": []
+    },
+    {
+      "id": 294,
+      "factory_subset": false,
+      "candidate_count": 0,
+      "kinds": []
+    },
+    {
+      "id": 298,
+      "factory_subset": false,
+      "candidate_count": 0,
+      "kinds": []
+    },
+    {
+      "id": 304,
+      "factory_subset": false,
+      "candidate_count": 0,
+      "kinds": []
+    },
+    {
+      "id": 317,
+      "factory_subset": false,
+      "candidate_count": 0,
+      "kinds": []
+    },
+    {
+      "id": 318,
+      "factory_subset": false,
+      "candidate_count": 0,
+      "kinds": []
+    },
+    {
+      "id": 319,
+      "factory_subset": false,
+      "candidate_count": 0,
+      "kinds": []
+    },
+    {
+      "id": 322,
+      "factory_subset": false,
+      "candidate_count": 0,
+      "kinds": []
+    },
+    {
+      "id": 339,
+      "factory_subset": false,
+      "candidate_count": 0,
+      "kinds": []
+    },
+    {
+      "id": 340,
+      "factory_subset": true,
+      "candidate_count": 0,
+      "kinds": []
+    },
+    {
+      "id": 343,
+      "factory_subset": false,
+      "candidate_count": 0,
+      "kinds": []
+    },
+    {
+      "id": 345,
+      "factory_subset": false,
+      "candidate_count": 0,
+      "kinds": []
+    },
+    {
+      "id": 346,
+      "factory_subset": false,
+      "candidate_count": 0,
+      "kinds": []
+    },
+    {
+      "id": 362,
+      "factory_subset": false,
+      "candidate_count": 0,
+      "kinds": []
+    },
+    {
+      "id": 365,
+      "factory_subset": false,
+      "candidate_count": 0,
+      "kinds": []
+    },
+    {
+      "id": 372,
+      "factory_subset": false,
+      "candidate_count": 0,
+      "kinds": []
+    },
+    {
+      "id": 374,
+      "factory_subset": false,
+      "candidate_count": 0,
+      "kinds": []
+    },
+    {
+      "id": 376,
+      "factory_subset": false,
+      "candidate_count": 0,
+      "kinds": []
+    },
+    {
+      "id": 383,
+      "factory_subset": false,
+      "candidate_count": 0,
+      "kinds": []
+    },
+    {
+      "id": 387,
+      "factory_subset": false,
+      "candidate_count": 0,
+      "kinds": []
+    },
+    {
+      "id": 389,
+      "factory_subset": false,
+      "candidate_count": 0,
+      "kinds": []
+    },
+    {
+      "id": 392,
+      "factory_subset": false,
+      "candidate_count": 0,
+      "kinds": []
+    },
+    {
+      "id": 403,
+      "factory_subset": false,
+      "candidate_count": 0,
+      "kinds": []
+    },
+    {
+      "id": 408,
+      "factory_subset": false,
+      "candidate_count": 0,
+      "kinds": []
+    },
+    {
+      "id": 409,
+      "factory_subset": false,
+      "candidate_count": 0,
+      "kinds": []
+    },
+    {
+      "id": 419,
+      "factory_subset": false,
+      "candidate_count": 0,
+      "kinds": []
+    },
+    {
+      "id": 421,
+      "factory_subset": false,
+      "candidate_count": 0,
+      "kinds": []
+    },
+    {
+      "id": 427,
+      "factory_subset": false,
+      "candidate_count": 0,
+      "kinds": []
+    },
+    {
+      "id": 432,
+      "factory_subset": false,
+      "candidate_count": 0,
+      "kinds": []
+    },
+    {
+      "id": 435,
+      "factory_subset": true,
+      "candidate_count": 0,
+      "kinds": []
+    },
+    {
+      "id": 443,
+      "factory_subset": false,
+      "candidate_count": 0,
+      "kinds": []
+    },
+    {
+      "id": 446,
+      "factory_subset": false,
+      "candidate_count": 0,
+      "kinds": []
+    },
+    {
+      "id": 450,
+      "factory_subset": false,
+      "candidate_count": 0,
+      "kinds": []
+    },
+    {
+      "id": 454,
+      "factory_subset": false,
+      "candidate_count": 0,
+      "kinds": []
+    },
+    {
+      "id": 456,
+      "factory_subset": true,
+      "candidate_count": 0,
+      "kinds": []
+    },
+    {
+      "id": 458,
+      "factory_subset": false,
+      "candidate_count": 0,
+      "kinds": []
+    },
+    {
+      "id": 465,
+      "factory_subset": true,
+      "candidate_count": 0,
+      "kinds": []
+    },
+    {
+      "id": 466,
+      "factory_subset": false,
+      "candidate_count": 0,
+      "kinds": []
+    },
+    {
+      "id": 467,
+      "factory_subset": false,
+      "candidate_count": 0,
+      "kinds": []
+    },
+    {
+      "id": 471,
+      "factory_subset": false,
+      "candidate_count": 0,
+      "kinds": []
+    },
+    {
+      "id": 475,
+      "factory_subset": false,
+      "candidate_count": 0,
+      "kinds": []
+    },
+    {
+      "id": 478,
+      "factory_subset": true,
+      "candidate_count": 0,
+      "kinds": []
+    },
+    {
+      "id": 481,
+      "factory_subset": false,
+      "candidate_count": 0,
+      "kinds": []
+    },
+    {
+      "id": 483,
+      "factory_subset": false,
+      "candidate_count": 0,
+      "kinds": []
+    },
+    {
+      "id": 484,
+      "factory_subset": false,
+      "candidate_count": 0,
+      "kinds": []
+    },
+    {
+      "id": 494,
+      "factory_subset": false,
+      "candidate_count": 0,
+      "kinds": []
+    },
+    {
+      "id": 497,
+      "factory_subset": false,
+      "candidate_count": 0,
+      "kinds": []
+    },
+    {
+      "id": 506,
+      "factory_subset": false,
+      "candidate_count": 0,
+      "kinds": []
+    },
+    {
+      "id": 507,
+      "factory_subset": false,
+      "candidate_count": 0,
+      "kinds": []
+    },
+    {
+      "id": 512,
+      "factory_subset": false,
+      "candidate_count": 0,
+      "kinds": []
+    },
+    {
+      "id": 533,
+      "factory_subset": true,
+      "candidate_count": 0,
+      "kinds": []
+    },
+    {
+      "id": 536,
+      "factory_subset": true,
+      "candidate_count": 0,
+      "kinds": []
+    },
+    {
+      "id": 544,
+      "factory_subset": false,
+      "candidate_count": 0,
+      "kinds": []
+    },
+    {
+      "id": 549,
+      "factory_subset": true,
+      "candidate_count": 0,
+      "kinds": []
+    },
+    {
+      "id": 551,
+      "factory_subset": false,
+      "candidate_count": 0,
+      "kinds": []
+    },
+    {
+      "id": 553,
+      "factory_subset": false,
+      "candidate_count": 0,
+      "kinds": []
+    },
+    {
+      "id": 555,
+      "factory_subset": false,
+      "candidate_count": 0,
+      "kinds": []
+    },
+    {
+      "id": 556,
+      "factory_subset": true,
+      "candidate_count": 0,
+      "kinds": []
+    },
+    {
+      "id": 557,
+      "factory_subset": false,
+      "candidate_count": 0,
+      "kinds": []
+    },
+    {
+      "id": 564,
+      "factory_subset": false,
+      "candidate_count": 0,
+      "kinds": []
+    },
+    {
+      "id": 571,
+      "factory_subset": false,
+      "candidate_count": 0,
+      "kinds": []
+    },
+    {
+      "id": 572,
+      "factory_subset": false,
+      "candidate_count": 0,
+      "kinds": []
+    },
+    {
+      "id": 580,
+      "factory_subset": false,
+      "candidate_count": 0,
+      "kinds": []
+    },
+    {
+      "id": 583,
+      "factory_subset": false,
+      "candidate_count": 0,
+      "kinds": []
+    },
+    {
+      "id": 584,
+      "factory_subset": false,
+      "candidate_count": 0,
+      "kinds": []
+    },
+    {
+      "id": 585,
+      "factory_subset": false,
+      "candidate_count": 0,
+      "kinds": []
+    },
+    {
+      "id": 593,
+      "factory_subset": false,
+      "candidate_count": 0,
+      "kinds": []
+    },
+    {
+      "id": 594,
+      "factory_subset": true,
+      "candidate_count": 0,
+      "kinds": []
+    },
+    {
+      "id": 595,
+      "factory_subset": true,
+      "candidate_count": 0,
+      "kinds": []
+    },
+    {
+      "id": 600,
+      "factory_subset": false,
+      "candidate_count": 0,
+      "kinds": []
+    },
+    {
+      "id": 604,
+      "factory_subset": true,
+      "candidate_count": 0,
+      "kinds": []
+    },
+    {
+      "id": 606,
+      "factory_subset": false,
+      "candidate_count": 0,
+      "kinds": []
+    },
+    {
+      "id": 608,
+      "factory_subset": false,
+      "candidate_count": 0,
+      "kinds": []
+    },
+    {
+      "id": 615,
+      "factory_subset": false,
+      "candidate_count": 0,
+      "kinds": []
+    },
+    {
+      "id": 620,
+      "factory_subset": false,
+      "candidate_count": 0,
+      "kinds": []
+    },
+    {
+      "id": 635,
+      "factory_subset": false,
+      "candidate_count": 0,
+      "kinds": []
+    },
+    {
+      "id": 642,
+      "factory_subset": false,
+      "candidate_count": 0,
+      "kinds": []
+    },
+    {
+      "id": 645,
+      "factory_subset": false,
+      "candidate_count": 0,
+      "kinds": []
+    },
+    {
+      "id": 655,
+      "factory_subset": false,
+      "candidate_count": 0,
+      "kinds": []
+    },
+    {
+      "id": 661,
+      "factory_subset": false,
+      "candidate_count": 0,
+      "kinds": []
+    },
+    {
+      "id": 673,
+      "factory_subset": false,
+      "candidate_count": 0,
+      "kinds": []
+    },
+    {
+      "id": 676,
+      "factory_subset": true,
+      "candidate_count": 0,
+      "kinds": []
+    },
+    {
+      "id": 678,
+      "factory_subset": false,
+      "candidate_count": 0,
+      "kinds": []
+    },
+    {
+      "id": 680,
+      "factory_subset": false,
+      "candidate_count": 0,
+      "kinds": []
+    },
+    {
+      "id": 681,
+      "factory_subset": false,
+      "candidate_count": 0,
+      "kinds": []
+    },
+    {
+      "id": 683,
+      "factory_subset": false,
+      "candidate_count": 0,
+      "kinds": []
+    },
+    {
+      "id": 690,
+      "factory_subset": false,
+      "candidate_count": 0,
+      "kinds": []
+    },
+    {
+      "id": 694,
+      "factory_subset": false,
+      "candidate_count": 0,
+      "kinds": []
+    },
+    {
+      "id": 705,
+      "factory_subset": false,
+      "candidate_count": 0,
+      "kinds": []
+    },
+    {
+      "id": 712,
+      "factory_subset": false,
+      "candidate_count": 0,
+      "kinds": []
+    },
+    {
+      "id": 714,
+      "factory_subset": false,
+      "candidate_count": 0,
+      "kinds": []
+    },
+    {
+      "id": 716,
+      "factory_subset": true,
+      "candidate_count": 0,
+      "kinds": []
+    },
+    {
+      "id": 721,
+      "factory_subset": false,
+      "candidate_count": 0,
+      "kinds": []
+    },
+    {
+      "id": 724,
+      "factory_subset": false,
+      "candidate_count": 0,
+      "kinds": []
+    },
+    {
+      "id": 726,
+      "factory_subset": false,
+      "candidate_count": 0,
+      "kinds": []
+    },
+    {
+      "id": 742,
+      "factory_subset": false,
+      "candidate_count": 0,
+      "kinds": []
+    },
+    {
+      "id": 743,
+      "factory_subset": false,
+      "candidate_count": 0,
+      "kinds": []
+    },
+    {
+      "id": 748,
+      "factory_subset": false,
+      "candidate_count": 0,
+      "kinds": []
+    },
+    {
+      "id": 751,
+      "factory_subset": false,
+      "candidate_count": 0,
+      "kinds": []
+    },
+    {
+      "id": 752,
+      "factory_subset": false,
+      "candidate_count": 0,
+      "kinds": []
+    },
+    {
+      "id": 760,
+      "factory_subset": false,
+      "candidate_count": 0,
+      "kinds": []
+    },
+    {
+      "id": 769,
+      "factory_subset": false,
+      "candidate_count": 0,
+      "kinds": []
+    },
+    {
+      "id": 771,
+      "factory_subset": true,
+      "candidate_count": 0,
+      "kinds": []
+    },
+    {
+      "id": 773,
+      "factory_subset": false,
+      "candidate_count": 0,
+      "kinds": []
+    },
+    {
+      "id": 775,
+      "factory_subset": false,
+      "candidate_count": 0,
+      "kinds": []
+    },
+    {
+      "id": 782,
+      "factory_subset": false,
+      "candidate_count": 0,
+      "kinds": []
+    },
+    {
+      "id": 794,
+      "factory_subset": true,
+      "candidate_count": 0,
+      "kinds": []
+    },
+    {
+      "id": 796,
+      "factory_subset": true,
+      "candidate_count": 0,
+      "kinds": []
+    },
+    {
+      "id": 801,
+      "factory_subset": true,
+      "candidate_count": 0,
+      "kinds": []
+    },
+    {
+      "id": 806,
+      "factory_subset": true,
+      "candidate_count": 0,
+      "kinds": []
+    },
+    {
+      "id": 809,
+      "factory_subset": false,
+      "candidate_count": 0,
+      "kinds": []
+    },
+    {
+      "id": 816,
+      "factory_subset": false,
+      "candidate_count": 0,
+      "kinds": []
+    },
+    {
+      "id": 817,
+      "factory_subset": false,
+      "candidate_count": 0,
+      "kinds": []
+    },
+    {
+      "id": 822,
+      "factory_subset": false,
+      "candidate_count": 0,
+      "kinds": []
+    },
+    {
+      "id": 825,
+      "factory_subset": false,
+      "candidate_count": 0,
+      "kinds": []
+    },
+    {
+      "id": 830,
+      "factory_subset": false,
+      "candidate_count": 0,
+      "kinds": []
+    },
+    {
+      "id": 844,
+      "factory_subset": false,
+      "candidate_count": 0,
+      "kinds": []
+    },
+    {
+      "id": 846,
+      "factory_subset": false,
+      "candidate_count": 0,
+      "kinds": []
+    },
+    {
+      "id": 854,
+      "factory_subset": true,
+      "candidate_count": 0,
+      "kinds": []
+    },
+    {
+      "id": 857,
+      "factory_subset": false,
+      "candidate_count": 0,
+      "kinds": []
+    },
+    {
+      "id": 859,
+      "factory_subset": false,
+      "candidate_count": 0,
+      "kinds": []
+    },
+    {
+      "id": 862,
+      "factory_subset": false,
+      "candidate_count": 0,
+      "kinds": []
+    },
+    {
+      "id": 867,
+      "factory_subset": false,
+      "candidate_count": 0,
+      "kinds": []
+    },
+    {
+      "id": 880,
+      "factory_subset": true,
+      "candidate_count": 0,
+      "kinds": []
+    },
+    {
+      "id": 882,
+      "factory_subset": false,
+      "candidate_count": 0,
+      "kinds": []
+    },
+    {
+      "id": 897,
+      "factory_subset": false,
+      "candidate_count": 0,
+      "kinds": []
+    },
+    {
+      "id": 898,
+      "factory_subset": false,
+      "candidate_count": 0,
+      "kinds": []
+    },
+    {
+      "id": 906,
+      "factory_subset": false,
+      "candidate_count": 0,
+      "kinds": []
+    },
+    {
+      "id": 912,
+      "factory_subset": false,
+      "candidate_count": 0,
+      "kinds": []
+    },
+    {
+      "id": 915,
+      "factory_subset": false,
+      "candidate_count": 0,
+      "kinds": []
+    },
+    {
+      "id": 917,
+      "factory_subset": false,
+      "candidate_count": 0,
+      "kinds": []
+    },
+    {
+      "id": 927,
+      "factory_subset": false,
+      "candidate_count": 0,
+      "kinds": []
+    },
+    {
+      "id": 929,
+      "factory_subset": false,
+      "candidate_count": 0,
+      "kinds": []
+    },
+    {
+      "id": 935,
+      "factory_subset": false,
+      "candidate_count": 0,
+      "kinds": []
+    },
+    {
+      "id": 940,
+      "factory_subset": false,
+      "candidate_count": 0,
+      "kinds": []
+    },
+    {
+      "id": 951,
+      "factory_subset": false,
+      "candidate_count": 0,
+      "kinds": []
+    },
+    {
+      "id": 954,
+      "factory_subset": true,
+      "candidate_count": 0,
+      "kinds": []
+    },
+    {
+      "id": 960,
+      "factory_subset": false,
+      "candidate_count": 0,
+      "kinds": []
+    },
+    {
+      "id": 968,
+      "factory_subset": false,
+      "candidate_count": 0,
+      "kinds": []
+    },
+    {
+      "id": 975,
+      "factory_subset": false,
+      "candidate_count": 0,
+      "kinds": []
+    },
+    {
+      "id": 978,
+      "factory_subset": false,
+      "candidate_count": 0,
+      "kinds": []
+    },
+    {
+      "id": 979,
+      "factory_subset": false,
+      "candidate_count": 0,
+      "kinds": []
+    },
+    {
+      "id": 980,
+      "factory_subset": false,
+      "candidate_count": 0,
+      "kinds": []
+    },
+    {
+      "id": 989,
+      "factory_subset": false,
+      "candidate_count": 0,
+      "kinds": []
+    },
+    {
+      "id": 990,
+      "factory_subset": false,
+      "candidate_count": 0,
+      "kinds": []
+    },
+    {
+      "id": 1001,
+      "factory_subset": false,
+      "candidate_count": 0,
+      "kinds": []
+    },
+    {
+      "id": 1002,
+      "factory_subset": true,
+      "candidate_count": 0,
+      "kinds": []
+    },
+    {
+      "id": 1003,
+      "factory_subset": true,
+      "candidate_count": 0,
+      "kinds": []
+    },
+    {
+      "id": 1015,
+      "factory_subset": false,
+      "candidate_count": 0,
+      "kinds": []
+    },
+    {
+      "id": 1025,
+      "factory_subset": true,
+      "candidate_count": 0,
+      "kinds": []
+    },
+    {
+      "id": 1028,
+      "factory_subset": true,
+      "candidate_count": 0,
+      "kinds": []
+    },
+    {
+      "id": 1029,
+      "factory_subset": false,
+      "candidate_count": 0,
+      "kinds": []
+    },
+    {
+      "id": 1036,
+      "factory_subset": false,
+      "candidate_count": 0,
+      "kinds": []
+    },
+    {
+      "id": 1037,
+      "factory_subset": false,
+      "candidate_count": 0,
+      "kinds": []
+    },
+    {
+      "id": 1042,
+      "factory_subset": false,
+      "candidate_count": 0,
+      "kinds": []
+    },
+    {
+      "id": 1063,
+      "factory_subset": false,
+      "candidate_count": 0,
+      "kinds": []
+    },
+    {
+      "id": 1065,
+      "factory_subset": false,
+      "candidate_count": 0,
+      "kinds": []
+    },
+    {
+      "id": 1069,
+      "factory_subset": false,
+      "candidate_count": 0,
+      "kinds": []
+    },
+    {
+      "id": 1072,
+      "factory_subset": false,
+      "candidate_count": 0,
+      "kinds": []
+    }
+  ]
+}

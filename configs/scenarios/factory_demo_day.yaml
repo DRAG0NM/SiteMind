@@ -1,0 +1,68 @@
+# 演示日剧本（B17）：《愿景与演示剧本》的开场、四幕、插曲、临时指令，含次日。
+# 数据性质 synthetic：事件、时刻与参数按常理编写；负荷底座来自 B18（D05 × 倍数 derived + 作息合成），光伏与气温来自 PVGIS（derived），
+# 电价为江苏 2025 年 426 号文分时时段（计价基础演示值）。设备与区域引用 B18 装配 configs/sites/factory/site.yaml。
+scenario_id: factory_demo_day
+title: 工厂演示日（含次日）
+nature: synthetic
+description: 开场喂资料 → 第一幕早高峰应急 → 插曲新手册 → 第二幕泄漏与照明故障 → 临时指令 → 第三幕困人 → 第四幕纠错进化与次日复现
+date: "2026-07-01"
+days: 2
+seed: 20260701
+initial:
+  soc: 0.2            # 第一幕：储能只剩 20%
+knowledge: []         # 知识 v1：几乎空白的图谱
+policy:
+  response_budget: {layer12_min: 1, layer3_min: 3}
+  # B47 自主等级（D53）：演示里熟悉的类别按默认 L2；从未见过的组合异常从 L0 起步，纠错后由 B32 升级。
+  autonomy_levels:
+    elevator_congestion: L2
+    load_spike: L2
+    sim_limit: L2
+    lighting_fault: L2
+    compressor_pressure_drop: L2
+    equipment_fault: L2
+    power_quality_dip: L2
+    heat_wave: L2
+    pv_drop: L2
+    capacity_shed_request: L2
+    elevator_trapped: L2
+    unknown_combo: L0
+params:
+  capacity_kw: {TX1: 1150}   # 第一幕“逼近变压器上限”：生产变压器按 1150 kW 运行限额（configured），突增时负载约 93%
+dispatch:
+  metering_anomaly: [equipment]   # B22：D05 计量故障转成的事件走设备监测（只开计量检修工单）
+
+operator_actions:
+  - at: "07:30"
+    kind: upload
+    payload: {document: 各专家手册、规程与江苏分时电价政策, adds: [energy_manual, elevator_manual, hvac_manual, tariff_policy],
+              summary: 开场：喂进手册、规程与电价政策，图谱长出来}
+  - at: "09:30"
+    kind: upload
+    payload: {document: 《空压机运行维护手册》, adds: [compressor_leak_rule], summary: 插曲：新手册抽出泄漏判别规则}
+  - at: "12:30"
+    kind: instruction
+    payload: {text: 下午有领导参观，行政楼保持 24 ℃, zone: admin, setpoint_c: 24, start: "13:00", end: "17:00"}
+  - at: "14:30"
+    kind: confirm
+    payload: {event: act3-trapped}
+  - at: "16:10"
+    kind: correct
+    payload: {event: act4-combo, adds: [combo_rule], summary: 第四幕：值班人员纠正——照明与空压同时异常是生产总配电柜接触不良，附检修记录}
+
+events:
+  # 第一幕 应急研判（08:05 早高峰）
+  - {at: "08:05", id: act1-elevator, type: elevator_congestion, entity_id: "elevator_group:admin_low", severity: 3,
+     summary: 行政楼低区人梯拥堵, payload: {effects: [{kind: surge, factor: 3.0, minutes: 40}]}}
+  - {at: "08:05", id: act1-spike, type: load_spike, entity_id: AC-2, severity: 4,
+     summary: 空压站与冲压线同时启动，总用电突增, payload: {effects: [{kind: extra_load, kw: 550, minutes: 40}]}}
+  # 第二幕 专家各自快速反应（10:30）
+  - {at: "10:30", id: act2-leak, type: compressor_pressure_drop, entity_id: AC-2, severity: 3, summary: 空压站压力异常下降}
+  - {at: "10:30", id: act2-light, type: lighting_fault, entity_id: LT-A03, severity: 2, summary: 行政楼 3 层照明回路故障}
+  # 第三幕 涉及安全（14:20）
+  - {at: "14:20", id: act3-trapped, type: elevator_trapped, entity_id: FE-2, severity: 5, summary: 2 号货梯停在两层之间，轿厢内有人}
+  # 第四幕 纠错后进化（16:00 与次日 16:00）
+  - {at: "16:00", id: act4-combo, type: unknown_combo, entity_id: LT-P, severity: 3, summary: 车间照明闪烁与 1# 空压机异常同时出现}
+  - {at: "+1 08:05", id: day2-elevator, type: elevator_congestion, entity_id: "elevator_group:admin_low", severity: 3,
+     summary: 次日早高峰拥堵, payload: {effects: [{kind: surge, factor: 2.5, minutes: 35}]}}
+  - {at: "+1 16:00", id: day2-combo, type: unknown_combo, entity_id: LT-P, severity: 3, summary: 次日同类组合异常再次出现}

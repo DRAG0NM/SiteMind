@@ -1,0 +1,6 @@
+{
+  "model": "ActionCancelRequest",
+  "data": {
+    "reason": "现场已经处理"
+  }
+}

@@ -1,0 +1,60 @@
+{
+  "model": "SourceRecord",
+  "base": "source_record_hipe",
+  "expect_error": "available_at",
+  "data": {
+    "source_id": "hipe",
+    "source_version": "hipe-2017-week-v1",
+    "content_hash": "sha256:07e62e262cd11ef411966adcafb83a841f571fa1ab8bb7495b9a855a0fd2182a",
+    "locator": {
+      "meter": "main_terminal",
+      "time_range": {
+        "start": "2017-10-23T06:00:00Z",
+        "end": "2017-10-23T06:15:00Z"
+      }
+    },
+    "nature": "measured",
+    "event_time": "2026-07-01T00:00:00Z",
+    "interval": {
+      "start": "2026-07-01T00:00:00Z",
+      "end": "2026-07-01T00:15:00Z"
+    },
+    "available_at": "2026-07-01T00:10:00Z",
+    "source_tz": "Europe/Berlin",
+    "source_unit": "W",
+    "quantity": "active_power",
+    "unit": "kW",
+    "value": 412.5,
+    "transform_steps": [
+      {
+        "op": "time_map_local_wall_clock",
+        "params": {
+          "source_start": "2017-10-23",
+          "plant_start": "2026-07-01"
+        },
+        "version": "tm-1"
+      },
+      {
+        "op": "unit_w_to_kw",
+        "params": {},
+        "version": "u-1"
+      },
+      {
+        "op": "resample_15min_mean",
+        "params": {},
+        "version": "rs-1"
+      },
+      {
+        "op": "scale_load",
+        "params": {
+          "factor": 25,
+          "nature": "configured"
+        },
+        "version": "sc-1"
+      }
+    ],
+    "quality": {
+      "flag": "ok"
+    }
+  }
+}

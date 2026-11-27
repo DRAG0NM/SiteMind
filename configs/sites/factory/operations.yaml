@@ -1,0 +1,12 @@
+# B19 演示用待排工序（synthetic）：一道不可抢占的批处理工序，额定功率为配置值，曲线形状借用 B13 样例（HIPE VacuumPump1 一次运行，3 小时）。
+# 工序负荷是在厂区基础负荷之外追加的，由 run_day 在场景世界里按计划开始时刻真实注入（extra_load）。
+# window_local 是 operation_window 规则的当地小时范围；original_start 用当地钟面，run_day 按剧本日期平移。
+provenance_note: 工序与设备的对应、额定功率为配置；曲线形状取自 HIPE（德国 2017），不是本厂同年实测；本演示工序为 synthetic
+equipment_code: LINE-3     # 世界里承接工序负荷的设备
+window_local: [7, 11]   # 早班批处理：当地 11:00 前必须做完
+operations:
+  - operation_id: JOB1
+    entity_id: entity://demo-electronics/operation/JOB1
+    rated_kw: 200.0
+    shape: ../../../fixtures/packs/production/vacuum_pump1_run_20260701.json
+    original_start: "2026-07-01T09:45:00+08:00"

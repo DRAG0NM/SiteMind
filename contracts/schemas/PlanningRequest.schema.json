@@ -1,0 +1,302 @@
+{
+  "$defs": {
+    "Actor": {
+      "additionalProperties": false,
+      "properties": {
+        "actor_id": {
+          "maxLength": 200,
+          "minLength": 1,
+          "title": "Actor Id",
+          "type": "string"
+        },
+        "roles": {
+          "default": [],
+          "items": {
+            "$ref": "#/$defs/Role"
+          },
+          "title": "Roles",
+          "type": "array"
+        },
+        "display_name": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Display Name"
+        }
+      },
+      "required": [
+        "actor_id"
+      ],
+      "title": "Actor",
+      "type": "object"
+    },
+    "Context": {
+      "additionalProperties": false,
+      "description": "一次调用的可信上下文。MCP 工具里由服务端按 ctx 查 RunSession 得到，不从工具参数逐项读取。",
+      "properties": {
+        "plant_id": {
+          "maxLength": 200,
+          "minLength": 1,
+          "title": "Plant Id",
+          "type": "string"
+        },
+        "industry_pack": {
+          "maxLength": 200,
+          "minLength": 1,
+          "title": "Industry Pack",
+          "type": "string"
+        },
+        "actor": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Actor"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "channel": {
+          "$ref": "#/$defs/ContextChannel"
+        },
+        "agent_run_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Agent Run Id"
+        },
+        "run_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Run Id"
+        },
+        "trace_id": {
+          "maxLength": 200,
+          "minLength": 1,
+          "title": "Trace Id",
+          "type": "string"
+        },
+        "as_of": {
+          "format": "date-time",
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d{1,9})?(Z|[+-]00:?00)$",
+          "title": "As Of",
+          "type": "string"
+        },
+        "version_manifest_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Version Manifest Id"
+        },
+        "idempotency_key": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Idempotency Key"
+        },
+        "run_mode": {
+          "$ref": "#/$defs/RunMode",
+          "default": "live"
+        }
+      },
+      "required": [
+        "plant_id",
+        "industry_pack",
+        "actor",
+        "channel",
+        "trace_id",
+        "as_of"
+      ],
+      "title": "Context",
+      "type": "object"
+    },
+    "ContextChannel": {
+      "enum": [
+        "gateway",
+        "none",
+        "rest",
+        "offline",
+        "mock_default"
+      ],
+      "title": "ContextChannel",
+      "type": "string"
+    },
+    "Interval": {
+      "additionalProperties": false,
+      "description": "左闭右开 UTC 区间 [start, end)。",
+      "properties": {
+        "start": {
+          "format": "date-time",
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d{1,9})?(Z|[+-]00:?00)$",
+          "title": "Start",
+          "type": "string"
+        },
+        "end": {
+          "format": "date-time",
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d{1,9})?(Z|[+-]00:?00)$",
+          "title": "End",
+          "type": "string"
+        }
+      },
+      "required": [
+        "start",
+        "end"
+      ],
+      "title": "Interval",
+      "type": "object"
+    },
+    "Role": {
+      "enum": [
+        "viewer",
+        "operator",
+        "reviewer"
+      ],
+      "title": "Role",
+      "type": "string"
+    },
+    "RunMode": {
+      "description": "v0.8 运行模式（03 §3.0 运行模式）。deterministic 是 live 来源缺失时的记录口径，不是请求模式。",
+      "enum": [
+        "live",
+        "trial",
+        "evaluation",
+        "deterministic"
+      ],
+      "title": "RunMode",
+      "type": "string"
+    },
+    "SolverBudget": {
+      "additionalProperties": false,
+      "properties": {
+        "time_limit_s": {
+          "exclusiveMinimum": 0,
+          "title": "Time Limit S",
+          "type": "number"
+        },
+        "mip_rel_gap": {
+          "exclusiveMaximum": 1,
+          "exclusiveMinimum": 0,
+          "title": "Mip Rel Gap",
+          "type": "number"
+        },
+        "threads": {
+          "default": 1,
+          "minimum": 1,
+          "title": "Threads",
+          "type": "integer"
+        },
+        "random_seed": {
+          "default": 0,
+          "title": "Random Seed",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "time_limit_s",
+        "mip_rel_gap"
+      ],
+      "title": "SolverBudget",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "context": {
+      "$ref": "#/$defs/Context"
+    },
+    "snapshot_id": {
+      "maxLength": 200,
+      "minLength": 1,
+      "title": "Snapshot Id",
+      "type": "string"
+    },
+    "forecast_ids": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Forecast Ids",
+      "type": "array"
+    },
+    "rule_ids": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Rule Ids",
+      "type": "array"
+    },
+    "horizon": {
+      "$ref": "#/$defs/Interval"
+    },
+    "step_minutes": {
+      "default": 15,
+      "exclusiveMinimum": 0,
+      "title": "Step Minutes",
+      "type": "integer"
+    },
+    "solver_budget": {
+      "$ref": "#/$defs/SolverBudget"
+    },
+    "packs": {
+      "items": {
+        "type": "string"
+      },
+      "minItems": 1,
+      "title": "Packs",
+      "type": "array"
+    },
+    "policy": {
+      "default": "B2",
+      "enum": [
+        "B0",
+        "B1",
+        "B2"
+      ],
+      "title": "Policy",
+      "type": "string"
+    }
+  },
+  "required": [
+    "context",
+    "snapshot_id",
+    "forecast_ids",
+    "rule_ids",
+    "horizon",
+    "solver_budget",
+    "packs"
+  ],
+  "title": "PlanningRequest",
+  "type": "object",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "plantkg:contracts/1.2.0/PlanningRequest"
+}

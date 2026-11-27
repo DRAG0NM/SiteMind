@@ -1,0 +1,11 @@
+{
+  "model": "AutonomyStatus",
+  "data": {
+    "paused": true,
+    "scope": "plant",
+    "by": "u-reviewer-1",
+    "since": "2026-07-01T00:20:00Z",
+    "reason": "巡检期间先只提议",
+    "backlog": 2
+  }
+}

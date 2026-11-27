@@ -1,0 +1,228 @@
+{
+  "$defs": {
+    "InputSlice": {
+      "additionalProperties": false,
+      "properties": {
+        "source_ids": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Source Ids",
+          "type": "array"
+        },
+        "visible_until": {
+          "format": "date-time",
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d{1,9})?(Z|[+-]00:?00)$",
+          "title": "Visible Until",
+          "type": "string"
+        },
+        "window": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Interval"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "note": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Note"
+        }
+      },
+      "required": [
+        "source_ids",
+        "visible_until"
+      ],
+      "title": "InputSlice",
+      "type": "object"
+    },
+    "Interval": {
+      "additionalProperties": false,
+      "description": "左闭右开 UTC 区间 [start, end)。",
+      "properties": {
+        "start": {
+          "format": "date-time",
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d{1,9})?(Z|[+-]00:?00)$",
+          "title": "Start",
+          "type": "string"
+        },
+        "end": {
+          "format": "date-time",
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d{1,9})?(Z|[+-]00:?00)$",
+          "title": "End",
+          "type": "string"
+        }
+      },
+      "required": [
+        "start",
+        "end"
+      ],
+      "title": "Interval",
+      "type": "object"
+    },
+    "Unit": {
+      "description": "内部标准单位。新增单位是契约变更。",
+      "enum": [
+        "kW",
+        "kWh",
+        "1",
+        "CNY",
+        "CNY/kWh",
+        "CNY/kW",
+        "h",
+        "min",
+        "degC",
+        "%",
+        "count",
+        "bar/h",
+        "s"
+      ],
+      "title": "Unit",
+      "type": "string"
+    }
+  },
+  "additionalProperties": false,
+  "description": "预测单独表示，不能当 measured。",
+  "properties": {
+    "forecast_id": {
+      "maxLength": 200,
+      "minLength": 1,
+      "title": "Forecast Id",
+      "type": "string"
+    },
+    "quantity": {
+      "maxLength": 200,
+      "minLength": 1,
+      "title": "Quantity",
+      "type": "string"
+    },
+    "unit": {
+      "$ref": "#/$defs/Unit"
+    },
+    "issued_at": {
+      "format": "date-time",
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d{1,9})?(Z|[+-]00:?00)$",
+      "title": "Issued At",
+      "type": "string"
+    },
+    "target": {
+      "$ref": "#/$defs/Interval"
+    },
+    "step_minutes": {
+      "exclusiveMinimum": 0,
+      "title": "Step Minutes",
+      "type": "integer"
+    },
+    "values": {
+      "items": {
+        "anyOf": [
+          {
+            "type": "number"
+          },
+          {
+            "type": "null"
+          }
+        ]
+      },
+      "title": "Values",
+      "type": "array"
+    },
+    "lower": {
+      "anyOf": [
+        {
+          "items": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "type": "array"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Lower"
+    },
+    "upper": {
+      "anyOf": [
+        {
+          "items": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "type": "array"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Upper"
+    },
+    "model_version": {
+      "maxLength": 200,
+      "minLength": 1,
+      "title": "Model Version",
+      "type": "string"
+    },
+    "params": {
+      "additionalProperties": true,
+      "title": "Params",
+      "type": "object"
+    },
+    "input_slice": {
+      "$ref": "#/$defs/InputSlice"
+    },
+    "coverage": {
+      "maximum": 1,
+      "minimum": 0,
+      "title": "Coverage",
+      "type": "number"
+    },
+    "nature": {
+      "const": "derived",
+      "default": "derived",
+      "title": "Nature",
+      "type": "string"
+    }
+  },
+  "required": [
+    "forecast_id",
+    "quantity",
+    "unit",
+    "issued_at",
+    "target",
+    "step_minutes",
+    "values",
+    "model_version",
+    "input_slice",
+    "coverage"
+  ],
+  "title": "Forecast",
+  "type": "object",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "plantkg:contracts/1.2.0/Forecast"
+}

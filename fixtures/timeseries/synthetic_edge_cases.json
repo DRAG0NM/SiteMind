@@ -1,0 +1,54 @@
+{
+  "nature": "synthetic",
+  "purpose": "人工构造的准备样例，不代表真实观测，也不是已通过的适配器测试。",
+  "cases": [
+    {
+      "name": "zero_and_missing",
+      "unit": "kW",
+      "rows": [
+        {
+          "SensorDateTime": "2017-10-23T00:00:00+02",
+          "Machine": "example",
+          "P_kW": "0"
+        },
+        {
+          "SensorDateTime": "2017-10-23T00:00:05+02",
+          "Machine": "example",
+          "P_kW": ""
+        }
+      ]
+    },
+    {
+      "name": "gap_and_bucket_boundary",
+      "unit": "kW",
+      "rows": [
+        {
+          "SensorDateTime": "2017-10-23T00:14:55+02",
+          "Machine": "example",
+          "P_kW": "2"
+        },
+        {
+          "SensorDateTime": "2017-10-23T00:16:30+02",
+          "Machine": "example",
+          "P_kW": "3"
+        }
+      ]
+    },
+    {
+      "name": "duplicate_conflict",
+      "unit": "kW",
+      "rows": [
+        {
+          "SensorDateTime": "2017-10-23T00:00:00+02",
+          "Machine": "example",
+          "P_kW": "1"
+        },
+        {
+          "SensorDateTime": "2017-10-23T00:00:00+02",
+          "Machine": "example",
+          "P_kW": "2"
+        }
+      ]
+    }
+  ]
+}

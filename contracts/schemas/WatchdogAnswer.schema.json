@@ -1,0 +1,16 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "answer": {
+      "title": "Answer",
+      "type": "string"
+    }
+  },
+  "required": [
+    "answer"
+  ],
+  "title": "WatchdogAnswer",
+  "type": "object",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "plantkg:contracts/1.2.0/WatchdogAnswer"
+}

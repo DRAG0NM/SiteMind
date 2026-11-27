@@ -1,0 +1,29 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "time_limit_s": {
+      "exclusiveMinimum": 0,
+      "title": "Time Limit S",
+      "type": "number"
+    },
+    "note": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Note"
+    }
+  },
+  "required": [
+    "time_limit_s"
+  ],
+  "title": "JobBudget",
+  "type": "object",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "plantkg:contracts/1.2.0/JobBudget"
+}

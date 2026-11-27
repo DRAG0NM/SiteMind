@@ -1,0 +1,93 @@
+{
+  "agent_id": 15,
+  "agent_info": {
+    "15": {
+      "agent_id": 15,
+      "name": "plantkg_expert_hvac",
+      "display_name": "plantkg 暖通专家",
+      "description": "暖通专家：区域温度与舒适区间、预冷与推迟预冷、错峰让容，洁净车间与数据机房按硬约束保供",
+      "max_steps": 10,
+      "requested_output_tokens": null,
+      "is_main_agent": true,
+      "provide_run_summary": false,
+      "allow_chat_metadata": true,
+      "enable_protocol_repair_retry": false,
+      "verification_config": null,
+      "context_policy": null,
+      "prompt": "你是厂区的暖通专家，负责区域温度、预冷与错峰、舒适度。\n1. 收到事件单会诊时，先调用 plantkg_hvac_propose 得到提案（工具会落库并返回 proposal_id 与摘要），不要自己编温度、功率或省钱数。\n2. 区域与约束：车间恒温区 22±2 ℃；行政楼 24～26 ℃、07:00 起供冷；洁净车间 21～23 ℃ / 45±5 %RH 与数据机房 18～27 ℃ 是硬约束，\n   不能停机、不能断供、不能改设定温度。削峰只动非硬约束区域，先动行政楼，不要让室温越过上限。\n3. 动作只有三种：set_mode（normal / precool / off）、set_setpoint（setpoint_c）、ventilate（井道通风）。\n   off 是这段时间停供冷、温度会上浮；precool 是设定温度低 1 ℃、把冷量提前买进去；让出的冷量要在窗口之后补回来，所以错峰不是省电。\n4. 会诊的最终回答只能是一行 JSON，不加解释、不加代码块：\n   {\"status\":\"done|waiting|blocked|needs_clarification\",\"proposal_id\":\"<工具返回的 proposal_id>\",\"diagnosis\":\"<一句话诊断>\",\"evidence_refs\":[],\"question\":null}\n5. 任务不是以“事件单 … 第 N 轮会诊”开头时都算问答：不要调用 propose 工具（它只用于会诊，调了只会失败）；list_assets 最多调一次，不要换类型重试，它只列资料版本，没有运行简报和实时读数，用一两句中文回答，依据资料与工具结果；不知道就说不知道。\n",
+      "enabled": true,
+      "tools": [
+        {
+          "class_name": "plantkg_list_assets",
+          "name": "plantkg_list_assets",
+          "description": "列出当前 as_of 可见的资料版本（政策、手册等），不含运行简报和实时读数",
+          "description_zh": null,
+          "inputs": "{'asset_type': {'anyOf': [{'type': 'string'}, {'type': 'null'}], 'default': None, 'description': '按类型过滤', 'type': 'string'}, 'cursor': {'anyOf': [{'type': 'string'}, {'type': 'null'}], 'default': None, 'description': '分页游标；首次调用留空', 'type': 'string'}, 'page_size': {'anyOf': [{'maximum': 50.0, 'minimum': 1.0, 'type': 'integer'}, {'type': 'null'}], 'default': None, 'description': '每页条数，1～50', 'type': 'string'}, 'ctx': {'default': '', 'description': '由系统注入，不要填写', 'type': 'string'}}",
+          "output_type": "object",
+          "params": {},
+          "source": "mcp",
+          "usage": "plantkg",
+          "metadata": null,
+          "labels": null
+        },
+        {
+          "class_name": "plantkg_hvac_propose",
+          "name": "plantkg_hvac_propose",
+          "description": "暖通专家：针对当前事件单确定性算出动作、代价、置信度与安全标记，提案落库后返回 proposal_id",
+          "description_zh": null,
+          "inputs": "{'focus': {'anyOf': [{'type': 'string'}, {'type': 'null'}], 'default': None, 'description': '本次关注的对象或问题（可留空）', 'type': 'string'}, 'ctx': {'default': '', 'description': '由系统注入，不要填写', 'type': 'string'}}",
+          "output_type": "object",
+          "params": {},
+          "source": "mcp",
+          "usage": "plantkg",
+          "metadata": null,
+          "labels": null
+        },
+        {
+          "class_name": "KnowledgeBaseSearchTool",
+          "name": "knowledge_base_search",
+          "description": "Performs a local knowledge base search based on your query then returns the top search results. A tool for retrieving domain-specific knowledge, documents, and information stored in the local knowledge base. Use this tool when users ask questions related to specialized knowledge, technical documentation, domain expertise, personal notes, or any information that has been indexed in the knowledge base. Suitable for queries requiring access to stored knowledge that may not be publicly available.",
+          "description_zh": "执行本地知识库检索并返回最相关的结果。",
+          "inputs": "{\"query\": {\"type\": \"string\", \"description\": \"The search query to perform.\", \"description_zh\": \"要执行的搜索查询词\"}, \"index_names\": {\"type\": \"array\", \"description\": \"The list of index names to search\", \"description_zh\": \"要索引的知识库\", \"nullable\": true}}",
+          "output_type": "string",
+          "params": {
+            "top_k": 3,
+            "index_names": [],
+            "search_mode": "hybrid",
+            "rerank": false,
+            "rerank_model_name": ""
+          },
+          "source": "local",
+          "usage": null,
+          "metadata": {},
+          "labels": null
+        }
+      ],
+      "managed_agents": [],
+      "model_ids": [
+        4
+      ],
+      "model_names": [
+        "deepseek-v4.1-flash-1017"
+      ],
+      "business_logic_model_id": 4,
+      "business_logic_model_name": "deepseek-v4.1-flash-1017",
+      "skill_names": [
+        "domain-hvac"
+      ],
+      "model_params_override": {
+        "4": {
+          "extra_params": {}
+        }
+      },
+      "greeting_message": null,
+      "example_questions": null
+    }
+  },
+  "mcp_info": [
+    {
+      "mcp_server_name": "plantkg",
+      "mcp_url": "http://host.docker.internal:8700/mcp"
+    }
+  ]
+}

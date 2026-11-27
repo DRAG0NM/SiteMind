@@ -1,0 +1,14 @@
+# 极端场景 8：从未见过的组合异常（考验低置信度不执行、纠错与进化）。数据性质 synthetic。
+scenario_id: extreme_unseen_combo
+title: 从未见过的组合异常
+nature: synthetic
+date: "2026-07-01"
+days: 2
+seed: 108
+initial: {soc: 0.5}
+knowledge: [energy_manual]
+events:
+  - {at: "16:00", id: combo, type: unknown_combo, entity_id: LT-P, severity: 3, summary: 车间照明闪烁与 1# 空压机异常同时出现}
+  - {at: "+1 16:00", type: unknown_combo, entity_id: LT-P, severity: 3, summary: 次日同类异常}
+operator_actions:
+  - {at: "16:10", kind: correct, payload: {event: combo, adds: [combo_rule], summary: 生产总配电柜接触不良，附检修记录}}

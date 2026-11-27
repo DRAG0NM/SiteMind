@@ -1,0 +1,54 @@
+{
+  "created_at": "2026-11-05T15:21:55.695223+00:00",
+  "as_of": "2026-06-30T10:00:00+00:00",
+  "experts": {
+    "elevator": {
+      "agent": "plantkg_expert_elevator",
+      "index_names": [
+        "2-1cec13e7528644238749368350d42b46"
+      ],
+      "document_paths": [
+        "knowledge_base/20261104230803_a631fd3b38af4cbbb7222df8bf6a7a91.md",
+        "knowledge_base/20261104230803_aaa1263f9b2c4b12a1a95321e8bfca82.md",
+        "knowledge_base/20261104230803_30e131fd7b94496b94aef0bfc7188df7.csv",
+        "knowledge_base/20261104230803_276fb211c0604006a8f409bd133fba5e.csv"
+      ]
+    },
+    "hvac": {
+      "agent": "plantkg_expert_hvac",
+      "index_names": [
+        "3-37a28fbf8b3943f9a837ee7a0d44e9d6"
+      ],
+      "document_paths": [
+        "knowledge_base/20261104230833_75eb72bd737f4f6898cee9660dc5f1f0.md",
+        "knowledge_base/20261104230833_caa69a4a5ae64487ba811f4a2fb5fbd2.md",
+        "knowledge_base/20261104230833_9744383c37b747468e6201aa242d1e4f.csv",
+        "knowledge_base/20261104230833_7914e94ee6b64ddea323a7f75e4e240e.csv"
+      ]
+    },
+    "energy": {
+      "agent": "plantkg_expert_energy",
+      "index_names": [
+        "4-4a6c9aea13fa479e8e5c2fb33f8e313d"
+      ],
+      "document_paths": [
+        "knowledge_base/20261104230841_c5ea09e30f25411dae66f9e02a8a095f.md",
+        "knowledge_base/20261104230841_ce874a1e47c64295ba9a1cb3547ab7da.md",
+        "knowledge_base/20261104230841_a6f20b5ae3224fa5973246c04e992eb1.md"
+      ]
+    },
+    "equipment": {
+      "agent": "plantkg_expert_equipment",
+      "index_names": [
+        "5-68a54cfcfa064dd89a6e92fcc6283c42"
+      ],
+      "document_paths": [
+        "knowledge_base/20261105213243_10cf4b0d151d464fa974d9ba74c12b1c.md",
+        "knowledge_base/20261104230903_c8af4e8a49184114a149e9723f8233d6.md",
+        "knowledge_base/20261104230903_49370b0cc606412faee64296ea9311ec.csv",
+        "knowledge_base/20261104230903_ccffba451fd6413fa71853a94c512d3d.csv",
+        "knowledge_base/20261104230903_e1d89232e3e5490888409c77c337739f.md"
+      ]
+    }
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "model": "VersionManifest",
+  "base": "version_manifest_active",
+  "expect_error": "components",
+  "data": {
+    "version_manifest_id": "vm-0003",
+    "components": {},
+    "status": "active",
+    "previous_active_id": "vm-0002",
+    "ever_active": true,
+    "created_at": "2026-10-30T00:00:00Z",
+    "activated_at": "2026-10-30T00:01:00Z",
+    "activated_by": "u-reviewer-1",
+    "reason": "发布电价规则 v3",
+    "manifest_hash": "sha256:44e4104dca1ecca2e8c28d2438da097d55cce652fe3961bf5245ca02786da41d"
+  }
+}

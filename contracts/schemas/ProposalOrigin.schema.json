@@ -1,0 +1,66 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "agent_run_id": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Agent Run Id"
+    },
+    "run_id": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Run Id"
+    },
+    "trace_id": {
+      "maxLength": 200,
+      "minLength": 1,
+      "title": "Trace Id",
+      "type": "string"
+    },
+    "call_id": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Call Id"
+    },
+    "tool": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Tool"
+    }
+  },
+  "required": [
+    "trace_id"
+  ],
+  "title": "ProposalOrigin",
+  "type": "object",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "plantkg:contracts/1.2.0/ProposalOrigin"
+}

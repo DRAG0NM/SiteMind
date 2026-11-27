@@ -1,0 +1,6 @@
+{
+  "model": "AutonomyPauseRequest",
+  "data": {
+    "reason": "巡检期间先只提议"
+  }
+}

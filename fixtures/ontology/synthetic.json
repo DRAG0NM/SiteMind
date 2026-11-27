@@ -1,0 +1,406 @@
+{
+  "run_id": "synthetic-demo-v1",
+  "data_kind": "synthetic",
+  "records": [
+    {
+      "id": "0",
+      "gold": {
+        "entities": [
+          [
+            0,
+            1,
+            "Equipment"
+          ]
+        ],
+        "relations": []
+      },
+      "pred": {
+        "entities": [
+          [
+            0,
+            1,
+            "Wrong"
+          ]
+        ],
+        "relations": []
+      },
+      "uncertainty": 0.0,
+      "impact": 1
+    },
+    {
+      "id": "1",
+      "gold": {
+        "entities": [
+          [
+            0,
+            1,
+            "Sensor"
+          ]
+        ],
+        "relations": []
+      },
+      "pred": {
+        "entities": [
+          [
+            0,
+            1,
+            "Sensor"
+          ]
+        ],
+        "relations": []
+      },
+      "uncertainty": 0.2,
+      "impact": 2
+    },
+    {
+      "id": "2",
+      "gold": {
+        "entities": [
+          [
+            0,
+            1,
+            "Equipment"
+          ]
+        ],
+        "relations": []
+      },
+      "pred": {
+        "entities": [
+          [
+            0,
+            1,
+            "Equipment"
+          ]
+        ],
+        "relations": []
+      },
+      "uncertainty": 0.4,
+      "impact": 3
+    },
+    {
+      "id": "3",
+      "gold": {
+        "entities": [
+          [
+            0,
+            1,
+            "Sensor"
+          ]
+        ],
+        "relations": []
+      },
+      "pred": {
+        "entities": [
+          [
+            0,
+            1,
+            "Sensor"
+          ]
+        ],
+        "relations": []
+      },
+      "uncertainty": 0.6,
+      "impact": 1
+    },
+    {
+      "id": "4",
+      "gold": {
+        "entities": [
+          [
+            0,
+            1,
+            "Equipment"
+          ]
+        ],
+        "relations": []
+      },
+      "pred": {
+        "entities": [
+          [
+            0,
+            1,
+            "Wrong"
+          ]
+        ],
+        "relations": []
+      },
+      "uncertainty": 0.8,
+      "impact": 2
+    },
+    {
+      "id": "5",
+      "gold": {
+        "entities": [
+          [
+            0,
+            1,
+            "Sensor"
+          ]
+        ],
+        "relations": []
+      },
+      "pred": {
+        "entities": [
+          [
+            0,
+            1,
+            "Sensor"
+          ]
+        ],
+        "relations": []
+      },
+      "uncertainty": 0.0,
+      "impact": 3
+    },
+    {
+      "id": "6",
+      "gold": {
+        "entities": [
+          [
+            0,
+            1,
+            "Equipment"
+          ]
+        ],
+        "relations": []
+      },
+      "pred": {
+        "entities": [
+          [
+            0,
+            1,
+            "Equipment"
+          ]
+        ],
+        "relations": []
+      },
+      "uncertainty": 0.2,
+      "impact": 1
+    },
+    {
+      "id": "7",
+      "gold": {
+        "entities": [
+          [
+            0,
+            1,
+            "Sensor"
+          ]
+        ],
+        "relations": []
+      },
+      "pred": {
+        "entities": [
+          [
+            0,
+            1,
+            "Sensor"
+          ]
+        ],
+        "relations": []
+      },
+      "uncertainty": 0.4,
+      "impact": 2
+    },
+    {
+      "id": "8",
+      "gold": {
+        "entities": [
+          [
+            0,
+            1,
+            "Equipment"
+          ]
+        ],
+        "relations": []
+      },
+      "pred": {
+        "entities": [
+          [
+            0,
+            1,
+            "Wrong"
+          ]
+        ],
+        "relations": []
+      },
+      "uncertainty": 0.6,
+      "impact": 3
+    },
+    {
+      "id": "9",
+      "gold": {
+        "entities": [
+          [
+            0,
+            1,
+            "Sensor"
+          ]
+        ],
+        "relations": []
+      },
+      "pred": {
+        "entities": [
+          [
+            0,
+            1,
+            "Sensor"
+          ]
+        ],
+        "relations": []
+      },
+      "uncertainty": 0.8,
+      "impact": 1
+    },
+    {
+      "id": "10",
+      "gold": {
+        "entities": [
+          [
+            0,
+            1,
+            "Equipment"
+          ]
+        ],
+        "relations": []
+      },
+      "pred": {
+        "entities": [
+          [
+            0,
+            1,
+            "Equipment"
+          ]
+        ],
+        "relations": []
+      },
+      "uncertainty": 0.0,
+      "impact": 2
+    },
+    {
+      "id": "11",
+      "gold": {
+        "entities": [
+          [
+            0,
+            1,
+            "Sensor"
+          ]
+        ],
+        "relations": []
+      },
+      "pred": {
+        "entities": [
+          [
+            0,
+            1,
+            "Sensor"
+          ]
+        ],
+        "relations": []
+      },
+      "uncertainty": 0.2,
+      "impact": 3
+    },
+    {
+      "id": "12",
+      "gold": {
+        "entities": [
+          [
+            0,
+            1,
+            "Equipment"
+          ]
+        ],
+        "relations": []
+      },
+      "pred": {
+        "entities": [
+          [
+            0,
+            1,
+            "Wrong"
+          ]
+        ],
+        "relations": []
+      },
+      "uncertainty": 0.4,
+      "impact": 1
+    },
+    {
+      "id": "13",
+      "gold": {
+        "entities": [
+          [
+            0,
+            1,
+            "Sensor"
+          ]
+        ],
+        "relations": []
+      },
+      "pred": {
+        "entities": [
+          [
+            0,
+            1,
+            "Sensor"
+          ]
+        ],
+        "relations": []
+      },
+      "uncertainty": 0.6,
+      "impact": 2
+    },
+    {
+      "id": "14",
+      "gold": {
+        "entities": [
+          [
+            0,
+            1,
+            "Equipment"
+          ]
+        ],
+        "relations": []
+      },
+      "pred": {
+        "entities": [
+          [
+            0,
+            1,
+            "Equipment"
+          ]
+        ],
+        "relations": []
+      },
+      "uncertainty": 0.8,
+      "impact": 3
+    },
+    {
+      "id": "15",
+      "gold": {
+        "entities": [
+          [
+            0,
+            1,
+            "Sensor"
+          ]
+        ],
+        "relations": []
+      },
+      "pred": {
+        "entities": [
+          [
+            0,
+            1,
+            "Sensor"
+          ]
+        ],
+        "relations": []
+      },
+      "uncertainty": 0.0,
+      "impact": 1
+    }
+  ]
+}

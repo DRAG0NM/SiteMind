@@ -1,0 +1,88 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "method": {
+      "enum": [
+        "GET",
+        "POST"
+      ],
+      "title": "Method",
+      "type": "string"
+    },
+    "path": {
+      "title": "Path",
+      "type": "string"
+    },
+    "summary": {
+      "title": "Summary",
+      "type": "string"
+    },
+    "provider": {
+      "title": "Provider",
+      "type": "string"
+    },
+    "response": {
+      "title": "Response",
+      "type": "string"
+    },
+    "request": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Request"
+    },
+    "query": {
+      "default": [],
+      "items": {
+        "type": "string"
+      },
+      "title": "Query",
+      "type": "array"
+    },
+    "required_query": {
+      "default": [],
+      "items": {
+        "type": "string"
+      },
+      "title": "Required Query",
+      "type": "array"
+    },
+    "role": {
+      "default": "viewer",
+      "enum": [
+        "public",
+        "viewer",
+        "reviewer"
+      ],
+      "title": "Role",
+      "type": "string"
+    },
+    "write": {
+      "default": false,
+      "title": "Write",
+      "type": "boolean"
+    },
+    "stream": {
+      "default": false,
+      "title": "Stream",
+      "type": "boolean"
+    }
+  },
+  "required": [
+    "method",
+    "path",
+    "summary",
+    "provider",
+    "response"
+  ],
+  "title": "RouteSpec",
+  "type": "object",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "plantkg:contracts/1.2.0/RouteSpec"
+}

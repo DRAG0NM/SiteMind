@@ -1,0 +1,10 @@
+fixtures/**/*.json text eol=lf
+fixtures/**/*.yaml text eol=lf
+fixtures/**/*.yml text eol=lf
+fixtures/**/*.md text eol=lf
+fixtures/**/*.csv text eol=lf
+fixtures/**/*.txt text eol=lf
+fixtures/ontology/** text eol=lf
+*.sql text eol=lf
+configs/sites/**/*.yaml text eol=lf
+plantkg/evaluation/ontology/real_results/** text eol=lf

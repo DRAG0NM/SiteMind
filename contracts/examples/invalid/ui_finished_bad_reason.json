@@ -1,0 +1,15 @@
+{
+  "model": "UIEvent",
+  "base": "ui_event_run_finished",
+  "expect_error": "terminal_reason",
+  "data": {
+    "type": "run_finished",
+    "agent_run_id": "ar-20260630-0001",
+    "trace_id": "tr-0001",
+    "seq": 41,
+    "ts": "2026-10-30T02:00:40Z",
+    "payload": {
+      "terminal_reason": "timeout"
+    }
+  }
+}

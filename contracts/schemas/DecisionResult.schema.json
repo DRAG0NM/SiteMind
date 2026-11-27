@@ -1,0 +1,36 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "selected_proposal_ids": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Selected Proposal Ids",
+      "type": "array"
+    },
+    "outcome": {
+      "enum": [
+        "executed",
+        "work_order",
+        "to_human",
+        "sampling",
+        "blocked"
+      ],
+      "title": "Outcome",
+      "type": "string"
+    },
+    "summary": {
+      "title": "Summary",
+      "type": "string"
+    }
+  },
+  "required": [
+    "selected_proposal_ids",
+    "outcome",
+    "summary"
+  ],
+  "title": "DecisionResult",
+  "type": "object",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "plantkg:contracts/1.2.0/DecisionResult"
+}

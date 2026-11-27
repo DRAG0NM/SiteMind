@@ -1,0 +1,19 @@
+# 极端场景 6：事件洪峰（1 分钟内几十条告警，多数是噪声）（考验程序准入、合批研判、不打扰人）。数据性质 synthetic。
+scenario_id: extreme_alarm_flood
+title: 事件洪峰
+nature: synthetic
+date: "2026-07-01"
+seed: 106
+initial: {soc: 0.5}
+knowledge: [energy_manual]
+bursts:
+  - at: "09:00"
+    minutes: 1
+    count: 48
+    noise_ratio: 0.9
+    alarms:
+      - {type: equipment_fault, entity: AC-1}
+      - {type: equipment_fault, entity: AC-3}
+      - {type: equipment_fault, entity: UTIL-P1}
+      - {type: lighting_fault, entity: LT-A05}
+      - {type: lighting_fault, entity: LT-A06}

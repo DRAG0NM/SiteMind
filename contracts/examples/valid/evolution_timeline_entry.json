@@ -1,0 +1,13 @@
+{
+  "model": "EvolutionTimelineEntry",
+  "data": {
+    "seq": 1,
+    "event": "manifest_activated",
+    "occurred_at": "2026-11-09T12:00:00Z",
+    "details": {
+      "manifest_id": "vm-0001",
+      "actor": "reviewer",
+      "reason": "确认发布"
+    }
+  }
+}

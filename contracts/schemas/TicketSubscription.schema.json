@@ -1,0 +1,27 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "entity_id": {
+      "maxLength": 200,
+      "minLength": 1,
+      "title": "Entity Id",
+      "type": "string"
+    },
+    "event_types": {
+      "items": {
+        "type": "string"
+      },
+      "minItems": 1,
+      "title": "Event Types",
+      "type": "array"
+    }
+  },
+  "required": [
+    "entity_id",
+    "event_types"
+  ],
+  "title": "TicketSubscription",
+  "type": "object",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "plantkg:contracts/1.2.0/TicketSubscription"
+}

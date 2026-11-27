@@ -1,0 +1,683 @@
+{
+  "items": 35,
+  "entities": {
+    "tp": 97,
+    "fp": 10,
+    "fn": 24,
+    "precision": 0.9065420560747663,
+    "recall": 0.8016528925619835,
+    "f1": 0.8508771929824561
+  },
+  "relations": {
+    "tp": 30,
+    "fp": 29,
+    "fn": 57,
+    "precision": 0.5084745762711864,
+    "recall": 0.3448275862068966,
+    "f1": 0.4109589041095891
+  },
+  "review_curves": {
+    "random": [
+      {
+        "reviewed": 0,
+        "entity_f1": 0.8508771929824561,
+        "relation_f1": 0.4109589041095891
+      },
+      {
+        "reviewed": 1,
+        "entity_f1": 0.8558951965065502,
+        "relation_f1": 0.42176870748299317
+      },
+      {
+        "reviewed": 2,
+        "entity_f1": 0.8658008658008658,
+        "relation_f1": 0.4533333333333333
+      },
+      {
+        "reviewed": 3,
+        "entity_f1": 0.8706896551724138,
+        "relation_f1": 0.4768211920529801
+      },
+      {
+        "reviewed": 4,
+        "entity_f1": 0.8706896551724138,
+        "relation_f1": 0.5098039215686274
+      },
+      {
+        "reviewed": 5,
+        "entity_f1": 0.8706896551724138,
+        "relation_f1": 0.5228758169934641
+      },
+      {
+        "reviewed": 6,
+        "entity_f1": 0.8755364806866952,
+        "relation_f1": 0.5324675324675324
+      },
+      {
+        "reviewed": 7,
+        "entity_f1": 0.8803418803418804,
+        "relation_f1": 0.5641025641025641
+      },
+      {
+        "reviewed": 8,
+        "entity_f1": 0.888888888888889,
+        "relation_f1": 0.5897435897435898
+      },
+      {
+        "reviewed": 9,
+        "entity_f1": 0.888888888888889,
+        "relation_f1": 0.5987261146496815
+      },
+      {
+        "reviewed": 10,
+        "entity_f1": 0.888888888888889,
+        "relation_f1": 0.6075949367088608
+      },
+      {
+        "reviewed": 11,
+        "entity_f1": 0.8936170212765957,
+        "relation_f1": 0.6289308176100629
+      },
+      {
+        "reviewed": 12,
+        "entity_f1": 0.8974358974358975,
+        "relation_f1": 0.6415094339622641
+      },
+      {
+        "reviewed": 13,
+        "entity_f1": 0.8974358974358975,
+        "relation_f1": 0.65
+      },
+      {
+        "reviewed": 14,
+        "entity_f1": 0.9067796610169492,
+        "relation_f1": 0.6748466257668712
+      },
+      {
+        "reviewed": 15,
+        "entity_f1": 0.9113924050632911,
+        "relation_f1": 0.6951219512195121
+      },
+      {
+        "reviewed": 16,
+        "entity_f1": 0.9113924050632911,
+        "relation_f1": 0.7073170731707318
+      },
+      {
+        "reviewed": 17,
+        "entity_f1": 0.9327731092436975,
+        "relation_f1": 0.7544910179640718
+      },
+      {
+        "reviewed": 18,
+        "entity_f1": 0.9411764705882353,
+        "relation_f1": 0.7664670658682634
+      },
+      {
+        "reviewed": 19,
+        "entity_f1": 0.9411764705882353,
+        "relation_f1": 0.7857142857142857
+      },
+      {
+        "reviewed": 20,
+        "entity_f1": 0.9411764705882353,
+        "relation_f1": 0.7928994082840236
+      },
+      {
+        "reviewed": 21,
+        "entity_f1": 0.9535864978902953,
+        "relation_f1": 0.8095238095238094
+      },
+      {
+        "reviewed": 22,
+        "entity_f1": 0.9579831932773109,
+        "relation_f1": 0.8284023668639052
+      },
+      {
+        "reviewed": 23,
+        "entity_f1": 0.9620253164556961,
+        "relation_f1": 0.8452380952380952
+      },
+      {
+        "reviewed": 24,
+        "entity_f1": 0.9663865546218487,
+        "relation_f1": 0.8639053254437871
+      },
+      {
+        "reviewed": 25,
+        "entity_f1": 0.9663865546218487,
+        "relation_f1": 0.8757396449704142
+      },
+      {
+        "reviewed": 26,
+        "entity_f1": 0.9663865546218487,
+        "relation_f1": 0.8823529411764707
+      },
+      {
+        "reviewed": 27,
+        "entity_f1": 0.9663865546218487,
+        "relation_f1": 0.8823529411764707
+      },
+      {
+        "reviewed": 28,
+        "entity_f1": 0.9707112970711298,
+        "relation_f1": 0.9005847953216374
+      },
+      {
+        "reviewed": 29,
+        "entity_f1": 0.979253112033195,
+        "relation_f1": 0.9132947976878613
+      },
+      {
+        "reviewed": 30,
+        "entity_f1": 0.9834710743801653,
+        "relation_f1": 0.9195402298850575
+      },
+      {
+        "reviewed": 31,
+        "entity_f1": 0.9834710743801653,
+        "relation_f1": 0.9425287356321839
+      },
+      {
+        "reviewed": 32,
+        "entity_f1": 0.9834710743801653,
+        "relation_f1": 0.9540229885057472
+      },
+      {
+        "reviewed": 33,
+        "entity_f1": 0.9917355371900827,
+        "relation_f1": 0.9885057471264368
+      },
+      {
+        "reviewed": 34,
+        "entity_f1": 0.9917355371900827,
+        "relation_f1": 0.9885057471264368
+      },
+      {
+        "reviewed": 35,
+        "entity_f1": 1.0,
+        "relation_f1": 1.0
+      }
+    ],
+    "uncertainty": [
+      {
+        "reviewed": 0,
+        "entity_f1": 0.8508771929824561,
+        "relation_f1": 0.4109589041095891
+      },
+      {
+        "reviewed": 1,
+        "entity_f1": 0.8508771929824561,
+        "relation_f1": 0.445945945945946
+      },
+      {
+        "reviewed": 2,
+        "entity_f1": 0.8558951965065502,
+        "relation_f1": 0.45637583892617456
+      },
+      {
+        "reviewed": 3,
+        "entity_f1": 0.8658008658008658,
+        "relation_f1": 0.4868421052631578
+      },
+      {
+        "reviewed": 4,
+        "entity_f1": 0.8706896551724138,
+        "relation_f1": 0.5098039215686274
+      },
+      {
+        "reviewed": 5,
+        "entity_f1": 0.8706896551724138,
+        "relation_f1": 0.5228758169934641
+      },
+      {
+        "reviewed": 6,
+        "entity_f1": 0.8755364806866952,
+        "relation_f1": 0.5324675324675324
+      },
+      {
+        "reviewed": 7,
+        "entity_f1": 0.8803418803418804,
+        "relation_f1": 0.5641025641025641
+      },
+      {
+        "reviewed": 8,
+        "entity_f1": 0.888888888888889,
+        "relation_f1": 0.5897435897435898
+      },
+      {
+        "reviewed": 9,
+        "entity_f1": 0.888888888888889,
+        "relation_f1": 0.5987261146496815
+      },
+      {
+        "reviewed": 10,
+        "entity_f1": 0.888888888888889,
+        "relation_f1": 0.6075949367088608
+      },
+      {
+        "reviewed": 11,
+        "entity_f1": 0.8936170212765957,
+        "relation_f1": 0.6289308176100629
+      },
+      {
+        "reviewed": 12,
+        "entity_f1": 0.8974358974358975,
+        "relation_f1": 0.6415094339622641
+      },
+      {
+        "reviewed": 13,
+        "entity_f1": 0.8974358974358975,
+        "relation_f1": 0.65
+      },
+      {
+        "reviewed": 14,
+        "entity_f1": 0.9067796610169492,
+        "relation_f1": 0.6748466257668712
+      },
+      {
+        "reviewed": 15,
+        "entity_f1": 0.9113924050632911,
+        "relation_f1": 0.6951219512195121
+      },
+      {
+        "reviewed": 16,
+        "entity_f1": 0.9113924050632911,
+        "relation_f1": 0.7073170731707318
+      },
+      {
+        "reviewed": 17,
+        "entity_f1": 0.9327731092436975,
+        "relation_f1": 0.7544910179640718
+      },
+      {
+        "reviewed": 18,
+        "entity_f1": 0.9411764705882353,
+        "relation_f1": 0.7664670658682634
+      },
+      {
+        "reviewed": 19,
+        "entity_f1": 0.9411764705882353,
+        "relation_f1": 0.7857142857142857
+      },
+      {
+        "reviewed": 20,
+        "entity_f1": 0.9411764705882353,
+        "relation_f1": 0.7928994082840236
+      },
+      {
+        "reviewed": 21,
+        "entity_f1": 0.9535864978902953,
+        "relation_f1": 0.8095238095238094
+      },
+      {
+        "reviewed": 22,
+        "entity_f1": 0.9579831932773109,
+        "relation_f1": 0.8284023668639052
+      },
+      {
+        "reviewed": 23,
+        "entity_f1": 0.9620253164556961,
+        "relation_f1": 0.8452380952380952
+      },
+      {
+        "reviewed": 24,
+        "entity_f1": 0.9663865546218487,
+        "relation_f1": 0.8639053254437871
+      },
+      {
+        "reviewed": 25,
+        "entity_f1": 0.9663865546218487,
+        "relation_f1": 0.8757396449704142
+      },
+      {
+        "reviewed": 26,
+        "entity_f1": 0.9663865546218487,
+        "relation_f1": 0.8823529411764707
+      },
+      {
+        "reviewed": 27,
+        "entity_f1": 0.9663865546218487,
+        "relation_f1": 0.8823529411764707
+      },
+      {
+        "reviewed": 28,
+        "entity_f1": 0.9707112970711298,
+        "relation_f1": 0.9005847953216374
+      },
+      {
+        "reviewed": 29,
+        "entity_f1": 0.979253112033195,
+        "relation_f1": 0.9132947976878613
+      },
+      {
+        "reviewed": 30,
+        "entity_f1": 0.9834710743801653,
+        "relation_f1": 0.9195402298850575
+      },
+      {
+        "reviewed": 31,
+        "entity_f1": 0.9834710743801653,
+        "relation_f1": 0.9425287356321839
+      },
+      {
+        "reviewed": 32,
+        "entity_f1": 0.9834710743801653,
+        "relation_f1": 0.9540229885057472
+      },
+      {
+        "reviewed": 33,
+        "entity_f1": 0.9917355371900827,
+        "relation_f1": 0.9885057471264368
+      },
+      {
+        "reviewed": 34,
+        "entity_f1": 0.9917355371900827,
+        "relation_f1": 0.9885057471264368
+      },
+      {
+        "reviewed": 35,
+        "entity_f1": 1.0,
+        "relation_f1": 1.0
+      }
+    ],
+    "uncertainty_x_impact": [
+      {
+        "reviewed": 0,
+        "entity_f1": 0.8508771929824561,
+        "relation_f1": 0.4109589041095891
+      },
+      {
+        "reviewed": 1,
+        "entity_f1": 0.8508771929824561,
+        "relation_f1": 0.445945945945946
+      },
+      {
+        "reviewed": 2,
+        "entity_f1": 0.8558951965065502,
+        "relation_f1": 0.45637583892617456
+      },
+      {
+        "reviewed": 3,
+        "entity_f1": 0.8658008658008658,
+        "relation_f1": 0.4868421052631578
+      },
+      {
+        "reviewed": 4,
+        "entity_f1": 0.8706896551724138,
+        "relation_f1": 0.5098039215686274
+      },
+      {
+        "reviewed": 5,
+        "entity_f1": 0.8706896551724138,
+        "relation_f1": 0.5228758169934641
+      },
+      {
+        "reviewed": 6,
+        "entity_f1": 0.8755364806866952,
+        "relation_f1": 0.5324675324675324
+      },
+      {
+        "reviewed": 7,
+        "entity_f1": 0.8803418803418804,
+        "relation_f1": 0.5641025641025641
+      },
+      {
+        "reviewed": 8,
+        "entity_f1": 0.888888888888889,
+        "relation_f1": 0.5897435897435898
+      },
+      {
+        "reviewed": 9,
+        "entity_f1": 0.888888888888889,
+        "relation_f1": 0.5987261146496815
+      },
+      {
+        "reviewed": 10,
+        "entity_f1": 0.888888888888889,
+        "relation_f1": 0.6075949367088608
+      },
+      {
+        "reviewed": 11,
+        "entity_f1": 0.8936170212765957,
+        "relation_f1": 0.6289308176100629
+      },
+      {
+        "reviewed": 12,
+        "entity_f1": 0.8974358974358975,
+        "relation_f1": 0.6415094339622641
+      },
+      {
+        "reviewed": 13,
+        "entity_f1": 0.8974358974358975,
+        "relation_f1": 0.65
+      },
+      {
+        "reviewed": 14,
+        "entity_f1": 0.9067796610169492,
+        "relation_f1": 0.6748466257668712
+      },
+      {
+        "reviewed": 15,
+        "entity_f1": 0.9113924050632911,
+        "relation_f1": 0.6951219512195121
+      },
+      {
+        "reviewed": 16,
+        "entity_f1": 0.9113924050632911,
+        "relation_f1": 0.7073170731707318
+      },
+      {
+        "reviewed": 17,
+        "entity_f1": 0.9327731092436975,
+        "relation_f1": 0.7544910179640718
+      },
+      {
+        "reviewed": 18,
+        "entity_f1": 0.9411764705882353,
+        "relation_f1": 0.7664670658682634
+      },
+      {
+        "reviewed": 19,
+        "entity_f1": 0.9411764705882353,
+        "relation_f1": 0.7857142857142857
+      },
+      {
+        "reviewed": 20,
+        "entity_f1": 0.9411764705882353,
+        "relation_f1": 0.7928994082840236
+      },
+      {
+        "reviewed": 21,
+        "entity_f1": 0.9535864978902953,
+        "relation_f1": 0.8095238095238094
+      },
+      {
+        "reviewed": 22,
+        "entity_f1": 0.9579831932773109,
+        "relation_f1": 0.8284023668639052
+      },
+      {
+        "reviewed": 23,
+        "entity_f1": 0.9620253164556961,
+        "relation_f1": 0.8452380952380952
+      },
+      {
+        "reviewed": 24,
+        "entity_f1": 0.9663865546218487,
+        "relation_f1": 0.8639053254437871
+      },
+      {
+        "reviewed": 25,
+        "entity_f1": 0.9663865546218487,
+        "relation_f1": 0.8757396449704142
+      },
+      {
+        "reviewed": 26,
+        "entity_f1": 0.9663865546218487,
+        "relation_f1": 0.8823529411764707
+      },
+      {
+        "reviewed": 27,
+        "entity_f1": 0.9663865546218487,
+        "relation_f1": 0.8823529411764707
+      },
+      {
+        "reviewed": 28,
+        "entity_f1": 0.9707112970711298,
+        "relation_f1": 0.9005847953216374
+      },
+      {
+        "reviewed": 29,
+        "entity_f1": 0.979253112033195,
+        "relation_f1": 0.9132947976878613
+      },
+      {
+        "reviewed": 30,
+        "entity_f1": 0.9834710743801653,
+        "relation_f1": 0.9195402298850575
+      },
+      {
+        "reviewed": 31,
+        "entity_f1": 0.9834710743801653,
+        "relation_f1": 0.9425287356321839
+      },
+      {
+        "reviewed": 32,
+        "entity_f1": 0.9834710743801653,
+        "relation_f1": 0.9540229885057472
+      },
+      {
+        "reviewed": 33,
+        "entity_f1": 0.9917355371900827,
+        "relation_f1": 0.9885057471264368
+      },
+      {
+        "reviewed": 34,
+        "entity_f1": 0.9917355371900827,
+        "relation_f1": 0.9885057471264368
+      },
+      {
+        "reviewed": 35,
+        "entity_f1": 1.0,
+        "relation_f1": 1.0
+      }
+    ]
+  },
+  "entities_by_label": {
+    "Activity": {
+      "tp": 24,
+      "fp": 4,
+      "fn": 1,
+      "precision": 0.8571428571428571,
+      "recall": 0.96,
+      "f1": 0.9056603773584904,
+      "sample_count": 26
+    },
+    "PhysicalObject": {
+      "tp": 60,
+      "fp": 6,
+      "fn": 20,
+      "precision": 0.9090909090909091,
+      "recall": 0.75,
+      "f1": 0.821917808219178,
+      "sample_count": 33
+    },
+    "Process": {
+      "tp": 2,
+      "fp": 0,
+      "fn": 0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "sample_count": 2
+    },
+    "State": {
+      "tp": 11,
+      "fp": 0,
+      "fn": 3,
+      "precision": 1.0,
+      "recall": 0.7857142857142857,
+      "f1": 0.88,
+      "sample_count": 12
+    },
+    "Property": {
+      "tp": 0,
+      "fp": 0,
+      "fn": 0,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "sample_count": 0
+    }
+  },
+  "relations_by_label": {
+    "hasPart": {
+      "tp": 21,
+      "fp": 11,
+      "fn": 13,
+      "precision": 0.65625,
+      "recall": 0.6176470588235294,
+      "f1": 0.6363636363636364,
+      "sample_count": 24
+    },
+    "hasParticipant": {
+      "tp": 9,
+      "fp": 16,
+      "fn": 29,
+      "precision": 0.36,
+      "recall": 0.23684210526315788,
+      "f1": 0.2857142857142857,
+      "sample_count": 35
+    },
+    "isA": {
+      "tp": 0,
+      "fp": 2,
+      "fn": 15,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "sample_count": 16
+    },
+    "contains": {
+      "tp": 0,
+      "fp": 0,
+      "fn": 0,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "sample_count": 0
+    },
+    "hasProperty": {
+      "tp": 0,
+      "fp": 0,
+      "fn": 0,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "sample_count": 0
+    }
+  },
+  "seed": 42,
+  "split": "test",
+  "factory_only": true,
+  "data_kind": "derived",
+  "run_id": "maintie-edcc3c45ae07",
+  "source_sha256": "ef811cf4ffd0c90e6a13b1369e24e9d1d08f9a294d873ab4fb1a580096d7d6e0",
+  "predictions_sha256": "edcc3c45ae0713771d38c2ec196f2dd5baddda086402fa94b8a3a837aea41f78",
+  "run_metadata": {
+    "source_kind": "train_lexicon",
+    "model": null,
+    "seed": 42,
+    "split": "test",
+    "source_sha256": "ef811cf4ffd0c90e6a13b1369e24e9d1d08f9a294d873ab4fb1a580096d7d6e0",
+    "prediction_sha256": "edcc3c45ae0713771d38c2ec196f2dd5baddda086402fa94b8a3a837aea41f78",
+    "hash_scheme": "utf8-lf-v1",
+    "valid_count": 216,
+    "lexicon_phrases": 761,
+    "relation_priors": 11,
+    "uncertainty": "one minus the mean train label share of the matched surfaces",
+    "impact": "predicted entity token coverage; a heuristic proxy, not a measured review cost",
+    "method": "supervised lexical baseline: train-only surface lexicon and label-pair relation prior; not B30 and not a zero-shot model"
+  }
+}

@@ -1,0 +1,229 @@
+{
+  "$defs": {
+    "JudgeBackend": {
+      "enum": [
+        "jev",
+        "fallback",
+        "fake"
+      ],
+      "title": "JudgeBackend",
+      "type": "string"
+    },
+    "OrderResult": {
+      "additionalProperties": false,
+      "description": "一种选项顺序下的判别结果。choice 必须是 distribution 的唯一第一名；\n第一名平分或无法判定时 choice 为空，该条结果不能支持自动接纳。",
+      "properties": {
+        "order": {
+          "items": {
+            "type": "string"
+          },
+          "minItems": 1,
+          "title": "Order",
+          "type": "array"
+        },
+        "choice": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Choice"
+        },
+        "distribution": {
+          "additionalProperties": {
+            "maximum": 1,
+            "minimum": 0,
+            "type": "number"
+          },
+          "title": "Distribution",
+          "type": "object"
+        }
+      },
+      "required": [
+        "order",
+        "choice",
+        "distribution"
+      ],
+      "title": "OrderResult",
+      "type": "object"
+    },
+    "RecallSource": {
+      "enum": [
+        "vector",
+        "rule",
+        "manual",
+        "fake"
+      ],
+      "title": "RecallSource",
+      "type": "string"
+    },
+    "TopK": {
+      "additionalProperties": false,
+      "properties": {
+        "option": {
+          "title": "Option",
+          "type": "string"
+        },
+        "prob": {
+          "maximum": 1,
+          "minimum": 0,
+          "title": "Prob",
+          "type": "number"
+        }
+      },
+      "required": [
+        "option",
+        "prob"
+      ],
+      "title": "TopK",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "description": "decide() 结果。score 与校准概率 prob 分开；不足三种不同顺序时转慢路径/复核。",
+  "properties": {
+    "candidate_id": {
+      "maxLength": 200,
+      "minLength": 1,
+      "title": "Candidate Id",
+      "type": "string"
+    },
+    "choice": {
+      "title": "Choice",
+      "type": "string"
+    },
+    "score": {
+      "maximum": 1,
+      "minimum": 0,
+      "title": "Score",
+      "type": "number"
+    },
+    "prob": {
+      "anyOf": [
+        {
+          "maximum": 1,
+          "minimum": 0,
+          "type": "number"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Prob"
+    },
+    "coverage": {
+      "maximum": 1,
+      "minimum": 0,
+      "title": "Coverage",
+      "type": "number"
+    },
+    "backend": {
+      "$ref": "#/$defs/JudgeBackend"
+    },
+    "model": {
+      "title": "Model",
+      "type": "string"
+    },
+    "calibration_version": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Calibration Version"
+    },
+    "orders": {
+      "default": [],
+      "items": {
+        "$ref": "#/$defs/OrderResult"
+      },
+      "title": "Orders",
+      "type": "array"
+    },
+    "order_agree": {
+      "title": "Order Agree",
+      "type": "boolean"
+    },
+    "cross_backend_agree": {
+      "anyOf": [
+        {
+          "type": "boolean"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Cross Backend Agree"
+    },
+    "top_k": {
+      "default": [],
+      "items": {
+        "$ref": "#/$defs/TopK"
+      },
+      "maxItems": 3,
+      "title": "Top K",
+      "type": "array"
+    },
+    "candidate_recall_source": {
+      "$ref": "#/$defs/RecallSource"
+    },
+    "vector_top": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Vector Top"
+    },
+    "gate_accept": {
+      "title": "Gate Accept",
+      "type": "boolean"
+    },
+    "gate_kind": {
+      "default": "ontology",
+      "enum": [
+        "ontology",
+        "domain"
+      ],
+      "title": "Gate Kind",
+      "type": "string"
+    },
+    "distribution": {
+      "additionalProperties": {
+        "maximum": 1,
+        "minimum": 0,
+        "type": "number"
+      },
+      "title": "Distribution",
+      "type": "object"
+    }
+  },
+  "required": [
+    "candidate_id",
+    "choice",
+    "score",
+    "coverage",
+    "backend",
+    "model",
+    "order_agree",
+    "candidate_recall_source",
+    "gate_accept"
+  ],
+  "title": "JudgeResult",
+  "type": "object",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "plantkg:contracts/1.2.0/JudgeResult"
+}

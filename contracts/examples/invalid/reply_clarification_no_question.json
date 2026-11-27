@@ -1,0 +1,10 @@
+{
+  "model": "ExpertReply",
+  "base": "expert_reply",
+  "expect_error": "question",
+  "data": {
+    "status": "needs_clarification",
+    "proposal_id": "proposal://pp-0001",
+    "question": null
+  }
+}

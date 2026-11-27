@@ -1,0 +1,43 @@
+{
+  "model": "ExpertProposal",
+  "base": "expert_proposal_draft",
+  "expect_error": "depends_on",
+  "data": {
+    "expert": "energy",
+    "ticket_id": "ticket://tk-0001",
+    "actions": [
+      {
+        "entity_id": "entity://demo-electronics/battery/BESS1",
+        "command": "discharge",
+        "params": {
+          "kw": 390
+        },
+        "interval": {
+          "start": "2026-07-01T00:06:00Z",
+          "end": "2026-07-01T00:30:00Z"
+        },
+        "readiness": "ready"
+      },
+      {
+        "entity_id": "entity://demo-electronics/elevator_group/EG-PROD",
+        "command": "set_mode",
+        "params": {
+          "mode": "maintenance"
+        },
+        "interval": {
+          "start": "2026-07-01T00:06:00Z",
+          "end": "2026-07-01T00:30:00Z"
+        },
+        "readiness": "needs_diagnosis",
+        "depends_on": []
+      }
+    ],
+    "cost": {
+      "cny": -38.2,
+      "wait_min": 0,
+      "comfort_min": 0
+    },
+    "confidence": 0.82,
+    "safety_tags": []
+  }
+}

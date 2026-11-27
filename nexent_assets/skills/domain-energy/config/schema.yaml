@@ -1,0 +1,8 @@
+plant_id: {type: string, description: 厂区}
+storage: {type: object, description: 储能容量、功率、效率、SOC 范围与对象}
+pv: {type: object, description: 光伏对象与装机}
+tariff: {type: object, description: 用电类别、时区、峰平谷时段与计价基础说明}
+lighting: {type: object, description: 照明可调方式与最大降功率比例}
+hard_constraints: {type: object, description: 不能停电停风的区域与规则}
+response_budget: {type: object, description: 各层响应预算（仿真分钟）}
+data_nature: {type: object, description: 各类数据的性质（measured/derived/simulated/synthetic/configured）}

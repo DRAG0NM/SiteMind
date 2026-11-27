@@ -1,0 +1,14 @@
+{
+  "model": "AssetFragment",
+  "data": {
+    "fragment_id": "frag-0001",
+    "asset_version_id": "asset://manufacturing/9581b4ac/policy/tou-2026",
+    "locator": {
+      "page": 2,
+      "clause": "第三条"
+    },
+    "kind": "text",
+    "text": "高峰时段 8:00-11:00、17:00-22:00……",
+    "available_at": "2026-06-15T00:00:00Z"
+  }
+}

@@ -1,0 +1,117 @@
+{
+  "$defs": {
+    "DataNature": {
+      "enum": [
+        "measured",
+        "derived",
+        "configured",
+        "synthetic",
+        "simulated"
+      ],
+      "title": "DataNature",
+      "type": "string"
+    }
+  },
+  "additionalProperties": false,
+  "description": "B47 处置执行记录的只读视图：经钩子 b47.execution_records 交给 B43 挖掘，跨平面不直连执行库。",
+  "properties": {
+    "ticket_id": {
+      "title": "Ticket Id",
+      "type": "string"
+    },
+    "run_id": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Run Id"
+    },
+    "event_type": {
+      "title": "Event Type",
+      "type": "string"
+    },
+    "entity_id": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Entity Id"
+    },
+    "entity_type": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Entity Type"
+    },
+    "command": {
+      "title": "Command",
+      "type": "string"
+    },
+    "action_index": {
+      "default": 0,
+      "minimum": 0,
+      "title": "Action Index",
+      "type": "integer"
+    },
+    "outcome": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Outcome"
+    },
+    "system_error": {
+      "default": false,
+      "title": "System Error",
+      "type": "boolean"
+    },
+    "at": {
+      "anyOf": [
+        {
+          "format": "date-time",
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d{1,9})?(Z|[+-]00:?00)$",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "At"
+    },
+    "nature": {
+      "$ref": "#/$defs/DataNature",
+      "default": "derived"
+    }
+  },
+  "required": [
+    "ticket_id",
+    "event_type",
+    "command"
+  ],
+  "title": "ExecutionRecord",
+  "type": "object",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "plantkg:contracts/1.2.0/ExecutionRecord"
+}

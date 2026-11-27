@@ -1,0 +1,7 @@
+{
+  "model": "ProposalReceipt",
+  "data": {
+    "proposal_id": "proposal://pp-0001",
+    "summary": "储能 08:06 起放电 390 kW，预计省 38.2 元"
+  }
+}

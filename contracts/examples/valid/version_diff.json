@@ -1,0 +1,16 @@
+{
+  "model": "VersionDiff",
+  "data": {
+    "from_manifest_id": "vm-0002",
+    "to_manifest_id": "vm-0003",
+    "changed": {
+      "rules": [
+        "rule-tou-peak-1"
+      ]
+    },
+    "affected_plan_ids": [
+      "plan-20260701"
+    ],
+    "unknown": []
+  }
+}

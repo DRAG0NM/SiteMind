@@ -1,0 +1,27 @@
+{
+  "model": "RunInfo",
+  "base": "run_info_scenario_fork",
+  "expect_error": "forked_at",
+  "data": {
+    "run_id": "run-scn-20260701-f1",
+    "plant_id": "demo-electronics",
+    "kind": "scenario",
+    "version_manifest_id": "vm-0003",
+    "clock": {
+      "start": "2026-06-30T16:00:00Z",
+      "end": "2026-07-01T16:00:00Z"
+    },
+    "as_of": "2026-06-30T10:00:00Z",
+    "status": "running",
+    "created_at": "2026-10-30T02:00:00Z",
+    "forked_from": null,
+    "forked_at": "2026-07-01T06:00:00Z",
+    "energy_end_target_kwh": 500.0,
+    "data_sources": [
+      {
+        "source": "D05",
+        "dataset_version": "sha256:07e62e262cd11ef411966adcafb83a841f571fa1ab8bb7495b9a855a0fd2182a"
+      }
+    ]
+  }
+}

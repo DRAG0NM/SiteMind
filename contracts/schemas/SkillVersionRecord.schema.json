@@ -1,0 +1,124 @@
+{
+  "additionalProperties": false,
+  "description": "B43：一个 Skill 版本的发布或回滚记录（版本链的一条）。",
+  "properties": {
+    "name": {
+      "maxLength": 200,
+      "minLength": 1,
+      "title": "Name",
+      "type": "string"
+    },
+    "version": {
+      "minimum": 1,
+      "title": "Version",
+      "type": "integer"
+    },
+    "manifest_id": {
+      "maxLength": 200,
+      "minLength": 1,
+      "title": "Manifest Id",
+      "type": "string"
+    },
+    "candidate_id": {
+      "maxLength": 200,
+      "minLength": 1,
+      "title": "Candidate Id",
+      "type": "string"
+    },
+    "action": {
+      "enum": [
+        "publish",
+        "rollback",
+        "rollback_to_none",
+        "overridden"
+      ],
+      "title": "Action",
+      "type": "string"
+    },
+    "verdict": {
+      "enum": [
+        "pass",
+        "fail",
+        "inconclusive"
+      ],
+      "title": "Verdict",
+      "type": "string"
+    },
+    "failures": {
+      "default": [],
+      "items": {
+        "type": "string"
+      },
+      "title": "Failures",
+      "type": "array"
+    },
+    "at": {
+      "format": "date-time",
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d{1,9})?(Z|[+-]00:?00)$",
+      "title": "At",
+      "type": "string"
+    },
+    "actor": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Actor"
+    },
+    "source_tickets": {
+      "default": [],
+      "items": {
+        "type": "string"
+      },
+      "title": "Source Tickets",
+      "type": "array"
+    },
+    "run_id": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Run Id"
+    },
+    "from_manifest_id": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "From Manifest Id"
+    },
+    "current": {
+      "default": false,
+      "title": "Current",
+      "type": "boolean"
+    }
+  },
+  "required": [
+    "name",
+    "version",
+    "manifest_id",
+    "candidate_id",
+    "action",
+    "verdict",
+    "at"
+  ],
+  "title": "SkillVersionRecord",
+  "type": "object",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "plantkg:contracts/1.2.0/SkillVersionRecord"
+}

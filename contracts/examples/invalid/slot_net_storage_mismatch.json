@@ -1,0 +1,26 @@
+{
+  "model": "ScenarioSlotSummary",
+  "base": "scenario_slot_summary",
+  "expect_error": "net_storage_kwh",
+  "data": {
+    "interval": {
+      "start": "2026-07-01T00:00:00Z",
+      "end": "2026-07-01T00:15:00Z"
+    },
+    "charge_kwh": 10.0,
+    "discharge_kwh": 66.7,
+    "net_storage_kwh": 0.0,
+    "load_kwh": 225.0,
+    "pv_available_kwh": 30.0,
+    "pv_used_kwh": 30.0,
+    "grid_import_kwh": 138.3,
+    "grid_export_kwh": 0.0,
+    "pv_curtailed_kwh": 0.0,
+    "soc_end": 0.567,
+    "cost_cny": 131.39,
+    "peak_minute_kw": 860.0,
+    "demand_15m_kw": 553.2,
+    "minutes_balanced": true,
+    "capacity_violations": []
+  }
+}

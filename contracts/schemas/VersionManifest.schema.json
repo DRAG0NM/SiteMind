@@ -1,0 +1,155 @@
+{
+  "$defs": {
+    "ComponentRef": {
+      "additionalProperties": false,
+      "properties": {
+        "ref": {
+          "maxLength": 200,
+          "minLength": 1,
+          "title": "Ref",
+          "type": "string"
+        },
+        "content_hash": {
+          "description": "完整 sha256，去重与完整性校验用",
+          "pattern": "^sha256:[0-9a-f]{64}$",
+          "title": "Content Hash",
+          "type": "string"
+        }
+      },
+      "required": [
+        "ref",
+        "content_hash"
+      ],
+      "title": "ComponentRef",
+      "type": "object"
+    },
+    "ManifestComponent": {
+      "enum": [
+        "ontology",
+        "rules",
+        "parameters",
+        "data_sources",
+        "compilers",
+        "models",
+        "skills",
+        "policy",
+        "sensor_cases"
+      ],
+      "title": "ManifestComponent",
+      "type": "string"
+    },
+    "ManifestStatus": {
+      "description": "版本清单生命周期（07 Q15 由 B01 写定，见 ADR-0005）。",
+      "enum": [
+        "prepared",
+        "verified",
+        "active",
+        "retired",
+        "discarded"
+      ],
+      "title": "ManifestStatus",
+      "type": "string"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "version_manifest_id": {
+      "maxLength": 200,
+      "minLength": 1,
+      "title": "Version Manifest Id",
+      "type": "string"
+    },
+    "components": {
+      "additionalProperties": {
+        "$ref": "#/$defs/ComponentRef"
+      },
+      "minProperties": 1,
+      "propertyNames": {
+        "$ref": "#/$defs/ManifestComponent"
+      },
+      "title": "Components",
+      "type": "object"
+    },
+    "status": {
+      "$ref": "#/$defs/ManifestStatus"
+    },
+    "previous_active_id": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Previous Active Id"
+    },
+    "ever_active": {
+      "default": false,
+      "title": "Ever Active",
+      "type": "boolean"
+    },
+    "created_at": {
+      "format": "date-time",
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d{1,9})?(Z|[+-]00:?00)$",
+      "title": "Created At",
+      "type": "string"
+    },
+    "activated_at": {
+      "anyOf": [
+        {
+          "format": "date-time",
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d{1,9})?(Z|[+-]00:?00)$",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Activated At"
+    },
+    "activated_by": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Activated By"
+    },
+    "reason": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Reason"
+    },
+    "manifest_hash": {
+      "description": "完整 sha256，去重与完整性校验用",
+      "pattern": "^sha256:[0-9a-f]{64}$",
+      "title": "Manifest Hash",
+      "type": "string"
+    }
+  },
+  "required": [
+    "version_manifest_id",
+    "components",
+    "status",
+    "created_at",
+    "manifest_hash"
+  ],
+  "title": "VersionManifest",
+  "type": "object",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "plantkg:contracts/1.2.0/VersionManifest"
+}

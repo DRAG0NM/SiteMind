@@ -1,0 +1,12 @@
+{
+  "model": "Approval",
+  "data": {
+    "plan_id": "plan-20260701",
+    "revision": 1,
+    "mode": "manual",
+    "actor": "u-reviewer-1",
+    "approved_at": "2026-10-30T02:05:00Z",
+    "action_id": "act-0001",
+    "reason": "核对动作依据后确认"
+  }
+}

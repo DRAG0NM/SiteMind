@@ -1,0 +1,170 @@
+{
+  "$defs": {
+    "DataSourceRef": {
+      "additionalProperties": false,
+      "description": "场景运行用到的数据来源与版本（v0.8）。",
+      "properties": {
+        "source": {
+          "maxLength": 200,
+          "minLength": 1,
+          "title": "Source",
+          "type": "string"
+        },
+        "dataset_version": {
+          "maxLength": 200,
+          "minLength": 1,
+          "title": "Dataset Version",
+          "type": "string"
+        }
+      },
+      "required": [
+        "source",
+        "dataset_version"
+      ],
+      "title": "DataSourceRef",
+      "type": "object"
+    },
+    "Interval": {
+      "additionalProperties": false,
+      "description": "左闭右开 UTC 区间 [start, end)。",
+      "properties": {
+        "start": {
+          "format": "date-time",
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d{1,9})?(Z|[+-]00:?00)$",
+          "title": "Start",
+          "type": "string"
+        },
+        "end": {
+          "format": "date-time",
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d{1,9})?(Z|[+-]00:?00)$",
+          "title": "End",
+          "type": "string"
+        }
+      },
+      "required": [
+        "start",
+        "end"
+      ],
+      "title": "Interval",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "run_id": {
+      "maxLength": 200,
+      "minLength": 1,
+      "title": "Run Id",
+      "type": "string"
+    },
+    "plant_id": {
+      "maxLength": 200,
+      "minLength": 1,
+      "title": "Plant Id",
+      "type": "string"
+    },
+    "kind": {
+      "enum": [
+        "replay_day",
+        "replay_week",
+        "backtest",
+        "evaluation",
+        "scenario"
+      ],
+      "title": "Kind",
+      "type": "string"
+    },
+    "version_manifest_id": {
+      "maxLength": 200,
+      "minLength": 1,
+      "title": "Version Manifest Id",
+      "type": "string"
+    },
+    "clock": {
+      "$ref": "#/$defs/Interval"
+    },
+    "as_of": {
+      "format": "date-time",
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d{1,9})?(Z|[+-]00:?00)$",
+      "title": "As Of",
+      "type": "string"
+    },
+    "status": {
+      "enum": [
+        "created",
+        "running",
+        "finished",
+        "failed"
+      ],
+      "title": "Status",
+      "type": "string"
+    },
+    "forked_from": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Forked From"
+    },
+    "forked_at": {
+      "anyOf": [
+        {
+          "format": "date-time",
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d{1,9})?(Z|[+-]00:?00)$",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Forked At"
+    },
+    "created_at": {
+      "format": "date-time",
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d{1,9})?(Z|[+-]00:?00)$",
+      "title": "Created At",
+      "type": "string"
+    },
+    "energy_end_target_kwh": {
+      "anyOf": [
+        {
+          "minimum": 0,
+          "type": "number"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Energy End Target Kwh"
+    },
+    "data_sources": {
+      "default": [],
+      "items": {
+        "$ref": "#/$defs/DataSourceRef"
+      },
+      "title": "Data Sources",
+      "type": "array"
+    }
+  },
+  "required": [
+    "run_id",
+    "plant_id",
+    "kind",
+    "version_manifest_id",
+    "clock",
+    "as_of",
+    "status",
+    "created_at"
+  ],
+  "title": "RunInfo",
+  "type": "object",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "plantkg:contracts/1.2.0/RunInfo"
+}

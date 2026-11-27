@@ -1,0 +1,14 @@
+{
+  "model": "WatchdogTicket",
+  "data": {
+    "ticket_id": "ticket://TK-0001",
+    "status": "blocked",
+    "ticket_status": "blocked",
+    "reason": "依赖连接失败",
+    "checked_at": "2026-11-07T00:00:00Z",
+    "recovery": "重新检查失败",
+    "evidence": [
+      "run-1"
+    ]
+  }
+}

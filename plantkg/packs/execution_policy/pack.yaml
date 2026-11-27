@@ -1,0 +1,7 @@
+name: execution_policy
+schema_version: 1
+order: 140
+status: active
+description: 分级执行（B47）：按后果、自主等级与置信度决定执行/抽查/等人批准；操作工单与协同处置、临时规则、纠错与抽查队列
+entrypoint: plantkg.agent.execution_policy.pack:register
+provides: {}

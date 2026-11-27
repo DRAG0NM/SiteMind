@@ -1,0 +1,13 @@
+/* features 共用的小件：数据性质徽章与“接口不可用”提示。配色只用 theme.css 的 token。 */
+.nature-badge {
+  height: 22px; padding: 0 8px;
+  border: 1px dashed var(--line-strong); border-radius: var(--r-btn);
+  display: inline-flex; align-items: center;
+  font-size: 12px; color: var(--text-3); white-space: nowrap;
+}
+.nature-badge.live { border-style: solid; border-color: var(--agent-wash-line); color: var(--agent); }
+
+.remote-note {
+  margin: 0; padding: 6px 0 0;
+  font-size: 13px; color: var(--text-3);
+}

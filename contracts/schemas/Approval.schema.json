@@ -1,0 +1,76 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "plan_id": {
+      "maxLength": 200,
+      "minLength": 1,
+      "title": "Plan Id",
+      "type": "string"
+    },
+    "revision": {
+      "minimum": 0,
+      "title": "Revision",
+      "type": "integer"
+    },
+    "mode": {
+      "enum": [
+        "auto",
+        "manual"
+      ],
+      "title": "Mode",
+      "type": "string"
+    },
+    "actor": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Actor"
+    },
+    "approved_at": {
+      "format": "date-time",
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d{1,9})?(Z|[+-]00:?00)$",
+      "title": "Approved At",
+      "type": "string"
+    },
+    "action_id": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Action Id"
+    },
+    "reason": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Reason"
+    }
+  },
+  "required": [
+    "plan_id",
+    "revision",
+    "mode",
+    "approved_at"
+  ],
+  "title": "Approval",
+  "type": "object",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "plantkg:contracts/1.2.0/Approval"
+}

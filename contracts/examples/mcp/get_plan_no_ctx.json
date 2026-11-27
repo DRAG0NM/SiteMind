@@ -1,0 +1,7 @@
+{
+  "tool": "plantkg_get_plan",
+  "arguments": {
+    "plan_id": "plan-20260701"
+  },
+  "result_text": "PLANTKG_NOTICE_NO_CTX: 本次运行没有网关会话，只能只读查看\n{\"schema_version\":\"1\",\"ok\":true,\"business_status\":\"degraded\",\"data\":{\"plans\":[]},\"evidence_ids\":[],\"notice\":\"本次运行没有网关会话，只能只读查看\"}"
+}

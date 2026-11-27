@@ -1,0 +1,1927 @@
+{
+  "contract_version": "1.2.0",
+  "tools": [
+    {
+      "name": "plantkg_ingest",
+      "registry_name": "ingest",
+      "plane": "knowledge",
+      "provider": "B06",
+      "extended_by": [
+        "B21"
+      ],
+      "mode": "write",
+      "accepts_ctx": true,
+      "requires_ctx": true,
+      "exposed_to_agent": true,
+      "optional": false,
+      "paginated": false,
+      "description": "接入一份资料，登记来源、版本与数据性质；接入不批准任何事实",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "source_uri": {
+            "type": "string",
+            "description": "资料位置"
+          },
+          "asset_type": {
+            "type": "string",
+            "description": "policy/process_doc/datasheet/image/table"
+          },
+          "available_at": {
+            "type": "string",
+            "description": "资料可见时间 ISO-8601 UTC"
+          },
+          "ctx": {
+            "type": "string",
+            "default": "",
+            "description": "网关注入的运行会话标识；不要填写"
+          }
+        },
+        "required": [
+          "source_uri",
+          "asset_type",
+          "available_at"
+        ],
+        "additionalProperties": false
+      },
+      "outputSchemaRef": "schemas/ToolResult.schema.json"
+    },
+    {
+      "name": "plantkg_list_assets",
+      "registry_name": "list_assets",
+      "plane": "knowledge",
+      "provider": "B06",
+      "extended_by": [],
+      "mode": "read",
+      "accepts_ctx": true,
+      "requires_ctx": false,
+      "exposed_to_agent": true,
+      "optional": false,
+      "paginated": true,
+      "description": "列出当前 as_of 可见的资料版本（政策、手册等），不含运行简报和实时读数",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "asset_type": {
+            "type": "string",
+            "description": "按类型过滤"
+          },
+          "cursor": {
+            "type": "string",
+            "description": "分页游标；首次调用留空"
+          },
+          "page_size": {
+            "type": "integer",
+            "description": "每页条数，1～50",
+            "minimum": 1.0,
+            "maximum": 50.0
+          },
+          "ctx": {
+            "type": "string",
+            "default": "",
+            "description": "网关注入的运行会话标识；不要填写"
+          }
+        },
+        "required": [],
+        "additionalProperties": false
+      },
+      "outputSchemaRef": "schemas/ToolResult.schema.json"
+    },
+    {
+      "name": "plantkg_get_asset",
+      "registry_name": "get_asset",
+      "plane": "knowledge",
+      "provider": "B06",
+      "extended_by": [
+        "B21"
+      ],
+      "mode": "read",
+      "accepts_ctx": true,
+      "requires_ctx": false,
+      "exposed_to_agent": true,
+      "optional": false,
+      "paginated": false,
+      "description": "读取一份资料版本的元数据与片段定位",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "asset_version_id": {
+            "type": "string",
+            "description": "asset:// 标识"
+          },
+          "ctx": {
+            "type": "string",
+            "default": "",
+            "description": "网关注入的运行会话标识；不要填写"
+          }
+        },
+        "required": [
+          "asset_version_id"
+        ],
+        "additionalProperties": false
+      },
+      "outputSchemaRef": "schemas/ToolResult.schema.json"
+    },
+    {
+      "name": "plantkg_propose_candidates",
+      "registry_name": "propose_candidates",
+      "plane": "knowledge",
+      "provider": "B22",
+      "extended_by": [],
+      "mode": "write",
+      "accepts_ctx": true,
+      "requires_ctx": true,
+      "exposed_to_agent": true,
+      "optional": false,
+      "paginated": false,
+      "description": "为对象生成四层本体候选（概念、关系、约束、实例）",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "subject_ids": {
+            "type": "array",
+            "description": "对象 ID 列表"
+          },
+          "layer": {
+            "type": "string",
+            "description": "concept/relation/constraint/instance"
+          },
+          "ctx": {
+            "type": "string",
+            "default": "",
+            "description": "网关注入的运行会话标识；不要填写"
+          }
+        },
+        "required": [
+          "subject_ids",
+          "layer"
+        ],
+        "additionalProperties": false
+      },
+      "outputSchemaRef": "schemas/ToolResult.schema.json"
+    },
+    {
+      "name": "plantkg_judge_candidates",
+      "registry_name": "judge_candidates",
+      "plane": "knowledge",
+      "provider": "B23",
+      "extended_by": [],
+      "mode": "write",
+      "accepts_ctx": true,
+      "requires_ctx": true,
+      "exposed_to_agent": true,
+      "optional": false,
+      "paginated": false,
+      "description": "用判别后端对候选打分并做一致性门控；score/prob/coverage 分开返回",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "candidate_ids": {
+            "type": "array",
+            "description": "候选 ID 列表"
+          },
+          "ctx": {
+            "type": "string",
+            "default": "",
+            "description": "网关注入的运行会话标识；不要填写"
+          }
+        },
+        "required": [
+          "candidate_ids"
+        ],
+        "additionalProperties": false
+      },
+      "outputSchemaRef": "schemas/ToolResult.schema.json"
+    },
+    {
+      "name": "plantkg_link_entities",
+      "registry_name": "link_entities",
+      "plane": "knowledge",
+      "provider": "B22",
+      "extended_by": [],
+      "mode": "write",
+      "accepts_ctx": true,
+      "requires_ctx": true,
+      "exposed_to_agent": true,
+      "optional": false,
+      "paginated": false,
+      "description": "建立关系或别名归一，生成待门控候选",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "subject_id": {
+            "type": "string",
+            "description": "主体"
+          },
+          "target_id": {
+            "type": "string",
+            "description": "客体"
+          },
+          "relation": {
+            "type": "string",
+            "description": "关系类型"
+          },
+          "ctx": {
+            "type": "string",
+            "default": "",
+            "description": "网关注入的运行会话标识；不要填写"
+          }
+        },
+        "required": [
+          "subject_id",
+          "target_id",
+          "relation"
+        ],
+        "additionalProperties": false
+      },
+      "outputSchemaRef": "schemas/ToolResult.schema.json"
+    },
+    {
+      "name": "plantkg_validate",
+      "registry_name": "validate",
+      "plane": "knowledge",
+      "provider": "B22",
+      "extended_by": [],
+      "mode": "read",
+      "accepts_ctx": true,
+      "requires_ctx": false,
+      "exposed_to_agent": true,
+      "optional": false,
+      "paginated": false,
+      "description": "对指定命名图做 SHACL 结构校验，只检查结构",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "graph": {
+            "type": "string",
+            "description": "命名图名称；留空为当前清单"
+          },
+          "ctx": {
+            "type": "string",
+            "default": "",
+            "description": "网关注入的运行会话标识；不要填写"
+          }
+        },
+        "required": [],
+        "additionalProperties": false
+      },
+      "outputSchemaRef": "schemas/ToolResult.schema.json"
+    },
+    {
+      "name": "plantkg_snapshot",
+      "registry_name": "snapshot",
+      "plane": "knowledge",
+      "provider": "B22",
+      "extended_by": [],
+      "mode": "read",
+      "accepts_ctx": true,
+      "requires_ctx": false,
+      "exposed_to_agent": true,
+      "optional": false,
+      "paginated": false,
+      "description": "返回当前清单下本体快照摘要",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "ctx": {
+            "type": "string",
+            "default": "",
+            "description": "网关注入的运行会话标识；不要填写"
+          }
+        },
+        "required": [],
+        "additionalProperties": false
+      },
+      "outputSchemaRef": "schemas/ToolResult.schema.json"
+    },
+    {
+      "name": "plantkg_diff",
+      "registry_name": "diff",
+      "plane": "knowledge",
+      "provider": "B22",
+      "extended_by": [
+        "B27"
+      ],
+      "mode": "read",
+      "accepts_ctx": true,
+      "requires_ctx": false,
+      "exposed_to_agent": true,
+      "optional": false,
+      "paginated": false,
+      "description": "比较两个版本的本体与规则差异",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "from_version": {
+            "type": "string",
+            "description": "旧清单 ID"
+          },
+          "to_version": {
+            "type": "string",
+            "description": "新清单 ID"
+          },
+          "ctx": {
+            "type": "string",
+            "default": "",
+            "description": "网关注入的运行会话标识；不要填写"
+          }
+        },
+        "required": [
+          "from_version",
+          "to_version"
+        ],
+        "additionalProperties": false
+      },
+      "outputSchemaRef": "schemas/ToolResult.schema.json"
+    },
+    {
+      "name": "plantkg_graph_query",
+      "registry_name": "graph_query",
+      "plane": "knowledge",
+      "provider": "B22",
+      "extended_by": [
+        "B26"
+      ],
+      "mode": "read",
+      "accepts_ctx": true,
+      "requires_ctx": false,
+      "exposed_to_agent": true,
+      "optional": false,
+      "paginated": true,
+      "description": "按白名单查询 ID 读取固定可见图；不接受任意 SPARQL",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "query_id": {
+            "type": "string",
+            "description": "白名单查询 ID"
+          },
+          "params": {
+            "type": "object",
+            "description": "查询参数"
+          },
+          "cursor": {
+            "type": "string",
+            "description": "分页游标；首次调用留空"
+          },
+          "page_size": {
+            "type": "integer",
+            "description": "每页条数，1～50",
+            "minimum": 1.0,
+            "maximum": 50.0
+          },
+          "ctx": {
+            "type": "string",
+            "default": "",
+            "description": "网关注入的运行会话标识；不要填写"
+          }
+        },
+        "required": [
+          "query_id"
+        ],
+        "additionalProperties": false
+      },
+      "outputSchemaRef": "schemas/ToolResult.schema.json"
+    },
+    {
+      "name": "plantkg_gate_and_queue",
+      "registry_name": "gate_and_queue",
+      "plane": "knowledge",
+      "provider": "B24",
+      "extended_by": [],
+      "mode": "write",
+      "accepts_ctx": true,
+      "requires_ctx": true,
+      "exposed_to_agent": false,
+      "optional": false,
+      "paginated": false,
+      "description": "服务端策略：按不确定性 × 影响面把低置信条目排进复核队列",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "candidate_ids": {
+            "type": "array",
+            "description": "候选 ID 列表"
+          },
+          "ctx": {
+            "type": "string",
+            "default": "",
+            "description": "网关注入的运行会话标识；不要填写"
+          }
+        },
+        "required": [
+          "candidate_ids"
+        ],
+        "additionalProperties": false
+      },
+      "outputSchemaRef": "schemas/ToolResult.schema.json"
+    },
+    {
+      "name": "plantkg_next_review_batch",
+      "registry_name": "next_review_batch",
+      "plane": "knowledge",
+      "provider": "B24",
+      "extended_by": [],
+      "mode": "read",
+      "accepts_ctx": true,
+      "requires_ctx": false,
+      "exposed_to_agent": true,
+      "optional": false,
+      "paginated": true,
+      "description": "取出待复核条目（按决策感知影响面排序）",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "cursor": {
+            "type": "string",
+            "description": "分页游标；首次调用留空"
+          },
+          "page_size": {
+            "type": "integer",
+            "description": "每页条数，1～50",
+            "minimum": 1.0,
+            "maximum": 50.0
+          },
+          "ctx": {
+            "type": "string",
+            "default": "",
+            "description": "网关注入的运行会话标识；不要填写"
+          }
+        },
+        "required": [],
+        "additionalProperties": false
+      },
+      "outputSchemaRef": "schemas/ToolResult.schema.json"
+    },
+    {
+      "name": "plantkg_propose_review_decision",
+      "registry_name": "propose_review_decision",
+      "plane": "knowledge",
+      "provider": "B24",
+      "extended_by": [],
+      "mode": "propose",
+      "accepts_ctx": true,
+      "requires_ctx": true,
+      "exposed_to_agent": true,
+      "optional": false,
+      "paginated": false,
+      "description": "为复核项提出建议结论，只生成待确认动作，由复核员在工作台确认",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "review_id": {
+            "type": "string",
+            "description": "复核项 ID"
+          },
+          "decision": {
+            "type": "string",
+            "description": "accept/revise/reject"
+          },
+          "revision": {
+            "type": "object",
+            "description": "修订内容"
+          },
+          "rationale": {
+            "type": "string",
+            "description": "依据说明"
+          },
+          "ctx": {
+            "type": "string",
+            "default": "",
+            "description": "网关注入的运行会话标识；不要填写"
+          }
+        },
+        "required": [
+          "review_id",
+          "decision",
+          "rationale"
+        ],
+        "additionalProperties": false
+      },
+      "outputSchemaRef": "schemas/ToolResult.schema.json"
+    },
+    {
+      "name": "plantkg_extract_rules",
+      "registry_name": "extract_rules",
+      "plane": "knowledge",
+      "provider": "B25",
+      "extended_by": [],
+      "mode": "write",
+      "accepts_ctx": true,
+      "requires_ctx": true,
+      "exposed_to_agent": true,
+      "optional": false,
+      "paginated": false,
+      "description": "从资料片段抽取候选规则；不能跳过审核",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "asset_version_id": {
+            "type": "string",
+            "description": "资料版本"
+          },
+          "rule_kind": {
+            "type": "string",
+            "description": "限定规则类型"
+          },
+          "ctx": {
+            "type": "string",
+            "default": "",
+            "description": "网关注入的运行会话标识；不要填写"
+          }
+        },
+        "required": [
+          "asset_version_id"
+        ],
+        "additionalProperties": false
+      },
+      "outputSchemaRef": "schemas/ToolResult.schema.json"
+    },
+    {
+      "name": "plantkg_lookup_rules",
+      "registry_name": "lookup_rules",
+      "plane": "knowledge",
+      "provider": "B26",
+      "extended_by": [],
+      "mode": "read",
+      "accepts_ctx": true,
+      "requires_ctx": false,
+      "exposed_to_agent": true,
+      "optional": false,
+      "paginated": true,
+      "description": "查询对当前 as_of 可见且适用的已发布规则",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "subject_id": {
+            "type": "string",
+            "description": "适用对象"
+          },
+          "kind": {
+            "type": "string",
+            "description": "规则类型"
+          },
+          "cursor": {
+            "type": "string",
+            "description": "分页游标；首次调用留空"
+          },
+          "page_size": {
+            "type": "integer",
+            "description": "每页条数，1～50",
+            "minimum": 1.0,
+            "maximum": 50.0
+          },
+          "ctx": {
+            "type": "string",
+            "default": "",
+            "description": "网关注入的运行会话标识；不要填写"
+          }
+        },
+        "required": [],
+        "additionalProperties": false
+      },
+      "outputSchemaRef": "schemas/ToolResult.schema.json"
+    },
+    {
+      "name": "plantkg_retrieve_evidence",
+      "registry_name": "retrieve_evidence",
+      "plane": "knowledge",
+      "provider": "B26",
+      "extended_by": [],
+      "mode": "read",
+      "accepts_ctx": true,
+      "requires_ctx": false,
+      "exposed_to_agent": true,
+      "optional": true,
+      "paginated": false,
+      "description": "图谱缺边时检索原文；新事实只作候选",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "question": {
+            "type": "string",
+            "description": "检索问题"
+          },
+          "ctx": {
+            "type": "string",
+            "default": "",
+            "description": "网关注入的运行会话标识；不要填写"
+          }
+        },
+        "required": [
+          "question"
+        ],
+        "additionalProperties": false
+      },
+      "outputSchemaRef": "schemas/ToolResult.schema.json"
+    },
+    {
+      "name": "plantkg_workorder_search",
+      "registry_name": "workorder_search",
+      "plane": "knowledge",
+      "provider": "B26",
+      "extended_by": [],
+      "mode": "read",
+      "accepts_ctx": true,
+      "requires_ctx": false,
+      "exposed_to_agent": true,
+      "optional": false,
+      "paginated": true,
+      "description": "按设备、故障现象与时间段查询历史工单原文与确定性聚类；只读",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "equipment": {
+            "type": "string",
+            "description": "设备编号，如 AC-2"
+          },
+          "phenomenon": {
+            "type": "string",
+            "description": "故障现象关键字"
+          },
+          "from_time": {
+            "type": "string",
+            "description": "起始时间 ISO-8601 UTC"
+          },
+          "to_time": {
+            "type": "string",
+            "description": "结束时间 ISO-8601 UTC"
+          },
+          "cursor": {
+            "type": "string",
+            "description": "分页游标；首次调用留空"
+          },
+          "page_size": {
+            "type": "integer",
+            "description": "每页条数，1～50",
+            "minimum": 1.0,
+            "maximum": 50.0
+          },
+          "ctx": {
+            "type": "string",
+            "default": "",
+            "description": "网关注入的运行会话标识；不要填写"
+          }
+        },
+        "required": [],
+        "additionalProperties": false
+      },
+      "outputSchemaRef": "schemas/ToolResult.schema.json"
+    },
+    {
+      "name": "plantkg_run_day",
+      "registry_name": "run_day",
+      "plane": "decision",
+      "provider": "B19",
+      "extended_by": [],
+      "mode": "job",
+      "accepts_ctx": true,
+      "requires_ctx": true,
+      "exposed_to_agent": true,
+      "optional": false,
+      "paginated": false,
+      "description": "生成一份日前计划（确定性数值用例）；40 秒内未完成返回 pending 与 job_id，用同一 job_id 调 get_job",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "plan_date": {
+            "type": "string",
+            "description": "厂区当地日期 YYYY-MM-DD"
+          },
+          "policy": {
+            "type": "string",
+            "description": "B0/B1/B2，默认 B2"
+          },
+          "ctx": {
+            "type": "string",
+            "default": "",
+            "description": "网关注入的运行会话标识；不要填写"
+          }
+        },
+        "required": [
+          "plan_date"
+        ],
+        "additionalProperties": false
+      },
+      "outputSchemaRef": "schemas/ToolResult.schema.json"
+    },
+    {
+      "name": "plantkg_get_plan",
+      "registry_name": "get_plan",
+      "plane": "decision",
+      "provider": "B19",
+      "extended_by": [],
+      "mode": "read",
+      "accepts_ctx": true,
+      "requires_ctx": false,
+      "exposed_to_agent": true,
+      "optional": false,
+      "paginated": false,
+      "description": "读取计划与动作摘要",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "plan_id": {
+            "type": "string",
+            "description": "计划 ID"
+          },
+          "revision": {
+            "type": "integer",
+            "description": "修订号；留空取最新"
+          },
+          "ctx": {
+            "type": "string",
+            "default": "",
+            "description": "网关注入的运行会话标识；不要填写"
+          }
+        },
+        "required": [
+          "plan_id"
+        ],
+        "additionalProperties": false
+      },
+      "outputSchemaRef": "schemas/ToolResult.schema.json"
+    },
+    {
+      "name": "plantkg_explain",
+      "registry_name": "explain",
+      "plane": "decision",
+      "provider": "B19",
+      "extended_by": [
+        "B26"
+      ],
+      "mode": "read",
+      "accepts_ctx": true,
+      "requires_ctx": false,
+      "exposed_to_agent": true,
+      "optional": true,
+      "paginated": true,
+      "description": "返回计划或单个动作依据的规则、原文定位、版本与可见时间",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "plan_id": {
+            "type": "string",
+            "description": "计划 ID"
+          },
+          "action_id": {
+            "type": "string",
+            "description": "动作 ID"
+          },
+          "cursor": {
+            "type": "string",
+            "description": "分页游标；首次调用留空"
+          },
+          "page_size": {
+            "type": "integer",
+            "description": "每页条数，1～50",
+            "minimum": 1.0,
+            "maximum": 50.0
+          },
+          "ctx": {
+            "type": "string",
+            "default": "",
+            "description": "网关注入的运行会话标识；不要填写"
+          }
+        },
+        "required": [
+          "plan_id"
+        ],
+        "additionalProperties": false
+      },
+      "outputSchemaRef": "schemas/ToolResult.schema.json"
+    },
+    {
+      "name": "plantkg_propose_plan_confirmation",
+      "registry_name": "propose_plan_confirmation",
+      "plane": "decision",
+      "provider": "B15",
+      "extended_by": [],
+      "mode": "propose",
+      "accepts_ctx": true,
+      "requires_ctx": true,
+      "exposed_to_agent": true,
+      "optional": false,
+      "paginated": false,
+      "description": "提出计划确认，只生成待确认动作",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "plan_id": {
+            "type": "string",
+            "description": "计划 ID"
+          },
+          "expected_revision": {
+            "type": "integer",
+            "description": "预期修订号"
+          },
+          "rationale": {
+            "type": "string",
+            "description": "依据说明"
+          },
+          "ctx": {
+            "type": "string",
+            "default": "",
+            "description": "网关注入的运行会话标识；不要填写"
+          }
+        },
+        "required": [
+          "plan_id",
+          "expected_revision",
+          "rationale"
+        ],
+        "additionalProperties": false
+      },
+      "outputSchemaRef": "schemas/ToolResult.schema.json"
+    },
+    {
+      "name": "plantkg_impact_of_change",
+      "registry_name": "impact_of_change",
+      "plane": "knowledge",
+      "provider": "B27",
+      "extended_by": [],
+      "mode": "read",
+      "accepts_ctx": true,
+      "requires_ctx": false,
+      "exposed_to_agent": true,
+      "optional": true,
+      "paginated": false,
+      "description": "列出两版之间的变更、受影响计划与未知项；不覆盖旧运行",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "from_version": {
+            "type": "string",
+            "description": "旧清单 ID"
+          },
+          "to_version": {
+            "type": "string",
+            "description": "新清单 ID"
+          },
+          "ctx": {
+            "type": "string",
+            "default": "",
+            "description": "网关注入的运行会话标识；不要填写"
+          }
+        },
+        "required": [
+          "from_version",
+          "to_version"
+        ],
+        "additionalProperties": false
+      },
+      "outputSchemaRef": "schemas/ToolResult.schema.json"
+    },
+    {
+      "name": "plantkg_propose_candidates_evo",
+      "registry_name": "propose_candidates_evo",
+      "plane": "evolution",
+      "provider": "B18",
+      "extended_by": [
+        "B30",
+        "B42"
+      ],
+      "mode": "write",
+      "accepts_ctx": true,
+      "requires_ctx": true,
+      "exposed_to_agent": true,
+      "optional": true,
+      "paginated": false,
+      "description": "由执行偏差或知识变更提出进化候选",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "kind": {
+            "type": "string",
+            "description": "parameter/knowledge/skill"
+          },
+          "trigger": {
+            "type": "object",
+            "description": "触发依据"
+          },
+          "ctx": {
+            "type": "string",
+            "default": "",
+            "description": "网关注入的运行会话标识；不要填写"
+          }
+        },
+        "required": [
+          "kind",
+          "trigger"
+        ],
+        "additionalProperties": false
+      },
+      "outputSchemaRef": "schemas/ToolResult.schema.json"
+    },
+    {
+      "name": "plantkg_backtest",
+      "registry_name": "backtest",
+      "plane": "evolution",
+      "provider": "B18",
+      "extended_by": [],
+      "mode": "job",
+      "accepts_ctx": true,
+      "requires_ctx": true,
+      "exposed_to_agent": true,
+      "optional": true,
+      "paginated": false,
+      "description": "在冻结验证日上回测候选；走后台任务",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "candidate_id": {
+            "type": "string",
+            "description": "候选 ID"
+          },
+          "scenarios": {
+            "type": "array",
+            "description": "可选场景列表（scenario_id、seed、path）；缺省用默认场景集"
+          },
+          "ctx": {
+            "type": "string",
+            "default": "",
+            "description": "网关注入的运行会话标识；不要填写"
+          }
+        },
+        "required": [
+          "candidate_id"
+        ],
+        "additionalProperties": false
+      },
+      "outputSchemaRef": "schemas/ToolResult.schema.json"
+    },
+    {
+      "name": "plantkg_propose_publish",
+      "registry_name": "propose_publish",
+      "plane": "evolution",
+      "provider": "B18",
+      "extended_by": [],
+      "mode": "propose",
+      "accepts_ctx": true,
+      "requires_ctx": true,
+      "exposed_to_agent": true,
+      "optional": false,
+      "paginated": false,
+      "description": "提出发布已验证候选，只生成待确认动作",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "candidate_id": {
+            "type": "string",
+            "description": "候选 ID"
+          },
+          "rationale": {
+            "type": "string",
+            "description": "依据说明"
+          },
+          "ctx": {
+            "type": "string",
+            "default": "",
+            "description": "网关注入的运行会话标识；不要填写"
+          }
+        },
+        "required": [
+          "candidate_id",
+          "rationale"
+        ],
+        "additionalProperties": false
+      },
+      "outputSchemaRef": "schemas/ToolResult.schema.json"
+    },
+    {
+      "name": "plantkg_propose_rollback",
+      "registry_name": "propose_rollback",
+      "plane": "evolution",
+      "provider": "B18",
+      "extended_by": [],
+      "mode": "propose",
+      "accepts_ctx": true,
+      "requires_ctx": true,
+      "exposed_to_agent": true,
+      "optional": true,
+      "paginated": false,
+      "description": "提出回滚到曾经发布过的清单，只生成待确认动作",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "target_manifest_id": {
+            "type": "string",
+            "description": "目标清单 ID"
+          },
+          "rationale": {
+            "type": "string",
+            "description": "依据说明"
+          },
+          "ctx": {
+            "type": "string",
+            "default": "",
+            "description": "网关注入的运行会话标识；不要填写"
+          }
+        },
+        "required": [
+          "target_manifest_id",
+          "rationale"
+        ],
+        "additionalProperties": false
+      },
+      "outputSchemaRef": "schemas/ToolResult.schema.json"
+    },
+    {
+      "name": "plantkg_ts_query",
+      "registry_name": "ts_query",
+      "plane": "world",
+      "provider": "B07",
+      "extended_by": [],
+      "mode": "read",
+      "accepts_ctx": true,
+      "requires_ctx": false,
+      "exposed_to_agent": true,
+      "optional": false,
+      "paginated": true,
+      "description": "按 available_at 过滤的只读时序查询",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "quantity": {
+            "type": "string",
+            "description": "物理量"
+          },
+          "start": {
+            "type": "string",
+            "description": "UTC 开始"
+          },
+          "end": {
+            "type": "string",
+            "description": "UTC 结束"
+          },
+          "cursor": {
+            "type": "string",
+            "description": "分页游标；首次调用留空"
+          },
+          "page_size": {
+            "type": "integer",
+            "description": "每页条数，1～50",
+            "minimum": 1.0,
+            "maximum": 50.0
+          },
+          "ctx": {
+            "type": "string",
+            "default": "",
+            "description": "网关注入的运行会话标识；不要填写"
+          }
+        },
+        "required": [
+          "quantity",
+          "start",
+          "end"
+        ],
+        "additionalProperties": false
+      },
+      "outputSchemaRef": "schemas/ToolResult.schema.json"
+    },
+    {
+      "name": "plantkg_sensor_query",
+      "registry_name": "sensor_query",
+      "plane": "world",
+      "provider": "B22",
+      "extended_by": [],
+      "mode": "read",
+      "accepts_ctx": true,
+      "requires_ctx": false,
+      "exposed_to_agent": true,
+      "optional": false,
+      "paginated": false,
+      "description": "场景观测层：传感器读数与 Quality、残差报警、候选假设（只列候选不下结论）与虚拟传感器推算值；可按设备或传感器查最近窗口，since 只看试探生效后的读数",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "entity": {
+            "type": "string",
+            "description": "设备或节点编号（如 AC-1、AIR-HDR）或 zone:production"
+          },
+          "sensor_id": {
+            "type": "string",
+            "description": "传感器 ID（如 AIR-HDR.P）"
+          },
+          "minutes": {
+            "type": "integer",
+            "description": "最近分钟数，默认 5",
+            "minimum": 1.0,
+            "maximum": 60.0
+          },
+          "since": {
+            "type": "string",
+            "description": "只取时间戳晚于该时刻的读数（ISO 8601）"
+          },
+          "ctx": {
+            "type": "string",
+            "default": "",
+            "description": "网关注入的运行会话标识；不要填写"
+          }
+        },
+        "required": [],
+        "additionalProperties": false
+      },
+      "outputSchemaRef": "schemas/ToolResult.schema.json"
+    },
+    {
+      "name": "plantkg_ledger",
+      "registry_name": "ledger",
+      "plane": "world",
+      "provider": "B16",
+      "extended_by": [
+        "B08"
+      ],
+      "mode": "read",
+      "accepts_ctx": true,
+      "requires_ctx": false,
+      "exposed_to_agent": true,
+      "optional": false,
+      "paginated": true,
+      "description": "读取计划账本或执行账本摘要",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "run_id": {
+            "type": "string",
+            "description": "运行 ID"
+          },
+          "kind": {
+            "type": "string",
+            "description": "plan/execution"
+          },
+          "cursor": {
+            "type": "string",
+            "description": "分页游标；首次调用留空"
+          },
+          "page_size": {
+            "type": "integer",
+            "description": "每页条数，1～50",
+            "minimum": 1.0,
+            "maximum": 50.0
+          },
+          "ctx": {
+            "type": "string",
+            "default": "",
+            "description": "网关注入的运行会话标识；不要填写"
+          }
+        },
+        "required": [
+          "run_id",
+          "kind"
+        ],
+        "additionalProperties": false
+      },
+      "outputSchemaRef": "schemas/ToolResult.schema.json"
+    },
+    {
+      "name": "plantkg_get_job",
+      "registry_name": "get_job",
+      "plane": "core",
+      "provider": "B04",
+      "extended_by": [],
+      "mode": "read",
+      "accepts_ctx": true,
+      "requires_ctx": false,
+      "exposed_to_agent": true,
+      "optional": false,
+      "paginated": false,
+      "description": "查询后台任务；服务端最多等 40 秒。返回 pending 时用同一 job_id 再调用",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "job_id": {
+            "type": "string",
+            "description": "任务 ID"
+          },
+          "wait": {
+            "type": "integer",
+            "description": "等待秒数 0～40",
+            "minimum": 0.0,
+            "maximum": 40.0
+          },
+          "ctx": {
+            "type": "string",
+            "default": "",
+            "description": "网关注入的运行会话标识；不要填写"
+          }
+        },
+        "required": [
+          "job_id"
+        ],
+        "additionalProperties": false
+      },
+      "outputSchemaRef": "schemas/ToolResult.schema.json"
+    },
+    {
+      "name": "plantkg_trial",
+      "registry_name": "trial",
+      "plane": "decision",
+      "provider": "B27",
+      "extended_by": [],
+      "mode": "read",
+      "accepts_ctx": true,
+      "requires_ctx": false,
+      "exposed_to_agent": true,
+      "optional": false,
+      "paginated": false,
+      "description": "在固定快照上隔离试算候选动作，不改真实运行；返回可行性、违规与软代价",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "actions": {
+            "type": "array",
+            "description": "候选动作（entity_id、command、params、interval）"
+          },
+          "horizon_min": {
+            "type": "integer",
+            "description": "试算时长（分钟），默认取配置"
+          },
+          "ticket_id": {
+            "type": "string",
+            "description": "事件单 ID；有多张打开时必填"
+          },
+          "ctx": {
+            "type": "string",
+            "default": "",
+            "description": "网关注入的运行会话标识；不要填写"
+          }
+        },
+        "required": [
+          "actions"
+        ],
+        "additionalProperties": false
+      },
+      "outputSchemaRef": "schemas/ToolResult.schema.json"
+    },
+    {
+      "name": "plantkg_ask_operator",
+      "registry_name": "ask_operator",
+      "plane": "core",
+      "provider": "B27",
+      "extended_by": [],
+      "mode": "write",
+      "accepts_ctx": true,
+      "requires_ctx": true,
+      "exposed_to_agent": true,
+      "optional": false,
+      "paginated": false,
+      "description": "向值班人员提一个问题；答案经回答卡片回写后继续本轮调查",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "question": {
+            "type": "string",
+            "description": "要问的问题"
+          },
+          "ticket_id": {
+            "type": "string",
+            "description": "事件单 ID；有多张打开时必填"
+          },
+          "ctx": {
+            "type": "string",
+            "default": "",
+            "description": "网关注入的运行会话标识；不要填写"
+          }
+        },
+        "required": [
+          "question"
+        ],
+        "additionalProperties": false
+      },
+      "outputSchemaRef": "schemas/ToolResult.schema.json"
+    },
+    {
+      "name": "plantkg_escalate",
+      "registry_name": "escalate",
+      "plane": "core",
+      "provider": "B27",
+      "extended_by": [],
+      "mode": "write",
+      "accepts_ctx": true,
+      "requires_ctx": true,
+      "exposed_to_agent": true,
+      "optional": false,
+      "paginated": false,
+      "description": "把当前事件单升级为操作工单，只升不降；经 urgent 钩子交 B47",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "reason": {
+            "type": "string",
+            "description": "升级理由"
+          },
+          "ticket_id": {
+            "type": "string",
+            "description": "事件单 ID；有多张打开时必填"
+          },
+          "ctx": {
+            "type": "string",
+            "default": "",
+            "description": "网关注入的运行会话标识；不要填写"
+          }
+        },
+        "required": [
+          "reason"
+        ],
+        "additionalProperties": false
+      },
+      "outputSchemaRef": "schemas/ToolResult.schema.json"
+    },
+    {
+      "name": "plantkg_recall",
+      "registry_name": "recall",
+      "plane": "core",
+      "provider": "B27",
+      "extended_by": [],
+      "mode": "read",
+      "accepts_ctx": true,
+      "requires_ctx": false,
+      "exposed_to_agent": true,
+      "optional": false,
+      "paginated": false,
+      "description": "按 ID 前缀（event://、ticket://、proposal://、entity://、asset://）展开一跳；单次不超过 8KB，装不下给 next",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "对象 ID，如 ticket://TK-0001"
+          },
+          "ctx": {
+            "type": "string",
+            "default": "",
+            "description": "网关注入的运行会话标识；不要填写"
+          }
+        },
+        "required": [
+          "id"
+        ],
+        "additionalProperties": false
+      },
+      "outputSchemaRef": "schemas/ToolResult.schema.json"
+    },
+    {
+      "name": "plantkg_energy_propose",
+      "registry_name": "energy_propose",
+      "plane": "decision",
+      "provider": "B19",
+      "extended_by": [
+        "B23"
+      ],
+      "mode": "propose",
+      "accepts_ctx": true,
+      "requires_ctx": true,
+      "exposed_to_agent": true,
+      "optional": false,
+      "paginated": false,
+      "description": "能源专家：针对当前事件单确定性算出动作、代价、置信度与安全标记，提案落库后返回 proposal_id",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "focus": {
+            "type": "string",
+            "description": "本次关注的对象或问题（可留空）"
+          },
+          "ctx": {
+            "type": "string",
+            "default": "",
+            "description": "网关注入的运行会话标识；不要填写"
+          }
+        },
+        "required": [],
+        "additionalProperties": false
+      },
+      "outputSchemaRef": "schemas/ToolResult.schema.json"
+    },
+    {
+      "name": "plantkg_elevator_propose",
+      "registry_name": "elevator_propose",
+      "plane": "decision",
+      "provider": "B20",
+      "extended_by": [
+        "B23"
+      ],
+      "mode": "propose",
+      "accepts_ctx": true,
+      "requires_ctx": true,
+      "exposed_to_agent": true,
+      "optional": false,
+      "paginated": false,
+      "description": "电梯专家：针对当前事件单确定性算出动作、代价、置信度与安全标记，提案落库后返回 proposal_id",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "focus": {
+            "type": "string",
+            "description": "本次关注的对象或问题（可留空）"
+          },
+          "ctx": {
+            "type": "string",
+            "default": "",
+            "description": "网关注入的运行会话标识；不要填写"
+          }
+        },
+        "required": [],
+        "additionalProperties": false
+      },
+      "outputSchemaRef": "schemas/ToolResult.schema.json"
+    },
+    {
+      "name": "plantkg_hvac_propose",
+      "registry_name": "hvac_propose",
+      "plane": "decision",
+      "provider": "B21",
+      "extended_by": [
+        "B23"
+      ],
+      "mode": "propose",
+      "accepts_ctx": true,
+      "requires_ctx": true,
+      "exposed_to_agent": true,
+      "optional": false,
+      "paginated": false,
+      "description": "暖通专家：针对当前事件单确定性算出动作、代价、置信度与安全标记，提案落库后返回 proposal_id",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "focus": {
+            "type": "string",
+            "description": "本次关注的对象或问题（可留空）"
+          },
+          "ctx": {
+            "type": "string",
+            "default": "",
+            "description": "网关注入的运行会话标识；不要填写"
+          }
+        },
+        "required": [],
+        "additionalProperties": false
+      },
+      "outputSchemaRef": "schemas/ToolResult.schema.json"
+    },
+    {
+      "name": "plantkg_equipment_propose",
+      "registry_name": "equipment_propose",
+      "plane": "decision",
+      "provider": "B22",
+      "extended_by": [
+        "B23"
+      ],
+      "mode": "propose",
+      "accepts_ctx": true,
+      "requires_ctx": true,
+      "exposed_to_agent": true,
+      "optional": false,
+      "paginated": false,
+      "description": "设备监测专家：针对当前事件单确定性算出动作、代价、置信度与安全标记，提案落库后返回 proposal_id",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "focus": {
+            "type": "string",
+            "description": "本次关注的对象或问题（可留空）"
+          },
+          "ctx": {
+            "type": "string",
+            "default": "",
+            "description": "网关注入的运行会话标识；不要填写"
+          }
+        },
+        "required": [],
+        "additionalProperties": false
+      },
+      "outputSchemaRef": "schemas/ToolResult.schema.json"
+    },
+    {
+      "name": "plantkg_trace_impact",
+      "registry_name": "trace_impact",
+      "plane": "knowledge",
+      "provider": "B25",
+      "extended_by": [],
+      "mode": "read",
+      "accepts_ctx": true,
+      "requires_ctx": false,
+      "exposed_to_agent": true,
+      "optional": false,
+      "paginated": false,
+      "description": "沿全局图谱查某设备、管网或配电节点停供时受影响的设备、楼层和区域，每项带图谱路径与安全标记",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "entity": {
+            "type": "string",
+            "description": "设备或节点编号（如 AC-1、AIR-HDR、TX1）或 entity:// 标识"
+          },
+          "media": {
+            "type": "string",
+            "description": "只沿这些介质查，逗号分隔：power,cooling_water,compressed_air,chilled_water；不填查全部"
+          },
+          "ctx": {
+            "type": "string",
+            "default": "",
+            "description": "网关注入的运行会话标识；不要填写"
+          }
+        },
+        "required": [
+          "entity"
+        ],
+        "additionalProperties": false
+      },
+      "outputSchemaRef": "schemas/ToolResult.schema.json"
+    },
+    {
+      "name": "plantkg_find_sources",
+      "registry_name": "find_sources",
+      "plane": "knowledge",
+      "provider": "B25",
+      "extended_by": [],
+      "mode": "read",
+      "accepts_ctx": true,
+      "requires_ctx": false,
+      "exposed_to_agent": true,
+      "optional": false,
+      "paginated": false,
+      "description": "按症状在全局图谱上找来源候选并按领域汇总：load_surge 找下游用电设备（load），pressure_drop 找供气方（supply）与泄漏点（leak），其他症状找上游供给方；位置为区域时服务该区的设备标 serving",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "location": {
+            "type": "string",
+            "description": "出现症状的节点编号或区域（如 TX1、AIR-HDR、cleanroom）"
+          },
+          "symptom": {
+            "type": "string",
+            "description": "load_surge、overload、pressure_drop、temperature_deviation、power_loss 等"
+          },
+          "ctx": {
+            "type": "string",
+            "default": "",
+            "description": "网关注入的运行会话标识；不要填写"
+          }
+        },
+        "required": [
+          "location",
+          "symptom"
+        ],
+        "additionalProperties": false
+      },
+      "outputSchemaRef": "schemas/ToolResult.schema.json"
+    },
+    {
+      "name": "plantkg_safety_tags",
+      "registry_name": "safety_tags",
+      "plane": "knowledge",
+      "provider": "B25",
+      "extended_by": [],
+      "mode": "read",
+      "accepts_ctx": true,
+      "requires_ctx": false,
+      "exposed_to_agent": true,
+      "optional": false,
+      "paginated": false,
+      "description": "确定性安全判断：对目标执行某动作是否碰安全标记（含断电、停机经电、水、气网络断到的设备）；命中即须生成操作工单，查不清按涉及处理",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "target": {
+            "type": "string",
+            "description": "动作目标的编号或 entity:// 标识"
+          },
+          "action": {
+            "type": "string",
+            "description": "动作种类，如 power_off、shed、stop、setpoint_change、dispatch、observe"
+          },
+          "occupied": {
+            "type": "boolean",
+            "description": "目标电梯轿厢内是否有人；不填按有人处理"
+          },
+          "ctx": {
+            "type": "string",
+            "default": "",
+            "description": "网关注入的运行会话标识；不要填写"
+          }
+        },
+        "required": [
+          "target",
+          "action"
+        ],
+        "additionalProperties": false
+      },
+      "outputSchemaRef": "schemas/ToolResult.schema.json"
+    },
+    {
+      "name": "plantkg_priority_rules",
+      "registry_name": "priority_rules",
+      "plane": "knowledge",
+      "provider": "B25",
+      "extended_by": [],
+      "mode": "read",
+      "accepts_ctx": true,
+      "requires_ctx": false,
+      "exposed_to_agent": true,
+      "optional": false,
+      "paginated": false,
+      "description": "优先级配置：安全永远第一，其余按区域与时段生效；给区域与时刻返回当时顺序，不给返回整份配置",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "zone": {
+            "type": "string",
+            "description": "区域：production、admin、cleanroom、hazmat、datacenter、park"
+          },
+          "at": {
+            "type": "string",
+            "description": "厂区当地时刻（ISO 8601，如 2026-07-01T08:05:00）"
+          },
+          "ctx": {
+            "type": "string",
+            "default": "",
+            "description": "网关注入的运行会话标识；不要填写"
+          }
+        },
+        "required": [],
+        "additionalProperties": false
+      },
+      "outputSchemaRef": "schemas/ToolResult.schema.json"
+    },
+    {
+      "name": "plantkg_playbooks",
+      "registry_name": "playbooks",
+      "plane": "knowledge",
+      "provider": "B25",
+      "extended_by": [],
+      "mode": "read",
+      "accepts_ctx": true,
+      "requires_ctx": false,
+      "exposed_to_agent": true,
+      "optional": false,
+      "paginated": false,
+      "description": "应急预案：触发条件、牵头专家、分工步骤、是否需操作工单和规程原文；可按事件或目标筛选",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "event": {
+            "type": "string",
+            "description": "触发事件，如 elevator_stuck、pressure_drop、load_surge、power_loss、ventilation_fault"
+          },
+          "target": {
+            "type": "string",
+            "description": "事件发生的设备编号或区域"
+          },
+          "ctx": {
+            "type": "string",
+            "default": "",
+            "description": "网关注入的运行会话标识；不要填写"
+          }
+        },
+        "required": [],
+        "additionalProperties": false
+      },
+      "outputSchemaRef": "schemas/ToolResult.schema.json"
+    },
+    {
+      "name": "plantkg_prepare_tariff_review",
+      "registry_name": "prepare_tariff_review",
+      "plane": "knowledge",
+      "provider": "B30",
+      "extended_by": [],
+      "mode": "read",
+      "accepts_ctx": true,
+      "requires_ctx": false,
+      "exposed_to_agent": true,
+      "optional": false,
+      "paginated": false,
+      "description": "结合已抽取政策与可见节日日历，生成待复核的电价时段表",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "candidate_id": {
+            "type": "string",
+            "description": "政策候选编号"
+          },
+          "calendar_asset_version": {
+            "type": "string",
+            "description": "节日日历资料版本"
+          },
+          "subject_id": {
+            "type": "string",
+            "description": "电网接入点实体"
+          },
+          "category": {
+            "type": "string",
+            "description": "用电类别"
+          },
+          "effective_from": {
+            "type": "string",
+            "description": "规则生效 UTC 时间"
+          },
+          "ctx": {
+            "type": "string",
+            "default": "",
+            "description": "网关注入的运行会话标识；不要填写"
+          }
+        },
+        "required": [
+          "candidate_id",
+          "calendar_asset_version",
+          "subject_id",
+          "category",
+          "effective_from"
+        ],
+        "additionalProperties": false
+      },
+      "outputSchemaRef": "schemas/ToolResult.schema.json"
+    },
+    {
+      "name": "plantkg_investigate_onboarding",
+      "registry_name": "investigate_onboarding",
+      "plane": "knowledge",
+      "provider": "B30",
+      "extended_by": [],
+      "mode": "job",
+      "accepts_ctx": true,
+      "requires_ctx": true,
+      "exposed_to_agent": false,
+      "optional": false,
+      "paginated": false,
+      "description": "提交异常资料调查，结果供人工复核",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "candidate_id": {
+            "type": "string",
+            "description": "候选编号"
+          },
+          "ctx": {
+            "type": "string",
+            "default": "",
+            "description": "网关注入的运行会话标识；不要填写"
+          }
+        },
+        "required": [
+          "candidate_id"
+        ],
+        "additionalProperties": false
+      },
+      "outputSchemaRef": "schemas/ToolResult.schema.json"
+    },
+    {
+      "name": "plantkg_onboarding_investigations",
+      "registry_name": "onboarding_investigations",
+      "plane": "knowledge",
+      "provider": "B30",
+      "extended_by": [],
+      "mode": "read",
+      "accepts_ctx": true,
+      "requires_ctx": false,
+      "exposed_to_agent": false,
+      "optional": false,
+      "paginated": false,
+      "description": "读取异常资料调查结果",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "candidate_id": {
+            "type": "string",
+            "description": "候选编号"
+          },
+          "ctx": {
+            "type": "string",
+            "default": "",
+            "description": "网关注入的运行会话标识；不要填写"
+          }
+        },
+        "required": [
+          "candidate_id"
+        ],
+        "additionalProperties": false
+      },
+      "outputSchemaRef": "schemas/ToolResult.schema.json"
+    },
+    {
+      "name": "plantkg_record_onboarding_batch",
+      "registry_name": "record_onboarding_batch",
+      "plane": "knowledge",
+      "provider": "B30",
+      "extended_by": [],
+      "mode": "write",
+      "accepts_ctx": true,
+      "requires_ctx": true,
+      "exposed_to_agent": false,
+      "optional": false,
+      "paginated": false,
+      "description": "登记已完成复核批次的实际耗时及用量",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "batch_id": {
+            "type": "string",
+            "description": "批次编号"
+          },
+          "candidate_ids": {
+            "type": "array",
+            "description": "批次候选编号"
+          },
+          "review_minutes": {
+            "type": "number",
+            "description": "实际复核分钟数"
+          },
+          "tokens": {
+            "type": "integer",
+            "description": "实际 token 数"
+          },
+          "elapsed_seconds": {
+            "type": "number",
+            "description": "实际总秒数"
+          },
+          "ctx": {
+            "type": "string",
+            "default": "",
+            "description": "网关注入的运行会话标识；不要填写"
+          }
+        },
+        "required": [
+          "batch_id",
+          "candidate_ids",
+          "review_minutes",
+          "tokens",
+          "elapsed_seconds"
+        ],
+        "additionalProperties": false
+      },
+      "outputSchemaRef": "schemas/ToolResult.schema.json"
+    },
+    {
+      "name": "plantkg_score_review_candidate",
+      "registry_name": "score_review_candidate",
+      "plane": "knowledge",
+      "provider": "B30",
+      "extended_by": [],
+      "mode": "job",
+      "accepts_ctx": true,
+      "requires_ctx": true,
+      "exposed_to_agent": false,
+      "optional": false,
+      "paginated": false,
+      "description": "提交候选规则反事实评分",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "candidate_id": {
+            "type": "string",
+            "description": "候选编号"
+          },
+          "alternative": {
+            "type": "object",
+            "description": "备选解释"
+          },
+          "ctx": {
+            "type": "string",
+            "default": "",
+            "description": "网关注入的运行会话标识；不要填写"
+          }
+        },
+        "required": [
+          "candidate_id",
+          "alternative"
+        ],
+        "additionalProperties": false
+      },
+      "outputSchemaRef": "schemas/ToolResult.schema.json"
+    },
+    {
+      "name": "plantkg_process_onboarding",
+      "registry_name": "process_onboarding",
+      "plane": "knowledge",
+      "provider": "B30",
+      "extended_by": [],
+      "mode": "write",
+      "accepts_ctx": true,
+      "requires_ctx": true,
+      "exposed_to_agent": false,
+      "optional": false,
+      "paginated": false,
+      "description": "抽取资料，按分流结果为例外候选提交调查",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "asset_version_id": {
+            "type": "string",
+            "description": "资料版本"
+          },
+          "ctx": {
+            "type": "string",
+            "default": "",
+            "description": "网关注入的运行会话标识；不要填写"
+          }
+        },
+        "required": [
+          "asset_version_id"
+        ],
+        "additionalProperties": false
+      },
+      "outputSchemaRef": "schemas/ToolResult.schema.json"
+    }
+  ]
+}

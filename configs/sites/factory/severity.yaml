@@ -1,0 +1,29 @@
+# B27 D55 严重程度估算参数（configured / synthetic）。
+# 金额线 major_loss_cny 只是这里的默认值；正式版本由 PolicyConfig.major_loss_cny 随知识版本发布，可进化。
+horizon_min: 60              # 评估时域（分钟）
+trial_scenario: configs/scenarios/factory_demo_day.yaml  # 没有运行中的场景时，未保护试算用这份剧本的世界
+major_loss_cny: 50000        # 重大损失金额线：超过即立即派单
+line_value_cny_per_min: 180  # 受影响产线每分钟产值（配置值，demo-electronics 的示意值）
+stop_minutes: 30             # 未采取保护动作时预计停产分钟（评估时域内）
+capacity_ratio: 0.95         # 变压器/配电柜负载达到额定容量的这个比例即视为跳闸
+capacity_minutes: 5          # 上述过载连续分钟数达到它才算跳闸（按时间戳，不按违规条数）
+production_lines: [LINE-1, LINE-2, LINE-3]   # 图谱上会被判为停产的产线对象
+downstream_stop_types: [production_line, air_compressor]  # 这些类型的下游对象视为停产
+
+# 事件类型口径（synthetic）：停产清单与安全清单。
+# 压力类事件不放进停产清单：读数可能说谎（残差报警），要靠慢通道先核实，而不是直接按停产派单。
+stop_event_types: [power_loss]
+safety_event_types: [elevator_trapped, hazmat_leak]
+
+# 快通道用的规则覆盖白名单（B30/B32 的规则还没接上时的 fallback，见 RuleMatcher）
+rule_covered_events: [lighting_fault, elevator_congestion, elevator_trapped, load_spike, sim_limit, pv_drop,
+                      heat_wave, compressor_pressure_drop, equipment_fault, power_quality_dip,
+                      capacity_shed_request]
+
+# 设备损坏估值（元，按图谱对象类型；synthetic）
+equipment_damage_cny:
+  air_compressor: 12000
+  transformer: 200000
+  chiller: 30000
+  elevator: 50000
+  default: 8000

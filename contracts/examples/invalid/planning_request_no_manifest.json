@@ -1,0 +1,53 @@
+{
+  "model": "PlanningRequest",
+  "base": "planning_request",
+  "expect_error": "version_manifest_id",
+  "data": {
+    "context": {
+      "plant_id": "demo-electronics",
+      "industry_pack": "manufacturing",
+      "actor": {
+        "actor_id": "u-reviewer-1",
+        "roles": [
+          "viewer",
+          "reviewer"
+        ],
+        "display_name": "复核员甲"
+      },
+      "channel": "gateway",
+      "agent_run_id": "ar-20260630-0001",
+      "run_id": "run-day-20260701",
+      "trace_id": "tr-0001",
+      "as_of": "2026-06-30T10:00:00Z",
+      "version_manifest_id": null,
+      "idempotency_key": "idem-0001"
+    },
+    "snapshot_id": "snap-0001",
+    "forecast_ids": [
+      "fc-pv-20260701",
+      "fc-load-20260701"
+    ],
+    "rule_ids": [
+      "rule-tou-peak-1",
+      "rule-job1-window"
+    ],
+    "horizon": {
+      "start": "2026-06-30T16:00:00Z",
+      "end": "2026-07-01T16:00:00Z"
+    },
+    "step_minutes": 15,
+    "solver_budget": {
+      "time_limit_s": 20,
+      "mip_rel_gap": 0.001,
+      "threads": 1,
+      "random_seed": 0
+    },
+    "packs": [
+      "pv",
+      "storage",
+      "tariff",
+      "production"
+    ],
+    "policy": "B2"
+  }
+}

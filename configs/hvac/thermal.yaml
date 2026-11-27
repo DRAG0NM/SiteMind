@@ -1,0 +1,68 @@
+# 区域温度模型参数（B21，configured）：每区一阶 RC，C·dT/dt = UA·(T_out − T) + Q_gain − Q_cool。
+# C、UA 按厂区面积、在岗人数与 B18 合成负荷的量级反推（面积与 600 人行政楼见 configs/sites/factory/site.yaml），
+# 目的是让本模型在 26 ℃ 左右外温下的供冷电功率与 B18 的 synthetic 暖通分项同量级；base_ratio 是风机、新风与除湿的
+# 固定电耗占供冷额定的比例：它先从额定里扣掉，剩下的才留给压缩机（制冷冷量上限 = (1 − base_ratio) × 额定 × COP），
+# 所以供冷设备满载时电功率正好到额定，不会超铭牌；停机或故障的设备不计入可用容量。
+# 全部按常理编写，标 configured，不是实测选型。结果由 ScenarioWorld 标 simulated，温度越界分钟数计入提案代价 comfort_min。
+nature: configured
+zones:
+  # 车间恒温区：22±2 ℃，两台 75 kW 空调箱
+  production:
+    label: 生产车间（恒温区）
+    setpoint_c: 22.0
+    comfort_c: [20.0, 24.0]
+    hard: false
+    c_kj_per_k: 900000        # 大空间、设备与围护蓄热多（时间常数约 5.5 小时）
+    ua_kw_per_k: 32.0         # 26 ℃ 外温下需冷量约 410 kW（含得热），可用冷量 360 kW，满载时留余量有限
+    cop: 3.2
+    base_ratio: 0.25
+    people_kw: 0.10           # 每位在岗人员 100 W 显热
+    equipment_heat_ratio: 0.10  # 生产线、空压机、水泵功率进入车间热量的比例（其余经排风带走）
+    rh_c: 50.0
+    rh_band: [30.0, 70.0]
+    cooling_hours: null       # 三班连续生产，全天供冷
+  # 行政楼：24～26 ℃，12 层楼层空调箱 + 冷水机组；07:00 开始预冷，19:00 停
+  admin:
+    label: 行政楼
+    setpoint_c: 25.0
+    comfort_c: [24.0, 26.0]
+    hard: false
+    c_kj_per_k: 400000        # 12 层、600 人，时间常数约 1.1 小时
+    ua_kw_per_k: 99.0
+    cop: 3.2
+    base_ratio: 0.30
+    people_kw: 0.10
+    equipment_heat_ratio: 0.12
+    rh_c: 55.0
+    rh_band: [30.0, 70.0]
+    cooling_hours: ["07:00", "19:00"]
+  # 洁净车间：21～23 ℃ / 45±5 %RH，硬约束，削峰时不动
+  cleanroom:
+    label: 洁净车间
+    setpoint_c: 22.0
+    comfort_c: [21.0, 23.0]
+    hard: true
+    c_kj_per_k: 220000
+    ua_kw_per_k: 41.0
+    cop: 3.2
+    base_ratio: 0.60          # 恒温恒湿机组连续运行的基础电耗；留给压缩机的只有 72 kW（冷量 230 kW）
+    people_kw: 0.10
+    equipment_heat_ratio: 0.0   # 室内设备热量已由恒温恒湿机组的合成负荷体现
+    rh_c: 45.0
+    rh_band: [40.0, 50.0]
+    cooling_hours: null
+  # 数据机房：18～27 ℃，硬约束（不能断电、不能停供）
+  datacenter:
+    label: 数据机房
+    setpoint_c: 24.0
+    comfort_c: [18.0, 27.0]
+    hard: true
+    c_kj_per_k: 450000
+    ua_kw_per_k: 4.0
+    cop: 3.2
+    base_ratio: 0.30
+    people_kw: 0.10
+    equipment_heat_ratio: 0.90  # IT 负载几乎全部转为热量
+    rh_c: 45.0
+    rh_band: [20.0, 60.0]
+    cooling_hours: null

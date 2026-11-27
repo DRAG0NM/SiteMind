@@ -1,0 +1,8 @@
+# B13 工序配置（configured）。正式装配清单 configs/plant.yaml 由维护人合入；这里是本包的样例与测试配置。
+provenance_note: 工序与设备的对应、额定功率为配置；曲线形状取自 HIPE（德国 2017），不是本厂同年实测
+operations:
+  - operation_id: JOB1
+    entity_id: entity://demo-electronics/operation/JOB1
+    rated_kw: 150.0          # 设备额定功率（配置值），形状峰值 1 对应 150 kW
+    shape: vacuum_pump1_run_20260701.json
+    original_start: "2026-07-01T01:45:00Z"   # 未优化开始：当地 09:45，即 HIPE 原运行时刻

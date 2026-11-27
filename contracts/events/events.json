@@ -1,0 +1,102 @@
+{
+  "ui_event_types": [
+    "run_started",
+    "tool_started",
+    "tool_finished",
+    "evidence_added",
+    "job_progress",
+    "review_required",
+    "answer_delta",
+    "plan_ready",
+    "run_finished",
+    "run_failed",
+    "run_cancelled",
+    "keepalive"
+  ],
+  "payload_required_keys": {
+    "run_started": [
+      "agent_name"
+    ],
+    "tool_started": [
+      "tool"
+    ],
+    "tool_finished": [
+      "tool",
+      "business_status"
+    ],
+    "evidence_added": [
+      "evidence_id",
+      "event_type"
+    ],
+    "job_progress": [
+      "job_id",
+      "status"
+    ],
+    "review_required": [
+      "action_id",
+      "kind"
+    ],
+    "answer_delta": [
+      "text"
+    ],
+    "plan_ready": [
+      "plan_id",
+      "revision"
+    ],
+    "run_finished": [
+      "terminal_reason"
+    ],
+    "run_failed": [
+      "terminal_reason",
+      "message"
+    ],
+    "run_cancelled": [
+      "terminal_reason"
+    ],
+    "keepalive": []
+  },
+  "terminal_events": [
+    "run_cancelled",
+    "run_failed",
+    "run_finished"
+  ],
+  "terminal_reason_by_event": {
+    "run_finished": [
+      "completed",
+      "completed_from_deltas",
+      "stream_lost_recovered"
+    ],
+    "run_failed": [
+      "error",
+      "stream_lost",
+      "timeout"
+    ],
+    "run_cancelled": [
+      "cancelled"
+    ]
+  },
+  "evidence_event_types": [
+    "tool_called",
+    "tool_result",
+    "retrieval",
+    "graph_query",
+    "rule_lookup",
+    "rule_applied",
+    "conflict_detected",
+    "path_switch",
+    "plan_created",
+    "gate_decided",
+    "pending_action_proposed",
+    "action_decided",
+    "job_submitted",
+    "job_finished",
+    "execution_recorded",
+    "version_activated",
+    "candidate_status_changed",
+    "autonomy_paused",
+    "autonomy_resumed",
+    "action_cancelled",
+    "action_revoked"
+  ],
+  "keepalive_interval_s": 15
+}

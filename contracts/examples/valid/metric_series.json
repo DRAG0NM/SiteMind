@@ -1,0 +1,22 @@
+{
+  "model": "MetricSeries",
+  "data": {
+    "metric": "f1",
+    "dataset": "plastering-sample",
+    "split_id": "split-test-1",
+    "points": [
+      [
+        0,
+        0.71
+      ],
+      [
+        20,
+        0.83
+      ],
+      [
+        50,
+        0.9
+      ]
+    ]
+  }
+}

@@ -1,0 +1,43 @@
+[build-system]
+requires = ["setuptools>=69"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "plantkg"
+version = "0.1.0"
+description = "SiteMind 设施资产认知智能体：资料变知识，知识变决策（plantkg 服务）"
+requires-python = ">=3.11,<3.13"
+# 版本锁定依据 nexent_assets/probes/c_env/requirements-lock.txt（2026-10-29 本机实测）
+dependencies = [
+    "pydantic==2.14.1",
+    "PyYAML==6.0.3",
+    "tzdata==2025.3",
+    "starlette==1.10.0",
+    "uvicorn==0.54.0",
+    "fastmcp==4.1.4",
+    "pyomo==6.10.1",  # B09 共享规划器
+    "highspy==1.15.1",
+    "pyoxigraph==0.5.13",  # B25 全局图谱随默认装配加载
+    "simpy==4.1.2",  # B20 电梯群控离散事件仿真
+    "numpy==2.4.6",  # B21 区域温度 RC 模型
+]
+
+[project.optional-dependencies]
+# B09 将求解器列为基础依赖；保留 solver extra 以兼容现有安装命令。
+solver = ["pyomo==6.10.1", "highspy==1.15.1"]
+storage = ["duckdb==2.0.0", "pyarrow==26.0.0", "pyoxigraph==0.5.13"]
+dev = ["pytest>=9", "jsonschema==4.26.0", "httpx>=0.28", "pyflakes>=3"]
+
+[tool.setuptools.packages.find]
+include = ["plantkg*"]
+
+[tool.setuptools.package-data]
+"plantkg.storage" = ["migrations/*/*.sql"]
+"plantkg.knowledge.ontology" = ["shapes.ttl"]
+"plantkg.knowledge.rules" = ["fixtures/*.md"]
+"plantkg.knowledge.evidence" = ["fixtures/*.md"]
+"plantkg.packs.evidence_chain" = ["pack.yaml"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-p no:cacheprovider"

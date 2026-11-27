@@ -1,0 +1,64 @@
+{
+  "additionalProperties": false,
+  "description": "POST /agent/run：网关登记会话、注入 ctx 与 document_paths 后调 Nexent 北向。",
+  "properties": {
+    "agent_name": {
+      "maxLength": 200,
+      "minLength": 1,
+      "title": "Agent Name",
+      "type": "string"
+    },
+    "query": {
+      "maxLength": 8000,
+      "minLength": 1,
+      "title": "Query",
+      "type": "string"
+    },
+    "conversation_id": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Conversation Id"
+    },
+    "as_of": {
+      "anyOf": [
+        {
+          "format": "date-time",
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d{1,9})?(Z|[+-]00:?00)$",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "As Of"
+    },
+    "run_id": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Run Id"
+    }
+  },
+  "required": [
+    "agent_name",
+    "query"
+  ],
+  "title": "AgentRunRequest",
+  "type": "object",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "plantkg:contracts/1.2.0/AgentRunRequest"
+}

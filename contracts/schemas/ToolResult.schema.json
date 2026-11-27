@@ -1,0 +1,201 @@
+{
+  "$defs": {
+    "BusinessStatus": {
+      "description": "ToolResult.business_status；不靠 HTTP 200 判成功。",
+      "enum": [
+        "done",
+        "pending",
+        "degraded",
+        "failed"
+      ],
+      "title": "BusinessStatus",
+      "type": "string"
+    },
+    "PageInfo": {
+      "additionalProperties": false,
+      "properties": {
+        "next_cursor": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Next Cursor"
+        },
+        "page_size": {
+          "maximum": 200,
+          "minimum": 1,
+          "title": "Page Size",
+          "type": "integer"
+        },
+        "total": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Total"
+        }
+      },
+      "required": [
+        "page_size"
+      ],
+      "title": "PageInfo",
+      "type": "object"
+    },
+    "ToolError": {
+      "additionalProperties": false,
+      "properties": {
+        "code": {
+          "pattern": "^PLANTKG_E_[A-Z_]+$",
+          "title": "Code",
+          "type": "string"
+        },
+        "message": {
+          "title": "Message",
+          "type": "string"
+        },
+        "retryable": {
+          "default": false,
+          "title": "Retryable",
+          "type": "boolean"
+        },
+        "details": {
+          "additionalProperties": true,
+          "title": "Details",
+          "type": "object"
+        }
+      },
+      "required": [
+        "code",
+        "message"
+      ],
+      "title": "ToolError",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "description": "工具返回（09 D22）。不靠 HTTP 200 判成功；给 Nexent 的文本由 to_agent_text() 生成。",
+  "properties": {
+    "schema_version": {
+      "const": "1",
+      "default": "1",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "ok": {
+      "title": "Ok",
+      "type": "boolean"
+    },
+    "business_status": {
+      "$ref": "#/$defs/BusinessStatus"
+    },
+    "job_id": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Job Id"
+    },
+    "data": {
+      "anyOf": [
+        {
+          "additionalProperties": true,
+          "type": "object"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Data"
+    },
+    "error": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/ToolError"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    },
+    "evidence_ids": {
+      "default": [],
+      "items": {
+        "type": "string"
+      },
+      "title": "Evidence Ids",
+      "type": "array"
+    },
+    "run_id": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Run Id"
+    },
+    "version_manifest_id": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Version Manifest Id"
+    },
+    "page": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/PageInfo"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    },
+    "notice": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Notice"
+    }
+  },
+  "required": [
+    "ok",
+    "business_status"
+  ],
+  "title": "ToolResult",
+  "type": "object",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "plantkg:contracts/1.2.0/ToolResult"
+}

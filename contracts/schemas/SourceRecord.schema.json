@@ -1,0 +1,359 @@
+{
+  "$defs": {
+    "DataNature": {
+      "enum": [
+        "measured",
+        "derived",
+        "configured",
+        "synthetic",
+        "simulated"
+      ],
+      "title": "DataNature",
+      "type": "string"
+    },
+    "Interval": {
+      "additionalProperties": false,
+      "description": "左闭右开 UTC 区间 [start, end)。",
+      "properties": {
+        "start": {
+          "format": "date-time",
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d{1,9})?(Z|[+-]00:?00)$",
+          "title": "Start",
+          "type": "string"
+        },
+        "end": {
+          "format": "date-time",
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d{1,9})?(Z|[+-]00:?00)$",
+          "title": "End",
+          "type": "string"
+        }
+      },
+      "required": [
+        "start",
+        "end"
+      ],
+      "title": "Interval",
+      "type": "object"
+    },
+    "Locator": {
+      "additionalProperties": false,
+      "description": "原文定位：页码、条款、表格单元格、图片框、行或时间区间，至少给一项。",
+      "properties": {
+        "page": {
+          "anyOf": [
+            {
+              "minimum": 1,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Page"
+        },
+        "clause": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Clause"
+        },
+        "cell": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Cell"
+        },
+        "bbox": {
+          "anyOf": [
+            {
+              "maxItems": 4,
+              "minItems": 4,
+              "prefixItems": [
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "number"
+                }
+              ],
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Bbox"
+        },
+        "line_start": {
+          "anyOf": [
+            {
+              "minimum": 1,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Line Start"
+        },
+        "line_end": {
+          "anyOf": [
+            {
+              "minimum": 1,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Line End"
+        },
+        "time_range": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Interval"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "meter": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Meter"
+        }
+      },
+      "title": "Locator",
+      "type": "object"
+    },
+    "Quality": {
+      "additionalProperties": false,
+      "properties": {
+        "flag": {
+          "default": "ok",
+          "enum": [
+            "ok",
+            "missing",
+            "estimated",
+            "suspect"
+          ],
+          "title": "Flag",
+          "type": "string"
+        },
+        "note": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Note"
+        }
+      },
+      "title": "Quality",
+      "type": "object"
+    },
+    "TransformStep": {
+      "additionalProperties": false,
+      "properties": {
+        "op": {
+          "title": "Op",
+          "type": "string"
+        },
+        "params": {
+          "additionalProperties": true,
+          "title": "Params",
+          "type": "object"
+        },
+        "version": {
+          "title": "Version",
+          "type": "string"
+        },
+        "note": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Note"
+        }
+      },
+      "required": [
+        "op",
+        "version"
+      ],
+      "title": "TransformStep",
+      "type": "object"
+    },
+    "Unit": {
+      "description": "内部标准单位。新增单位是契约变更。",
+      "enum": [
+        "kW",
+        "kWh",
+        "1",
+        "CNY",
+        "CNY/kWh",
+        "CNY/kW",
+        "h",
+        "min",
+        "degC",
+        "%",
+        "count",
+        "bar/h",
+        "s"
+      ],
+      "title": "Unit",
+      "type": "string"
+    }
+  },
+  "additionalProperties": false,
+  "description": "规范化来源记录（03 §2.2）。value=None 表示缺测，不能当 0。",
+  "properties": {
+    "source_id": {
+      "maxLength": 200,
+      "minLength": 1,
+      "title": "Source Id",
+      "type": "string"
+    },
+    "source_version": {
+      "maxLength": 200,
+      "minLength": 1,
+      "title": "Source Version",
+      "type": "string"
+    },
+    "content_hash": {
+      "description": "完整 sha256，去重与完整性校验用",
+      "pattern": "^sha256:[0-9a-f]{64}$",
+      "title": "Content Hash",
+      "type": "string"
+    },
+    "locator": {
+      "$ref": "#/$defs/Locator"
+    },
+    "nature": {
+      "$ref": "#/$defs/DataNature"
+    },
+    "event_time": {
+      "format": "date-time",
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d{1,9})?(Z|[+-]00:?00)$",
+      "title": "Event Time",
+      "type": "string"
+    },
+    "interval": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/Interval"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    },
+    "available_at": {
+      "format": "date-time",
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d{1,9})?(Z|[+-]00:?00)$",
+      "title": "Available At",
+      "type": "string"
+    },
+    "source_tz": {
+      "title": "Source Tz",
+      "type": "string"
+    },
+    "source_unit": {
+      "title": "Source Unit",
+      "type": "string"
+    },
+    "quantity": {
+      "maxLength": 200,
+      "minLength": 1,
+      "title": "Quantity",
+      "type": "string"
+    },
+    "unit": {
+      "$ref": "#/$defs/Unit"
+    },
+    "value": {
+      "anyOf": [
+        {
+          "type": "number"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "Value"
+    },
+    "transform_steps": {
+      "default": [],
+      "items": {
+        "$ref": "#/$defs/TransformStep"
+      },
+      "title": "Transform Steps",
+      "type": "array"
+    },
+    "quality": {
+      "$ref": "#/$defs/Quality",
+      "default": {
+        "flag": "ok",
+        "note": null
+      }
+    }
+  },
+  "required": [
+    "source_id",
+    "source_version",
+    "content_hash",
+    "locator",
+    "nature",
+    "event_time",
+    "available_at",
+    "source_tz",
+    "source_unit",
+    "quantity",
+    "unit",
+    "value"
+  ],
+  "title": "SourceRecord",
+  "type": "object",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "plantkg:contracts/1.2.0/SourceRecord"
+}

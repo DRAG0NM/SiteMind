@@ -1,0 +1,36 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "version": {
+      "minimum": 1,
+      "title": "Version",
+      "type": "integer"
+    },
+    "version_manifest_id": {
+      "maxLength": 200,
+      "minLength": 1,
+      "title": "Version Manifest Id",
+      "type": "string"
+    },
+    "activated_at": {
+      "format": "date-time",
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d{1,9})?(Z|[+-]00:?00)$",
+      "title": "Activated At",
+      "type": "string"
+    },
+    "summary": {
+      "default": "",
+      "title": "Summary",
+      "type": "string"
+    }
+  },
+  "required": [
+    "version",
+    "version_manifest_id",
+    "activated_at"
+  ],
+  "title": "KnowledgeVersionEntry",
+  "type": "object",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "plantkg:contracts/1.2.0/KnowledgeVersionEntry"
+}

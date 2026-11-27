@@ -1,0 +1,68 @@
+{
+  "additionalProperties": false,
+  "description": "专家最终回答，由会诊模块（B29）解析后经 ProposalSink.attach_reply 挂到同一提案上。",
+  "properties": {
+    "status": {
+      "enum": [
+        "done",
+        "waiting",
+        "blocked",
+        "needs_clarification",
+        "parse_failed"
+      ],
+      "title": "Status",
+      "type": "string"
+    },
+    "proposal_id": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Proposal Id"
+    },
+    "diagnosis": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Diagnosis"
+    },
+    "evidence_refs": {
+      "default": [],
+      "items": {
+        "type": "string"
+      },
+      "title": "Evidence Refs",
+      "type": "array"
+    },
+    "question": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Question"
+    }
+  },
+  "required": [
+    "status"
+  ],
+  "title": "ExpertReply",
+  "type": "object",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "plantkg:contracts/1.2.0/ExpertReply"
+}

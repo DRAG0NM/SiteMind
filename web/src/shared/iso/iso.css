@@ -1,0 +1,143 @@
+.iso-campus {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  overflow: hidden;
+  touch-action: none;
+  user-select: none;
+}
+.iso-campus svg { display: block; }
+.iso-canvas { cursor: grab; touch-action: none; }
+.iso-canvas.panning { cursor: grabbing; }
+.iso-canvas:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
+
+.iso-part { transition: opacity 600ms ease; }
+/* 正常 → 事件 → Agent 动作：颜色渐变过去，不是瞬切 */
+.iso-part polygon, .iso-part polyline, .iso-part path, .iso-part ellipse { transition: fill 520ms ease, stroke 520ms ease; }
+.iso-ground { transition: opacity 600ms ease; }
+.iso-canvas .iso-part[data-hit='true']:hover { filter: brightness(1.18); }
+.iso-part.is-selected { filter: brightness(1.12) drop-shadow(0 0 5px rgba(242, 145, 59, 0.5)); }
+.iso-part.is-event { animation: iso-event 1.6s ease-in-out infinite; }
+.iso-part.is-action { filter: drop-shadow(0 0 4px rgba(92, 179, 242, 0.42)); }
+
+.iso-part.is-arrive { animation: iso-arrive 760ms ease-out; }
+@keyframes iso-arrive {
+  0% { filter: brightness(1.9) drop-shadow(0 0 14px rgba(92, 179, 242, 0.9)); }
+  100% { filter: brightness(1) drop-shadow(0 0 4px rgba(92, 179, 242, 0.42)); }
+}
+
+/* 聚光：与事件、动作无关的建筑和标注压暗 */
+.iso-campus.is-spotlight .iso-part:not(.is-lit) { opacity: 0.26; }
+.iso-campus.is-spotlight .iso-ground { opacity: 0.4; }
+.iso-campus.is-spotlight .iso-annotation:not(.is-lit) { opacity: 0.3; }
+.iso-annotation { transition: opacity 600ms ease; }
+
+/* 一次性动效 */
+.iso-ripple circle {
+  fill: none; stroke-width: 3; transform-box: fill-box; transform-origin: center;
+  animation: iso-ripple 1300ms cubic-bezier(0.2, 0.6, 0.3, 1) both;
+}
+.iso-ripple circle.late { animation-delay: 380ms; }
+.iso-ripple.is-event circle { stroke: var(--accent); }
+.iso-ripple.is-arrive circle { stroke: var(--agent); stroke-width: 2; }
+@keyframes iso-ripple {
+  0% { transform: scale(0.08); opacity: 0.95; }
+  100% { transform: scale(1); opacity: 0; }
+}
+.iso-dispatch path { fill: none; stroke: var(--agent); stroke-linecap: round; }
+.iso-dispatch-trail {
+  stroke-width: 2.6; stroke-dasharray: 1; stroke-dashoffset: 1;
+  animation: iso-draw 720ms cubic-bezier(0.55, 0, 0.25, 1) forwards, iso-trail-out 600ms ease-in 1250ms forwards;
+}
+.iso-dispatch-comet {
+  stroke-width: 6; stroke-dasharray: 0.035 2; stroke-dashoffset: 0.035;
+  filter: drop-shadow(0 0 6px rgba(92, 179, 242, 0.95));
+  animation: iso-comet 720ms cubic-bezier(0.55, 0, 0.25, 1) forwards;
+}
+@keyframes iso-draw { to { stroke-dashoffset: 0; } }
+@keyframes iso-trail-out { to { opacity: 0; } }
+@keyframes iso-comet { 99% { opacity: 1; } to { stroke-dashoffset: -0.965; opacity: 0; } }
+
+/* 标注牌在色调变化时弹出 */
+.iso-annotation.is-lit { animation: iso-pop 380ms cubic-bezier(0.2, 0.9, 0.3, 1.25) both; transform-box: fill-box; transform-origin: center; }
+@keyframes iso-pop { from { opacity: 0; transform: scale(0.86); } }
+
+@keyframes iso-event {
+  0%, 100% { filter: drop-shadow(0 0 2px rgba(242, 145, 59, 0.25)); }
+  50% { filter: drop-shadow(0 0 9px rgba(242, 145, 59, 0.65)); }
+}
+
+.iso-toolbar {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  z-index: 6;
+}
+.iso-legend {
+  position: absolute;
+  left: 4px;
+  bottom: 4px;
+  display: inline-flex;
+  align-items: center;
+  gap: 18px;
+  font-size: 13px;
+  color: var(--text-2);
+  pointer-events: none;
+}
+.iso-legend span { display: inline-flex; align-items: center; gap: 6px; }
+.iso-legend i { width: 10px; height: 10px; background: #3A4551; }
+.iso-legend i.event { background: var(--accent); }
+.iso-legend .am { margin: 0; border-top-color: var(--agent); }
+
+.iso-annotation { cursor: pointer; }
+.iso-annotation rect { transition: stroke 150ms; }
+.iso-annotation:hover rect { stroke: var(--accent); }
+.iso-annotation:focus-visible { outline: none; }
+.iso-annotation:focus-visible rect { stroke: var(--accent); stroke-width: 2; }
+.iso-annotation text { font-family: var(--sans); }
+
+.iso-section-mask {
+  position: absolute;
+  inset: 0;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  background: rgba(10, 13, 17, 0.72);
+  animation: iso-fade 180ms ease-out;
+}
+.iso-section {
+  width: min(760px, 100%);
+  max-height: 100%;
+  overflow: auto;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: var(--r-panel);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.55);
+  animation: iso-rise 200ms ease-out;
+}
+.iso-section-head {
+  display: flex; align-items: center; gap: 12px;
+  padding: 12px 16px; border-bottom: 1px solid var(--line-soft);
+}
+.iso-section-head b { font-size: 17px; }
+.iso-section-body { padding: 8px 16px 16px; }
+.iso-section-scale { font-size: 12px; color: var(--text-3); }
+
+@keyframes iso-fade { from { opacity: 0; } }
+@keyframes iso-rise { from { opacity: 0; transform: translateY(8px); } }
+@media (prefers-reduced-motion: reduce) {
+  :root:not([data-motion='full']) .iso-part.is-event { animation: none; filter: drop-shadow(0 0 7px rgba(242, 145, 59, 0.55)); }
+  :root:not([data-motion='full']) .iso-section-mask, :root:not([data-motion='full']) .iso-section, :root:not([data-motion='full']) .iso-annotation.is-lit, :root:not([data-motion='full']) .iso-part.is-arrive { animation: none; }
+  :root:not([data-motion='full']) .iso-part, :root:not([data-motion='full']) .iso-ground, :root:not([data-motion='full']) .iso-annotation, :root:not([data-motion='full']) .iso-part polygon, :root:not([data-motion='full']) .iso-part polyline, :root:not([data-motion='full']) .iso-part path, :root:not([data-motion='full']) .iso-part ellipse { transition: none; }
+  :root:not([data-motion='full']) .iso-cues { display: none; }
+}
+/* ?motion=reduce 不依赖系统设置，厂区图的持续脉冲与颜色过渡同样停掉。 */
+:root[data-motion='reduce'] .iso-part.is-event { animation: none; filter: drop-shadow(0 0 7px rgba(242, 145, 59, 0.55)); }
+:root[data-motion='reduce'] .iso-section-mask, :root[data-motion='reduce'] .iso-section, :root[data-motion='reduce'] .iso-annotation.is-lit, :root[data-motion='reduce'] .iso-part.is-arrive, :root[data-motion='reduce'] .flow { animation: none; }
+:root[data-motion='reduce'] .iso-part, :root[data-motion='reduce'] .iso-ground, :root[data-motion='reduce'] .iso-annotation, :root[data-motion='reduce'] .iso-part polygon, :root[data-motion='reduce'] .iso-part polyline, :root[data-motion='reduce'] .iso-part path, :root[data-motion='reduce'] .iso-part ellipse { transition: none; }

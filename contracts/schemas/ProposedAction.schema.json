@@ -1,0 +1,82 @@
+{
+  "$defs": {
+    "ActionReadiness": {
+      "enum": [
+        "ready",
+        "needs_diagnosis",
+        "needs_human"
+      ],
+      "title": "ActionReadiness",
+      "type": "string"
+    },
+    "Interval": {
+      "additionalProperties": false,
+      "description": "左闭右开 UTC 区间 [start, end)。",
+      "properties": {
+        "start": {
+          "format": "date-time",
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d{1,9})?(Z|[+-]00:?00)$",
+          "title": "Start",
+          "type": "string"
+        },
+        "end": {
+          "format": "date-time",
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d{1,9})?(Z|[+-]00:?00)$",
+          "title": "End",
+          "type": "string"
+        }
+      },
+      "required": [
+        "start",
+        "end"
+      ],
+      "title": "Interval",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "description": "专家提案里的一个动作。",
+  "properties": {
+    "entity_id": {
+      "description": "entity://{厂区}/{类型}/{编号}；不随资料修改而变",
+      "pattern": "^entity://[A-Za-z0-9_-]+/[a-z0-9_-]+/[A-Za-z0-9_.-]+$",
+      "title": "Entity Id",
+      "type": "string"
+    },
+    "command": {
+      "maxLength": 200,
+      "minLength": 1,
+      "title": "Command",
+      "type": "string"
+    },
+    "params": {
+      "additionalProperties": true,
+      "title": "Params",
+      "type": "object"
+    },
+    "interval": {
+      "$ref": "#/$defs/Interval"
+    },
+    "readiness": {
+      "$ref": "#/$defs/ActionReadiness",
+      "default": "ready"
+    },
+    "depends_on": {
+      "default": [],
+      "items": {
+        "type": "string"
+      },
+      "title": "Depends On",
+      "type": "array"
+    }
+  },
+  "required": [
+    "entity_id",
+    "command",
+    "interval"
+  ],
+  "title": "ProposedAction",
+  "type": "object",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "plantkg:contracts/1.2.0/ProposedAction"
+}

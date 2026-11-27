@@ -1,0 +1,29 @@
+{
+  "additionalProperties": false,
+  "description": "动作、约束的依据：规则、配置项或资产版本，至少一个（04 ModelBuilder.add_constraint）。",
+  "properties": {
+    "kind": {
+      "enum": [
+        "rule",
+        "config",
+        "asset_version"
+      ],
+      "title": "Kind",
+      "type": "string"
+    },
+    "id": {
+      "maxLength": 200,
+      "minLength": 1,
+      "title": "Id",
+      "type": "string"
+    }
+  },
+  "required": [
+    "kind",
+    "id"
+  ],
+  "title": "Ref",
+  "type": "object",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "plantkg:contracts/1.2.0/Ref"
+}

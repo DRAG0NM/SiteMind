@@ -1,0 +1,2497 @@
+{
+  "$defs": {
+    "ActionReadiness": {
+      "enum": [
+        "ready",
+        "needs_diagnosis",
+        "needs_human"
+      ],
+      "title": "ActionReadiness",
+      "type": "string"
+    },
+    "AgentResultKind": {
+      "description": "AgentResultSource 的结果类型：专家运行、门控不一致研判、第 3 层裁决、追问。",
+      "enum": [
+        "expert",
+        "triage",
+        "arbitration",
+        "follow_up",
+        "investigate"
+      ],
+      "title": "AgentResultKind",
+      "type": "string"
+    },
+    "AgentRunNode": {
+      "additionalProperties": false,
+      "description": "一次运行里的一个 Agent 节点（B23）：主 Agent 为 depth 0；子 Agent 按 Nexent SSE 的 invocation_id 区分。",
+      "properties": {
+        "node_id": {
+          "maxLength": 200,
+          "minLength": 1,
+          "title": "Node Id",
+          "type": "string"
+        },
+        "agent_name": {
+          "maxLength": 200,
+          "minLength": 1,
+          "title": "Agent Name",
+          "type": "string"
+        },
+        "depth": {
+          "minimum": 0,
+          "title": "Depth",
+          "type": "integer"
+        },
+        "parent_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Parent Id"
+        },
+        "started_at": {
+          "anyOf": [
+            {
+              "format": "date-time",
+              "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d{1,9})?(Z|[+-]00:?00)$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Started At"
+        },
+        "finished_at": {
+          "anyOf": [
+            {
+              "format": "date-time",
+              "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d{1,9})?(Z|[+-]00:?00)$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Finished At"
+        },
+        "final_answer": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Final Answer"
+        }
+      },
+      "required": [
+        "node_id",
+        "agent_name",
+        "depth"
+      ],
+      "title": "AgentRunNode",
+      "type": "object"
+    },
+    "AgentRunRecord": {
+      "additionalProperties": false,
+      "description": "一次专家或主 Agent 运行（live 实调、缓存或确定性实现）的记录。\n\nB23 扩展：live 运行另记模型、Agent 节点与 depth、工具调用（模型填值 → 系统绑定值）与最终回答，\n供展示页“查看 Nexent 运行记录”使用；这些字段都可选，缓存与确定性记录可以不填。\n工作台的问答（kind=follow_up）不属于事件单，binding 可以为空。",
+      "properties": {
+        "agent_run_id": {
+          "maxLength": 200,
+          "minLength": 1,
+          "title": "Agent Run Id",
+          "type": "string"
+        },
+        "kind": {
+          "$ref": "#/$defs/AgentResultKind"
+        },
+        "agent_name": {
+          "maxLength": 200,
+          "minLength": 1,
+          "title": "Agent Name",
+          "type": "string"
+        },
+        "run_mode": {
+          "$ref": "#/$defs/RunMode"
+        },
+        "source": {
+          "enum": [
+            "nexent",
+            "cache",
+            "deterministic"
+          ],
+          "title": "Source",
+          "type": "string"
+        },
+        "binding": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/RunBinding"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "timing": {
+          "$ref": "#/$defs/AgentTiming"
+        },
+        "status": {
+          "enum": [
+            "finished",
+            "failed",
+            "timeout",
+            "blocked",
+            "cancelled"
+          ],
+          "title": "Status",
+          "type": "string"
+        },
+        "coverage_gap": {
+          "default": false,
+          "title": "Coverage Gap",
+          "type": "boolean"
+        },
+        "proposal_ids": {
+          "default": [],
+          "items": {
+            "type": "string"
+          },
+          "title": "Proposal Ids",
+          "type": "array"
+        },
+        "model": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Model"
+        },
+        "conversation_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Conversation Id"
+        },
+        "query": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Query"
+        },
+        "terminal_reason": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/TerminalReason"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "nodes": {
+          "default": [],
+          "items": {
+            "$ref": "#/$defs/AgentRunNode"
+          },
+          "title": "Nodes",
+          "type": "array"
+        },
+        "tool_calls": {
+          "default": [],
+          "items": {
+            "$ref": "#/$defs/AgentToolCall"
+          },
+          "title": "Tool Calls",
+          "type": "array"
+        },
+        "final_answer": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Final Answer"
+        }
+      },
+      "required": [
+        "agent_run_id",
+        "kind",
+        "agent_name",
+        "run_mode",
+        "source",
+        "binding",
+        "timing",
+        "status"
+      ],
+      "title": "AgentRunRecord",
+      "type": "object"
+    },
+    "AgentTiming": {
+      "additionalProperties": false,
+      "description": "三个仿真时间与墙钟耗时（03 §3.0 时间协调）。仿真时间决定动作生效，墙钟只进报告。",
+      "properties": {
+        "origin_event_at": {
+          "format": "date-time",
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d{1,9})?(Z|[+-]00:?00)$",
+          "title": "Origin Event At",
+          "type": "string"
+        },
+        "trigger_at": {
+          "format": "date-time",
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d{1,9})?(Z|[+-]00:?00)$",
+          "title": "Trigger At",
+          "type": "string"
+        },
+        "effective_at": {
+          "format": "date-time",
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d{1,9})?(Z|[+-]00:?00)$",
+          "title": "Effective At",
+          "type": "string"
+        },
+        "requested_at": {
+          "format": "date-time",
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d{1,9})?(Z|[+-]00:?00)$",
+          "title": "Requested At",
+          "type": "string"
+        },
+        "returned_at": {
+          "anyOf": [
+            {
+              "format": "date-time",
+              "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d{1,9})?(Z|[+-]00:?00)$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Returned At"
+        },
+        "latency_ms": {
+          "anyOf": [
+            {
+              "minimum": 0,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Latency Ms"
+        },
+        "retries": {
+          "default": 0,
+          "minimum": 0,
+          "title": "Retries",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "origin_event_at",
+        "trigger_at",
+        "effective_at",
+        "requested_at"
+      ],
+      "title": "AgentTiming",
+      "type": "object"
+    },
+    "AgentToolCall": {
+      "additionalProperties": false,
+      "description": "一次 plantkg 工具调用（B23）：以 plantkg 自己的调用记录为准，不取 SSE 里模型填的参数。",
+      "properties": {
+        "call_id": {
+          "maxLength": 200,
+          "minLength": 1,
+          "title": "Call Id",
+          "type": "string"
+        },
+        "agent_name": {
+          "maxLength": 200,
+          "minLength": 1,
+          "title": "Agent Name",
+          "type": "string"
+        },
+        "depth": {
+          "default": 0,
+          "minimum": 0,
+          "title": "Depth",
+          "type": "integer"
+        },
+        "tool": {
+          "maxLength": 200,
+          "minLength": 1,
+          "title": "Tool",
+          "type": "string"
+        },
+        "model_params": {
+          "additionalProperties": true,
+          "title": "Model Params",
+          "type": "object"
+        },
+        "bound_params": {
+          "additionalProperties": true,
+          "title": "Bound Params",
+          "type": "object"
+        },
+        "started_at": {
+          "format": "date-time",
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d{1,9})?(Z|[+-]00:?00)$",
+          "title": "Started At",
+          "type": "string"
+        },
+        "duration_ms": {
+          "minimum": 0,
+          "title": "Duration Ms",
+          "type": "integer"
+        },
+        "business_status": {
+          "title": "Business Status",
+          "type": "string"
+        },
+        "summary": {
+          "anyOf": [
+            {
+              "maxLength": 500,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Summary"
+        }
+      },
+      "required": [
+        "call_id",
+        "agent_name",
+        "tool",
+        "started_at",
+        "duration_ms",
+        "business_status"
+      ],
+      "title": "AgentToolCall",
+      "type": "object"
+    },
+    "AssetStateCounts": {
+      "additionalProperties": false,
+      "properties": {
+        "dormant": {
+          "minimum": 0,
+          "title": "Dormant",
+          "type": "integer"
+        },
+        "identified": {
+          "minimum": 0,
+          "title": "Identified",
+          "type": "integer"
+        },
+        "in_graph": {
+          "minimum": 0,
+          "title": "In Graph",
+          "type": "integer"
+        },
+        "referenced": {
+          "minimum": 0,
+          "title": "Referenced",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "dormant",
+        "identified",
+        "in_graph",
+        "referenced"
+      ],
+      "title": "AssetStateCounts",
+      "type": "object"
+    },
+    "AssetVersion": {
+      "additionalProperties": false,
+      "properties": {
+        "asset_version_id": {
+          "description": "asset://{行业}/{来源哈希前8位}/{类型}/{定位}；内容变即新版本",
+          "pattern": "^asset://[a-z0-9_-]+/[0-9a-f]{8}/[a-z0-9_-]+/.+$",
+          "title": "Asset Version Id",
+          "type": "string"
+        },
+        "content_hash": {
+          "description": "完整 sha256，去重与完整性校验用",
+          "pattern": "^sha256:[0-9a-f]{64}$",
+          "title": "Content Hash",
+          "type": "string"
+        },
+        "industry": {
+          "maxLength": 200,
+          "minLength": 1,
+          "title": "Industry",
+          "type": "string"
+        },
+        "asset_type": {
+          "maxLength": 200,
+          "minLength": 1,
+          "title": "Asset Type",
+          "type": "string"
+        },
+        "source_uri": {
+          "title": "Source Uri",
+          "type": "string"
+        },
+        "media_type": {
+          "title": "Media Type",
+          "type": "string"
+        },
+        "nature": {
+          "$ref": "#/$defs/DataNature"
+        },
+        "available_at": {
+          "format": "date-time",
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d{1,9})?(Z|[+-]00:?00)$",
+          "title": "Available At",
+          "type": "string"
+        },
+        "ingested_at": {
+          "format": "date-time",
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d{1,9})?(Z|[+-]00:?00)$",
+          "title": "Ingested At",
+          "type": "string"
+        },
+        "parent_version_id": {
+          "anyOf": [
+            {
+              "description": "asset://{行业}/{来源哈希前8位}/{类型}/{定位}；内容变即新版本",
+              "pattern": "^asset://[a-z0-9_-]+/[0-9a-f]{8}/[a-z0-9_-]+/.+$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Parent Version Id"
+        },
+        "entity_ids": {
+          "default": [],
+          "items": {
+            "description": "entity://{厂区}/{类型}/{编号}；不随资料修改而变",
+            "pattern": "^entity://[A-Za-z0-9_-]+/[a-z0-9_-]+/[A-Za-z0-9_.-]+$",
+            "type": "string"
+          },
+          "title": "Entity Ids",
+          "type": "array"
+        },
+        "license": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "License"
+        },
+        "title": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Title"
+        }
+      },
+      "required": [
+        "asset_version_id",
+        "content_hash",
+        "industry",
+        "asset_type",
+        "source_uri",
+        "media_type",
+        "nature",
+        "available_at",
+        "ingested_at"
+      ],
+      "title": "AssetVersion",
+      "type": "object"
+    },
+    "DataNature": {
+      "enum": [
+        "measured",
+        "derived",
+        "configured",
+        "synthetic",
+        "simulated"
+      ],
+      "title": "DataNature",
+      "type": "string"
+    },
+    "DataSourceRef": {
+      "additionalProperties": false,
+      "description": "场景运行用到的数据来源与版本（v0.8）。",
+      "properties": {
+        "source": {
+          "maxLength": 200,
+          "minLength": 1,
+          "title": "Source",
+          "type": "string"
+        },
+        "dataset_version": {
+          "maxLength": 200,
+          "minLength": 1,
+          "title": "Dataset Version",
+          "type": "string"
+        }
+      },
+      "required": [
+        "source",
+        "dataset_version"
+      ],
+      "title": "DataSourceRef",
+      "type": "object"
+    },
+    "DayContext": {
+      "additionalProperties": false,
+      "description": "“一天”的跨日引用闭包（#217-1、#217-2 / #238）。\n\n被当日记录引用、但发生在当日以外的记录，原样携带，不进当日时间轴和计数。\n展示页按 ID 查找时先查当日小节、再查这里。",
+      "properties": {
+        "proposals": {
+          "default": [],
+          "items": {
+            "$ref": "#/$defs/ExpertProposal"
+          },
+          "title": "Proposals",
+          "type": "array"
+        },
+        "events": {
+          "default": [],
+          "items": {
+            "$ref": "#/$defs/DayEvent"
+          },
+          "title": "Events",
+          "type": "array"
+        },
+        "tickets": {
+          "default": [],
+          "items": {
+            "$ref": "#/$defs/Ticket"
+          },
+          "title": "Tickets",
+          "type": "array"
+        }
+      },
+      "title": "DayContext",
+      "type": "object"
+    },
+    "DayDecision": {
+      "additionalProperties": false,
+      "description": "裁决“冲突 → 换算 → 结果”三步（03 §3.6）。",
+      "properties": {
+        "decision_id": {
+          "maxLength": 200,
+          "minLength": 1,
+          "title": "Decision Id",
+          "type": "string"
+        },
+        "ticket_id": {
+          "maxLength": 200,
+          "minLength": 1,
+          "title": "Ticket Id",
+          "type": "string"
+        },
+        "round": {
+          "minimum": 1,
+          "title": "Round",
+          "type": "integer"
+        },
+        "layer": {
+          "enum": [
+            1,
+            2,
+            3
+          ],
+          "title": "Layer",
+          "type": "integer"
+        },
+        "at": {
+          "format": "date-time",
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d{1,9})?(Z|[+-]00:?00)$",
+          "title": "At",
+          "type": "string"
+        },
+        "conflict": {
+          "$ref": "#/$defs/DecisionConflict"
+        },
+        "conversion": {
+          "$ref": "#/$defs/DecisionConversion"
+        },
+        "result": {
+          "$ref": "#/$defs/DecisionResult"
+        }
+      },
+      "required": [
+        "decision_id",
+        "ticket_id",
+        "round",
+        "layer",
+        "at",
+        "conflict",
+        "conversion",
+        "result"
+      ],
+      "title": "DayDecision",
+      "type": "object"
+    },
+    "DayEvent": {
+      "additionalProperties": false,
+      "properties": {
+        "event_id": {
+          "maxLength": 200,
+          "minLength": 1,
+          "title": "Event Id",
+          "type": "string"
+        },
+        "at": {
+          "format": "date-time",
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d{1,9})?(Z|[+-]00:?00)$",
+          "title": "At",
+          "type": "string"
+        },
+        "event_type": {
+          "maxLength": 200,
+          "minLength": 1,
+          "title": "Event Type",
+          "type": "string"
+        },
+        "source": {
+          "enum": [
+            "script",
+            "random",
+            "sim_limit",
+            "operator_message"
+          ],
+          "title": "Source",
+          "type": "string"
+        },
+        "entity_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Entity Id"
+        },
+        "severity": {
+          "default": 1,
+          "maximum": 5,
+          "minimum": 0,
+          "title": "Severity",
+          "type": "integer"
+        },
+        "summary": {
+          "title": "Summary",
+          "type": "string"
+        },
+        "payload": {
+          "additionalProperties": true,
+          "title": "Payload",
+          "type": "object"
+        },
+        "nature": {
+          "$ref": "#/$defs/DataNature"
+        }
+      },
+      "required": [
+        "event_id",
+        "at",
+        "event_type",
+        "source",
+        "summary",
+        "nature"
+      ],
+      "title": "DayEvent",
+      "type": "object"
+    },
+    "DayMetric": {
+      "additionalProperties": false,
+      "properties": {
+        "metric": {
+          "maxLength": 200,
+          "minLength": 1,
+          "title": "Metric",
+          "type": "string"
+        },
+        "group": {
+          "enum": [
+            "baseline",
+            "independent",
+            "coordinated",
+            "knowledge",
+            "config"
+          ],
+          "title": "Group",
+          "type": "string"
+        },
+        "value": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Value"
+        },
+        "unit": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Unit"
+        },
+        "note": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Note"
+        },
+        "nature": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/DataNature"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "variant": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Variant"
+        },
+        "counts": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/AssetStateCounts"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "as_of": {
+          "anyOf": [
+            {
+              "format": "date-time",
+              "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d{1,9})?(Z|[+-]00:?00)$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "As Of"
+        }
+      },
+      "required": [
+        "metric",
+        "group",
+        "value"
+      ],
+      "title": "DayMetric",
+      "type": "object"
+    },
+    "DecisionConflict": {
+      "additionalProperties": false,
+      "properties": {
+        "summary": {
+          "title": "Summary",
+          "type": "string"
+        },
+        "proposal_ids": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Proposal Ids",
+          "type": "array"
+        }
+      },
+      "required": [
+        "summary",
+        "proposal_ids"
+      ],
+      "title": "DecisionConflict",
+      "type": "object"
+    },
+    "DecisionConversion": {
+      "additionalProperties": false,
+      "description": "换算：把各提案（或组合）放到同一把尺子上。",
+      "properties": {
+        "policy_version": {
+          "maxLength": 200,
+          "minLength": 1,
+          "title": "Policy Version",
+          "type": "string"
+        },
+        "scores": {
+          "additionalProperties": {
+            "type": "number"
+          },
+          "title": "Scores",
+          "type": "object"
+        },
+        "infeasible": {
+          "default": [],
+          "items": {
+            "type": "string"
+          },
+          "title": "Infeasible",
+          "type": "array"
+        },
+        "notes": {
+          "default": [],
+          "items": {
+            "type": "string"
+          },
+          "title": "Notes",
+          "type": "array"
+        }
+      },
+      "required": [
+        "policy_version",
+        "scores"
+      ],
+      "title": "DecisionConversion",
+      "type": "object"
+    },
+    "DecisionResult": {
+      "additionalProperties": false,
+      "properties": {
+        "selected_proposal_ids": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Selected Proposal Ids",
+          "type": "array"
+        },
+        "outcome": {
+          "enum": [
+            "executed",
+            "work_order",
+            "to_human",
+            "sampling",
+            "blocked"
+          ],
+          "title": "Outcome",
+          "type": "string"
+        },
+        "summary": {
+          "title": "Summary",
+          "type": "string"
+        }
+      },
+      "required": [
+        "selected_proposal_ids",
+        "outcome",
+        "summary"
+      ],
+      "title": "DecisionResult",
+      "type": "object"
+    },
+    "EvidenceEvent": {
+      "additionalProperties": false,
+      "description": "证据事件：写入即可订阅，供网关实时合流（09 D19）。",
+      "properties": {
+        "event_id": {
+          "maxLength": 200,
+          "minLength": 1,
+          "title": "Event Id",
+          "type": "string"
+        },
+        "seq": {
+          "minimum": 0,
+          "title": "Seq",
+          "type": "integer"
+        },
+        "occurred_at": {
+          "format": "date-time",
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d{1,9})?(Z|[+-]00:?00)$",
+          "title": "Occurred At",
+          "type": "string"
+        },
+        "agent_run_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Agent Run Id"
+        },
+        "run_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Run Id"
+        },
+        "trace_id": {
+          "maxLength": 200,
+          "minLength": 1,
+          "title": "Trace Id",
+          "type": "string"
+        },
+        "call_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Call Id"
+        },
+        "action_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Action Id"
+        },
+        "event_type": {
+          "$ref": "#/$defs/EvidenceEventType"
+        },
+        "tool": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Tool"
+        },
+        "path": {
+          "$ref": "#/$defs/EvidencePath",
+          "default": "none"
+        },
+        "rule_ids": {
+          "default": [],
+          "items": {
+            "type": "string"
+          },
+          "title": "Rule Ids",
+          "type": "array"
+        },
+        "sources": {
+          "default": [],
+          "items": {
+            "$ref": "#/$defs/EvidenceRef"
+          },
+          "title": "Sources",
+          "type": "array"
+        },
+        "version_manifest_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Version Manifest Id"
+        },
+        "available_at": {
+          "anyOf": [
+            {
+              "format": "date-time",
+              "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d{1,9})?(Z|[+-]00:?00)$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Available At"
+        },
+        "nature": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/DataNature"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "result_status": {
+          "$ref": "#/$defs/ResultStatus"
+        },
+        "params": {
+          "additionalProperties": true,
+          "title": "Params",
+          "type": "object"
+        },
+        "model_params": {
+          "anyOf": [
+            {
+              "additionalProperties": true,
+              "type": "object"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Model Params"
+        },
+        "summary": {
+          "anyOf": [
+            {
+              "maxLength": 2000,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Summary"
+        }
+      },
+      "required": [
+        "event_id",
+        "seq",
+        "occurred_at",
+        "trace_id",
+        "event_type",
+        "result_status"
+      ],
+      "title": "EvidenceEvent",
+      "type": "object"
+    },
+    "EvidenceEventType": {
+      "enum": [
+        "tool_called",
+        "tool_result",
+        "retrieval",
+        "graph_query",
+        "rule_lookup",
+        "rule_applied",
+        "conflict_detected",
+        "path_switch",
+        "plan_created",
+        "gate_decided",
+        "pending_action_proposed",
+        "action_decided",
+        "job_submitted",
+        "job_finished",
+        "execution_recorded",
+        "version_activated",
+        "candidate_status_changed",
+        "autonomy_paused",
+        "autonomy_resumed",
+        "action_cancelled",
+        "action_revoked"
+      ],
+      "title": "EvidenceEventType",
+      "type": "string"
+    },
+    "EvidencePath": {
+      "enum": [
+        "retrieval",
+        "reasoning",
+        "none"
+      ],
+      "title": "EvidencePath",
+      "type": "string"
+    },
+    "EvidenceRef": {
+      "additionalProperties": false,
+      "properties": {
+        "asset_version_id": {
+          "anyOf": [
+            {
+              "description": "asset://{行业}/{来源哈希前8位}/{类型}/{定位}；内容变即新版本",
+              "pattern": "^asset://[a-z0-9_-]+/[0-9a-f]{8}/[a-z0-9_-]+/.+$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Asset Version Id"
+        },
+        "locator": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Locator"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "evidence_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Evidence Id"
+        },
+        "perspective": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Perspective"
+        },
+        "excerpt": {
+          "anyOf": [
+            {
+              "maxLength": 500,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Excerpt"
+        }
+      },
+      "title": "EvidenceRef",
+      "type": "object"
+    },
+    "ExpertProposal": {
+      "additionalProperties": false,
+      "description": "专家提案（03 §3.0 提案以落库为准）。propose 工具返回 proposal_id 为空的草稿，\nB23 注册表包装层经 ProposalSink.save 落库分配 proposal_id 并补 binding 与 timing；\ndiagnosis 与 evidence_refs 可由专家回答事后经 attach_reply 补充。",
+      "properties": {
+        "proposal_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Proposal Id"
+        },
+        "expert": {
+          "maxLength": 200,
+          "minLength": 1,
+          "title": "Expert",
+          "type": "string"
+        },
+        "ticket_id": {
+          "maxLength": 200,
+          "minLength": 1,
+          "title": "Ticket Id",
+          "type": "string"
+        },
+        "actions": {
+          "default": [],
+          "items": {
+            "$ref": "#/$defs/ProposedAction"
+          },
+          "title": "Actions",
+          "type": "array"
+        },
+        "cost": {
+          "$ref": "#/$defs/ProposalCost"
+        },
+        "confidence": {
+          "maximum": 1,
+          "minimum": 0,
+          "title": "Confidence",
+          "type": "number"
+        },
+        "diagnosis": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Diagnosis"
+        },
+        "evidence_refs": {
+          "default": [],
+          "items": {
+            "type": "string"
+          },
+          "title": "Evidence Refs",
+          "type": "array"
+        },
+        "safety_tags": {
+          "default": [],
+          "items": {
+            "type": "string"
+          },
+          "title": "Safety Tags",
+          "type": "array"
+        },
+        "binding": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/RunBinding"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "timing": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/AgentTiming"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        }
+      },
+      "required": [
+        "expert",
+        "ticket_id",
+        "cost",
+        "confidence"
+      ],
+      "title": "ExpertProposal",
+      "type": "object"
+    },
+    "Interval": {
+      "additionalProperties": false,
+      "description": "左闭右开 UTC 区间 [start, end)。",
+      "properties": {
+        "start": {
+          "format": "date-time",
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d{1,9})?(Z|[+-]00:?00)$",
+          "title": "Start",
+          "type": "string"
+        },
+        "end": {
+          "format": "date-time",
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d{1,9})?(Z|[+-]00:?00)$",
+          "title": "End",
+          "type": "string"
+        }
+      },
+      "required": [
+        "start",
+        "end"
+      ],
+      "title": "Interval",
+      "type": "object"
+    },
+    "KnowledgeVersionEntry": {
+      "additionalProperties": false,
+      "properties": {
+        "version": {
+          "minimum": 1,
+          "title": "Version",
+          "type": "integer"
+        },
+        "version_manifest_id": {
+          "maxLength": 200,
+          "minLength": 1,
+          "title": "Version Manifest Id",
+          "type": "string"
+        },
+        "activated_at": {
+          "format": "date-time",
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d{1,9})?(Z|[+-]00:?00)$",
+          "title": "Activated At",
+          "type": "string"
+        },
+        "summary": {
+          "default": "",
+          "title": "Summary",
+          "type": "string"
+        }
+      },
+      "required": [
+        "version",
+        "version_manifest_id",
+        "activated_at"
+      ],
+      "title": "KnowledgeVersionEntry",
+      "type": "object"
+    },
+    "LedgerEntry": {
+      "additionalProperties": false,
+      "description": "一个时段的交流侧账本（非负量，kW 时段平均、kWh 时段电量）。",
+      "properties": {
+        "interval": {
+          "$ref": "#/$defs/Interval"
+        },
+        "pv_available_kwh": {
+          "minimum": 0,
+          "title": "Pv Available Kwh",
+          "type": "number"
+        },
+        "pv_used_kwh": {
+          "minimum": 0,
+          "title": "Pv Used Kwh",
+          "type": "number"
+        },
+        "pv_curtailed_kwh": {
+          "minimum": 0,
+          "title": "Pv Curtailed Kwh",
+          "type": "number"
+        },
+        "grid_import_kwh": {
+          "minimum": 0,
+          "title": "Grid Import Kwh",
+          "type": "number"
+        },
+        "grid_export_kwh": {
+          "minimum": 0,
+          "title": "Grid Export Kwh",
+          "type": "number"
+        },
+        "charge_kwh": {
+          "minimum": 0,
+          "title": "Charge Kwh",
+          "type": "number"
+        },
+        "discharge_kwh": {
+          "minimum": 0,
+          "title": "Discharge Kwh",
+          "type": "number"
+        },
+        "load_kwh": {
+          "minimum": 0,
+          "title": "Load Kwh",
+          "type": "number"
+        },
+        "energy_start_kwh": {
+          "minimum": 0,
+          "title": "Energy Start Kwh",
+          "type": "number"
+        },
+        "energy_end_kwh": {
+          "minimum": 0,
+          "title": "Energy End Kwh",
+          "type": "number"
+        },
+        "soc_end": {
+          "maximum": 1,
+          "minimum": 0,
+          "title": "Soc End",
+          "type": "number"
+        },
+        "price_cny_per_kwh": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Price Cny Per Kwh"
+        },
+        "cost_cny": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Cost Cny"
+        },
+        "residual_kwh": {
+          "title": "Residual Kwh",
+          "type": "number"
+        },
+        "load_breakdown": {
+          "anyOf": [
+            {
+              "additionalProperties": {
+                "type": "number"
+              },
+              "propertyNames": {
+                "$ref": "#/$defs/LoadCategory"
+              },
+              "type": "object"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Load Breakdown"
+        }
+      },
+      "required": [
+        "interval",
+        "pv_available_kwh",
+        "pv_used_kwh",
+        "pv_curtailed_kwh",
+        "grid_import_kwh",
+        "grid_export_kwh",
+        "charge_kwh",
+        "discharge_kwh",
+        "load_kwh",
+        "energy_start_kwh",
+        "energy_end_kwh",
+        "soc_end",
+        "residual_kwh"
+      ],
+      "title": "LedgerEntry",
+      "type": "object"
+    },
+    "LoadCategory": {
+      "description": "负荷分项（v0.8 账本 load_breakdown）。",
+      "enum": [
+        "elevator",
+        "hvac",
+        "air_compressor",
+        "lighting",
+        "process",
+        "base"
+      ],
+      "title": "LoadCategory",
+      "type": "string"
+    },
+    "Locator": {
+      "additionalProperties": false,
+      "description": "原文定位：页码、条款、表格单元格、图片框、行或时间区间，至少给一项。",
+      "properties": {
+        "page": {
+          "anyOf": [
+            {
+              "minimum": 1,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Page"
+        },
+        "clause": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Clause"
+        },
+        "cell": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Cell"
+        },
+        "bbox": {
+          "anyOf": [
+            {
+              "maxItems": 4,
+              "minItems": 4,
+              "prefixItems": [
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "number"
+                }
+              ],
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Bbox"
+        },
+        "line_start": {
+          "anyOf": [
+            {
+              "minimum": 1,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Line Start"
+        },
+        "line_end": {
+          "anyOf": [
+            {
+              "minimum": 1,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Line End"
+        },
+        "time_range": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Interval"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "meter": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Meter"
+        }
+      },
+      "title": "Locator",
+      "type": "object"
+    },
+    "ProposalCost": {
+      "additionalProperties": false,
+      "description": "同一把尺子上的三项代价；cny 为负表示节省。",
+      "properties": {
+        "cny": {
+          "title": "Cny",
+          "type": "number"
+        },
+        "wait_min": {
+          "default": 0.0,
+          "minimum": 0,
+          "title": "Wait Min",
+          "type": "number"
+        },
+        "comfort_min": {
+          "default": 0.0,
+          "minimum": 0,
+          "title": "Comfort Min",
+          "type": "number"
+        }
+      },
+      "required": [
+        "cny"
+      ],
+      "title": "ProposalCost",
+      "type": "object"
+    },
+    "ProposedAction": {
+      "additionalProperties": false,
+      "description": "专家提案里的一个动作。",
+      "properties": {
+        "entity_id": {
+          "description": "entity://{厂区}/{类型}/{编号}；不随资料修改而变",
+          "pattern": "^entity://[A-Za-z0-9_-]+/[a-z0-9_-]+/[A-Za-z0-9_.-]+$",
+          "title": "Entity Id",
+          "type": "string"
+        },
+        "command": {
+          "maxLength": 200,
+          "minLength": 1,
+          "title": "Command",
+          "type": "string"
+        },
+        "params": {
+          "additionalProperties": true,
+          "title": "Params",
+          "type": "object"
+        },
+        "interval": {
+          "$ref": "#/$defs/Interval"
+        },
+        "readiness": {
+          "$ref": "#/$defs/ActionReadiness",
+          "default": "ready"
+        },
+        "depends_on": {
+          "default": [],
+          "items": {
+            "type": "string"
+          },
+          "title": "Depends On",
+          "type": "array"
+        }
+      },
+      "required": [
+        "entity_id",
+        "command",
+        "interval"
+      ],
+      "title": "ProposedAction",
+      "type": "object"
+    },
+    "QaEntry": {
+      "additionalProperties": false,
+      "properties": {
+        "qa_id": {
+          "maxLength": 200,
+          "minLength": 1,
+          "title": "Qa Id",
+          "type": "string"
+        },
+        "at": {
+          "format": "date-time",
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d{1,9})?(Z|[+-]00:?00)$",
+          "title": "At",
+          "type": "string"
+        },
+        "question": {
+          "title": "Question",
+          "type": "string"
+        },
+        "answer": {
+          "title": "Answer",
+          "type": "string"
+        },
+        "agent_run_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Agent Run Id"
+        },
+        "evidence_refs": {
+          "default": [],
+          "items": {
+            "type": "string"
+          },
+          "title": "Evidence Refs",
+          "type": "array"
+        }
+      },
+      "required": [
+        "qa_id",
+        "at",
+        "question",
+        "answer"
+      ],
+      "title": "QaEntry",
+      "type": "object"
+    },
+    "ResultStatus": {
+      "enum": [
+        "ok",
+        "pending",
+        "degraded",
+        "failed",
+        "conflict"
+      ],
+      "title": "ResultStatus",
+      "type": "string"
+    },
+    "RunBinding": {
+      "additionalProperties": false,
+      "description": "一次专家或主 Agent 运行的绑定（03 §3.0 轮次与过期）。绑定不符的结果只入历史，不执行、不回写。",
+      "properties": {
+        "run_id": {
+          "maxLength": 200,
+          "minLength": 1,
+          "title": "Run Id",
+          "type": "string"
+        },
+        "knowledge_version": {
+          "minimum": 1,
+          "title": "Knowledge Version",
+          "type": "integer"
+        },
+        "ticket_id": {
+          "maxLength": 200,
+          "minLength": 1,
+          "title": "Ticket Id",
+          "type": "string"
+        },
+        "round": {
+          "minimum": 1,
+          "title": "Round",
+          "type": "integer"
+        },
+        "state_version": {
+          "minimum": 0,
+          "title": "State Version",
+          "type": "integer"
+        },
+        "trigger_at": {
+          "format": "date-time",
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d{1,9})?(Z|[+-]00:?00)$",
+          "title": "Trigger At",
+          "type": "string"
+        }
+      },
+      "required": [
+        "run_id",
+        "knowledge_version",
+        "ticket_id",
+        "round",
+        "state_version",
+        "trigger_at"
+      ],
+      "title": "RunBinding",
+      "type": "object"
+    },
+    "RunChainEntry": {
+      "additionalProperties": false,
+      "description": "运行接续链：展示页离线重建分叉。",
+      "properties": {
+        "run_id": {
+          "maxLength": 200,
+          "minLength": 1,
+          "title": "Run Id",
+          "type": "string"
+        },
+        "forked_from": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Forked From"
+        },
+        "forked_at": {
+          "anyOf": [
+            {
+              "format": "date-time",
+              "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d{1,9})?(Z|[+-]00:?00)$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Forked At"
+        },
+        "knowledge_version": {
+          "anyOf": [
+            {
+              "minimum": 1,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Knowledge Version"
+        },
+        "data_sources": {
+          "default": [],
+          "items": {
+            "$ref": "#/$defs/DataSourceRef"
+          },
+          "title": "Data Sources",
+          "type": "array"
+        }
+      },
+      "required": [
+        "run_id"
+      ],
+      "title": "RunChainEntry",
+      "type": "object"
+    },
+    "RunMode": {
+      "description": "v0.8 运行模式（03 §3.0 运行模式）。deterministic 是 live 来源缺失时的记录口径，不是请求模式。",
+      "enum": [
+        "live",
+        "trial",
+        "evaluation",
+        "deterministic"
+      ],
+      "title": "RunMode",
+      "type": "string"
+    },
+    "StateChange": {
+      "additionalProperties": false,
+      "properties": {
+        "at": {
+          "format": "date-time",
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d{1,9})?(Z|[+-]00:?00)$",
+          "title": "At",
+          "type": "string"
+        },
+        "entity_id": {
+          "maxLength": 200,
+          "minLength": 1,
+          "title": "Entity Id",
+          "type": "string"
+        },
+        "field": {
+          "maxLength": 200,
+          "minLength": 1,
+          "title": "Field",
+          "type": "string"
+        },
+        "value": {
+          "title": "Value"
+        }
+      },
+      "required": [
+        "at",
+        "entity_id",
+        "field",
+        "value"
+      ],
+      "title": "StateChange",
+      "type": "object"
+    },
+    "StateFrame": {
+      "additionalProperties": false,
+      "description": "每 15 分钟一帧全量设备状态，加上本帧到下一帧之间按分钟的变化。",
+      "properties": {
+        "at": {
+          "format": "date-time",
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d{1,9})?(Z|[+-]00:?00)$",
+          "title": "At",
+          "type": "string"
+        },
+        "devices": {
+          "additionalProperties": {
+            "additionalProperties": true,
+            "type": "object"
+          },
+          "title": "Devices",
+          "type": "object"
+        },
+        "changes": {
+          "default": [],
+          "items": {
+            "$ref": "#/$defs/StateChange"
+          },
+          "title": "Changes",
+          "type": "array"
+        }
+      },
+      "required": [
+        "at",
+        "devices"
+      ],
+      "title": "StateFrame",
+      "type": "object"
+    },
+    "StatusChange": {
+      "additionalProperties": false,
+      "description": "一次状态迁移（#217-3）：只在状态变化时追加，不按分钟写。",
+      "properties": {
+        "status": {
+          "title": "Status",
+          "type": "string"
+        },
+        "at": {
+          "format": "date-time",
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d{1,9})?(Z|[+-]00:?00)$",
+          "title": "At",
+          "type": "string"
+        }
+      },
+      "required": [
+        "status",
+        "at"
+      ],
+      "title": "StatusChange",
+      "type": "object"
+    },
+    "TempRule": {
+      "additionalProperties": false,
+      "description": "临时指令转成的临时规则（03 §3.6），到期自动失效，不进长期知识。",
+      "properties": {
+        "rule_id": {
+          "maxLength": 200,
+          "minLength": 1,
+          "title": "Rule Id",
+          "type": "string"
+        },
+        "text": {
+          "title": "Text",
+          "type": "string"
+        },
+        "effective": {
+          "$ref": "#/$defs/Interval"
+        },
+        "entity_ids": {
+          "default": [],
+          "items": {
+            "type": "string"
+          },
+          "title": "Entity Ids",
+          "type": "array"
+        },
+        "created_at": {
+          "format": "date-time",
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d{1,9})?(Z|[+-]00:?00)$",
+          "title": "Created At",
+          "type": "string"
+        },
+        "source_event_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Source Event Id"
+        },
+        "estimated_cost_cny": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Estimated Cost Cny"
+        }
+      },
+      "required": [
+        "rule_id",
+        "text",
+        "effective",
+        "created_at"
+      ],
+      "title": "TempRule",
+      "type": "object"
+    },
+    "TerminalReason": {
+      "description": "网关判定的终态原因（07 Q03 四种异常 + 正常结束）。",
+      "enum": [
+        "completed",
+        "completed_from_deltas",
+        "timeout",
+        "cancelled",
+        "stream_lost_recovered",
+        "stream_lost",
+        "error"
+      ],
+      "title": "TerminalReason",
+      "type": "string"
+    },
+    "Ticket": {
+      "additionalProperties": false,
+      "properties": {
+        "ticket_id": {
+          "maxLength": 200,
+          "minLength": 1,
+          "title": "Ticket Id",
+          "type": "string"
+        },
+        "opened_at": {
+          "format": "date-time",
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d{1,9})?(Z|[+-]00:?00)$",
+          "title": "Opened At",
+          "type": "string"
+        },
+        "closed_at": {
+          "anyOf": [
+            {
+              "format": "date-time",
+              "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d{1,9})?(Z|[+-]00:?00)$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Closed At"
+        },
+        "status": {
+          "enum": [
+            "open",
+            "waiting",
+            "blocked",
+            "resolved",
+            "closed"
+          ],
+          "title": "Status",
+          "type": "string"
+        },
+        "rehearsal": {
+          "default": false,
+          "title": "Rehearsal",
+          "type": "boolean"
+        },
+        "round": {
+          "minimum": 0,
+          "title": "Round",
+          "type": "integer"
+        },
+        "event_ids": {
+          "default": [],
+          "items": {
+            "type": "string"
+          },
+          "title": "Event Ids",
+          "type": "array"
+        },
+        "experts": {
+          "default": [],
+          "items": {
+            "type": "string"
+          },
+          "title": "Experts",
+          "type": "array"
+        },
+        "subscriptions": {
+          "default": [],
+          "items": {
+            "$ref": "#/$defs/TicketSubscription"
+          },
+          "title": "Subscriptions",
+          "type": "array"
+        },
+        "summary": {
+          "default": "",
+          "title": "Summary",
+          "type": "string"
+        },
+        "status_history": {
+          "default": [],
+          "items": {
+            "$ref": "#/$defs/StatusChange"
+          },
+          "title": "Status History",
+          "type": "array"
+        }
+      },
+      "required": [
+        "ticket_id",
+        "opened_at",
+        "status",
+        "round"
+      ],
+      "title": "Ticket",
+      "type": "object"
+    },
+    "TicketSubscription": {
+      "additionalProperties": false,
+      "properties": {
+        "entity_id": {
+          "maxLength": 200,
+          "minLength": 1,
+          "title": "Entity Id",
+          "type": "string"
+        },
+        "event_types": {
+          "items": {
+            "type": "string"
+          },
+          "minItems": 1,
+          "title": "Event Types",
+          "type": "array"
+        }
+      },
+      "required": [
+        "entity_id",
+        "event_types"
+      ],
+      "title": "TicketSubscription",
+      "type": "object"
+    },
+    "WorkOrder": {
+      "additionalProperties": false,
+      "properties": {
+        "work_order_id": {
+          "maxLength": 200,
+          "minLength": 1,
+          "title": "Work Order Id",
+          "type": "string"
+        },
+        "ticket_id": {
+          "maxLength": 200,
+          "minLength": 1,
+          "title": "Ticket Id",
+          "type": "string"
+        },
+        "created_at": {
+          "format": "date-time",
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d{1,9})?(Z|[+-]00:?00)$",
+          "title": "Created At",
+          "type": "string"
+        },
+        "reason": {
+          "title": "Reason",
+          "type": "string"
+        },
+        "actions": {
+          "default": [],
+          "items": {
+            "$ref": "#/$defs/ProposedAction"
+          },
+          "title": "Actions",
+          "type": "array"
+        },
+        "status": {
+          "enum": [
+            "proposed",
+            "confirmed",
+            "rejected",
+            "expired",
+            "done"
+          ],
+          "title": "Status",
+          "type": "string"
+        },
+        "pending_action_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Pending Action Id"
+        },
+        "status_history": {
+          "default": [],
+          "items": {
+            "$ref": "#/$defs/StatusChange"
+          },
+          "title": "Status History",
+          "type": "array"
+        }
+      },
+      "required": [
+        "work_order_id",
+        "ticket_id",
+        "created_at",
+        "reason",
+        "status"
+      ],
+      "title": "WorkOrder",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "description": "“一天”数据（day.json）。开发工作台实时流与回放展示页共用；展示页只靠它离线重建状态。\n\nv0.8（B49）：可选 `cache_version` 给评测缓存键的数据版本（无生产者时留空，不伪造）；\n`evidence` 是本次运行链的证据事件，`assets` 只放被证据引用到的资产条目（B49 资料页用）。\nv0.8（#238）：`context` 携带被当日记录引用的跨日记录（默认空）。",
+  "properties": {
+    "schema_version": {
+      "const": "1",
+      "default": "1",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "plant_id": {
+      "maxLength": 200,
+      "minLength": 1,
+      "title": "Plant Id",
+      "type": "string"
+    },
+    "local_date": {
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+      "title": "Local Date",
+      "type": "string"
+    },
+    "timezone": {
+      "maxLength": 200,
+      "minLength": 1,
+      "title": "Timezone",
+      "type": "string"
+    },
+    "run_id": {
+      "maxLength": 200,
+      "minLength": 1,
+      "title": "Run Id",
+      "type": "string"
+    },
+    "runs": {
+      "items": {
+        "$ref": "#/$defs/RunChainEntry"
+      },
+      "minItems": 1,
+      "title": "Runs",
+      "type": "array"
+    },
+    "events": {
+      "default": [],
+      "items": {
+        "$ref": "#/$defs/DayEvent"
+      },
+      "title": "Events",
+      "type": "array"
+    },
+    "tickets": {
+      "default": [],
+      "items": {
+        "$ref": "#/$defs/Ticket"
+      },
+      "title": "Tickets",
+      "type": "array"
+    },
+    "proposals": {
+      "default": [],
+      "items": {
+        "$ref": "#/$defs/ExpertProposal"
+      },
+      "title": "Proposals",
+      "type": "array"
+    },
+    "decisions": {
+      "default": [],
+      "items": {
+        "$ref": "#/$defs/DayDecision"
+      },
+      "title": "Decisions",
+      "type": "array"
+    },
+    "work_orders": {
+      "default": [],
+      "items": {
+        "$ref": "#/$defs/WorkOrder"
+      },
+      "title": "Work Orders",
+      "type": "array"
+    },
+    "context": {
+      "$ref": "#/$defs/DayContext"
+    },
+    "temp_rules": {
+      "default": [],
+      "items": {
+        "$ref": "#/$defs/TempRule"
+      },
+      "title": "Temp Rules",
+      "type": "array"
+    },
+    "knowledge_versions": {
+      "default": [],
+      "items": {
+        "$ref": "#/$defs/KnowledgeVersionEntry"
+      },
+      "title": "Knowledge Versions",
+      "type": "array"
+    },
+    "qa": {
+      "default": [],
+      "items": {
+        "$ref": "#/$defs/QaEntry"
+      },
+      "title": "Qa",
+      "type": "array"
+    },
+    "agent_runs": {
+      "default": [],
+      "items": {
+        "$ref": "#/$defs/AgentRunRecord"
+      },
+      "title": "Agent Runs",
+      "type": "array"
+    },
+    "metrics": {
+      "default": [],
+      "items": {
+        "$ref": "#/$defs/DayMetric"
+      },
+      "title": "Metrics",
+      "type": "array"
+    },
+    "state_series": {
+      "default": [],
+      "items": {
+        "$ref": "#/$defs/StateFrame"
+      },
+      "title": "State Series",
+      "type": "array"
+    },
+    "ledger_minutes": {
+      "default": [],
+      "items": {
+        "$ref": "#/$defs/LedgerEntry"
+      },
+      "title": "Ledger Minutes",
+      "type": "array"
+    },
+    "cache_version": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Cache Version"
+    },
+    "assets": {
+      "default": [],
+      "items": {
+        "$ref": "#/$defs/AssetVersion"
+      },
+      "title": "Assets",
+      "type": "array"
+    },
+    "evidence": {
+      "default": [],
+      "items": {
+        "$ref": "#/$defs/EvidenceEvent"
+      },
+      "title": "Evidence",
+      "type": "array"
+    }
+  },
+  "required": [
+    "plant_id",
+    "local_date",
+    "timezone",
+    "run_id",
+    "runs"
+  ],
+  "title": "DayRecord",
+  "type": "object",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "plantkg:contracts/1.2.0/day"
+}

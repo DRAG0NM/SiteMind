@@ -1,0 +1,25 @@
+{
+  "model": "Action",
+  "base": "action",
+  "expect_error": "config://",
+  "data": {
+    "action_id": "a-0001",
+    "object": "entity://demo-electronics/battery/BESS1",
+    "quantity": "charge_power",
+    "unit": "kW",
+    "value": 200.0,
+    "interval": {
+      "start": "2026-07-01T03:00:00Z",
+      "end": "2026-07-01T03:15:00Z"
+    },
+    "refs": [
+      {
+        "kind": "config",
+        "id": "plant.yaml"
+      }
+    ],
+    "evidence_ids": [
+      "ev-0011"
+    ]
+  }
+}

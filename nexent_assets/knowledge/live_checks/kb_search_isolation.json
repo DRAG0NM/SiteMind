@@ -1,0 +1,130 @@
+{
+  "created_at": "2026-11-04T15:11:18.098926+00:00",
+  "platform": "Nexent v2.8.2 本机 Docker",
+  "indexes": {
+    "elevator": "2-1cec13e7528644238749368350d42b46",
+    "hvac": "3-37a28fbf8b3943f9a837ee7a0d44e9d6",
+    "energy": "4-4a6c9aea13fa479e8e5c2fb33f8e313d",
+    "equipment": "5-68a54cfcfa064dd89a6e92fcc6283c42"
+  },
+  "note": "混合检索总会返回 top_k；隔离的判据是返回与存储的文件全部属于该专家，跨专家 0 条",
+  "checks": [
+    {
+      "expert": "elevator",
+      "query": "困人 救援 盘车",
+      "index_name": "2-1cec13e7528644238749368350d42b46",
+      "returned": [
+        "elevator-safety-procedure.md",
+        "elevator-maintenance-manual.md",
+        "elevator-entrapment-log.csv"
+      ],
+      "cross_expert": [],
+      "hit_count": 3
+    },
+    {
+      "expert": "hvac",
+      "query": "困人 救援 盘车",
+      "index_name": "3-37a28fbf8b3943f9a837ee7a0d44e9d6",
+      "returned": [
+        "hvac-maintenance-history.csv",
+        "hvac-chiller-maintenance-manual.md",
+        "hvac-zone-setpoints.csv"
+      ],
+      "cross_expert": [],
+      "hit_count": 3
+    },
+    {
+      "expert": "hvac",
+      "query": "冷冻水 预冷 设定温度",
+      "index_name": "3-37a28fbf8b3943f9a837ee7a0d44e9d6",
+      "returned": [
+        "hvac-chiller-maintenance-manual.md",
+        "hvac-design-parameters.md",
+        "hvac-zone-setpoints.csv"
+      ],
+      "cross_expert": [],
+      "hit_count": 3
+    },
+    {
+      "expert": "equipment",
+      "query": "主管压力 下降 泄漏",
+      "index_name": "5-68a54cfcfa064dd89a6e92fcc6283c42",
+      "returned": [
+        "compressor-maintenance-manual.md",
+        "compressor-work-orders.csv",
+        "compressor-inspection-sheet.csv"
+      ],
+      "cross_expert": [],
+      "hit_count": 3
+    },
+    {
+      "expert": "energy",
+      "query": "峰段 电价 储能",
+      "index_name": "4-4a6c9aea13fa479e8e5c2fb33f8e313d",
+      "returned": [
+        "tariff-summary-2025.md",
+        "bess-operation-manual.md",
+        "pv-output-curve.md"
+      ],
+      "cross_expert": [],
+      "hit_count": 3
+    },
+    {
+      "expert": "elevator",
+      "query": "冷冻水 预冷 设定温度",
+      "index_name": "2-1cec13e7528644238749368350d42b46",
+      "returned": [
+        "elevator-inspection-sheet.csv",
+        "elevator-entrapment-log.csv",
+        "elevator-maintenance-manual.md"
+      ],
+      "cross_expert": [],
+      "hit_count": 3
+    },
+    {
+      "expert": "elevator",
+      "index_name": "2-1cec13e7528644238749368350d42b46",
+      "stored_files": [
+        "elevator-entrapment-log.csv",
+        "elevator-inspection-sheet.csv",
+        "elevator-maintenance-manual.md",
+        "elevator-safety-procedure.md"
+      ],
+      "foreign_files": []
+    },
+    {
+      "expert": "hvac",
+      "index_name": "3-37a28fbf8b3943f9a837ee7a0d44e9d6",
+      "stored_files": [
+        "hvac-chiller-maintenance-manual.md",
+        "hvac-design-parameters.md",
+        "hvac-maintenance-history.csv",
+        "hvac-zone-setpoints.csv"
+      ],
+      "foreign_files": []
+    },
+    {
+      "expert": "energy",
+      "index_name": "4-4a6c9aea13fa479e8e5c2fb33f8e313d",
+      "stored_files": [
+        "bess-operation-manual.md",
+        "js-2025-426.pdf",
+        "pv-output-curve.md",
+        "tariff-summary-2025.md"
+      ],
+      "foreign_files": []
+    },
+    {
+      "expert": "equipment",
+      "index_name": "5-68a54cfcfa064dd89a6e92fcc6283c42",
+      "stored_files": [
+        "compressor-fan-nameplate.md",
+        "compressor-inspection-sheet.csv",
+        "compressor-maintenance-manual.md",
+        "compressor-work-orders.csv"
+      ],
+      "foreign_files": []
+    }
+  ],
+  "problems": []
+}

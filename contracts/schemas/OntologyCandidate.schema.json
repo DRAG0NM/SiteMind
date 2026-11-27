@@ -1,0 +1,302 @@
+{
+  "$defs": {
+    "EvidenceRef": {
+      "additionalProperties": false,
+      "properties": {
+        "asset_version_id": {
+          "anyOf": [
+            {
+              "description": "asset://{行业}/{来源哈希前8位}/{类型}/{定位}；内容变即新版本",
+              "pattern": "^asset://[a-z0-9_-]+/[0-9a-f]{8}/[a-z0-9_-]+/.+$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Asset Version Id"
+        },
+        "locator": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Locator"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "evidence_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Evidence Id"
+        },
+        "perspective": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Perspective"
+        },
+        "excerpt": {
+          "anyOf": [
+            {
+              "maxLength": 500,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Excerpt"
+        }
+      },
+      "title": "EvidenceRef",
+      "type": "object"
+    },
+    "Interval": {
+      "additionalProperties": false,
+      "description": "左闭右开 UTC 区间 [start, end)。",
+      "properties": {
+        "start": {
+          "format": "date-time",
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d{1,9})?(Z|[+-]00:?00)$",
+          "title": "Start",
+          "type": "string"
+        },
+        "end": {
+          "format": "date-time",
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d{1,9})?(Z|[+-]00:?00)$",
+          "title": "End",
+          "type": "string"
+        }
+      },
+      "required": [
+        "start",
+        "end"
+      ],
+      "title": "Interval",
+      "type": "object"
+    },
+    "Locator": {
+      "additionalProperties": false,
+      "description": "原文定位：页码、条款、表格单元格、图片框、行或时间区间，至少给一项。",
+      "properties": {
+        "page": {
+          "anyOf": [
+            {
+              "minimum": 1,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Page"
+        },
+        "clause": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Clause"
+        },
+        "cell": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Cell"
+        },
+        "bbox": {
+          "anyOf": [
+            {
+              "maxItems": 4,
+              "minItems": 4,
+              "prefixItems": [
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "number"
+                }
+              ],
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Bbox"
+        },
+        "line_start": {
+          "anyOf": [
+            {
+              "minimum": 1,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Line Start"
+        },
+        "line_end": {
+          "anyOf": [
+            {
+              "minimum": 1,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Line End"
+        },
+        "time_range": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Interval"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "meter": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Meter"
+        }
+      },
+      "title": "Locator",
+      "type": "object"
+    },
+    "OntologyLayer": {
+      "enum": [
+        "concept",
+        "relation",
+        "constraint",
+        "instance"
+      ],
+      "title": "OntologyLayer",
+      "type": "string"
+    },
+    "RecallSource": {
+      "enum": [
+        "vector",
+        "rule",
+        "manual",
+        "fake"
+      ],
+      "title": "RecallSource",
+      "type": "string"
+    },
+    "ReviewStatus": {
+      "enum": [
+        "pending",
+        "auto_accepted",
+        "approved",
+        "rejected",
+        "trusted_config"
+      ],
+      "title": "ReviewStatus",
+      "type": "string"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "candidate_id": {
+      "maxLength": 200,
+      "minLength": 1,
+      "title": "Candidate Id",
+      "type": "string"
+    },
+    "layer": {
+      "$ref": "#/$defs/OntologyLayer"
+    },
+    "subject": {
+      "maxLength": 200,
+      "minLength": 1,
+      "title": "Subject",
+      "type": "string"
+    },
+    "options": {
+      "items": {
+        "type": "string"
+      },
+      "minItems": 1,
+      "title": "Options",
+      "type": "array"
+    },
+    "evidence": {
+      "default": [],
+      "items": {
+        "$ref": "#/$defs/EvidenceRef"
+      },
+      "title": "Evidence",
+      "type": "array"
+    },
+    "recall_source": {
+      "$ref": "#/$defs/RecallSource"
+    },
+    "status": {
+      "$ref": "#/$defs/ReviewStatus",
+      "default": "pending"
+    }
+  },
+  "required": [
+    "candidate_id",
+    "layer",
+    "subject",
+    "options",
+    "recall_source"
+  ],
+  "title": "OntologyCandidate",
+  "type": "object",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "plantkg:contracts/1.2.0/OntologyCandidate"
+}

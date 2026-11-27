@@ -1,0 +1,74 @@
+{
+  "model": "ExecutionResult",
+  "base": "execution_result",
+  "expect_error": "执行账本",
+  "data": {
+    "run_id": "run-day-20260701",
+    "plan_id": "plan-20260701",
+    "plan_revision": 1,
+    "event_seq": 12,
+    "executed": [
+      {
+        "action_id": "a-0001",
+        "planned_value": 200.0,
+        "executed_value": 200.0,
+        "unit": "kW",
+        "interval": {
+          "start": "2026-07-01T03:00:00Z",
+          "end": "2026-07-01T03:15:00Z"
+        }
+      }
+    ],
+    "ledger": {
+      "ledger_id": "led-exec-20260701",
+      "kind": "plan",
+      "run_id": "run-day-20260701",
+      "plan_id": "plan-20260701",
+      "plan_revision": 1,
+      "version_manifest_id": "vm-0003",
+      "entries": [
+        {
+          "interval": {
+            "start": "2026-07-01T03:00:00Z",
+            "end": "2026-07-01T03:15:00Z"
+          },
+          "pv_available_kwh": 82.0,
+          "pv_used_kwh": 82.0,
+          "pv_curtailed_kwh": 0.0,
+          "grid_import_kwh": 71.0,
+          "grid_export_kwh": 0.0,
+          "charge_kwh": 50.0,
+          "discharge_kwh": 0.0,
+          "load_kwh": 103.0,
+          "energy_start_kwh": 500.0,
+          "energy_end_kwh": 547.5,
+          "soc_end": 0.5475,
+          "price_cny_per_kwh": 0.3195,
+          "cost_cny": 22.68,
+          "residual_kwh": 0.0
+        }
+      ],
+      "total_cost_cny": 22.68,
+      "peak_import_kw": 284.0,
+      "tolerance_policy_version": "ledger-tol-1",
+      "calculator_version": "ledger-calc-1",
+      "source_refs": [
+        "bundle-hipe-20260701",
+        "bundle-pvgis-20260701"
+      ],
+      "storage": {
+        "capacity_kwh": 1000,
+        "eta_c": 0.95,
+        "eta_d": 0.95,
+        "soc_min": 0.1,
+        "soc_max": 0.9
+      },
+      "balanced": true
+    },
+    "soc_deviation": 0.0,
+    "forecast_error": {
+      "pv_available_mae_kw": 12.4
+    },
+    "idempotency_key": "idem-exec-20260701-12"
+  }
+}

@@ -1,0 +1,8 @@
+name: ontology_rules
+schema_version: 1
+order: 110
+status: active
+description: B30 规则抽取与人工确认发布；B32 接管完整回测流程
+entrypoint: plantkg.knowledge.rules.pack:install
+provides:
+  tools: [extract_rules, judge_candidates, link_entities, next_review_batch, propose_candidates, propose_review_decision, propose_publish, lookup_rules, graph_query, validate, snapshot, diff, investigate_onboarding, onboarding_investigations, score_review_candidate, record_onboarding_batch, prepare_tariff_review, process_onboarding]

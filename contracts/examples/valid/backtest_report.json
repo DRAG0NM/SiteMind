@@ -1,0 +1,31 @@
+{
+  "model": "BacktestReport",
+  "data": {
+    "report_id": "bt-0001",
+    "candidate_id": "cand-k-0001",
+    "base_manifest_id": "vm-0003",
+    "split_ids": [
+      "split-validation-1"
+    ],
+    "seed": 0,
+    "metrics": {
+      "base": {
+        "cost_cny": 43210.0
+      },
+      "candidate": {
+        "cost_cny": 43050.0
+      }
+    },
+    "constraint_violations": {
+      "base": 0,
+      "candidate": 0
+    },
+    "thresholds": {
+      "min_cost_saving_ratio": 0.0
+    },
+    "policy_version": "param-policy-1",
+    "verdict": "pass",
+    "artifact_hash": "sha256:9dde4eacf9d6a48ac90c7185f6085b6fb879478a29f5176d3c8945c4e0cc93a8",
+    "job_id": "job-0042"
+  }
+}

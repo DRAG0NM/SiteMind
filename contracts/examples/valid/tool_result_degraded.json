@@ -1,0 +1,11 @@
+{
+  "model": "ToolResult",
+  "data": {
+    "ok": true,
+    "business_status": "degraded",
+    "data": {
+      "plans": []
+    },
+    "notice": "本次运行没有网关会话，只能只读查看"
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "model": "Context",
+  "data": {
+    "plant_id": "demo-electronics",
+    "industry_pack": "manufacturing",
+    "actor": {
+      "actor_id": "loop.py",
+      "roles": [
+        "operator"
+      ]
+    },
+    "channel": "offline",
+    "run_id": "run-day-20260701",
+    "trace_id": "tr-loop-1",
+    "as_of": "2026-06-30T10:00:00Z",
+    "version_manifest_id": "vm-0003"
+  }
+}

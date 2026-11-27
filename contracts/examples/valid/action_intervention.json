@@ -1,0 +1,15 @@
+{
+  "model": "ActionIntervention",
+  "data": {
+    "action_id": "A-00003",
+    "run_id": "run-day-20260701",
+    "kind": "revoked",
+    "operator": "u-reviewer-1",
+    "at": "2026-07-01T00:31:00Z",
+    "reason_kind": "system_wrong",
+    "note": "放电时机判断有误",
+    "protection": true,
+    "effective_end": "2026-07-01T00:31:00Z",
+    "original_end": "2026-07-01T00:36:00Z"
+  }
+}

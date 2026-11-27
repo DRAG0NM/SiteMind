@@ -1,0 +1,130 @@
+{
+  "agent_id": 14,
+  "agent_info": {
+    "14": {
+      "agent_id": 14,
+      "name": "plantkg_expert_equipment",
+      "display_name": "plantkg 设备监测专家",
+      "description": "设备监测专家：空压等设备健康、故障研判与维修工单",
+      "max_steps": 10,
+      "requested_output_tokens": null,
+      "is_main_agent": true,
+      "provide_run_summary": false,
+      "allow_chat_metadata": true,
+      "enable_protocol_repair_retry": false,
+      "verification_config": null,
+      "context_policy": null,
+      "prompt": "你是厂区的设备监测专家，负责空压等设备健康、故障研判与维修工单。\n1. 收到事件单会诊时，先调用 plantkg_equipment_propose 得到提案（工具会落库并返回 proposal_id 与摘要），\n   不要自己编诊断、电流、压力或置信度。\n2. 读数研判一律与同时段基线比：白天不能用夜间的运转占比作基线；证据不足时只说不足，不要硬判。\n3. 计量类异常（CT 极性反接、相位错位、互感器变比配错、标签配错）判为“数据异常、设备本身正常”，\n   只开计量检修工单，不切设备；涉及安全或需要停机的动作只提议，由值班人员在工作台确认。\n4. 读数可疑时先用 plantkg_sensor_query 查观测层的 Quality、残差报警与候选假设（只列候选，不下结论）；\n   要区分“传感器 vs 设备”时做可撤回的小试探（如短时启动备用空压机），试探后只用时间戳晚于生效时刻的\n   读数判断；判传感器卡死就改用推算值、开计量检修工单、不停机。\n5. 查影响哪些产线、设备或上游来源，用 plantkg_trace_impact 和 plantkg_find_sources，不要用 list_assets 反复翻。\n6. 会诊的最终回答只能是一行 JSON，不加解释、不加代码块：\n   {\"status\":\"done|waiting|blocked|needs_clarification\",\"proposal_id\":\"<工具返回的 proposal_id>\",\"diagnosis\":\"<一句话诊断>\",\"evidence_refs\":[],\"question\":null}\n7. 任务不是以“事件单 … 第 N 轮会诊”开头时都算问答：不要调用 propose 工具（它只用于会诊，调了只会失败）；list_assets 最多调一次，不要换类型重试，它只列资料版本，没有运行简报和实时读数，用一两句中文回答，依据资料与\n   工具结果，先给结论后给依据；不知道就说不知道。\n",
+      "enabled": true,
+      "tools": [
+        {
+          "class_name": "plantkg_equipment_propose",
+          "name": "plantkg_equipment_propose",
+          "description": "设备监测专家：针对当前事件单确定性算出动作、代价、置信度与安全标记，提案落库后返回 proposal_id",
+          "description_zh": null,
+          "inputs": "{'focus': {'anyOf': [{'type': 'string'}, {'type': 'null'}], 'default': None, 'description': '本次关注的对象或问题（可留空）', 'type': 'string'}, 'ctx': {'default': '', 'description': '由系统注入，不要填写', 'type': 'string'}}",
+          "output_type": "object",
+          "params": {},
+          "source": "mcp",
+          "usage": "plantkg",
+          "metadata": null,
+          "labels": null
+        },
+        {
+          "class_name": "plantkg_list_assets",
+          "name": "plantkg_list_assets",
+          "description": "列出当前 as_of 可见的资料版本（政策、手册等），不含运行简报和实时读数",
+          "description_zh": null,
+          "inputs": "{'asset_type': {'anyOf': [{'type': 'string'}, {'type': 'null'}], 'default': None, 'description': '按类型过滤', 'type': 'string'}, 'cursor': {'anyOf': [{'type': 'string'}, {'type': 'null'}], 'default': None, 'description': '分页游标；首次调用留空', 'type': 'string'}, 'page_size': {'anyOf': [{'maximum': 50.0, 'minimum': 1.0, 'type': 'integer'}, {'type': 'null'}], 'default': None, 'description': '每页条数，1～50', 'type': 'string'}, 'ctx': {'default': '', 'description': '由系统注入，不要填写', 'type': 'string'}}",
+          "output_type": "object",
+          "params": {},
+          "source": "mcp",
+          "usage": "plantkg",
+          "metadata": null,
+          "labels": null
+        },
+        {
+          "class_name": "KnowledgeBaseSearchTool",
+          "name": "knowledge_base_search",
+          "description": "Performs a local knowledge base search based on your query then returns the top search results. A tool for retrieving domain-specific knowledge, documents, and information stored in the local knowledge base. Use this tool when users ask questions related to specialized knowledge, technical documentation, domain expertise, personal notes, or any information that has been indexed in the knowledge base. Suitable for queries requiring access to stored knowledge that may not be publicly available.",
+          "description_zh": "执行本地知识库检索并返回最相关的结果。",
+          "inputs": "{\"query\": {\"type\": \"string\", \"description\": \"The search query to perform.\", \"description_zh\": \"要执行的搜索查询词\"}, \"index_names\": {\"type\": \"array\", \"description\": \"The list of index names to search\", \"description_zh\": \"要索引的知识库\", \"nullable\": true}}",
+          "output_type": "string",
+          "params": {
+            "top_k": 3,
+            "index_names": [],
+            "search_mode": "hybrid",
+            "rerank": false,
+            "rerank_model_name": ""
+          },
+          "source": "local",
+          "usage": null,
+          "metadata": {},
+          "labels": null
+        },
+        {
+          "class_name": "plantkg_sensor_query",
+          "name": "plantkg_sensor_query",
+          "description": "场景观测层：传感器读数与 Quality、残差报警、候选假设（只列候选不下结论）与虚拟传感器推算值；可按设备或传感器查最近窗口，since 只看试探生效后的读数",
+          "description_zh": null,
+          "inputs": "{'entity': {'anyOf': [{'type': 'string'}, {'type': 'null'}], 'default': None, 'description': '设备或节点编号（如 AC-1、AIR-HDR）或 zone:production', 'type': 'string'}, 'sensor_id': {'anyOf': [{'type': 'string'}, {'type': 'null'}], 'default': None, 'description': '传感器 ID（如 AIR-HDR.P）', 'type': 'string'}, 'minutes': {'anyOf': [{'maximum': 60.0, 'minimum': 1.0, 'type': 'integer'}, {'type': 'null'}], 'default': None, 'description': '最近分钟数，默认 5', 'type': 'string'}, 'since': {'anyOf': [{'type': 'string'}, {'type': 'null'}], 'default': None, 'description': '只取时间戳晚于该时刻的读数（ISO 8601）', 'type': 'string'}, 'ctx': {'default': '', 'description': '由系统注入，不要填写', 'type': 'string'}}",
+          "output_type": "object",
+          "params": {},
+          "source": "mcp",
+          "usage": "plantkg",
+          "metadata": null,
+          "labels": null
+        },
+        {
+          "class_name": "plantkg_trace_impact",
+          "name": "plantkg_trace_impact",
+          "description": "沿全局图谱查某设备、管网或配电节点停供时受影响的设备、楼层和区域，每项带图谱路径与安全标记",
+          "description_zh": null,
+          "inputs": "{'entity': {'description': '设备或节点编号（如 AC-1、AIR-HDR、TX1）或 entity:// 标识', 'type': 'string'}, 'media': {'anyOf': [{'type': 'string'}, {'type': 'null'}], 'default': None, 'description': '只沿这些介质查，逗号分隔：power,cooling_water,compressed_air,chilled_water；不填查全部', 'type': 'string'}, 'ctx': {'default': '', 'description': '由系统注入，不要填写', 'type': 'string'}}",
+          "output_type": "object",
+          "params": {},
+          "source": "mcp",
+          "usage": "plantkg",
+          "metadata": null,
+          "labels": null
+        },
+        {
+          "class_name": "plantkg_find_sources",
+          "name": "plantkg_find_sources",
+          "description": "按症状在全局图谱上找来源候选并按领域汇总：load_surge 找下游用电设备（load），pressure_drop 找供气方（supply）与泄漏点（leak），其他症状找上游供给方；位置为区域时服务该区的设备标 serving",
+          "description_zh": null,
+          "inputs": "{'location': {'description': '出现症状的节点编号或区域（如 TX1、AIR-HDR、cleanroom）', 'type': 'string'}, 'symptom': {'description': 'load_surge、overload、pressure_drop、temperature_deviation、power_loss 等', 'type': 'string'}, 'ctx': {'default': '', 'description': '由系统注入，不要填写', 'type': 'string'}}",
+          "output_type": "object",
+          "params": {},
+          "source": "mcp",
+          "usage": "plantkg",
+          "metadata": null,
+          "labels": null
+        }
+      ],
+      "managed_agents": [],
+      "model_ids": [
+        4
+      ],
+      "model_names": [
+        "deepseek-v4.1-flash-1017"
+      ],
+      "business_logic_model_id": 4,
+      "business_logic_model_name": "deepseek-v4.1-flash-1017",
+      "skill_names": [],
+      "model_params_override": {
+        "4": {
+          "extra_params": {}
+        }
+      },
+      "greeting_message": null,
+      "example_questions": null
+    }
+  },
+  "mcp_info": [
+    {
+      "mcp_server_name": "plantkg",
+      "mcp_url": "http://host.docker.internal:8700/mcp"
+    }
+  ]
+}

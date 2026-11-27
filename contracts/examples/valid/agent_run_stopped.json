@@ -1,0 +1,7 @@
+{
+  "model": "AgentRunStopped",
+  "data": {
+    "agent_run_id": "ar-20260630-0001",
+    "status": "stopping"
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "additionalProperties": false,
+  "description": "场景运行用到的数据来源与版本（v0.8）。",
+  "properties": {
+    "source": {
+      "maxLength": 200,
+      "minLength": 1,
+      "title": "Source",
+      "type": "string"
+    },
+    "dataset_version": {
+      "maxLength": 200,
+      "minLength": 1,
+      "title": "Dataset Version",
+      "type": "string"
+    }
+  },
+  "required": [
+    "source",
+    "dataset_version"
+  ],
+  "title": "DataSourceRef",
+  "type": "object",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "plantkg:contracts/1.2.0/DataSourceRef"
+}

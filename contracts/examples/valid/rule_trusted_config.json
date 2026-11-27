@@ -1,0 +1,27 @@
+{
+  "model": "Rule",
+  "data": {
+    "rule_id": "rule-job1-window",
+    "kind": "operation_window",
+    "subject_ids": [
+      "entity://demo-electronics/operation/JOB1"
+    ],
+    "condition": {
+      "local_window": [
+        "08:00",
+        "18:00"
+      ]
+    },
+    "quantity": "operation_start",
+    "unit": "h",
+    "bounds": {
+      "lower": 8,
+      "upper": 18
+    },
+    "effective_from": "2026-01-01T00:00:00Z",
+    "available_at": "2026-01-01T00:00:00Z",
+    "config_ref": "config://configs/plant.yaml#loads.job-1.shiftable",
+    "nature": "configured",
+    "review_status": "trusted_config"
+  }
+}

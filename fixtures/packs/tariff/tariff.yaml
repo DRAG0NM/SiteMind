@@ -1,0 +1,8 @@
+# 厂区电价配置（B12）。计价基础是演示值（demo_base_price: true）：正式应取国网江苏当月代理购电价格公告中
+# 对应电压等级两部制工商业的用户购电价格，按月登记。
+tariff:
+  grid_entity: entity://demo-electronics/grid_connection/MAIN
+  category: two_part_industrial_ge315kva
+  base_prices: {"2026-06": 0.62, "2026-07": 0.62}
+  demo_base_price: true
+  base_price_note: 演示值 0.62 元/kWh，非公告值

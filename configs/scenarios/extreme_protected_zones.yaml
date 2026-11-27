@@ -1,0 +1,15 @@
+# 极端场景 4：削峰时数据机房、洁净车间不能动（考验安全标记与硬约束下的削峰）。数据性质 synthetic。
+# 暖通专家只看功率提出连洁净车间一起停冷，直派器按区域标记拦下；行政楼与储能照常削峰。
+scenario_id: extreme_protected_zones
+title: 削峰时数据机房与洁净车间不能动
+nature: synthetic
+date: "2026-07-01"
+seed: 104
+initial: {soc: 0.6}
+knowledge: [energy_manual, hvac_manual]
+params:
+  capacity_kw: {TX2: 640}          # 运行限额（configured），平日午后约 660 kW，会记容量越限
+  capacity_warn_ratio: 2.0         # 只由剧本事件触发削峰，不自动告警
+events:
+  - {at: "14:05", type: capacity_shed_request, entity_id: "zone:cleanroom", severity: 4, summary: 2# 变压器负载超限，要求削减 15%,
+     payload: {node: TX2, shed_ratio: 0.15}}

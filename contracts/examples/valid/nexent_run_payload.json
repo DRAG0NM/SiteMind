@@ -1,0 +1,26 @@
+{
+  "model": "NexentRunPayload",
+  "data": {
+    "agent_name": "plantkg_energy_assistant",
+    "query": "明天的计划为什么在 11 点给电池充电？",
+    "tool_params": {
+      "agents": {
+        "plantkg_energy_assistant": {
+          "tools": {
+            "plantkg_get_plan": {
+              "ctx": "3f9c2a7e5b1d4c8e9a0b6d2f7e1c4a5b"
+            },
+            "plantkg_explain": {
+              "ctx": "3f9c2a7e5b1d4c8e9a0b6d2f7e1c4a5b"
+            },
+            "knowledge_base_search": {
+              "document_paths": [
+                "knowledge_base/tou-2026.md"
+              ]
+            }
+          }
+        }
+      }
+    }
+  }
+}

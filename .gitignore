@@ -1,0 +1,30 @@
+# 环境与密钥
+.env
+*.key
+.venv/
+venv/
+
+# 依赖与构建
+__pycache__/
+*.pyc
+node_modules/
+dist/
+
+# 下载的原始数据集（体积大，按 docs/05 自行下载）
+datasets/
+*.zip
+*.parquet
+!fixtures/sites/factory/d05_week.parquet
+
+# 系统文件
+.DS_Store
+Thumbs.db
+
+# Nexent 平台源码（v2.8.2，见 README「本地环境」，不改源码）
+/nexent/
+
+# 本地运行产物（SQLite、图、时序、日志）
+runtime/
+nexent_assets/probes/p_b27_slow/samples/
+
+*.egg-info/

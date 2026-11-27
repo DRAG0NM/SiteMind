@@ -1,0 +1,138 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "report_id": {
+      "maxLength": 200,
+      "minLength": 1,
+      "title": "Report Id",
+      "type": "string"
+    },
+    "candidate_id": {
+      "maxLength": 200,
+      "minLength": 1,
+      "title": "Candidate Id",
+      "type": "string"
+    },
+    "base_manifest_id": {
+      "maxLength": 200,
+      "minLength": 1,
+      "title": "Base Manifest Id",
+      "type": "string"
+    },
+    "split_ids": {
+      "items": {
+        "type": "string"
+      },
+      "minItems": 1,
+      "title": "Split Ids",
+      "type": "array"
+    },
+    "seed": {
+      "title": "Seed",
+      "type": "integer"
+    },
+    "metrics": {
+      "additionalProperties": {
+        "additionalProperties": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "type": "object"
+      },
+      "title": "Metrics",
+      "type": "object"
+    },
+    "constraint_violations": {
+      "additionalProperties": {
+        "type": "integer"
+      },
+      "title": "Constraint Violations",
+      "type": "object"
+    },
+    "failures": {
+      "default": [],
+      "items": {
+        "type": "string"
+      },
+      "title": "Failures",
+      "type": "array"
+    },
+    "thresholds": {
+      "additionalProperties": {
+        "type": "number"
+      },
+      "title": "Thresholds",
+      "type": "object"
+    },
+    "policy_version": {
+      "maxLength": 200,
+      "minLength": 1,
+      "title": "Policy Version",
+      "type": "string"
+    },
+    "verdict": {
+      "enum": [
+        "pass",
+        "fail",
+        "inconclusive"
+      ],
+      "title": "Verdict",
+      "type": "string"
+    },
+    "artifact_hash": {
+      "description": "完整 sha256，去重与完整性校验用",
+      "pattern": "^sha256:[0-9a-f]{64}$",
+      "title": "Artifact Hash",
+      "type": "string"
+    },
+    "job_id": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Job Id"
+    },
+    "scope": {
+      "default": "full",
+      "enum": [
+        "full",
+        "fast_window"
+      ],
+      "title": "Scope",
+      "type": "string"
+    },
+    "binding": {
+      "additionalProperties": true,
+      "title": "Binding",
+      "type": "object"
+    }
+  },
+  "required": [
+    "report_id",
+    "candidate_id",
+    "base_manifest_id",
+    "split_ids",
+    "seed",
+    "metrics",
+    "constraint_violations",
+    "thresholds",
+    "policy_version",
+    "verdict",
+    "artifact_hash"
+  ],
+  "title": "BacktestReport",
+  "type": "object",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "plantkg:contracts/1.2.0/BacktestReport"
+}

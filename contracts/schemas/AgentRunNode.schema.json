@@ -1,0 +1,84 @@
+{
+  "additionalProperties": false,
+  "description": "一次运行里的一个 Agent 节点（B23）：主 Agent 为 depth 0；子 Agent 按 Nexent SSE 的 invocation_id 区分。",
+  "properties": {
+    "node_id": {
+      "maxLength": 200,
+      "minLength": 1,
+      "title": "Node Id",
+      "type": "string"
+    },
+    "agent_name": {
+      "maxLength": 200,
+      "minLength": 1,
+      "title": "Agent Name",
+      "type": "string"
+    },
+    "depth": {
+      "minimum": 0,
+      "title": "Depth",
+      "type": "integer"
+    },
+    "parent_id": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Parent Id"
+    },
+    "started_at": {
+      "anyOf": [
+        {
+          "format": "date-time",
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d{1,9})?(Z|[+-]00:?00)$",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Started At"
+    },
+    "finished_at": {
+      "anyOf": [
+        {
+          "format": "date-time",
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d{1,9})?(Z|[+-]00:?00)$",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Finished At"
+    },
+    "final_answer": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Final Answer"
+    }
+  },
+  "required": [
+    "node_id",
+    "agent_name",
+    "depth"
+  ],
+  "title": "AgentRunNode",
+  "type": "object",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "plantkg:contracts/1.2.0/AgentRunNode"
+}

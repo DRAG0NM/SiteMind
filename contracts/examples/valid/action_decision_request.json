@@ -1,0 +1,8 @@
+{
+  "model": "ActionDecisionRequest",
+  "data": {
+    "reason": "核对动作依据后确认",
+    "expected_revision": 0,
+    "idempotency_key": "idem-confirm-0001"
+  }
+}

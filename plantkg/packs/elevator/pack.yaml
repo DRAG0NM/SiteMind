@@ -1,0 +1,8 @@
+name: elevator
+schema_version: 1
+order: 70
+status: active   # 清单只登记电梯专家；人梯/货梯策略与提案在 plantkg/experts/elevator
+description: 电梯领域包（B20）：人梯分区/高峰模式、货梯优先级与批次、困人协同处置与专家提案
+entrypoint: plantkg.experts.elevator.pack:install
+provides:
+  state: [elevator]

@@ -1,0 +1,35 @@
+{
+  "additionalProperties": false,
+  "description": "保留 Nexent 原事件引用（07 Q03）；字段只作提示，不作为工具调用事实。",
+  "properties": {
+    "type": {
+      "title": "Type",
+      "type": "string"
+    },
+    "index": {
+      "minimum": 0,
+      "title": "Index",
+      "type": "integer"
+    },
+    "conversation_id": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Conversation Id"
+    }
+  },
+  "required": [
+    "type",
+    "index"
+  ],
+  "title": "NexentEventRef",
+  "type": "object",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "plantkg:contracts/1.2.0/NexentEventRef"
+}

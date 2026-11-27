@@ -1,0 +1,10 @@
+name: pv
+schema_version: 1
+order: 10
+status: placeholder   # 实现在 pack.py（PvPack）；注册表还没有登记 DomainPack 实例的入口，由装配方构造后交给 SharedPlanner，入口定了再改 active
+description: 光伏领域包：使用 + 弃光 = 可发，pv_output_cap 限发规则，光伏账本拆分
+entrypoint: null
+provides:
+  adapters: [pvgis]
+  rule_kinds: [pv_output_cap]
+  ledger_terms: [pv_available, pv_used, pv_curtailed]

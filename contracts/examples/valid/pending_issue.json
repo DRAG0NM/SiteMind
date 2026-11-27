@@ -1,0 +1,15 @@
+{
+  "model": "PendingIssue",
+  "data": {
+    "issue_id": "pi-0001",
+    "reason": "missing_price",
+    "rule_id": null,
+    "detail": "2026-07-01 12:00-12:15 无适用电价",
+    "refs": [
+      {
+        "kind": "asset_version",
+        "id": "asset://manufacturing/9581b4ac/policy/tou-2026"
+      }
+    ]
+  }
+}

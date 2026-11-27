@@ -1,0 +1,7 @@
+name: arbitration
+schema_version: 1
+order: 130
+status: active
+description: 三层冲突裁决（B28）：安全否决、仿真组合评分与诊断分歧裁决
+entrypoint: plantkg.agent.arbitration.service:register
+provides: {}

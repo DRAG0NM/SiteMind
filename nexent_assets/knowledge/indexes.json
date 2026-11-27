@@ -1,0 +1,138 @@
+{
+  "created_at": "2026-11-05T13:32:40.995789+00:00",
+  "admin_url": "http://127.0.0.1:5010",
+  "embedding_model": "qwen3.7-text-embedding-flash",
+  "experts": {
+    "elevator": {
+      "display_name": "plantkg 知识库-电梯",
+      "agent": "plantkg_expert_elevator",
+      "index_name": "2-1cec13e7528644238749368350d42b46",
+      "files": 4
+    },
+    "hvac": {
+      "display_name": "plantkg 知识库-暖通",
+      "agent": "plantkg_expert_hvac",
+      "index_name": "3-37a28fbf8b3943f9a837ee7a0d44e9d6",
+      "files": 4
+    },
+    "energy": {
+      "display_name": "plantkg 知识库-能源",
+      "agent": "plantkg_expert_energy",
+      "index_name": "4-4a6c9aea13fa479e8e5c2fb33f8e313d",
+      "files": 4
+    },
+    "equipment": {
+      "display_name": "plantkg 知识库-设备监测",
+      "agent": "plantkg_expert_equipment",
+      "index_name": "5-68a54cfcfa064dd89a6e92fcc6283c42",
+      "files": 5
+    }
+  },
+  "documents": {
+    "elevator-safety-procedure": {
+      "filename": "elevator-safety-procedure.md",
+      "nexent_path": "knowledge_base/20261104230803_a631fd3b38af4cbbb7222df8bf6a7a91.md",
+      "file": "elevator-safety-procedure.md",
+      "status": "COMPLETED"
+    },
+    "elevator-maintenance-manual": {
+      "filename": "elevator-maintenance-manual.md",
+      "nexent_path": "knowledge_base/20261104230803_aaa1263f9b2c4b12a1a95321e8bfca82.md",
+      "file": "elevator-maintenance-manual.md",
+      "status": "COMPLETED"
+    },
+    "elevator-inspection-sheet": {
+      "filename": "elevator-inspection-sheet.csv",
+      "nexent_path": "knowledge_base/20261104230803_30e131fd7b94496b94aef0bfc7188df7.csv",
+      "file": "elevator-inspection-sheet.csv",
+      "status": "COMPLETED"
+    },
+    "elevator-entrapment-log": {
+      "filename": "elevator-entrapment-log.csv",
+      "nexent_path": "knowledge_base/20261104230803_276fb211c0604006a8f409bd133fba5e.csv",
+      "file": "elevator-entrapment-log.csv",
+      "status": "COMPLETED"
+    },
+    "hvac-design-parameters": {
+      "filename": "hvac-design-parameters.md",
+      "nexent_path": "knowledge_base/20261104230833_75eb72bd737f4f6898cee9660dc5f1f0.md",
+      "file": "hvac-design-parameters.md",
+      "status": "COMPLETED"
+    },
+    "hvac-chiller-maintenance-manual": {
+      "filename": "hvac-chiller-maintenance-manual.md",
+      "nexent_path": "knowledge_base/20261104230833_caa69a4a5ae64487ba811f4a2fb5fbd2.md",
+      "file": "hvac-chiller-maintenance-manual.md",
+      "status": "COMPLETED"
+    },
+    "hvac-zone-setpoints": {
+      "filename": "hvac-zone-setpoints.csv",
+      "nexent_path": "knowledge_base/20261104230833_9744383c37b747468e6201aa242d1e4f.csv",
+      "file": "hvac-zone-setpoints.csv",
+      "status": "COMPLETED"
+    },
+    "hvac-maintenance-history": {
+      "filename": "hvac-maintenance-history.csv",
+      "nexent_path": "knowledge_base/20261104230833_7914e94ee6b64ddea323a7f75e4e240e.csv",
+      "file": "hvac-maintenance-history.csv",
+      "status": "COMPLETED"
+    },
+    "js-2025-426-policy": {
+      "filename": "js-2025-426.pdf",
+      "nexent_path": "knowledge_base/20261104230841_96c6493fb5824049a9428a84b5b114fa.pdf",
+      "file": "js-2025-426.pdf",
+      "status": "PROCESS_FAILED"
+    },
+    "tariff-summary-2025": {
+      "filename": "tariff-summary-2025.md",
+      "nexent_path": "knowledge_base/20261104230841_c5ea09e30f25411dae66f9e02a8a095f.md",
+      "file": "tariff-summary-2025.md",
+      "status": "COMPLETED"
+    },
+    "bess-operation-manual": {
+      "filename": "bess-operation-manual.md",
+      "nexent_path": "knowledge_base/20261104230841_ce874a1e47c64295ba9a1cb3547ab7da.md",
+      "file": "bess-operation-manual.md",
+      "status": "COMPLETED"
+    },
+    "pv-output-curve": {
+      "filename": "pv-output-curve.md",
+      "nexent_path": "knowledge_base/20261104230841_a6f20b5ae3224fa5973246c04e992eb1.md",
+      "file": "pv-output-curve.md",
+      "status": "COMPLETED"
+    },
+    "compressor-station-procedure-2024": {
+      "filename": "compressor-station-procedure-2024.md",
+      "nexent_path": "knowledge_base/20261105213243_10cf4b0d151d464fa974d9ba74c12b1c.md",
+      "file": "compressor-station-procedure-2024.md",
+      "status": "COMPLETED"
+    },
+    "compressor-maintenance-manual": {
+      "filename": "compressor-maintenance-manual.md",
+      "nexent_path": "knowledge_base/20261104230903_c8af4e8a49184114a149e9723f8233d6.md",
+      "file": "compressor-maintenance-manual.md",
+      "status": "COMPLETED"
+    },
+    "compressor-work-orders": {
+      "filename": "compressor-work-orders.csv",
+      "nexent_path": "knowledge_base/20261104230903_49370b0cc606412faee64296ea9311ec.csv",
+      "file": "compressor-work-orders.csv",
+      "status": "COMPLETED"
+    },
+    "compressor-inspection-sheet": {
+      "filename": "compressor-inspection-sheet.csv",
+      "nexent_path": "knowledge_base/20261104230903_ccffba451fd6413fa71853a94c512d3d.csv",
+      "file": "compressor-inspection-sheet.csv",
+      "status": "COMPLETED"
+    },
+    "compressor-fan-nameplate": {
+      "filename": "compressor-fan-nameplate.md",
+      "nexent_path": "knowledge_base/20261104230903_e1d89232e3e5490888409c77c337739f.md",
+      "file": "compressor-fan-nameplate.md",
+      "status": "COMPLETED"
+    }
+  },
+  "problems": [
+    "energy/js-2025-426-policy：处理状态 PROCESS_FAILED"
+  ]
+}

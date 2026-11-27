@@ -1,0 +1,13 @@
+{
+  "model": "WatchdogHealth",
+  "data": {
+    "checked_at": "2026-11-07T00:00:00Z",
+    "health": {
+      "nexent": {
+        "status": "ok",
+        "reason": "HTTP 200",
+        "checked_at": "2026-11-07T00:00:00Z"
+      }
+    }
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "ref": {
+      "maxLength": 200,
+      "minLength": 1,
+      "title": "Ref",
+      "type": "string"
+    },
+    "content_hash": {
+      "description": "完整 sha256，去重与完整性校验用",
+      "pattern": "^sha256:[0-9a-f]{64}$",
+      "title": "Content Hash",
+      "type": "string"
+    }
+  },
+  "required": [
+    "ref",
+    "content_hash"
+  ],
+  "title": "ComponentRef",
+  "type": "object",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "plantkg:contracts/1.2.0/ComponentRef"
+}

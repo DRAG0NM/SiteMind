@@ -1,0 +1,26 @@
+{
+  "additionalProperties": false,
+  "description": "左闭右开 UTC 区间 [start, end)。",
+  "properties": {
+    "start": {
+      "format": "date-time",
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d{1,9})?(Z|[+-]00:?00)$",
+      "title": "Start",
+      "type": "string"
+    },
+    "end": {
+      "format": "date-time",
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d{1,9})?(Z|[+-]00:?00)$",
+      "title": "End",
+      "type": "string"
+    }
+  },
+  "required": [
+    "start",
+    "end"
+  ],
+  "title": "Interval",
+  "type": "object",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "plantkg:contracts/1.2.0/Interval"
+}

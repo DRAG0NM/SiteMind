@@ -1,0 +1,67 @@
+{
+  "model": "ExpertProposal",
+  "base": "expert_proposal_saved",
+  "expect_error": "effective_at",
+  "data": {
+    "expert": "energy",
+    "ticket_id": "ticket://tk-0001",
+    "actions": [
+      {
+        "entity_id": "entity://demo-electronics/battery/BESS1",
+        "command": "discharge",
+        "params": {
+          "kw": 390
+        },
+        "interval": {
+          "start": "2026-07-01T00:06:00Z",
+          "end": "2026-07-01T00:30:00Z"
+        },
+        "readiness": "ready"
+      },
+      {
+        "entity_id": "entity://demo-electronics/elevator_group/EG-PROD",
+        "command": "set_mode",
+        "params": {
+          "mode": "maintenance"
+        },
+        "interval": {
+          "start": "2026-07-01T00:06:00Z",
+          "end": "2026-07-01T00:30:00Z"
+        },
+        "readiness": "needs_diagnosis",
+        "depends_on": [
+          "diag:t1_root_cause"
+        ]
+      }
+    ],
+    "cost": {
+      "cny": -38.2,
+      "wait_min": 0,
+      "comfort_min": 0
+    },
+    "confidence": 0.82,
+    "safety_tags": [],
+    "proposal_id": "proposal://pp-0001",
+    "diagnosis": "早高峰电梯与空压同时启动，T1 越限",
+    "evidence_refs": [
+      "rule://tou-2026#peak"
+    ],
+    "binding": {
+      "run_id": "run-scn-20260701",
+      "knowledge_version": 1,
+      "ticket_id": "ticket://tk-0001",
+      "round": 1,
+      "state_version": 5,
+      "trigger_at": "2026-07-01T00:05:00Z"
+    },
+    "timing": {
+      "origin_event_at": "2026-07-01T00:05:00Z",
+      "trigger_at": "2026-07-01T00:05:00Z",
+      "effective_at": "2026-07-01T00:04:00Z",
+      "requested_at": "2026-11-04T02:10:00Z",
+      "returned_at": "2026-11-04T02:10:12.400Z",
+      "latency_ms": 12400,
+      "retries": 0
+    }
+  }
+}

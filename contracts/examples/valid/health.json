@@ -1,0 +1,13 @@
+{
+  "model": "HealthResponse",
+  "data": {
+    "status": "ok",
+    "profile": "mock",
+    "service_version": "0.1.0",
+    "contract_version": "1.2.0",
+    "dependencies": {
+      "nexent": "disabled",
+      "jev": "disabled"
+    }
+  }
+}

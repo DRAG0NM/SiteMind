@@ -1,0 +1,37 @@
+{
+  "method": "POST",
+  "path": "/api/v1/actions/{action_id}/confirm",
+  "status": 200,
+  "response": {
+    "action_id": "act-0001",
+    "kind": "plan_confirmation",
+    "plant_id": "demo-electronics",
+    "payload": {
+      "plan_id": "plan-20260701",
+      "rationale": "门控转人工：光伏预测区间偏宽"
+    },
+    "proposed_by": {
+      "agent_run_id": "ar-20260630-0001",
+      "run_id": "run-day-20260701",
+      "trace_id": "tr-0001",
+      "call_id": "call-0007",
+      "tool": "propose_plan_confirmation"
+    },
+    "proposed_at": "2026-10-30T02:01:00Z",
+    "expires_at": "2026-10-31T02:01:00Z",
+    "status": "confirmed",
+    "revision": 1,
+    "target_ref": "plan-20260701",
+    "target_revision": 1,
+    "decided_by": "u-reviewer-1",
+    "decided_at": "2026-10-30T02:05:00Z",
+    "reason": "核对动作依据后确认",
+    "edits": null,
+    "idempotency_key": "idem-act-0001"
+  },
+  "request": {
+    "reason": "核对动作依据后确认",
+    "expected_revision": 0,
+    "idempotency_key": "idem-confirm-0001"
+  }
+}

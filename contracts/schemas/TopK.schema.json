@@ -1,0 +1,23 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "option": {
+      "title": "Option",
+      "type": "string"
+    },
+    "prob": {
+      "maximum": 1,
+      "minimum": 0,
+      "title": "Prob",
+      "type": "number"
+    }
+  },
+  "required": [
+    "option",
+    "prob"
+  ],
+  "title": "TopK",
+  "type": "object",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "plantkg:contracts/1.2.0/TopK"
+}

@@ -1,0 +1,43 @@
+{
+  "model": "ToolSpec",
+  "data": {
+    "name": "ingest",
+    "plane": "knowledge",
+    "provider": "B06",
+    "extended_by": [
+      "B21"
+    ],
+    "description": "接入一份资料，登记来源、版本与数据性质；接入不批准任何事实",
+    "mode": "write",
+    "accepts_ctx": true,
+    "exposed_to_agent": true,
+    "optional": false,
+    "paginated": false,
+    "params": [
+      {
+        "name": "source_uri",
+        "type": "string",
+        "required": true,
+        "description": "资料位置",
+        "minimum": null,
+        "maximum": null
+      },
+      {
+        "name": "asset_type",
+        "type": "string",
+        "required": true,
+        "description": "policy/process_doc/datasheet/image/table",
+        "minimum": null,
+        "maximum": null
+      },
+      {
+        "name": "available_at",
+        "type": "string",
+        "required": true,
+        "description": "资料可见时间 ISO-8601 UTC",
+        "minimum": null,
+        "maximum": null
+      }
+    ]
+  }
+}

@@ -1,0 +1,72 @@
+{
+  "$defs": {
+    "StateChange": {
+      "additionalProperties": false,
+      "properties": {
+        "at": {
+          "format": "date-time",
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d{1,9})?(Z|[+-]00:?00)$",
+          "title": "At",
+          "type": "string"
+        },
+        "entity_id": {
+          "maxLength": 200,
+          "minLength": 1,
+          "title": "Entity Id",
+          "type": "string"
+        },
+        "field": {
+          "maxLength": 200,
+          "minLength": 1,
+          "title": "Field",
+          "type": "string"
+        },
+        "value": {
+          "title": "Value"
+        }
+      },
+      "required": [
+        "at",
+        "entity_id",
+        "field",
+        "value"
+      ],
+      "title": "StateChange",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "description": "每 15 分钟一帧全量设备状态，加上本帧到下一帧之间按分钟的变化。",
+  "properties": {
+    "at": {
+      "format": "date-time",
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d{1,9})?(Z|[+-]00:?00)$",
+      "title": "At",
+      "type": "string"
+    },
+    "devices": {
+      "additionalProperties": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "title": "Devices",
+      "type": "object"
+    },
+    "changes": {
+      "default": [],
+      "items": {
+        "$ref": "#/$defs/StateChange"
+      },
+      "title": "Changes",
+      "type": "array"
+    }
+  },
+  "required": [
+    "at",
+    "devices"
+  ],
+  "title": "StateFrame",
+  "type": "object",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "plantkg:contracts/1.2.0/StateFrame"
+}

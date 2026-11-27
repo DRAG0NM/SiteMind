@@ -1,0 +1,46 @@
+{
+  "additionalProperties": false,
+  "description": "时间映射：按当地钟面时间对齐再转 UTC（09 D28）。时区名由 B05 用 zoneinfo 校验。",
+  "properties": {
+    "source_start": {
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+      "title": "Source Start",
+      "type": "string"
+    },
+    "plant_start": {
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+      "title": "Plant Start",
+      "type": "string"
+    },
+    "source_tz": {
+      "title": "Source Tz",
+      "type": "string"
+    },
+    "plant_tz": {
+      "title": "Plant Tz",
+      "type": "string"
+    },
+    "align": {
+      "const": "local_wall_clock",
+      "default": "local_wall_clock",
+      "title": "Align",
+      "type": "string"
+    },
+    "dst_repeat_policy": {
+      "const": "keep_first",
+      "default": "keep_first",
+      "title": "Dst Repeat Policy",
+      "type": "string"
+    }
+  },
+  "required": [
+    "source_start",
+    "plant_start",
+    "source_tz",
+    "plant_tz"
+  ],
+  "title": "TimeMap",
+  "type": "object",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "plantkg:contracts/1.2.0/TimeMap"
+}

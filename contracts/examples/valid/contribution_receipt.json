@@ -1,0 +1,27 @@
+{
+  "model": "ContributionReceipt",
+  "data": {
+    "pack": "storage",
+    "variables": [
+      "storage.pc",
+      "storage.pd",
+      "storage.u",
+      "storage.E"
+    ],
+    "constraints": [
+      "storage.soc_recursion",
+      "storage.mutex",
+      "storage.end_energy"
+    ],
+    "balance_terms": [
+      "storage.charge",
+      "storage.discharge"
+    ],
+    "refs": [
+      {
+        "kind": "config",
+        "id": "config://configs/plant.yaml#storage"
+      }
+    ]
+  }
+}

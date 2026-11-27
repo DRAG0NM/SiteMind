@@ -1,0 +1,2074 @@
+{
+  "mode": "offline-synthetic",
+  "version": "b31-synthetic-qa-v2",
+  "as_of": "2026-07-01T00:00:00+00:00",
+  "seed": 0,
+  "answerer": "same deterministic two-query extractor",
+  "retrieval_budget": "1 + 2 hits",
+  "questions": [
+    {
+      "id": "q01",
+      "question": "AC-1 的直接上游是谁，泄漏巡检应按哪条规程如何处置？",
+      "entity": "AC-1",
+      "topic": "泄漏巡检",
+      "gold_rule": "rule01",
+      "gold_answer": "检查支管",
+      "gold_upstream": "P-AIR",
+      "required_documents": [
+        "case-01-a",
+        "case-01-b"
+      ],
+      "required_document_count": 2,
+      "required_versions": {
+        "case-01-a": "de1cb9103c547e1d9af6c19a0f443f7ef373abe5bd6011e2073fb519c9ad6b7c",
+        "case-01-b": "baff5d3b89a9f9d6e939ddf9a7b27336ed52cc0d956125c29e8fec6dcc00a7de"
+      },
+      "nature": "synthetic"
+    },
+    {
+      "id": "q02",
+      "question": "AC-2 的直接上游是谁，泄漏复核应按哪条规程如何处置？",
+      "entity": "AC-2",
+      "topic": "泄漏复核",
+      "gold_rule": "rule02",
+      "gold_answer": "检查接头",
+      "gold_upstream": "P-AIR",
+      "required_documents": [
+        "case-02-a",
+        "case-02-b"
+      ],
+      "required_document_count": 2,
+      "required_versions": {
+        "case-02-a": "2574497dd00584699a282fdd4f831ec1a2dfdde6e8681b5c873a54783576051c",
+        "case-02-b": "3a5e7164c43f96e4027923bdecc4dcfc9c69b4395121395e91979db1139eb6b9"
+      },
+      "nature": "synthetic"
+    },
+    {
+      "id": "q03",
+      "question": "AC-3 的直接上游是谁，维修后核查应按哪条规程如何处置？",
+      "entity": "AC-3",
+      "topic": "维修后核查",
+      "gold_rule": "rule03",
+      "gold_answer": "复测压力",
+      "gold_upstream": "P-AIR",
+      "required_documents": [
+        "case-03-a",
+        "case-03-b"
+      ],
+      "required_document_count": 2,
+      "required_versions": {
+        "case-03-a": "1f01e963e2871d120e43badab18a0e8e2c3861db403ce5cf398a62ac8040f020",
+        "case-03-b": "63727ec814066a4e1b326a47ab74b1882a4783276dcab1f62d1f4054aa87573d"
+      },
+      "nature": "synthetic"
+    },
+    {
+      "id": "q04",
+      "question": "AIR-HDR 的直接上游是谁，主管压力异常应按哪条规程如何处置？",
+      "entity": "AIR-HDR",
+      "topic": "主管压力异常",
+      "gold_rule": "rule04",
+      "gold_answer": "检查阀门",
+      "gold_upstream": "AC-1",
+      "required_documents": [
+        "case-04-a",
+        "case-04-b"
+      ],
+      "required_document_count": 2,
+      "required_versions": {
+        "case-04-a": "e228ee11760079b96da24958d316212cb16ba952cbd30ce4598f6b953163d5c5",
+        "case-04-b": "7331631b7087bfaa2b910a4538640e9b0a976f0d36e00789164ef89130f74646"
+      },
+      "nature": "synthetic"
+    },
+    {
+      "id": "q05",
+      "question": "FE-1 的直接上游是谁，货梯排队应按哪条规程如何处置？",
+      "entity": "FE-1",
+      "topic": "货梯排队",
+      "gold_rule": "rule05",
+      "gold_answer": "按生产任务排序",
+      "gold_upstream": "P-LIFT-F",
+      "required_documents": [
+        "case-05-a",
+        "case-05-b"
+      ],
+      "required_document_count": 2,
+      "required_versions": {
+        "case-05-a": "fc7a5fa265037cdfeadf31b8225be8db3abc3a62af94aaed9389373a26f9b1b3",
+        "case-05-b": "b5b9c556e89e1a1e1e54aeed8ba6301db3685bbd120e27185af6b82292c4b3f0"
+      },
+      "nature": "synthetic"
+    },
+    {
+      "id": "q06",
+      "question": "FE-2 的直接上游是谁，货梯故障应按哪条规程如何处置？",
+      "entity": "FE-2",
+      "topic": "货梯故障",
+      "gold_rule": "rule06",
+      "gold_answer": "隔离故障梯",
+      "gold_upstream": "P-LIFT-F",
+      "required_documents": [
+        "case-06-a",
+        "case-06-b"
+      ],
+      "required_document_count": 2,
+      "required_versions": {
+        "case-06-a": "0829dc5f78ad78a0f24e993642589c73aeee034b99cd1a67ad8ec7bee1a6e158",
+        "case-06-b": "26e1047b8e1a602adb28a5a2d0b75081cd2c5488f244067fc4b9cdb3e66aeea4"
+      },
+      "nature": "synthetic"
+    },
+    {
+      "id": "q07",
+      "question": "FE-3 的直接上游是谁，货梯高峰应按哪条规程如何处置？",
+      "entity": "FE-3",
+      "topic": "货梯高峰",
+      "gold_rule": "rule07",
+      "gold_answer": "合并运输批次",
+      "gold_upstream": "P-LIFT-F",
+      "required_documents": [
+        "case-07-a",
+        "case-07-b"
+      ],
+      "required_document_count": 2,
+      "required_versions": {
+        "case-07-a": "09d7e1bf6cb2b85ed93adf6a5cc856ebe56d5271ac520f4f2d692aee7b4cc3a0",
+        "case-07-b": "dd8639f097eab2da8e312ff334526212d92f174c8e4c466081b39f1ea63ae33f"
+      },
+      "nature": "synthetic"
+    },
+    {
+      "id": "q08",
+      "question": "FE-4 的直接上游是谁，货梯维保应按哪条规程如何处置？",
+      "entity": "FE-4",
+      "topic": "货梯维保",
+      "gold_rule": "rule08",
+      "gold_answer": "安排备用梯",
+      "gold_upstream": "P-LIFT-F",
+      "required_documents": [
+        "case-08-a",
+        "case-08-b"
+      ],
+      "required_document_count": 2,
+      "required_versions": {
+        "case-08-a": "c2bb031e6d1cf7947b00f030a9413d7f4e29e027fcb2a7f5c776c84602025dcb",
+        "case-08-b": "d897bf1589726b4add8bc1d2855a3e326de21e6c586f535f8d6588352b27b4a5"
+      },
+      "nature": "synthetic"
+    },
+    {
+      "id": "q09",
+      "question": "PE-1 的直接上游是谁，人梯早高峰应按哪条规程如何处置？",
+      "entity": "PE-1",
+      "topic": "人梯早高峰",
+      "gold_rule": "rule09",
+      "gold_answer": "首层集中派梯",
+      "gold_upstream": "P-ADMIN-LIFT",
+      "required_documents": [
+        "case-09-a",
+        "case-09-b"
+      ],
+      "required_document_count": 2,
+      "required_versions": {
+        "case-09-a": "af9fcbd858ee47fdc42769b6c370eab2c4e66523de8f23ce98586eacdd244e96",
+        "case-09-b": "1518dc70a309f847c2606008391cdade2336d707eb509f9d5d8f2d2c66fd9909"
+      },
+      "nature": "synthetic"
+    },
+    {
+      "id": "q10",
+      "question": "PE-2 的直接上游是谁，人梯晚高峰应按哪条规程如何处置？",
+      "entity": "PE-2",
+      "topic": "人梯晚高峰",
+      "gold_rule": "rule10",
+      "gold_answer": "优先下行",
+      "gold_upstream": "P-ADMIN-LIFT",
+      "required_documents": [
+        "case-10-a",
+        "case-10-b"
+      ],
+      "required_document_count": 2,
+      "required_versions": {
+        "case-10-a": "5d490b7ddadff0d52521aa00741eb4892a968c06b4bca47c6321407cd0751b81",
+        "case-10-b": "a069cb580bcfb2c5b262e77386239da0f70ee6a3d5fb328fe0ec0f1ed7a0ca04"
+      },
+      "nature": "synthetic"
+    },
+    {
+      "id": "q11",
+      "question": "PE-3 的直接上游是谁，人梯低谷应按哪条规程如何处置？",
+      "entity": "PE-3",
+      "topic": "人梯低谷",
+      "gold_rule": "rule11",
+      "gold_answer": "停用部分电梯",
+      "gold_upstream": "P-ADMIN-LIFT",
+      "required_documents": [
+        "case-11-a",
+        "case-11-b"
+      ],
+      "required_document_count": 2,
+      "required_versions": {
+        "case-11-a": "4e22677a09a27517f71402ff1cea7122f3449753f27ee90681e4a27c4760cf2b",
+        "case-11-b": "94c4a24a60a2bcad70ab6f3808e32311a0c71426cef332203816460fdaf17218"
+      },
+      "nature": "synthetic"
+    },
+    {
+      "id": "q12",
+      "question": "PE-4 的直接上游是谁，人梯拥堵应按哪条规程如何处置？",
+      "entity": "PE-4",
+      "topic": "人梯拥堵",
+      "gold_rule": "rule12",
+      "gold_answer": "分区运行",
+      "gold_upstream": "P-ADMIN-LIFT",
+      "required_documents": [
+        "case-12-a",
+        "case-12-b"
+      ],
+      "required_document_count": 2,
+      "required_versions": {
+        "case-12-a": "b40f765da37e437d5af267135fdfb4469bc52a902c11de3385f8682c5fd4e723",
+        "case-12-b": "7da4725cf73a62f051e0c7008f99e23175fc86872103d1ef278bbe75b3b18f4e"
+      },
+      "nature": "synthetic"
+    },
+    {
+      "id": "q13",
+      "question": "BAT1 的直接上游是谁，储能峰段应按哪条规程如何处置？",
+      "entity": "BAT1",
+      "topic": "储能峰段",
+      "gold_rule": "rule13",
+      "gold_answer": "按计划放电",
+      "gold_upstream": "P-PARK",
+      "required_documents": [
+        "case-13-a",
+        "case-13-b"
+      ],
+      "required_document_count": 2,
+      "required_versions": {
+        "case-13-a": "5174cee48aa904f2a20209c2a727ec379bb417a00bb51e14243328a7528304f3",
+        "case-13-b": "248b4e48e1b2116b58d2f59c6c86158c5d7dbee78b695d7b33821f5ed344bf0d"
+      },
+      "nature": "synthetic"
+    },
+    {
+      "id": "q14",
+      "question": "PV1 的直接上游是谁，光伏下降应按哪条规程如何处置？",
+      "entity": "PV1",
+      "topic": "光伏下降",
+      "gold_rule": "rule14",
+      "gold_answer": "核查发电功率",
+      "gold_upstream": "P-PARK",
+      "required_documents": [
+        "case-14-a",
+        "case-14-b"
+      ],
+      "required_document_count": 2,
+      "required_versions": {
+        "case-14-a": "5cbea021615975c444c465edce83bf01e5fe8d87f7075c36d167fa33d2d3cf7a",
+        "case-14-b": "3359f0668b541a9ca18222e24d97734a3657b637dd0312b27032dac351b6aaad"
+      },
+      "nature": "synthetic"
+    },
+    {
+      "id": "q15",
+      "question": "LINE-1 的直接上游是谁，峰时工序应按哪条规程如何处置？",
+      "entity": "LINE-1",
+      "topic": "峰时工序",
+      "gold_rule": "rule15",
+      "gold_answer": "延后可平移工序",
+      "gold_upstream": "P-LINE",
+      "required_documents": [
+        "case-15-a",
+        "case-15-b"
+      ],
+      "required_document_count": 2,
+      "required_versions": {
+        "case-15-a": "71323ab21f02e33a3defb7a07f7219eeb991951c3b4bed0a3b8cc364fc4da0c3",
+        "case-15-b": "ef6b72fb904fd7066e7e37b4d9777d0808fd77b24d4eb2d5c2a9bbf708280fd4"
+      },
+      "nature": "synthetic"
+    },
+    {
+      "id": "q16",
+      "question": "LINE-2 的直接上游是谁，峰时排产应按哪条规程如何处置？",
+      "entity": "LINE-2",
+      "topic": "峰时排产",
+      "gold_rule": "rule16",
+      "gold_answer": "合并低谷批次",
+      "gold_upstream": "P-LINE",
+      "required_documents": [
+        "case-16-a",
+        "case-16-b"
+      ],
+      "required_document_count": 2,
+      "required_versions": {
+        "case-16-a": "1d25bd61bf78664973504e75385bc47bbb5222e46263dc16a418f8424e3f775e",
+        "case-16-b": "7954c4b5708383e467a0353526bea7e22a83f24219820003799e44ef09205a68"
+      },
+      "nature": "synthetic"
+    },
+    {
+      "id": "q17",
+      "question": "CR-AHU1 的直接上游是谁，洁净温度异常应按哪条规程如何处置？",
+      "entity": "CR-AHU1",
+      "topic": "洁净温度异常",
+      "gold_rule": "rule17",
+      "gold_answer": "保持硬约束",
+      "gold_upstream": "P-CR",
+      "required_documents": [
+        "case-17-a",
+        "case-17-b"
+      ],
+      "required_document_count": 2,
+      "required_versions": {
+        "case-17-a": "b121b4dae2791ba696f46c8299248e25952b026a4a55795328624a4adec4f849",
+        "case-17-b": "a2cfd022179284acbea297cecef0d7ed864be014b2fecb536a67cd86661cd399"
+      },
+      "nature": "synthetic"
+    },
+    {
+      "id": "q18",
+      "question": "CR-AHU2 的直接上游是谁，洁净区削峰应按哪条规程如何处置？",
+      "entity": "CR-AHU2",
+      "topic": "洁净区削峰",
+      "gold_rule": "rule18",
+      "gold_answer": "禁止停机",
+      "gold_upstream": "P-CR",
+      "required_documents": [
+        "case-18-a",
+        "case-18-b"
+      ],
+      "required_document_count": 2,
+      "required_versions": {
+        "case-18-a": "39505a474885437b137938b59dcc85eabcaa286a79837c3157e45883fe21e42d",
+        "case-18-b": "5e976c21b5450808680700eb739fdb06a926f26ed234a550b017f14745b9f39a"
+      },
+      "nature": "synthetic"
+    },
+    {
+      "id": "q19",
+      "question": "HZ-EXF1 的直接上游是谁，危化排风异常应按哪条规程如何处置？",
+      "entity": "HZ-EXF1",
+      "topic": "危化排风异常",
+      "gold_rule": "rule19",
+      "gold_answer": "派操作工单",
+      "gold_upstream": "P-HZ",
+      "required_documents": [
+        "case-19-a",
+        "case-19-b"
+      ],
+      "required_document_count": 2,
+      "required_versions": {
+        "case-19-a": "5c641a7276dd28154f96302b425d059a250f44f061d7af1e2cd9f35422f0389e",
+        "case-19-b": "a9291433a58e759f698aa609f461ae98a8ae863cbb5a0447c544333cf4a272d4"
+      },
+      "nature": "synthetic"
+    },
+    {
+      "id": "q20",
+      "question": "DC-IT1 的直接上游是谁，机房供电异常应按哪条规程如何处置？",
+      "entity": "DC-IT1",
+      "topic": "机房供电异常",
+      "gold_rule": "rule20",
+      "gold_answer": "检查备用供电",
+      "gold_upstream": "P-DC",
+      "required_documents": [
+        "case-20-a",
+        "case-20-b"
+      ],
+      "required_document_count": 2,
+      "required_versions": {
+        "case-20-a": "78bc2c41014a48ab545652b59fd76d2c3e4d40afb42a47fc1825afbbb9af1bf2",
+        "case-20-b": "6280edcc1b30d387cacb4c62816fd0234106abf5c1c28813a3774bb82ae96542"
+      },
+      "nature": "synthetic"
+    },
+    {
+      "id": "q21",
+      "question": "DC-CRAC1 的直接上游是谁，机房空调故障应按哪条规程如何处置？",
+      "entity": "DC-CRAC1",
+      "topic": "机房空调故障",
+      "gold_rule": "rule21",
+      "gold_answer": "启用备用空调",
+      "gold_upstream": "P-DC",
+      "required_documents": [
+        "case-21-a",
+        "case-21-b"
+      ],
+      "required_document_count": 2,
+      "required_versions": {
+        "case-21-a": "cec2b202561fc9fa04cd420a15dfde403f44e6c295cd3ccd898d3f0185c19167",
+        "case-21-b": "06c18cb8d1d9c497b4d405d742eb5973ce9b27dc8247be4bb822f3ca873c6838"
+      },
+      "nature": "synthetic"
+    },
+    {
+      "id": "q22",
+      "question": "DC-CRAC2 的直接上游是谁，机房冷却异常应按哪条规程如何处置？",
+      "entity": "DC-CRAC2",
+      "topic": "机房冷却异常",
+      "gold_rule": "rule22",
+      "gold_answer": "通知值班人员",
+      "gold_upstream": "P-DC",
+      "required_documents": [
+        "case-22-a",
+        "case-22-b"
+      ],
+      "required_document_count": 2,
+      "required_versions": {
+        "case-22-a": "01324b82de3e7d1670c943b19fbe4bfc921ca4b219a42dfe76bd3af03da2c52a",
+        "case-22-b": "073ec6f091630cd4e046b75307dee62f915d23982b0e7bf398b2de902ce8be74"
+      },
+      "nature": "synthetic"
+    },
+    {
+      "id": "q23",
+      "question": "AHU-P1 的直接上游是谁，生产区温度异常应按哪条规程如何处置？",
+      "entity": "AHU-P1",
+      "topic": "生产区温度异常",
+      "gold_rule": "rule23",
+      "gold_answer": "核查设定温度",
+      "gold_upstream": "P-HVAC-P",
+      "required_documents": [
+        "case-23-a",
+        "case-23-b"
+      ],
+      "required_document_count": 2,
+      "required_versions": {
+        "case-23-a": "a76dd4af3af390c2e164e79334706a123903dcb8fc3543c6f5f41377eda04266",
+        "case-23-b": "8ecece6bc76f15a095b59e27a967092e00395fd5a90d367ddcb3770cb94d02f6"
+      },
+      "nature": "synthetic"
+    },
+    {
+      "id": "q24",
+      "question": "SYN-MISSING 的直接上游是谁，备用设备预冷应按哪条规程如何处置？",
+      "entity": "SYN-MISSING",
+      "topic": "备用设备预冷",
+      "gold_rule": "rule24",
+      "gold_answer": "按计划预冷",
+      "gold_upstream": "SYN-SOURCE",
+      "required_documents": [
+        "case-24-a",
+        "case-24-b"
+      ],
+      "required_document_count": 2,
+      "required_versions": {
+        "case-24-a": "cffbe28fb2d324df11a2b8174a692d22a573f4178b6d6db894bb2ea00ea01f4c",
+        "case-24-b": "4ec72e8f6485dfe98873a19c7f40f2a454cb022c2267694afc74e8f417e6c4ff"
+      },
+      "nature": "synthetic"
+    }
+  ],
+  "results": [
+    {
+      "question_id": "q01",
+      "mode": "graph-first",
+      "answer": {
+        "rule": "rule01",
+        "action": "检查支管",
+        "upstream": "P-AIR"
+      },
+      "correct": true,
+      "evidence_complete": true,
+      "documents": [
+        "case-01-a",
+        "case-01-b"
+      ],
+      "citations": [
+        {
+          "id": "case-01-a",
+          "locator": "运行记录",
+          "excerpt": "设备 AC-1，事项 泄漏巡检。\n适用规程: rule01",
+          "version": "de1cb9103c547e1d9af6c19a0f443f7ef373abe5bd6011e2073fb519c9ad6b7c"
+        },
+        {
+          "id": "case-01-b",
+          "locator": "规程条款",
+          "excerpt": "规程: rule01\n处置: 检查支管",
+          "version": "baff5d3b89a9f9d6e939ddf9a7b27336ed52cc0d956125c29e8fec6dcc00a7de"
+        }
+      ],
+      "graph_path": [
+        "GRID",
+        "TX1",
+        "LV1",
+        "P-PROD",
+        "P-AIR",
+        "AC-1"
+      ]
+    },
+    {
+      "question_id": "q01",
+      "mode": "rag",
+      "answer": {
+        "rule": "rule01",
+        "action": "检查支管",
+        "upstream": null
+      },
+      "correct": false,
+      "evidence_complete": false,
+      "documents": [
+        "case-01-a",
+        "case-01-b"
+      ],
+      "citations": [
+        {
+          "id": "case-01-a",
+          "locator": "运行记录",
+          "excerpt": "设备 AC-1，事项 泄漏巡检。\n适用规程: rule01",
+          "version": "de1cb9103c547e1d9af6c19a0f443f7ef373abe5bd6011e2073fb519c9ad6b7c"
+        },
+        {
+          "id": "case-01-b",
+          "locator": "规程条款",
+          "excerpt": "规程: rule01\n处置: 检查支管",
+          "version": "baff5d3b89a9f9d6e939ddf9a7b27336ed52cc0d956125c29e8fec6dcc00a7de"
+        }
+      ],
+      "graph_path": []
+    },
+    {
+      "question_id": "q02",
+      "mode": "graph-first",
+      "answer": {
+        "rule": "rule02",
+        "action": "检查接头",
+        "upstream": "P-AIR"
+      },
+      "correct": true,
+      "evidence_complete": true,
+      "documents": [
+        "case-02-a",
+        "case-02-b"
+      ],
+      "citations": [
+        {
+          "id": "case-02-a",
+          "locator": "运行记录",
+          "excerpt": "设备 AC-2，事项 泄漏复核。\n适用规程: rule02",
+          "version": "2574497dd00584699a282fdd4f831ec1a2dfdde6e8681b5c873a54783576051c"
+        },
+        {
+          "id": "case-02-b",
+          "locator": "规程条款",
+          "excerpt": "规程: rule02\n处置: 检查接头",
+          "version": "3a5e7164c43f96e4027923bdecc4dcfc9c69b4395121395e91979db1139eb6b9"
+        }
+      ],
+      "graph_path": [
+        "GRID",
+        "TX1",
+        "LV1",
+        "P-PROD",
+        "P-AIR",
+        "AC-2"
+      ]
+    },
+    {
+      "question_id": "q02",
+      "mode": "rag",
+      "answer": {
+        "rule": "rule02",
+        "action": "检查接头",
+        "upstream": null
+      },
+      "correct": false,
+      "evidence_complete": false,
+      "documents": [
+        "case-02-a",
+        "case-02-b"
+      ],
+      "citations": [
+        {
+          "id": "case-02-a",
+          "locator": "运行记录",
+          "excerpt": "设备 AC-2，事项 泄漏复核。\n适用规程: rule02",
+          "version": "2574497dd00584699a282fdd4f831ec1a2dfdde6e8681b5c873a54783576051c"
+        },
+        {
+          "id": "case-02-b",
+          "locator": "规程条款",
+          "excerpt": "规程: rule02\n处置: 检查接头",
+          "version": "3a5e7164c43f96e4027923bdecc4dcfc9c69b4395121395e91979db1139eb6b9"
+        }
+      ],
+      "graph_path": []
+    },
+    {
+      "question_id": "q03",
+      "mode": "graph-first",
+      "answer": {
+        "rule": "rule03",
+        "action": "复测压力",
+        "upstream": "P-AIR"
+      },
+      "correct": true,
+      "evidence_complete": true,
+      "documents": [
+        "case-03-a",
+        "case-03-b"
+      ],
+      "citations": [
+        {
+          "id": "case-03-a",
+          "locator": "运行记录",
+          "excerpt": "设备 AC-3，事项 维修后核查。\n适用规程: rule03",
+          "version": "1f01e963e2871d120e43badab18a0e8e2c3861db403ce5cf398a62ac8040f020"
+        },
+        {
+          "id": "case-03-b",
+          "locator": "规程条款",
+          "excerpt": "规程: rule03\n处置: 复测压力",
+          "version": "63727ec814066a4e1b326a47ab74b1882a4783276dcab1f62d1f4054aa87573d"
+        }
+      ],
+      "graph_path": [
+        "GRID",
+        "TX1",
+        "LV1",
+        "P-PROD",
+        "P-AIR",
+        "AC-3"
+      ]
+    },
+    {
+      "question_id": "q03",
+      "mode": "rag",
+      "answer": {
+        "rule": "rule03",
+        "action": "复测压力",
+        "upstream": null
+      },
+      "correct": false,
+      "evidence_complete": false,
+      "documents": [
+        "case-03-a",
+        "case-03-b"
+      ],
+      "citations": [
+        {
+          "id": "case-03-a",
+          "locator": "运行记录",
+          "excerpt": "设备 AC-3，事项 维修后核查。\n适用规程: rule03",
+          "version": "1f01e963e2871d120e43badab18a0e8e2c3861db403ce5cf398a62ac8040f020"
+        },
+        {
+          "id": "case-03-b",
+          "locator": "规程条款",
+          "excerpt": "规程: rule03\n处置: 复测压力",
+          "version": "63727ec814066a4e1b326a47ab74b1882a4783276dcab1f62d1f4054aa87573d"
+        }
+      ],
+      "graph_path": []
+    },
+    {
+      "question_id": "q04",
+      "mode": "graph-first",
+      "answer": {
+        "rule": "rule04",
+        "action": "检查阀门",
+        "upstream": "AC-1"
+      },
+      "correct": true,
+      "evidence_complete": true,
+      "documents": [
+        "case-04-a",
+        "case-04-b"
+      ],
+      "citations": [
+        {
+          "id": "case-04-a",
+          "locator": "运行记录",
+          "excerpt": "设备 AIR-HDR，事项 主管压力异常。\n适用规程: rule04",
+          "version": "e228ee11760079b96da24958d316212cb16ba952cbd30ce4598f6b953163d5c5"
+        },
+        {
+          "id": "case-04-b",
+          "locator": "规程条款",
+          "excerpt": "规程: rule04\n处置: 检查阀门",
+          "version": "7331631b7087bfaa2b910a4538640e9b0a976f0d36e00789164ef89130f74646"
+        }
+      ],
+      "graph_path": [
+        "GRID",
+        "TX1",
+        "LV1",
+        "P-PROD",
+        "P-AIR",
+        "AC-1",
+        "AIR-HDR"
+      ]
+    },
+    {
+      "question_id": "q04",
+      "mode": "rag",
+      "answer": {
+        "rule": "rule04",
+        "action": "检查阀门",
+        "upstream": null
+      },
+      "correct": false,
+      "evidence_complete": false,
+      "documents": [
+        "case-04-a",
+        "case-04-b"
+      ],
+      "citations": [
+        {
+          "id": "case-04-a",
+          "locator": "运行记录",
+          "excerpt": "设备 AIR-HDR，事项 主管压力异常。\n适用规程: rule04",
+          "version": "e228ee11760079b96da24958d316212cb16ba952cbd30ce4598f6b953163d5c5"
+        },
+        {
+          "id": "case-04-b",
+          "locator": "规程条款",
+          "excerpt": "规程: rule04\n处置: 检查阀门",
+          "version": "7331631b7087bfaa2b910a4538640e9b0a976f0d36e00789164ef89130f74646"
+        }
+      ],
+      "graph_path": []
+    },
+    {
+      "question_id": "q05",
+      "mode": "graph-first",
+      "answer": {
+        "rule": "rule05",
+        "action": "按生产任务排序",
+        "upstream": "P-LIFT-F"
+      },
+      "correct": true,
+      "evidence_complete": true,
+      "documents": [
+        "case-05-a",
+        "case-05-b"
+      ],
+      "citations": [
+        {
+          "id": "case-05-a",
+          "locator": "运行记录",
+          "excerpt": "设备 FE-1，事项 货梯排队。\n适用规程: rule05",
+          "version": "fc7a5fa265037cdfeadf31b8225be8db3abc3a62af94aaed9389373a26f9b1b3"
+        },
+        {
+          "id": "case-05-b",
+          "locator": "规程条款",
+          "excerpt": "规程: rule05\n处置: 按生产任务排序",
+          "version": "b5b9c556e89e1a1e1e54aeed8ba6301db3685bbd120e27185af6b82292c4b3f0"
+        }
+      ],
+      "graph_path": [
+        "GRID",
+        "TX1",
+        "LV1",
+        "P-PROD",
+        "P-LIFT-F",
+        "FE-1"
+      ]
+    },
+    {
+      "question_id": "q05",
+      "mode": "rag",
+      "answer": {
+        "rule": "rule05",
+        "action": "按生产任务排序",
+        "upstream": null
+      },
+      "correct": false,
+      "evidence_complete": false,
+      "documents": [
+        "case-05-a",
+        "case-05-b"
+      ],
+      "citations": [
+        {
+          "id": "case-05-a",
+          "locator": "运行记录",
+          "excerpt": "设备 FE-1，事项 货梯排队。\n适用规程: rule05",
+          "version": "fc7a5fa265037cdfeadf31b8225be8db3abc3a62af94aaed9389373a26f9b1b3"
+        },
+        {
+          "id": "case-05-b",
+          "locator": "规程条款",
+          "excerpt": "规程: rule05\n处置: 按生产任务排序",
+          "version": "b5b9c556e89e1a1e1e54aeed8ba6301db3685bbd120e27185af6b82292c4b3f0"
+        }
+      ],
+      "graph_path": []
+    },
+    {
+      "question_id": "q06",
+      "mode": "graph-first",
+      "answer": {
+        "rule": "rule06",
+        "action": "隔离故障梯",
+        "upstream": "P-LIFT-F"
+      },
+      "correct": true,
+      "evidence_complete": true,
+      "documents": [
+        "case-06-a",
+        "case-06-b"
+      ],
+      "citations": [
+        {
+          "id": "case-06-a",
+          "locator": "运行记录",
+          "excerpt": "设备 FE-2，事项 货梯故障。\n适用规程: rule06",
+          "version": "0829dc5f78ad78a0f24e993642589c73aeee034b99cd1a67ad8ec7bee1a6e158"
+        },
+        {
+          "id": "case-06-b",
+          "locator": "规程条款",
+          "excerpt": "规程: rule06\n处置: 隔离故障梯",
+          "version": "26e1047b8e1a602adb28a5a2d0b75081cd2c5488f244067fc4b9cdb3e66aeea4"
+        }
+      ],
+      "graph_path": [
+        "GRID",
+        "TX1",
+        "LV1",
+        "P-PROD",
+        "P-LIFT-F",
+        "FE-2"
+      ]
+    },
+    {
+      "question_id": "q06",
+      "mode": "rag",
+      "answer": {
+        "rule": "rule06",
+        "action": "隔离故障梯",
+        "upstream": null
+      },
+      "correct": false,
+      "evidence_complete": false,
+      "documents": [
+        "case-06-a",
+        "case-06-b"
+      ],
+      "citations": [
+        {
+          "id": "case-06-a",
+          "locator": "运行记录",
+          "excerpt": "设备 FE-2，事项 货梯故障。\n适用规程: rule06",
+          "version": "0829dc5f78ad78a0f24e993642589c73aeee034b99cd1a67ad8ec7bee1a6e158"
+        },
+        {
+          "id": "case-06-b",
+          "locator": "规程条款",
+          "excerpt": "规程: rule06\n处置: 隔离故障梯",
+          "version": "26e1047b8e1a602adb28a5a2d0b75081cd2c5488f244067fc4b9cdb3e66aeea4"
+        }
+      ],
+      "graph_path": []
+    },
+    {
+      "question_id": "q07",
+      "mode": "graph-first",
+      "answer": {
+        "rule": "rule07",
+        "action": "合并运输批次",
+        "upstream": "P-LIFT-F"
+      },
+      "correct": true,
+      "evidence_complete": true,
+      "documents": [
+        "case-07-a",
+        "case-07-b"
+      ],
+      "citations": [
+        {
+          "id": "case-07-a",
+          "locator": "运行记录",
+          "excerpt": "设备 FE-3，事项 货梯高峰。\n适用规程: rule07",
+          "version": "09d7e1bf6cb2b85ed93adf6a5cc856ebe56d5271ac520f4f2d692aee7b4cc3a0"
+        },
+        {
+          "id": "case-07-b",
+          "locator": "规程条款",
+          "excerpt": "规程: rule07\n处置: 合并运输批次",
+          "version": "dd8639f097eab2da8e312ff334526212d92f174c8e4c466081b39f1ea63ae33f"
+        }
+      ],
+      "graph_path": [
+        "GRID",
+        "TX1",
+        "LV1",
+        "P-PROD",
+        "P-LIFT-F",
+        "FE-3"
+      ]
+    },
+    {
+      "question_id": "q07",
+      "mode": "rag",
+      "answer": {
+        "rule": "rule07",
+        "action": "合并运输批次",
+        "upstream": null
+      },
+      "correct": false,
+      "evidence_complete": false,
+      "documents": [
+        "case-07-a",
+        "case-07-b"
+      ],
+      "citations": [
+        {
+          "id": "case-07-a",
+          "locator": "运行记录",
+          "excerpt": "设备 FE-3，事项 货梯高峰。\n适用规程: rule07",
+          "version": "09d7e1bf6cb2b85ed93adf6a5cc856ebe56d5271ac520f4f2d692aee7b4cc3a0"
+        },
+        {
+          "id": "case-07-b",
+          "locator": "规程条款",
+          "excerpt": "规程: rule07\n处置: 合并运输批次",
+          "version": "dd8639f097eab2da8e312ff334526212d92f174c8e4c466081b39f1ea63ae33f"
+        }
+      ],
+      "graph_path": []
+    },
+    {
+      "question_id": "q08",
+      "mode": "graph-first",
+      "answer": {
+        "rule": "rule08",
+        "action": "安排备用梯",
+        "upstream": "P-LIFT-F"
+      },
+      "correct": true,
+      "evidence_complete": true,
+      "documents": [
+        "case-08-a",
+        "case-08-b"
+      ],
+      "citations": [
+        {
+          "id": "case-08-a",
+          "locator": "运行记录",
+          "excerpt": "设备 FE-4，事项 货梯维保。\n适用规程: rule08",
+          "version": "c2bb031e6d1cf7947b00f030a9413d7f4e29e027fcb2a7f5c776c84602025dcb"
+        },
+        {
+          "id": "case-08-b",
+          "locator": "规程条款",
+          "excerpt": "规程: rule08\n处置: 安排备用梯",
+          "version": "d897bf1589726b4add8bc1d2855a3e326de21e6c586f535f8d6588352b27b4a5"
+        }
+      ],
+      "graph_path": [
+        "GRID",
+        "TX1",
+        "LV1",
+        "P-PROD",
+        "P-LIFT-F",
+        "FE-4"
+      ]
+    },
+    {
+      "question_id": "q08",
+      "mode": "rag",
+      "answer": {
+        "rule": "rule08",
+        "action": "安排备用梯",
+        "upstream": null
+      },
+      "correct": false,
+      "evidence_complete": false,
+      "documents": [
+        "case-08-a",
+        "case-08-b"
+      ],
+      "citations": [
+        {
+          "id": "case-08-a",
+          "locator": "运行记录",
+          "excerpt": "设备 FE-4，事项 货梯维保。\n适用规程: rule08",
+          "version": "c2bb031e6d1cf7947b00f030a9413d7f4e29e027fcb2a7f5c776c84602025dcb"
+        },
+        {
+          "id": "case-08-b",
+          "locator": "规程条款",
+          "excerpt": "规程: rule08\n处置: 安排备用梯",
+          "version": "d897bf1589726b4add8bc1d2855a3e326de21e6c586f535f8d6588352b27b4a5"
+        }
+      ],
+      "graph_path": []
+    },
+    {
+      "question_id": "q09",
+      "mode": "graph-first",
+      "answer": {
+        "rule": "rule09",
+        "action": "首层集中派梯",
+        "upstream": "P-ADMIN-LIFT"
+      },
+      "correct": true,
+      "evidence_complete": true,
+      "documents": [
+        "case-09-a",
+        "case-09-b"
+      ],
+      "citations": [
+        {
+          "id": "case-09-a",
+          "locator": "运行记录",
+          "excerpt": "设备 PE-1，事项 人梯早高峰。\n适用规程: rule09",
+          "version": "af9fcbd858ee47fdc42769b6c370eab2c4e66523de8f23ce98586eacdd244e96"
+        },
+        {
+          "id": "case-09-b",
+          "locator": "规程条款",
+          "excerpt": "规程: rule09\n处置: 首层集中派梯",
+          "version": "1518dc70a309f847c2606008391cdade2336d707eb509f9d5d8f2d2c66fd9909"
+        }
+      ],
+      "graph_path": [
+        "GRID",
+        "TX2",
+        "LV2",
+        "P-ADMIN",
+        "P-ADMIN-LIFT",
+        "PE-1"
+      ]
+    },
+    {
+      "question_id": "q09",
+      "mode": "rag",
+      "answer": {
+        "rule": "rule09",
+        "action": "首层集中派梯",
+        "upstream": null
+      },
+      "correct": false,
+      "evidence_complete": false,
+      "documents": [
+        "case-09-a",
+        "case-09-b"
+      ],
+      "citations": [
+        {
+          "id": "case-09-a",
+          "locator": "运行记录",
+          "excerpt": "设备 PE-1，事项 人梯早高峰。\n适用规程: rule09",
+          "version": "af9fcbd858ee47fdc42769b6c370eab2c4e66523de8f23ce98586eacdd244e96"
+        },
+        {
+          "id": "case-09-b",
+          "locator": "规程条款",
+          "excerpt": "规程: rule09\n处置: 首层集中派梯",
+          "version": "1518dc70a309f847c2606008391cdade2336d707eb509f9d5d8f2d2c66fd9909"
+        }
+      ],
+      "graph_path": []
+    },
+    {
+      "question_id": "q10",
+      "mode": "graph-first",
+      "answer": {
+        "rule": "rule10",
+        "action": "优先下行",
+        "upstream": "P-ADMIN-LIFT"
+      },
+      "correct": true,
+      "evidence_complete": true,
+      "documents": [
+        "case-10-a",
+        "case-10-b"
+      ],
+      "citations": [
+        {
+          "id": "case-10-a",
+          "locator": "运行记录",
+          "excerpt": "设备 PE-2，事项 人梯晚高峰。\n适用规程: rule10",
+          "version": "5d490b7ddadff0d52521aa00741eb4892a968c06b4bca47c6321407cd0751b81"
+        },
+        {
+          "id": "case-10-b",
+          "locator": "规程条款",
+          "excerpt": "规程: rule10\n处置: 优先下行",
+          "version": "a069cb580bcfb2c5b262e77386239da0f70ee6a3d5fb328fe0ec0f1ed7a0ca04"
+        }
+      ],
+      "graph_path": [
+        "GRID",
+        "TX2",
+        "LV2",
+        "P-ADMIN",
+        "P-ADMIN-LIFT",
+        "PE-2"
+      ]
+    },
+    {
+      "question_id": "q10",
+      "mode": "rag",
+      "answer": {
+        "rule": "rule10",
+        "action": "优先下行",
+        "upstream": null
+      },
+      "correct": false,
+      "evidence_complete": false,
+      "documents": [
+        "case-10-a",
+        "case-10-b"
+      ],
+      "citations": [
+        {
+          "id": "case-10-a",
+          "locator": "运行记录",
+          "excerpt": "设备 PE-2，事项 人梯晚高峰。\n适用规程: rule10",
+          "version": "5d490b7ddadff0d52521aa00741eb4892a968c06b4bca47c6321407cd0751b81"
+        },
+        {
+          "id": "case-10-b",
+          "locator": "规程条款",
+          "excerpt": "规程: rule10\n处置: 优先下行",
+          "version": "a069cb580bcfb2c5b262e77386239da0f70ee6a3d5fb328fe0ec0f1ed7a0ca04"
+        }
+      ],
+      "graph_path": []
+    },
+    {
+      "question_id": "q11",
+      "mode": "graph-first",
+      "answer": {
+        "rule": "rule11",
+        "action": "停用部分电梯",
+        "upstream": "P-ADMIN-LIFT"
+      },
+      "correct": true,
+      "evidence_complete": true,
+      "documents": [
+        "case-11-a",
+        "case-11-b"
+      ],
+      "citations": [
+        {
+          "id": "case-11-a",
+          "locator": "运行记录",
+          "excerpt": "设备 PE-3，事项 人梯低谷。\n适用规程: rule11",
+          "version": "4e22677a09a27517f71402ff1cea7122f3449753f27ee90681e4a27c4760cf2b"
+        },
+        {
+          "id": "case-11-b",
+          "locator": "规程条款",
+          "excerpt": "规程: rule11\n处置: 停用部分电梯",
+          "version": "94c4a24a60a2bcad70ab6f3808e32311a0c71426cef332203816460fdaf17218"
+        }
+      ],
+      "graph_path": [
+        "GRID",
+        "TX2",
+        "LV2",
+        "P-ADMIN",
+        "P-ADMIN-LIFT",
+        "PE-3"
+      ]
+    },
+    {
+      "question_id": "q11",
+      "mode": "rag",
+      "answer": {
+        "rule": "rule11",
+        "action": "停用部分电梯",
+        "upstream": null
+      },
+      "correct": false,
+      "evidence_complete": false,
+      "documents": [
+        "case-11-a",
+        "case-11-b"
+      ],
+      "citations": [
+        {
+          "id": "case-11-a",
+          "locator": "运行记录",
+          "excerpt": "设备 PE-3，事项 人梯低谷。\n适用规程: rule11",
+          "version": "4e22677a09a27517f71402ff1cea7122f3449753f27ee90681e4a27c4760cf2b"
+        },
+        {
+          "id": "case-11-b",
+          "locator": "规程条款",
+          "excerpt": "规程: rule11\n处置: 停用部分电梯",
+          "version": "94c4a24a60a2bcad70ab6f3808e32311a0c71426cef332203816460fdaf17218"
+        }
+      ],
+      "graph_path": []
+    },
+    {
+      "question_id": "q12",
+      "mode": "graph-first",
+      "answer": {
+        "rule": "rule12",
+        "action": "分区运行",
+        "upstream": "P-ADMIN-LIFT"
+      },
+      "correct": true,
+      "evidence_complete": true,
+      "documents": [
+        "case-12-a",
+        "case-12-b"
+      ],
+      "citations": [
+        {
+          "id": "case-12-a",
+          "locator": "运行记录",
+          "excerpt": "设备 PE-4，事项 人梯拥堵。\n适用规程: rule12",
+          "version": "b40f765da37e437d5af267135fdfb4469bc52a902c11de3385f8682c5fd4e723"
+        },
+        {
+          "id": "case-12-b",
+          "locator": "规程条款",
+          "excerpt": "规程: rule12\n处置: 分区运行",
+          "version": "7da4725cf73a62f051e0c7008f99e23175fc86872103d1ef278bbe75b3b18f4e"
+        }
+      ],
+      "graph_path": [
+        "GRID",
+        "TX2",
+        "LV2",
+        "P-ADMIN",
+        "P-ADMIN-LIFT",
+        "PE-4"
+      ]
+    },
+    {
+      "question_id": "q12",
+      "mode": "rag",
+      "answer": {
+        "rule": "rule12",
+        "action": "分区运行",
+        "upstream": null
+      },
+      "correct": false,
+      "evidence_complete": false,
+      "documents": [
+        "case-12-a",
+        "case-12-b"
+      ],
+      "citations": [
+        {
+          "id": "case-12-a",
+          "locator": "运行记录",
+          "excerpt": "设备 PE-4，事项 人梯拥堵。\n适用规程: rule12",
+          "version": "b40f765da37e437d5af267135fdfb4469bc52a902c11de3385f8682c5fd4e723"
+        },
+        {
+          "id": "case-12-b",
+          "locator": "规程条款",
+          "excerpt": "规程: rule12\n处置: 分区运行",
+          "version": "7da4725cf73a62f051e0c7008f99e23175fc86872103d1ef278bbe75b3b18f4e"
+        }
+      ],
+      "graph_path": []
+    },
+    {
+      "question_id": "q13",
+      "mode": "graph-first",
+      "answer": {
+        "rule": "rule13",
+        "action": "按计划放电",
+        "upstream": "P-PARK"
+      },
+      "correct": true,
+      "evidence_complete": true,
+      "documents": [
+        "case-13-a",
+        "case-13-b"
+      ],
+      "citations": [
+        {
+          "id": "case-13-a",
+          "locator": "运行记录",
+          "excerpt": "设备 BAT1，事项 储能峰段。\n适用规程: rule13",
+          "version": "5174cee48aa904f2a20209c2a727ec379bb417a00bb51e14243328a7528304f3"
+        },
+        {
+          "id": "case-13-b",
+          "locator": "规程条款",
+          "excerpt": "规程: rule13\n处置: 按计划放电",
+          "version": "248b4e48e1b2116b58d2f59c6c86158c5d7dbee78b695d7b33821f5ed344bf0d"
+        }
+      ],
+      "graph_path": [
+        "GRID",
+        "TX1",
+        "LV1",
+        "P-PARK",
+        "BAT1"
+      ]
+    },
+    {
+      "question_id": "q13",
+      "mode": "rag",
+      "answer": {
+        "rule": "rule13",
+        "action": "按计划放电",
+        "upstream": null
+      },
+      "correct": false,
+      "evidence_complete": false,
+      "documents": [
+        "case-13-a",
+        "case-13-b"
+      ],
+      "citations": [
+        {
+          "id": "case-13-a",
+          "locator": "运行记录",
+          "excerpt": "设备 BAT1，事项 储能峰段。\n适用规程: rule13",
+          "version": "5174cee48aa904f2a20209c2a727ec379bb417a00bb51e14243328a7528304f3"
+        },
+        {
+          "id": "case-13-b",
+          "locator": "规程条款",
+          "excerpt": "规程: rule13\n处置: 按计划放电",
+          "version": "248b4e48e1b2116b58d2f59c6c86158c5d7dbee78b695d7b33821f5ed344bf0d"
+        }
+      ],
+      "graph_path": []
+    },
+    {
+      "question_id": "q14",
+      "mode": "graph-first",
+      "answer": {
+        "rule": "rule14",
+        "action": "核查发电功率",
+        "upstream": "P-PARK"
+      },
+      "correct": true,
+      "evidence_complete": true,
+      "documents": [
+        "case-14-a",
+        "case-14-b"
+      ],
+      "citations": [
+        {
+          "id": "case-14-a",
+          "locator": "运行记录",
+          "excerpt": "设备 PV1，事项 光伏下降。\n适用规程: rule14",
+          "version": "5cbea021615975c444c465edce83bf01e5fe8d87f7075c36d167fa33d2d3cf7a"
+        },
+        {
+          "id": "case-14-b",
+          "locator": "规程条款",
+          "excerpt": "规程: rule14\n处置: 核查发电功率",
+          "version": "3359f0668b541a9ca18222e24d97734a3657b637dd0312b27032dac351b6aaad"
+        }
+      ],
+      "graph_path": [
+        "GRID",
+        "TX1",
+        "LV1",
+        "P-PARK",
+        "PV1"
+      ]
+    },
+    {
+      "question_id": "q14",
+      "mode": "rag",
+      "answer": {
+        "rule": "rule14",
+        "action": "核查发电功率",
+        "upstream": null
+      },
+      "correct": false,
+      "evidence_complete": false,
+      "documents": [
+        "case-14-a",
+        "case-14-b"
+      ],
+      "citations": [
+        {
+          "id": "case-14-a",
+          "locator": "运行记录",
+          "excerpt": "设备 PV1，事项 光伏下降。\n适用规程: rule14",
+          "version": "5cbea021615975c444c465edce83bf01e5fe8d87f7075c36d167fa33d2d3cf7a"
+        },
+        {
+          "id": "case-14-b",
+          "locator": "规程条款",
+          "excerpt": "规程: rule14\n处置: 核查发电功率",
+          "version": "3359f0668b541a9ca18222e24d97734a3657b637dd0312b27032dac351b6aaad"
+        }
+      ],
+      "graph_path": []
+    },
+    {
+      "question_id": "q15",
+      "mode": "graph-first",
+      "answer": {
+        "rule": "rule15",
+        "action": "延后可平移工序",
+        "upstream": "P-LINE"
+      },
+      "correct": true,
+      "evidence_complete": true,
+      "documents": [
+        "case-15-a",
+        "case-15-b"
+      ],
+      "citations": [
+        {
+          "id": "case-15-a",
+          "locator": "运行记录",
+          "excerpt": "设备 LINE-1，事项 峰时工序。\n适用规程: rule15",
+          "version": "71323ab21f02e33a3defb7a07f7219eeb991951c3b4bed0a3b8cc364fc4da0c3"
+        },
+        {
+          "id": "case-15-b",
+          "locator": "规程条款",
+          "excerpt": "规程: rule15\n处置: 延后可平移工序",
+          "version": "ef6b72fb904fd7066e7e37b4d9777d0808fd77b24d4eb2d5c2a9bbf708280fd4"
+        }
+      ],
+      "graph_path": [
+        "GRID",
+        "TX1",
+        "LV1",
+        "P-PROD",
+        "P-LINE",
+        "LINE-1"
+      ]
+    },
+    {
+      "question_id": "q15",
+      "mode": "rag",
+      "answer": {
+        "rule": "rule15",
+        "action": "延后可平移工序",
+        "upstream": null
+      },
+      "correct": false,
+      "evidence_complete": false,
+      "documents": [
+        "case-15-a",
+        "case-15-b"
+      ],
+      "citations": [
+        {
+          "id": "case-15-a",
+          "locator": "运行记录",
+          "excerpt": "设备 LINE-1，事项 峰时工序。\n适用规程: rule15",
+          "version": "71323ab21f02e33a3defb7a07f7219eeb991951c3b4bed0a3b8cc364fc4da0c3"
+        },
+        {
+          "id": "case-15-b",
+          "locator": "规程条款",
+          "excerpt": "规程: rule15\n处置: 延后可平移工序",
+          "version": "ef6b72fb904fd7066e7e37b4d9777d0808fd77b24d4eb2d5c2a9bbf708280fd4"
+        }
+      ],
+      "graph_path": []
+    },
+    {
+      "question_id": "q16",
+      "mode": "graph-first",
+      "answer": {
+        "rule": "rule16",
+        "action": "合并低谷批次",
+        "upstream": "P-LINE"
+      },
+      "correct": true,
+      "evidence_complete": true,
+      "documents": [
+        "case-16-a",
+        "case-16-b"
+      ],
+      "citations": [
+        {
+          "id": "case-16-a",
+          "locator": "运行记录",
+          "excerpt": "设备 LINE-2，事项 峰时排产。\n适用规程: rule16",
+          "version": "1d25bd61bf78664973504e75385bc47bbb5222e46263dc16a418f8424e3f775e"
+        },
+        {
+          "id": "case-16-b",
+          "locator": "规程条款",
+          "excerpt": "规程: rule16\n处置: 合并低谷批次",
+          "version": "7954c4b5708383e467a0353526bea7e22a83f24219820003799e44ef09205a68"
+        }
+      ],
+      "graph_path": [
+        "GRID",
+        "TX1",
+        "LV1",
+        "P-PROD",
+        "P-LINE",
+        "LINE-2"
+      ]
+    },
+    {
+      "question_id": "q16",
+      "mode": "rag",
+      "answer": {
+        "rule": "rule16",
+        "action": "合并低谷批次",
+        "upstream": null
+      },
+      "correct": false,
+      "evidence_complete": false,
+      "documents": [
+        "case-16-a",
+        "case-16-b"
+      ],
+      "citations": [
+        {
+          "id": "case-16-a",
+          "locator": "运行记录",
+          "excerpt": "设备 LINE-2，事项 峰时排产。\n适用规程: rule16",
+          "version": "1d25bd61bf78664973504e75385bc47bbb5222e46263dc16a418f8424e3f775e"
+        },
+        {
+          "id": "case-16-b",
+          "locator": "规程条款",
+          "excerpt": "规程: rule16\n处置: 合并低谷批次",
+          "version": "7954c4b5708383e467a0353526bea7e22a83f24219820003799e44ef09205a68"
+        }
+      ],
+      "graph_path": []
+    },
+    {
+      "question_id": "q17",
+      "mode": "graph-first",
+      "answer": {
+        "rule": "rule17",
+        "action": "保持硬约束",
+        "upstream": "P-CR"
+      },
+      "correct": true,
+      "evidence_complete": true,
+      "documents": [
+        "case-17-a",
+        "case-17-b"
+      ],
+      "citations": [
+        {
+          "id": "case-17-a",
+          "locator": "运行记录",
+          "excerpt": "设备 CR-AHU1，事项 洁净温度异常。\n适用规程: rule17",
+          "version": "b121b4dae2791ba696f46c8299248e25952b026a4a55795328624a4adec4f849"
+        },
+        {
+          "id": "case-17-b",
+          "locator": "规程条款",
+          "excerpt": "规程: rule17\n处置: 保持硬约束",
+          "version": "a2cfd022179284acbea297cecef0d7ed864be014b2fecb536a67cd86661cd399"
+        }
+      ],
+      "graph_path": [
+        "GRID",
+        "TX2",
+        "LV2",
+        "P-CR",
+        "CR-AHU1"
+      ]
+    },
+    {
+      "question_id": "q17",
+      "mode": "rag",
+      "answer": {
+        "rule": "rule17",
+        "action": "保持硬约束",
+        "upstream": null
+      },
+      "correct": false,
+      "evidence_complete": false,
+      "documents": [
+        "case-17-a",
+        "case-17-b"
+      ],
+      "citations": [
+        {
+          "id": "case-17-a",
+          "locator": "运行记录",
+          "excerpt": "设备 CR-AHU1，事项 洁净温度异常。\n适用规程: rule17",
+          "version": "b121b4dae2791ba696f46c8299248e25952b026a4a55795328624a4adec4f849"
+        },
+        {
+          "id": "case-17-b",
+          "locator": "规程条款",
+          "excerpt": "规程: rule17\n处置: 保持硬约束",
+          "version": "a2cfd022179284acbea297cecef0d7ed864be014b2fecb536a67cd86661cd399"
+        }
+      ],
+      "graph_path": []
+    },
+    {
+      "question_id": "q18",
+      "mode": "graph-first",
+      "answer": {
+        "rule": "rule18",
+        "action": "禁止停机",
+        "upstream": "P-CR"
+      },
+      "correct": true,
+      "evidence_complete": true,
+      "documents": [
+        "case-18-a",
+        "case-18-b"
+      ],
+      "citations": [
+        {
+          "id": "case-18-a",
+          "locator": "运行记录",
+          "excerpt": "设备 CR-AHU2，事项 洁净区削峰。\n适用规程: rule18",
+          "version": "39505a474885437b137938b59dcc85eabcaa286a79837c3157e45883fe21e42d"
+        },
+        {
+          "id": "case-18-b",
+          "locator": "规程条款",
+          "excerpt": "规程: rule18\n处置: 禁止停机",
+          "version": "5e976c21b5450808680700eb739fdb06a926f26ed234a550b017f14745b9f39a"
+        }
+      ],
+      "graph_path": [
+        "GRID",
+        "TX2",
+        "LV2",
+        "P-CR",
+        "CR-AHU2"
+      ]
+    },
+    {
+      "question_id": "q18",
+      "mode": "rag",
+      "answer": {
+        "rule": "rule18",
+        "action": "禁止停机",
+        "upstream": null
+      },
+      "correct": false,
+      "evidence_complete": false,
+      "documents": [
+        "case-18-a",
+        "case-18-b"
+      ],
+      "citations": [
+        {
+          "id": "case-18-a",
+          "locator": "运行记录",
+          "excerpt": "设备 CR-AHU2，事项 洁净区削峰。\n适用规程: rule18",
+          "version": "39505a474885437b137938b59dcc85eabcaa286a79837c3157e45883fe21e42d"
+        },
+        {
+          "id": "case-18-b",
+          "locator": "规程条款",
+          "excerpt": "规程: rule18\n处置: 禁止停机",
+          "version": "5e976c21b5450808680700eb739fdb06a926f26ed234a550b017f14745b9f39a"
+        }
+      ],
+      "graph_path": []
+    },
+    {
+      "question_id": "q19",
+      "mode": "graph-first",
+      "answer": {
+        "rule": "rule19",
+        "action": "派操作工单",
+        "upstream": "P-HZ"
+      },
+      "correct": true,
+      "evidence_complete": true,
+      "documents": [
+        "case-19-a",
+        "case-19-b"
+      ],
+      "citations": [
+        {
+          "id": "case-19-a",
+          "locator": "运行记录",
+          "excerpt": "设备 HZ-EXF1，事项 危化排风异常。\n适用规程: rule19",
+          "version": "5c641a7276dd28154f96302b425d059a250f44f061d7af1e2cd9f35422f0389e"
+        },
+        {
+          "id": "case-19-b",
+          "locator": "规程条款",
+          "excerpt": "规程: rule19\n处置: 派操作工单",
+          "version": "a9291433a58e759f698aa609f461ae98a8ae863cbb5a0447c544333cf4a272d4"
+        }
+      ],
+      "graph_path": [
+        "GRID",
+        "TX2",
+        "LV2",
+        "P-HZ",
+        "HZ-EXF1"
+      ]
+    },
+    {
+      "question_id": "q19",
+      "mode": "rag",
+      "answer": {
+        "rule": "rule19",
+        "action": "派操作工单",
+        "upstream": null
+      },
+      "correct": false,
+      "evidence_complete": false,
+      "documents": [
+        "case-19-a",
+        "case-19-b"
+      ],
+      "citations": [
+        {
+          "id": "case-19-a",
+          "locator": "运行记录",
+          "excerpt": "设备 HZ-EXF1，事项 危化排风异常。\n适用规程: rule19",
+          "version": "5c641a7276dd28154f96302b425d059a250f44f061d7af1e2cd9f35422f0389e"
+        },
+        {
+          "id": "case-19-b",
+          "locator": "规程条款",
+          "excerpt": "规程: rule19\n处置: 派操作工单",
+          "version": "a9291433a58e759f698aa609f461ae98a8ae863cbb5a0447c544333cf4a272d4"
+        }
+      ],
+      "graph_path": []
+    },
+    {
+      "question_id": "q20",
+      "mode": "graph-first",
+      "answer": {
+        "rule": "rule20",
+        "action": "检查备用供电",
+        "upstream": "P-DC"
+      },
+      "correct": true,
+      "evidence_complete": true,
+      "documents": [
+        "case-20-a",
+        "case-20-b"
+      ],
+      "citations": [
+        {
+          "id": "case-20-a",
+          "locator": "运行记录",
+          "excerpt": "设备 DC-IT1，事项 机房供电异常。\n适用规程: rule20",
+          "version": "78bc2c41014a48ab545652b59fd76d2c3e4d40afb42a47fc1825afbbb9af1bf2"
+        },
+        {
+          "id": "case-20-b",
+          "locator": "规程条款",
+          "excerpt": "规程: rule20\n处置: 检查备用供电",
+          "version": "6280edcc1b30d387cacb4c62816fd0234106abf5c1c28813a3774bb82ae96542"
+        }
+      ],
+      "graph_path": [
+        "GRID",
+        "TX2",
+        "LV2",
+        "P-DC",
+        "DC-IT1"
+      ]
+    },
+    {
+      "question_id": "q20",
+      "mode": "rag",
+      "answer": {
+        "rule": "rule20",
+        "action": "检查备用供电",
+        "upstream": null
+      },
+      "correct": false,
+      "evidence_complete": false,
+      "documents": [
+        "case-20-a",
+        "case-20-b"
+      ],
+      "citations": [
+        {
+          "id": "case-20-a",
+          "locator": "运行记录",
+          "excerpt": "设备 DC-IT1，事项 机房供电异常。\n适用规程: rule20",
+          "version": "78bc2c41014a48ab545652b59fd76d2c3e4d40afb42a47fc1825afbbb9af1bf2"
+        },
+        {
+          "id": "case-20-b",
+          "locator": "规程条款",
+          "excerpt": "规程: rule20\n处置: 检查备用供电",
+          "version": "6280edcc1b30d387cacb4c62816fd0234106abf5c1c28813a3774bb82ae96542"
+        }
+      ],
+      "graph_path": []
+    },
+    {
+      "question_id": "q21",
+      "mode": "graph-first",
+      "answer": {
+        "rule": "rule21",
+        "action": "启用备用空调",
+        "upstream": "P-DC"
+      },
+      "correct": true,
+      "evidence_complete": true,
+      "documents": [
+        "case-21-a",
+        "case-21-b"
+      ],
+      "citations": [
+        {
+          "id": "case-21-a",
+          "locator": "运行记录",
+          "excerpt": "设备 DC-CRAC1，事项 机房空调故障。\n适用规程: rule21",
+          "version": "cec2b202561fc9fa04cd420a15dfde403f44e6c295cd3ccd898d3f0185c19167"
+        },
+        {
+          "id": "case-21-b",
+          "locator": "规程条款",
+          "excerpt": "规程: rule21\n处置: 启用备用空调",
+          "version": "06c18cb8d1d9c497b4d405d742eb5973ce9b27dc8247be4bb822f3ca873c6838"
+        }
+      ],
+      "graph_path": [
+        "GRID",
+        "TX2",
+        "LV2",
+        "P-DC",
+        "DC-CRAC1"
+      ]
+    },
+    {
+      "question_id": "q21",
+      "mode": "rag",
+      "answer": {
+        "rule": "rule21",
+        "action": "启用备用空调",
+        "upstream": null
+      },
+      "correct": false,
+      "evidence_complete": false,
+      "documents": [
+        "case-21-a",
+        "case-21-b"
+      ],
+      "citations": [
+        {
+          "id": "case-21-a",
+          "locator": "运行记录",
+          "excerpt": "设备 DC-CRAC1，事项 机房空调故障。\n适用规程: rule21",
+          "version": "cec2b202561fc9fa04cd420a15dfde403f44e6c295cd3ccd898d3f0185c19167"
+        },
+        {
+          "id": "case-21-b",
+          "locator": "规程条款",
+          "excerpt": "规程: rule21\n处置: 启用备用空调",
+          "version": "06c18cb8d1d9c497b4d405d742eb5973ce9b27dc8247be4bb822f3ca873c6838"
+        }
+      ],
+      "graph_path": []
+    },
+    {
+      "question_id": "q22",
+      "mode": "graph-first",
+      "answer": {
+        "rule": "rule22",
+        "action": "通知值班人员",
+        "upstream": "P-DC"
+      },
+      "correct": true,
+      "evidence_complete": true,
+      "documents": [
+        "case-22-a",
+        "case-22-b"
+      ],
+      "citations": [
+        {
+          "id": "case-22-a",
+          "locator": "运行记录",
+          "excerpt": "设备 DC-CRAC2，事项 机房冷却异常。\n适用规程: rule22",
+          "version": "01324b82de3e7d1670c943b19fbe4bfc921ca4b219a42dfe76bd3af03da2c52a"
+        },
+        {
+          "id": "case-22-b",
+          "locator": "规程条款",
+          "excerpt": "规程: rule22\n处置: 通知值班人员",
+          "version": "073ec6f091630cd4e046b75307dee62f915d23982b0e7bf398b2de902ce8be74"
+        }
+      ],
+      "graph_path": [
+        "GRID",
+        "TX2",
+        "LV2",
+        "P-DC",
+        "DC-CRAC2"
+      ]
+    },
+    {
+      "question_id": "q22",
+      "mode": "rag",
+      "answer": {
+        "rule": "rule22",
+        "action": "通知值班人员",
+        "upstream": null
+      },
+      "correct": false,
+      "evidence_complete": false,
+      "documents": [
+        "case-22-a",
+        "case-22-b"
+      ],
+      "citations": [
+        {
+          "id": "case-22-a",
+          "locator": "运行记录",
+          "excerpt": "设备 DC-CRAC2，事项 机房冷却异常。\n适用规程: rule22",
+          "version": "01324b82de3e7d1670c943b19fbe4bfc921ca4b219a42dfe76bd3af03da2c52a"
+        },
+        {
+          "id": "case-22-b",
+          "locator": "规程条款",
+          "excerpt": "规程: rule22\n处置: 通知值班人员",
+          "version": "073ec6f091630cd4e046b75307dee62f915d23982b0e7bf398b2de902ce8be74"
+        }
+      ],
+      "graph_path": []
+    },
+    {
+      "question_id": "q23",
+      "mode": "graph-first",
+      "answer": {
+        "rule": "rule23",
+        "action": "核查设定温度",
+        "upstream": "P-HVAC-P"
+      },
+      "correct": true,
+      "evidence_complete": true,
+      "documents": [
+        "case-23-a",
+        "case-23-b"
+      ],
+      "citations": [
+        {
+          "id": "case-23-a",
+          "locator": "运行记录",
+          "excerpt": "设备 AHU-P1，事项 生产区温度异常。\n适用规程: rule23",
+          "version": "a76dd4af3af390c2e164e79334706a123903dcb8fc3543c6f5f41377eda04266"
+        },
+        {
+          "id": "case-23-b",
+          "locator": "规程条款",
+          "excerpt": "规程: rule23\n处置: 核查设定温度",
+          "version": "8ecece6bc76f15a095b59e27a967092e00395fd5a90d367ddcb3770cb94d02f6"
+        }
+      ],
+      "graph_path": [
+        "GRID",
+        "TX1",
+        "LV1",
+        "P-PROD",
+        "P-HVAC-P",
+        "AHU-P1"
+      ]
+    },
+    {
+      "question_id": "q23",
+      "mode": "rag",
+      "answer": {
+        "rule": "rule23",
+        "action": "核查设定温度",
+        "upstream": null
+      },
+      "correct": false,
+      "evidence_complete": false,
+      "documents": [
+        "case-23-a",
+        "case-23-b"
+      ],
+      "citations": [
+        {
+          "id": "case-23-a",
+          "locator": "运行记录",
+          "excerpt": "设备 AHU-P1，事项 生产区温度异常。\n适用规程: rule23",
+          "version": "a76dd4af3af390c2e164e79334706a123903dcb8fc3543c6f5f41377eda04266"
+        },
+        {
+          "id": "case-23-b",
+          "locator": "规程条款",
+          "excerpt": "规程: rule23\n处置: 核查设定温度",
+          "version": "8ecece6bc76f15a095b59e27a967092e00395fd5a90d367ddcb3770cb94d02f6"
+        }
+      ],
+      "graph_path": []
+    },
+    {
+      "question_id": "q24",
+      "mode": "graph-first",
+      "answer": {
+        "rule": "rule24",
+        "action": "按计划预冷",
+        "upstream": "SYN-SOURCE"
+      },
+      "correct": true,
+      "evidence_complete": true,
+      "documents": [
+        "case-24-a",
+        "case-24-b"
+      ],
+      "citations": [
+        {
+          "id": "case-24-a",
+          "locator": "运行记录",
+          "excerpt": "设备 SYN-MISSING，事项 备用设备预冷。\n适用规程: rule24\n上游来源: SYN-SOURCE",
+          "version": "cffbe28fb2d324df11a2b8174a692d22a573f4178b6d6db894bb2ea00ea01f4c"
+        },
+        {
+          "id": "case-24-b",
+          "locator": "规程条款",
+          "excerpt": "规程: rule24\n处置: 按计划预冷",
+          "version": "4ec72e8f6485dfe98873a19c7f40f2a454cb022c2267694afc74e8f417e6c4ff"
+        }
+      ],
+      "graph_path": []
+    },
+    {
+      "question_id": "q24",
+      "mode": "rag",
+      "answer": {
+        "rule": "rule24",
+        "action": "按计划预冷",
+        "upstream": "SYN-SOURCE"
+      },
+      "correct": true,
+      "evidence_complete": true,
+      "documents": [
+        "case-24-a",
+        "case-24-b"
+      ],
+      "citations": [
+        {
+          "id": "case-24-a",
+          "locator": "运行记录",
+          "excerpt": "设备 SYN-MISSING，事项 备用设备预冷。\n适用规程: rule24\n上游来源: SYN-SOURCE",
+          "version": "cffbe28fb2d324df11a2b8174a692d22a573f4178b6d6db894bb2ea00ea01f4c"
+        },
+        {
+          "id": "case-24-b",
+          "locator": "规程条款",
+          "excerpt": "规程: rule24\n处置: 按计划预冷",
+          "version": "4ec72e8f6485dfe98873a19c7f40f2a454cb022c2267694afc74e8f417e6c4ff"
+        }
+      ],
+      "graph_path": []
+    }
+  ],
+  "summary": {
+    "graph-first": {
+      "questions": 24,
+      "correct": 24,
+      "complete": 24
+    },
+    "rag": {
+      "questions": 24,
+      "correct": 1,
+      "complete": 1
+    }
+  }
+}

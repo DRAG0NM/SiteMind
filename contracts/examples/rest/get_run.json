@@ -1,0 +1,22 @@
+{
+  "method": "GET",
+  "path": "/api/v1/runs/{run_id}",
+  "status": 200,
+  "response": {
+    "run_id": "run-day-20260701",
+    "plant_id": "demo-electronics",
+    "kind": "replay_day",
+    "version_manifest_id": "vm-0003",
+    "clock": {
+      "start": "2026-06-30T16:00:00Z",
+      "end": "2026-07-01T16:00:00Z"
+    },
+    "as_of": "2026-06-30T10:00:00Z",
+    "status": "running",
+    "forked_from": null,
+    "forked_at": null,
+    "created_at": "2026-10-30T02:00:00Z",
+    "energy_end_target_kwh": null,
+    "data_sources": []
+  }
+}

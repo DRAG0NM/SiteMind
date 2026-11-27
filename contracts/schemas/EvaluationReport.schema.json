@@ -1,0 +1,87 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "report_id": {
+      "maxLength": 200,
+      "minLength": 1,
+      "title": "Report Id",
+      "type": "string"
+    },
+    "eval_days": {
+      "items": {
+        "type": "string"
+      },
+      "minItems": 1,
+      "title": "Eval Days",
+      "type": "array"
+    },
+    "independent_eval_day": {
+      "title": "Independent Eval Day",
+      "type": "boolean"
+    },
+    "policies": {
+      "items": {
+        "enum": [
+          "B0",
+          "B1",
+          "B2",
+          "baseline",
+          "independent",
+          "coordinated"
+        ],
+        "type": "string"
+      },
+      "title": "Policies",
+      "type": "array"
+    },
+    "metrics": {
+      "additionalProperties": {
+        "additionalProperties": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "type": "object"
+      },
+      "title": "Metrics",
+      "type": "object"
+    },
+    "comparable": {
+      "title": "Comparable",
+      "type": "boolean"
+    },
+    "notes": {
+      "default": [],
+      "items": {
+        "type": "string"
+      },
+      "title": "Notes",
+      "type": "array"
+    },
+    "run_ids": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Run Ids",
+      "type": "array"
+    }
+  },
+  "required": [
+    "report_id",
+    "eval_days",
+    "independent_eval_day",
+    "policies",
+    "metrics",
+    "comparable",
+    "run_ids"
+  ],
+  "title": "EvaluationReport",
+  "type": "object",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "plantkg:contracts/1.2.0/EvaluationReport"
+}

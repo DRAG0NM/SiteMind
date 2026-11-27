@@ -1,0 +1,9 @@
+name: tariff
+schema_version: 1
+order: 30
+status: placeholder   # 实现在 pack.py（TariffPack）；注册表还没有登记 DomainPack 实例的入口，由装配方构造后交给 SharedPlanner，入口定了再改 active
+description: 电价领域包：分时时段表规则 × 按月计价基础 → 逐时段价格与购电费用目标项，缺段/重叠/类别冲突拒绝建模
+entrypoint: null
+provides:
+  rule_kinds: [tariff_tou]
+  ledger_terms: [price_cny_per_kwh, energy_cost]

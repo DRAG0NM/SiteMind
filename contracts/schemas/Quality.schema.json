@@ -1,0 +1,32 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "flag": {
+      "default": "ok",
+      "enum": [
+        "ok",
+        "missing",
+        "estimated",
+        "suspect"
+      ],
+      "title": "Flag",
+      "type": "string"
+    },
+    "note": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Note"
+    }
+  },
+  "title": "Quality",
+  "type": "object",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "plantkg:contracts/1.2.0/Quality"
+}

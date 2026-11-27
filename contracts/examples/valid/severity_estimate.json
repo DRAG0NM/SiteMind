@@ -1,0 +1,9 @@
+{
+  "model": "SeverityEstimate",
+  "data": {
+    "loss_cny": 16200.0,
+    "production_stop": true,
+    "horizon_min": 60,
+    "basis": "未保护 60 分钟内：停产 30 分钟 × 3 条产线，设备类型 air_compressor 估值 12000 元"
+  }
+}

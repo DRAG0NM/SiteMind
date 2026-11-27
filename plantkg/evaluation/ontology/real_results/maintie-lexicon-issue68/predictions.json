@@ -1,0 +1,6080 @@
+{
+  "1": {
+    "entities": [
+      {
+        "end": 3,
+        "start": 1,
+        "type": "PhysicalObject"
+      },
+      {
+        "end": 4,
+        "start": 3,
+        "type": "PhysicalObject"
+      },
+      {
+        "end": 5,
+        "start": 4,
+        "type": "State"
+      }
+    ],
+    "impact": 4,
+    "relations": [
+      {
+        "head": 0,
+        "tail": 1,
+        "type": "hasPart"
+      }
+    ],
+    "uncertainty": 0.0
+  },
+  "1001": {
+    "entities": [
+      {
+        "end": 1,
+        "start": 0,
+        "type": "Activity"
+      },
+      {
+        "end": 2,
+        "start": 1,
+        "type": "PhysicalObject"
+      },
+      {
+        "end": 3,
+        "start": 2,
+        "type": "State"
+      },
+      {
+        "end": 4,
+        "start": 3,
+        "type": "PhysicalObject"
+      },
+      {
+        "end": 5,
+        "start": 4,
+        "type": "PhysicalObject"
+      }
+    ],
+    "impact": 5,
+    "relations": [
+      {
+        "head": 0,
+        "tail": 1,
+        "type": "hasParticipant"
+      },
+      {
+        "head": 2,
+        "tail": 3,
+        "type": "hasParticipant"
+      },
+      {
+        "head": 3,
+        "tail": 4,
+        "type": "hasPart"
+      }
+    ],
+    "uncertainty": 0.0
+  },
+  "1002": {
+    "entities": [
+      {
+        "end": 1,
+        "start": 0,
+        "type": "Activity"
+      },
+      {
+        "end": 3,
+        "start": 1,
+        "type": "PhysicalObject"
+      },
+      {
+        "end": 4,
+        "start": 3,
+        "type": "PhysicalObject"
+      }
+    ],
+    "impact": 4,
+    "relations": [
+      {
+        "head": 0,
+        "tail": 1,
+        "type": "hasParticipant"
+      },
+      {
+        "head": 1,
+        "tail": 2,
+        "type": "hasPart"
+      }
+    ],
+    "uncertainty": 0.0
+  },
+  "1003": {
+    "entities": [
+      {
+        "end": 1,
+        "start": 0,
+        "type": "Activity"
+      },
+      {
+        "end": 3,
+        "start": 2,
+        "type": "PhysicalObject"
+      },
+      {
+        "end": 5,
+        "start": 3,
+        "type": "PhysicalObject"
+      },
+      {
+        "end": 6,
+        "start": 5,
+        "type": "PhysicalObject"
+      }
+    ],
+    "impact": 5,
+    "relations": [
+      {
+        "head": 0,
+        "tail": 1,
+        "type": "hasParticipant"
+      },
+      {
+        "head": 1,
+        "tail": 2,
+        "type": "hasPart"
+      },
+      {
+        "head": 2,
+        "tail": 3,
+        "type": "hasPart"
+      }
+    ],
+    "uncertainty": 0.0
+  },
+  "1015": {
+    "entities": [
+      {
+        "end": 1,
+        "start": 0,
+        "type": "Activity"
+      },
+      {
+        "end": 2,
+        "start": 1,
+        "type": "PhysicalObject"
+      }
+    ],
+    "impact": 2,
+    "relations": [
+      {
+        "head": 0,
+        "tail": 1,
+        "type": "hasParticipant"
+      }
+    ],
+    "uncertainty": 0.0
+  },
+  "1025": {
+    "entities": [
+      {
+        "end": 1,
+        "start": 0,
+        "type": "Activity"
+      },
+      {
+        "end": 3,
+        "start": 2,
+        "type": "Activity"
+      },
+      {
+        "end": 4,
+        "start": 3,
+        "type": "PhysicalObject"
+      }
+    ],
+    "impact": 3,
+    "relations": [
+      {
+        "head": 0,
+        "tail": 1,
+        "type": "isA"
+      },
+      {
+        "head": 1,
+        "tail": 2,
+        "type": "hasParticipant"
+      }
+    ],
+    "uncertainty": 0.0
+  },
+  "1028": {
+    "entities": [
+      {
+        "end": 1,
+        "start": 0,
+        "type": "Activity"
+      },
+      {
+        "end": 2,
+        "start": 1,
+        "type": "State"
+      },
+      {
+        "end": 4,
+        "start": 2,
+        "type": "PhysicalObject"
+      },
+      {
+        "end": 6,
+        "start": 4,
+        "type": "PhysicalObject"
+      }
+    ],
+    "impact": 6,
+    "relations": [
+      {
+        "head": 0,
+        "tail": 1,
+        "type": "hasParticipant"
+      },
+      {
+        "head": 1,
+        "tail": 2,
+        "type": "hasParticipant"
+      },
+      {
+        "head": 2,
+        "tail": 3,
+        "type": "hasPart"
+      }
+    ],
+    "uncertainty": 0.0
+  },
+  "1029": {
+    "entities": [
+      {
+        "end": 1,
+        "start": 0,
+        "type": "Activity"
+      },
+      {
+        "end": 3,
+        "start": 2,
+        "type": "PhysicalObject"
+      }
+    ],
+    "impact": 2,
+    "relations": [
+      {
+        "head": 0,
+        "tail": 1,
+        "type": "hasParticipant"
+      }
+    ],
+    "uncertainty": 0.0
+  },
+  "1036": {
+    "entities": [
+      {
+        "end": 1,
+        "start": 0,
+        "type": "Activity"
+      },
+      {
+        "end": 3,
+        "start": 1,
+        "type": "PhysicalObject"
+      }
+    ],
+    "impact": 3,
+    "relations": [
+      {
+        "head": 0,
+        "tail": 1,
+        "type": "hasParticipant"
+      }
+    ],
+    "uncertainty": 0.0
+  },
+  "1037": {
+    "entities": [
+      {
+        "end": 1,
+        "start": 0,
+        "type": "Activity"
+      },
+      {
+        "end": 2,
+        "start": 1,
+        "type": "PhysicalObject"
+      }
+    ],
+    "impact": 2,
+    "relations": [
+      {
+        "head": 0,
+        "tail": 1,
+        "type": "hasParticipant"
+      }
+    ],
+    "uncertainty": 0.0
+  },
+  "1042": {
+    "entities": [
+      {
+        "end": 5,
+        "start": 4,
+        "type": "Activity"
+      }
+    ],
+    "impact": 1,
+    "relations": [],
+    "uncertainty": 0.0
+  },
+  "1063": {
+    "entities": [
+      {
+        "end": 1,
+        "start": 0,
+        "type": "PhysicalObject"
+      },
+      {
+        "end": 2,
+        "start": 1,
+        "type": "PhysicalObject"
+      },
+      {
+        "end": 4,
+        "start": 3,
+        "type": "State"
+      }
+    ],
+    "impact": 3,
+    "relations": [
+      {
+        "head": 0,
+        "tail": 1,
+        "type": "hasPart"
+      }
+    ],
+    "uncertainty": 0.0
+  },
+  "1065": {
+    "entities": [
+      {
+        "end": 1,
+        "start": 0,
+        "type": "PhysicalObject"
+      },
+      {
+        "end": 3,
+        "start": 2,
+        "type": "Activity"
+      },
+      {
+        "end": 5,
+        "start": 3,
+        "type": "PhysicalObject"
+      }
+    ],
+    "impact": 4,
+    "relations": [
+      {
+        "head": 1,
+        "tail": 2,
+        "type": "hasParticipant"
+      }
+    ],
+    "uncertainty": 0.0
+  },
+  "1069": {
+    "entities": [
+      {
+        "end": 2,
+        "start": 0,
+        "type": "PhysicalObject"
+      },
+      {
+        "end": 3,
+        "start": 2,
+        "type": "PhysicalObject"
+      },
+      {
+        "end": 4,
+        "start": 3,
+        "type": "Process"
+      }
+    ],
+    "impact": 4,
+    "relations": [
+      {
+        "head": 0,
+        "tail": 1,
+        "type": "hasPart"
+      }
+    ],
+    "uncertainty": 0.0
+  },
+  "1072": {
+    "entities": [
+      {
+        "end": 1,
+        "start": 0,
+        "type": "PhysicalObject"
+      },
+      {
+        "end": 3,
+        "start": 2,
+        "type": "PhysicalObject"
+      }
+    ],
+    "impact": 2,
+    "relations": [
+      {
+        "head": 0,
+        "tail": 1,
+        "type": "hasPart"
+      }
+    ],
+    "uncertainty": 0.0
+  },
+  "112": {
+    "entities": [
+      {
+        "end": 2,
+        "start": 1,
+        "type": "PhysicalObject"
+      },
+      {
+        "end": 3,
+        "start": 2,
+        "type": "PhysicalObject"
+      },
+      {
+        "end": 4,
+        "start": 3,
+        "type": "Process"
+      },
+      {
+        "end": 5,
+        "start": 4,
+        "type": "PhysicalObject"
+      }
+    ],
+    "impact": 4,
+    "relations": [
+      {
+        "head": 0,
+        "tail": 1,
+        "type": "hasPart"
+      },
+      {
+        "head": 2,
+        "tail": 3,
+        "type": "hasParticipant"
+      }
+    ],
+    "uncertainty": 0.0
+  },
+  "113": {
+    "entities": [
+      {
+        "end": 2,
+        "start": 1,
+        "type": "PhysicalObject"
+      },
+      {
+        "end": 3,
+        "start": 2,
+        "type": "PhysicalObject"
+      },
+      {
+        "end": 4,
+        "start": 3,
+        "type": "State"
+      },
+      {
+        "end": 5,
+        "start": 4,
+        "type": "Activity"
+      }
+    ],
+    "impact": 4,
+    "relations": [
+      {
+        "head": 0,
+        "tail": 1,
+        "type": "hasPart"
+      },
+      {
+        "head": 2,
+        "tail": 3,
+        "type": "hasParticipant"
+      }
+    ],
+    "uncertainty": 0.0
+  },
+  "114": {
+    "entities": [
+      {
+        "end": 2,
+        "start": 1,
+        "type": "PhysicalObject"
+      },
+      {
+        "end": 3,
+        "start": 2,
+        "type": "PhysicalObject"
+      },
+      {
+        "end": 4,
+        "start": 3,
+        "type": "State"
+      },
+      {
+        "end": 5,
+        "start": 4,
+        "type": "Activity"
+      }
+    ],
+    "impact": 4,
+    "relations": [
+      {
+        "head": 0,
+        "tail": 1,
+        "type": "hasPart"
+      },
+      {
+        "head": 2,
+        "tail": 3,
+        "type": "hasParticipant"
+      }
+    ],
+    "uncertainty": 0.0
+  },
+  "116": {
+    "entities": [
+      {
+        "end": 4,
+        "start": 3,
+        "type": "PhysicalObject"
+      },
+      {
+        "end": 5,
+        "start": 4,
+        "type": "State"
+      }
+    ],
+    "impact": 2,
+    "relations": [],
+    "uncertainty": 0.0
+  },
+  "119": {
+    "entities": [
+      {
+        "end": 2,
+        "start": 1,
+        "type": "Activity"
+      },
+      {
+        "end": 4,
+        "start": 2,
+        "type": "PhysicalObject"
+      },
+      {
+        "end": 6,
+        "start": 5,
+        "type": "PhysicalObject"
+      }
+    ],
+    "impact": 4,
+    "relations": [
+      {
+        "head": 0,
+        "tail": 1,
+        "type": "hasParticipant"
+      },
+      {
+        "head": 1,
+        "tail": 2,
+        "type": "hasPart"
+      }
+    ],
+    "uncertainty": 0.0
+  },
+  "12": {
+    "entities": [
+      {
+        "end": 3,
+        "start": 1,
+        "type": "PhysicalObject"
+      },
+      {
+        "end": 5,
+        "start": 3,
+        "type": "State"
+      },
+      {
+        "end": 6,
+        "start": 5,
+        "type": "PhysicalObject"
+      }
+    ],
+    "impact": 5,
+    "relations": [
+      {
+        "head": 1,
+        "tail": 2,
+        "type": "hasParticipant"
+      }
+    ],
+    "uncertainty": 0.0
+  },
+  "120": {
+    "entities": [
+      {
+        "end": 2,
+        "start": 1,
+        "type": "Activity"
+      },
+      {
+        "end": 3,
+        "start": 2,
+        "type": "PhysicalObject"
+      },
+      {
+        "end": 6,
+        "start": 5,
+        "type": "PhysicalObject"
+      },
+      {
+        "end": 7,
+        "start": 6,
+        "type": "PhysicalObject"
+      }
+    ],
+    "impact": 4,
+    "relations": [
+      {
+        "head": 0,
+        "tail": 1,
+        "type": "hasParticipant"
+      },
+      {
+        "head": 1,
+        "tail": 2,
+        "type": "hasPart"
+      },
+      {
+        "head": 2,
+        "tail": 3,
+        "type": "hasPart"
+      }
+    ],
+    "uncertainty": 0.0
+  },
+  "124": {
+    "entities": [
+      {
+        "end": 2,
+        "start": 1,
+        "type": "Activity"
+      },
+      {
+        "end": 3,
+        "start": 2,
+        "type": "PhysicalObject"
+      },
+      {
+        "end": 5,
+        "start": 4,
+        "type": "PhysicalObject"
+      }
+    ],
+    "impact": 3,
+    "relations": [
+      {
+        "head": 0,
+        "tail": 1,
+        "type": "hasParticipant"
+      },
+      {
+        "head": 1,
+        "tail": 2,
+        "type": "hasPart"
+      }
+    ],
+    "uncertainty": 0.0
+  },
+  "126": {
+    "entities": [
+      {
+        "end": 3,
+        "start": 1,
+        "type": "Activity"
+      },
+      {
+        "end": 6,
+        "start": 5,
+        "type": "PhysicalObject"
+      },
+      {
+        "end": 7,
+        "start": 6,
+        "type": "PhysicalObject"
+      }
+    ],
+    "impact": 4,
+    "relations": [
+      {
+        "head": 0,
+        "tail": 1,
+        "type": "hasParticipant"
+      },
+      {
+        "head": 1,
+        "tail": 2,
+        "type": "hasPart"
+      }
+    ],
+    "uncertainty": 0.0
+  },
+  "128": {
+    "entities": [
+      {
+        "end": 3,
+        "start": 1,
+        "type": "Activity"
+      },
+      {
+        "end": 5,
+        "start": 4,
+        "type": "PhysicalObject"
+      }
+    ],
+    "impact": 3,
+    "relations": [
+      {
+        "head": 0,
+        "tail": 1,
+        "type": "hasParticipant"
+      }
+    ],
+    "uncertainty": 0.0
+  },
+  "133": {
+    "entities": [
+      {
+        "end": 3,
+        "start": 1,
+        "type": "Activity"
+      },
+      {
+        "end": 4,
+        "start": 3,
+        "type": "State"
+      },
+      {
+        "end": 6,
+        "start": 4,
+        "type": "PhysicalObject"
+      }
+    ],
+    "impact": 5,
+    "relations": [
+      {
+        "head": 0,
+        "tail": 1,
+        "type": "hasParticipant"
+      },
+      {
+        "head": 1,
+        "tail": 2,
+        "type": "hasParticipant"
+      }
+    ],
+    "uncertainty": 0.0
+  },
+  "142": {
+    "entities": [
+      {
+        "end": 3,
+        "start": 1,
+        "type": "Activity"
+      },
+      {
+        "end": 4,
+        "start": 3,
+        "type": "PhysicalObject"
+      }
+    ],
+    "impact": 3,
+    "relations": [
+      {
+        "head": 0,
+        "tail": 1,
+        "type": "hasParticipant"
+      }
+    ],
+    "uncertainty": 0.0
+  },
+  "149": {
+    "entities": [
+      {
+        "end": 3,
+        "start": 1,
+        "type": "Activity"
+      },
+      {
+        "end": 4,
+        "start": 3,
+        "type": "Process"
+      },
+      {
+        "end": 5,
+        "start": 4,
+        "type": "PhysicalObject"
+      },
+      {
+        "end": 6,
+        "start": 5,
+        "type": "State"
+      }
+    ],
+    "impact": 5,
+    "relations": [
+      {
+        "head": 0,
+        "tail": 1,
+        "type": "hasParticipant"
+      },
+      {
+        "head": 1,
+        "tail": 2,
+        "type": "hasParticipant"
+      }
+    ],
+    "uncertainty": 0.0
+  },
+  "152": {
+    "entities": [
+      {
+        "end": 3,
+        "start": 1,
+        "type": "Activity"
+      },
+      {
+        "end": 4,
+        "start": 3,
+        "type": "Process"
+      },
+      {
+        "end": 6,
+        "start": 4,
+        "type": "PhysicalObject"
+      }
+    ],
+    "impact": 5,
+    "relations": [
+      {
+        "head": 0,
+        "tail": 1,
+        "type": "hasParticipant"
+      },
+      {
+        "head": 1,
+        "tail": 2,
+        "type": "hasParticipant"
+      }
+    ],
+    "uncertainty": 0.0
+  },
+  "154": {
+    "entities": [
+      {
+        "end": 3,
+        "start": 1,
+        "type": "Activity"
+      },
+      {
+        "end": 4,
+        "start": 3,
+        "type": "Process"
+      },
+      {
+        "end": 5,
+        "start": 4,
+        "type": "PhysicalObject"
+      }
+    ],
+    "impact": 4,
+    "relations": [
+      {
+        "head": 0,
+        "tail": 1,
+        "type": "hasParticipant"
+      },
+      {
+        "head": 1,
+        "tail": 2,
+        "type": "hasParticipant"
+      }
+    ],
+    "uncertainty": 0.0
+  },
+  "155": {
+    "entities": [
+      {
+        "end": 3,
+        "start": 1,
+        "type": "Activity"
+      },
+      {
+        "end": 4,
+        "start": 3,
+        "type": "Process"
+      },
+      {
+        "end": 6,
+        "start": 4,
+        "type": "PhysicalObject"
+      }
+    ],
+    "impact": 5,
+    "relations": [
+      {
+        "head": 0,
+        "tail": 1,
+        "type": "hasParticipant"
+      },
+      {
+        "head": 1,
+        "tail": 2,
+        "type": "hasParticipant"
+      }
+    ],
+    "uncertainty": 0.0
+  },
+  "156": {
+    "entities": [
+      {
+        "end": 3,
+        "start": 1,
+        "type": "Activity"
+      },
+      {
+        "end": 6,
+        "start": 5,
+        "type": "PhysicalObject"
+      }
+    ],
+    "impact": 3,
+    "relations": [
+      {
+        "head": 0,
+        "tail": 1,
+        "type": "hasParticipant"
+      }
+    ],
+    "uncertainty": 0.0
+  },
+  "157": {
+    "entities": [
+      {
+        "end": 3,
+        "start": 1,
+        "type": "Activity"
+      },
+      {
+        "end": 7,
+        "start": 5,
+        "type": "PhysicalObject"
+      }
+    ],
+    "impact": 4,
+    "relations": [
+      {
+        "head": 0,
+        "tail": 1,
+        "type": "hasParticipant"
+      }
+    ],
+    "uncertainty": 0.0
+  },
+  "160": {
+    "entities": [
+      {
+        "end": 3,
+        "start": 1,
+        "type": "Activity"
+      },
+      {
+        "end": 7,
+        "start": 5,
+        "type": "PhysicalObject"
+      },
+      {
+        "end": 8,
+        "start": 7,
+        "type": "Process"
+      }
+    ],
+    "impact": 5,
+    "relations": [
+      {
+        "head": 0,
+        "tail": 1,
+        "type": "hasParticipant"
+      }
+    ],
+    "uncertainty": 0.0
+  },
+  "162": {
+    "entities": [
+      {
+        "end": 3,
+        "start": 1,
+        "type": "Activity"
+      },
+      {
+        "end": 10,
+        "start": 9,
+        "type": "PhysicalObject"
+      }
+    ],
+    "impact": 3,
+    "relations": [
+      {
+        "head": 0,
+        "tail": 1,
+        "type": "hasParticipant"
+      }
+    ],
+    "uncertainty": 0.0
+  },
+  "163": {
+    "entities": [
+      {
+        "end": 3,
+        "start": 1,
+        "type": "Activity"
+      },
+      {
+        "end": 9,
+        "start": 8,
+        "type": "PhysicalObject"
+      }
+    ],
+    "impact": 3,
+    "relations": [
+      {
+        "head": 0,
+        "tail": 1,
+        "type": "hasParticipant"
+      }
+    ],
+    "uncertainty": 0.0
+  },
+  "166": {
+    "entities": [
+      {
+        "end": 3,
+        "start": 1,
+        "type": "Activity"
+      },
+      {
+        "end": 8,
+        "start": 7,
+        "type": "PhysicalObject"
+      }
+    ],
+    "impact": 3,
+    "relations": [
+      {
+        "head": 0,
+        "tail": 1,
+        "type": "hasParticipant"
+      }
+    ],
+    "uncertainty": 0.0
+  },
+  "17": {
+    "entities": [
+      {
+        "end": 2,
+        "start": 1,
+        "type": "PhysicalObject"
+      },
+      {
+        "end": 3,
+        "start": 2,
+        "type": "Process"
+      },
+      {
+        "end": 7,
+        "start": 6,
+        "type": "PhysicalObject"
+      }
+    ],
+    "impact": 3,
+    "relations": [
+      {
+        "head": 1,
+        "tail": 2,
+        "type": "hasParticipant"
+      }
+    ],
+    "uncertainty": 0.0
+  },
+  "172": {
+    "entities": [
+      {
+        "end": 3,
+        "start": 1,
+        "type": "Activity"
+      },
+      {
+        "end": 7,
+        "start": 5,
+        "type": "PhysicalObject"
+      }
+    ],
+    "impact": 4,
+    "relations": [
+      {
+        "head": 0,
+        "tail": 1,
+        "type": "hasParticipant"
+      }
+    ],
+    "uncertainty": 0.0
+  },
+  "177": {
+    "entities": [
+      {
+        "end": 3,
+        "start": 1,
+        "type": "Activity"
+      },
+      {
+        "end": 4,
+        "start": 3,
+        "type": "State"
+      },
+      {
+        "end": 8,
+        "start": 6,
+        "type": "PhysicalObject"
+      },
+      {
+        "end": 9,
+        "start": 8,
+        "type": "PhysicalObject"
+      }
+    ],
+    "impact": 6,
+    "relations": [
+      {
+        "head": 0,
+        "tail": 1,
+        "type": "hasParticipant"
+      },
+      {
+        "head": 1,
+        "tail": 2,
+        "type": "hasParticipant"
+      },
+      {
+        "head": 2,
+        "tail": 3,
+        "type": "hasPart"
+      }
+    ],
+    "uncertainty": 0.0
+  },
+  "178": {
+    "entities": [
+      {
+        "end": 3,
+        "start": 1,
+        "type": "Activity"
+      },
+      {
+        "end": 4,
+        "start": 3,
+        "type": "State"
+      },
+      {
+        "end": 7,
+        "start": 6,
+        "type": "PhysicalObject"
+      }
+    ],
+    "impact": 4,
+    "relations": [
+      {
+        "head": 0,
+        "tail": 1,
+        "type": "hasParticipant"
+      },
+      {
+        "head": 1,
+        "tail": 2,
+        "type": "hasParticipant"
+      }
+    ],
+    "uncertainty": 0.0
+  },
+  "18": {
+    "entities": [
+      {
+        "end": 2,
+        "start": 1,
+        "type": "PhysicalObject"
+      },
+      {
+        "end": 3,
+        "start": 2,
+        "type": "Process"
+      },
+      {
+        "end": 5,
+        "start": 4,
+        "type": "PhysicalObject"
+      }
+    ],
+    "impact": 3,
+    "relations": [
+      {
+        "head": 1,
+        "tail": 2,
+        "type": "hasParticipant"
+      }
+    ],
+    "uncertainty": 0.0
+  },
+  "185": {
+    "entities": [
+      {
+        "end": 3,
+        "start": 1,
+        "type": "Activity"
+      },
+      {
+        "end": 4,
+        "start": 3,
+        "type": "State"
+      },
+      {
+        "end": 7,
+        "start": 6,
+        "type": "PhysicalObject"
+      }
+    ],
+    "impact": 4,
+    "relations": [
+      {
+        "head": 0,
+        "tail": 1,
+        "type": "hasParticipant"
+      },
+      {
+        "head": 1,
+        "tail": 2,
+        "type": "hasParticipant"
+      }
+    ],
+    "uncertainty": 0.0
+  },
+  "189": {
+    "entities": [
+      {
+        "end": 2,
+        "start": 1,
+        "type": "Activity"
+      },
+      {
+        "end": 6,
+        "start": 5,
+        "type": "PhysicalObject"
+      }
+    ],
+    "impact": 2,
+    "relations": [
+      {
+        "head": 0,
+        "tail": 1,
+        "type": "hasParticipant"
+      }
+    ],
+    "uncertainty": 0.0
+  },
+  "194": {
+    "entities": [
+      {
+        "end": 2,
+        "start": 1,
+        "type": "Activity"
+      },
+      {
+        "end": 3,
+        "start": 2,
+        "type": "PhysicalObject"
+      }
+    ],
+    "impact": 2,
+    "relations": [
+      {
+        "head": 0,
+        "tail": 1,
+        "type": "hasParticipant"
+      }
+    ],
+    "uncertainty": 0.0
+  },
+  "198": {
+    "entities": [
+      {
+        "end": 2,
+        "start": 1,
+        "type": "Activity"
+      },
+      {
+        "end": 4,
+        "start": 3,
+        "type": "Activity"
+      },
+      {
+        "end": 7,
+        "start": 5,
+        "type": "PhysicalObject"
+      }
+    ],
+    "impact": 4,
+    "relations": [
+      {
+        "head": 0,
+        "tail": 1,
+        "type": "isA"
+      },
+      {
+        "head": 1,
+        "tail": 2,
+        "type": "hasParticipant"
+      }
+    ],
+    "uncertainty": 0.0
+  },
+  "205": {
+    "entities": [
+      {
+        "end": 3,
+        "start": 2,
+        "type": "State"
+      }
+    ],
+    "impact": 1,
+    "relations": [],
+    "uncertainty": 0.0
+  },
+  "217": {
+    "entities": [
+      {
+        "end": 2,
+        "start": 1,
+        "type": "Property"
+      },
+      {
+        "end": 5,
+        "start": 3,
+        "type": "PhysicalObject"
+      }
+    ],
+    "impact": 3,
+    "relations": [],
+    "uncertainty": 0.0
+  },
+  "227": {
+    "entities": [
+      {
+        "end": 2,
+        "start": 1,
+        "type": "State"
+      }
+    ],
+    "impact": 1,
+    "relations": [],
+    "uncertainty": 0.0
+  },
+  "232": {
+    "entities": [
+      {
+        "end": 2,
+        "start": 1,
+        "type": "Property"
+      },
+      {
+        "end": 4,
+        "start": 3,
+        "type": "PhysicalObject"
+      }
+    ],
+    "impact": 2,
+    "relations": [],
+    "uncertainty": 0.0
+  },
+  "236": {
+    "entities": [
+      {
+        "end": 3,
+        "start": 1,
+        "type": "PhysicalObject"
+      },
+      {
+        "end": 4,
+        "start": 3,
+        "type": "State"
+      }
+    ],
+    "impact": 3,
+    "relations": [],
+    "uncertainty": 0.0
+  },
+  "237": {
+    "entities": [
+      {
+        "end": 3,
+        "start": 1,
+        "type": "PhysicalObject"
+      },
+      {
+        "end": 4,
+        "start": 3,
+        "type": "State"
+      },
+      {
+        "end": 6,
+        "start": 4,
+        "type": "Activity"
+      }
+    ],
+    "impact": 5,
+    "relations": [
+      {
+        "head": 1,
+        "tail": 2,
+        "type": "hasParticipant"
+      }
+    ],
+    "uncertainty": 0.0
+  },
+  "240": {
+    "entities": [
+      {
+        "end": 2,
+        "start": 1,
+        "type": "State"
+      },
+      {
+        "end": 5,
+        "start": 4,
+        "type": "PhysicalObject"
+      }
+    ],
+    "impact": 2,
+    "relations": [
+      {
+        "head": 0,
+        "tail": 1,
+        "type": "hasParticipant"
+      }
+    ],
+    "uncertainty": 0.0
+  },
+  "250": {
+    "entities": [
+      {
+        "end": 2,
+        "start": 1,
+        "type": "PhysicalObject"
+      },
+      {
+        "end": 3,
+        "start": 2,
+        "type": "PhysicalObject"
+      },
+      {
+        "end": 4,
+        "start": 3,
+        "type": "PhysicalObject"
+      },
+      {
+        "end": 5,
+        "start": 4,
+        "type": "PhysicalObject"
+      },
+      {
+        "end": 6,
+        "start": 5,
+        "type": "Process"
+      }
+    ],
+    "impact": 5,
+    "relations": [
+      {
+        "head": 0,
+        "tail": 1,
+        "type": "hasPart"
+      },
+      {
+        "head": 1,
+        "tail": 2,
+        "type": "hasPart"
+      },
+      {
+        "head": 2,
+        "tail": 3,
+        "type": "hasPart"
+      }
+    ],
+    "uncertainty": 0.0
+  },
+  "270": {
+    "entities": [
+      {
+        "end": 2,
+        "start": 1,
+        "type": "Activity"
+      },
+      {
+        "end": 3,
+        "start": 2,
+        "type": "State"
+      }
+    ],
+    "impact": 2,
+    "relations": [
+      {
+        "head": 0,
+        "tail": 1,
+        "type": "hasParticipant"
+      }
+    ],
+    "uncertainty": 0.0
+  },
+  "271": {
+    "entities": [
+      {
+        "end": 2,
+        "start": 1,
+        "type": "Activity"
+      },
+      {
+        "end": 3,
+        "start": 2,
+        "type": "State"
+      }
+    ],
+    "impact": 2,
+    "relations": [
+      {
+        "head": 0,
+        "tail": 1,
+        "type": "hasParticipant"
+      }
+    ],
+    "uncertainty": 0.0
+  },
+  "282": {
+    "entities": [
+      {
+        "end": 3,
+        "start": 2,
+        "type": "PhysicalObject"
+      },
+      {
+        "end": 5,
+        "start": 4,
+        "type": "Property"
+      },
+      {
+        "end": 6,
+        "start": 5,
+        "type": "Activity"
+      }
+    ],
+    "impact": 3,
+    "relations": [
+      {
+        "head": 0,
+        "tail": 1,
+        "type": "hasProperty"
+      }
+    ],
+    "uncertainty": 0.0
+  },
+  "287": {
+    "entities": [
+      {
+        "end": 1,
+        "start": 0,
+        "type": "Activity"
+      },
+      {
+        "end": 4,
+        "start": 3,
+        "type": "Activity"
+      }
+    ],
+    "impact": 2,
+    "relations": [
+      {
+        "head": 0,
+        "tail": 1,
+        "type": "isA"
+      }
+    ],
+    "uncertainty": 0.0
+  },
+  "293": {
+    "entities": [
+      {
+        "end": 1,
+        "start": 0,
+        "type": "Activity"
+      },
+      {
+        "end": 4,
+        "start": 3,
+        "type": "PhysicalObject"
+      },
+      {
+        "end": 6,
+        "start": 4,
+        "type": "PhysicalObject"
+      }
+    ],
+    "impact": 4,
+    "relations": [
+      {
+        "head": 0,
+        "tail": 1,
+        "type": "hasParticipant"
+      },
+      {
+        "head": 1,
+        "tail": 2,
+        "type": "hasPart"
+      }
+    ],
+    "uncertainty": 0.0
+  },
+  "294": {
+    "entities": [
+      {
+        "end": 1,
+        "start": 0,
+        "type": "Activity"
+      }
+    ],
+    "impact": 1,
+    "relations": [],
+    "uncertainty": 0.0
+  },
+  "298": {
+    "entities": [
+      {
+        "end": 2,
+        "start": 1,
+        "type": "PhysicalObject"
+      }
+    ],
+    "impact": 1,
+    "relations": [],
+    "uncertainty": 0.0
+  },
+  "304": {
+    "entities": [
+      {
+        "end": 4,
+        "start": 3,
+        "type": "Process"
+      },
+      {
+        "end": 5,
+        "start": 4,
+        "type": "State"
+      },
+      {
+        "end": 7,
+        "start": 5,
+        "type": "PhysicalObject"
+      }
+    ],
+    "impact": 4,
+    "relations": [
+      {
+        "head": 1,
+        "tail": 2,
+        "type": "hasParticipant"
+      }
+    ],
+    "uncertainty": 0.0
+  },
+  "317": {
+    "entities": [
+      {
+        "end": 1,
+        "start": 0,
+        "type": "PhysicalObject"
+      },
+      {
+        "end": 4,
+        "start": 3,
+        "type": "Activity"
+      },
+      {
+        "end": 5,
+        "start": 4,
+        "type": "PhysicalObject"
+      },
+      {
+        "end": 6,
+        "start": 5,
+        "type": "State"
+      }
+    ],
+    "impact": 4,
+    "relations": [
+      {
+        "head": 1,
+        "tail": 2,
+        "type": "hasParticipant"
+      }
+    ],
+    "uncertainty": 0.0
+  },
+  "318": {
+    "entities": [
+      {
+        "end": 1,
+        "start": 0,
+        "type": "PhysicalObject"
+      },
+      {
+        "end": 2,
+        "start": 1,
+        "type": "Property"
+      }
+    ],
+    "impact": 2,
+    "relations": [
+      {
+        "head": 0,
+        "tail": 1,
+        "type": "hasProperty"
+      }
+    ],
+    "uncertainty": 0.0
+  },
+  "319": {
+    "entities": [
+      {
+        "end": 1,
+        "start": 0,
+        "type": "Activity"
+      },
+      {
+        "end": 2,
+        "start": 1,
+        "type": "PhysicalObject"
+      },
+      {
+        "end": 3,
+        "start": 2,
+        "type": "PhysicalObject"
+      },
+      {
+        "end": 4,
+        "start": 3,
+        "type": "State"
+      },
+      {
+        "end": 7,
+        "start": 6,
+        "type": "PhysicalObject"
+      }
+    ],
+    "impact": 5,
+    "relations": [
+      {
+        "head": 0,
+        "tail": 1,
+        "type": "hasParticipant"
+      },
+      {
+        "head": 1,
+        "tail": 2,
+        "type": "hasPart"
+      },
+      {
+        "head": 3,
+        "tail": 4,
+        "type": "hasParticipant"
+      }
+    ],
+    "uncertainty": 0.0
+  },
+  "322": {
+    "entities": [
+      {
+        "end": 1,
+        "start": 0,
+        "type": "Activity"
+      },
+      {
+        "end": 2,
+        "start": 1,
+        "type": "PhysicalObject"
+      },
+      {
+        "end": 3,
+        "start": 2,
+        "type": "PhysicalObject"
+      },
+      {
+        "end": 4,
+        "start": 3,
+        "type": "PhysicalObject"
+      }
+    ],
+    "impact": 4,
+    "relations": [
+      {
+        "head": 0,
+        "tail": 1,
+        "type": "hasParticipant"
+      },
+      {
+        "head": 1,
+        "tail": 2,
+        "type": "hasPart"
+      },
+      {
+        "head": 2,
+        "tail": 3,
+        "type": "hasPart"
+      }
+    ],
+    "uncertainty": 0.0
+  },
+  "339": {
+    "entities": [
+      {
+        "end": 2,
+        "start": 1,
+        "type": "State"
+      },
+      {
+        "end": 5,
+        "start": 4,
+        "type": "PhysicalObject"
+      },
+      {
+        "end": 6,
+        "start": 5,
+        "type": "PhysicalObject"
+      }
+    ],
+    "impact": 3,
+    "relations": [
+      {
+        "head": 0,
+        "tail": 1,
+        "type": "hasParticipant"
+      },
+      {
+        "head": 1,
+        "tail": 2,
+        "type": "hasPart"
+      }
+    ],
+    "uncertainty": 0.0
+  },
+  "340": {
+    "entities": [
+      {
+        "end": 1,
+        "start": 0,
+        "type": "Activity"
+      },
+      {
+        "end": 5,
+        "start": 3,
+        "type": "PhysicalObject"
+      }
+    ],
+    "impact": 3,
+    "relations": [
+      {
+        "head": 0,
+        "tail": 1,
+        "type": "hasParticipant"
+      }
+    ],
+    "uncertainty": 0.0
+  },
+  "343": {
+    "entities": [
+      {
+        "end": 4,
+        "start": 3,
+        "type": "PhysicalObject"
+      },
+      {
+        "end": 5,
+        "start": 4,
+        "type": "State"
+      }
+    ],
+    "impact": 2,
+    "relations": [],
+    "uncertainty": 0.0
+  },
+  "345": {
+    "entities": [
+      {
+        "end": 3,
+        "start": 2,
+        "type": "PhysicalObject"
+      },
+      {
+        "end": 4,
+        "start": 3,
+        "type": "PhysicalObject"
+      }
+    ],
+    "impact": 2,
+    "relations": [
+      {
+        "head": 0,
+        "tail": 1,
+        "type": "hasPart"
+      }
+    ],
+    "uncertainty": 0.0
+  },
+  "346": {
+    "entities": [
+      {
+        "end": 2,
+        "start": 1,
+        "type": "Activity"
+      },
+      {
+        "end": 5,
+        "start": 4,
+        "type": "PhysicalObject"
+      }
+    ],
+    "impact": 2,
+    "relations": [
+      {
+        "head": 0,
+        "tail": 1,
+        "type": "hasParticipant"
+      }
+    ],
+    "uncertainty": 0.0
+  },
+  "362": {
+    "entities": [
+      {
+        "end": 2,
+        "start": 1,
+        "type": "Activity"
+      },
+      {
+        "end": 3,
+        "start": 2,
+        "type": "PhysicalObject"
+      },
+      {
+        "end": 4,
+        "start": 3,
+        "type": "Property"
+      }
+    ],
+    "impact": 3,
+    "relations": [
+      {
+        "head": 0,
+        "tail": 1,
+        "type": "hasParticipant"
+      },
+      {
+        "head": 1,
+        "tail": 2,
+        "type": "hasProperty"
+      }
+    ],
+    "uncertainty": 0.0
+  },
+  "365": {
+    "entities": [
+      {
+        "end": 1,
+        "start": 0,
+        "type": "PhysicalObject"
+      },
+      {
+        "end": 3,
+        "start": 2,
+        "type": "PhysicalObject"
+      },
+      {
+        "end": 5,
+        "start": 4,
+        "type": "State"
+      }
+    ],
+    "impact": 3,
+    "relations": [
+      {
+        "head": 0,
+        "tail": 1,
+        "type": "hasPart"
+      }
+    ],
+    "uncertainty": 0.0
+  },
+  "37": {
+    "entities": [
+      {
+        "end": 4,
+        "start": 3,
+        "type": "PhysicalObject"
+      },
+      {
+        "end": 5,
+        "start": 4,
+        "type": "PhysicalObject"
+      },
+      {
+        "end": 6,
+        "start": 5,
+        "type": "Activity"
+      }
+    ],
+    "impact": 3,
+    "relations": [
+      {
+        "head": 0,
+        "tail": 1,
+        "type": "hasPart"
+      }
+    ],
+    "uncertainty": 0.083333
+  },
+  "372": {
+    "entities": [
+      {
+        "end": 2,
+        "start": 1,
+        "type": "Activity"
+      },
+      {
+        "end": 3,
+        "start": 2,
+        "type": "PhysicalObject"
+      },
+      {
+        "end": 4,
+        "start": 3,
+        "type": "PhysicalObject"
+      },
+      {
+        "end": 5,
+        "start": 4,
+        "type": "Process"
+      }
+    ],
+    "impact": 4,
+    "relations": [
+      {
+        "head": 0,
+        "tail": 1,
+        "type": "hasParticipant"
+      },
+      {
+        "head": 1,
+        "tail": 2,
+        "type": "hasPart"
+      }
+    ],
+    "uncertainty": 0.0
+  },
+  "374": {
+    "entities": [
+      {
+        "end": 2,
+        "start": 1,
+        "type": "Activity"
+      },
+      {
+        "end": 4,
+        "start": 3,
+        "type": "PhysicalObject"
+      }
+    ],
+    "impact": 2,
+    "relations": [
+      {
+        "head": 0,
+        "tail": 1,
+        "type": "hasParticipant"
+      }
+    ],
+    "uncertainty": 0.0
+  },
+  "376": {
+    "entities": [
+      {
+        "end": 2,
+        "start": 1,
+        "type": "Activity"
+      },
+      {
+        "end": 3,
+        "start": 2,
+        "type": "State"
+      },
+      {
+        "end": 6,
+        "start": 5,
+        "type": "PhysicalObject"
+      }
+    ],
+    "impact": 3,
+    "relations": [
+      {
+        "head": 0,
+        "tail": 1,
+        "type": "hasParticipant"
+      },
+      {
+        "head": 1,
+        "tail": 2,
+        "type": "hasParticipant"
+      }
+    ],
+    "uncertainty": 0.0
+  },
+  "383": {
+    "entities": [
+      {
+        "end": 4,
+        "start": 3,
+        "type": "PhysicalObject"
+      }
+    ],
+    "impact": 1,
+    "relations": [],
+    "uncertainty": 0.0
+  },
+  "387": {
+    "entities": [
+      {
+        "end": 1,
+        "start": 0,
+        "type": "PhysicalObject"
+      },
+      {
+        "end": 2,
+        "start": 1,
+        "type": "Process"
+      }
+    ],
+    "impact": 2,
+    "relations": [],
+    "uncertainty": 0.0
+  },
+  "389": {
+    "entities": [
+      {
+        "end": 2,
+        "start": 0,
+        "type": "Activity"
+      },
+      {
+        "end": 3,
+        "start": 2,
+        "type": "Process"
+      },
+      {
+        "end": 4,
+        "start": 3,
+        "type": "PhysicalObject"
+      },
+      {
+        "end": 5,
+        "start": 4,
+        "type": "PhysicalObject"
+      }
+    ],
+    "impact": 5,
+    "relations": [
+      {
+        "head": 0,
+        "tail": 1,
+        "type": "hasParticipant"
+      },
+      {
+        "head": 1,
+        "tail": 2,
+        "type": "hasParticipant"
+      },
+      {
+        "head": 2,
+        "tail": 3,
+        "type": "hasPart"
+      }
+    ],
+    "uncertainty": 0.0
+  },
+  "392": {
+    "entities": [
+      {
+        "end": 1,
+        "start": 0,
+        "type": "Activity"
+      },
+      {
+        "end": 2,
+        "start": 1,
+        "type": "State"
+      }
+    ],
+    "impact": 2,
+    "relations": [
+      {
+        "head": 0,
+        "tail": 1,
+        "type": "hasParticipant"
+      }
+    ],
+    "uncertainty": 0.0
+  },
+  "403": {
+    "entities": [
+      {
+        "end": 2,
+        "start": 0,
+        "type": "State"
+      },
+      {
+        "end": 4,
+        "start": 3,
+        "type": "PhysicalObject"
+      }
+    ],
+    "impact": 3,
+    "relations": [
+      {
+        "head": 0,
+        "tail": 1,
+        "type": "hasParticipant"
+      }
+    ],
+    "uncertainty": 0.0
+  },
+  "408": {
+    "entities": [
+      {
+        "end": 2,
+        "start": 1,
+        "type": "Activity"
+      },
+      {
+        "end": 4,
+        "start": 2,
+        "type": "PhysicalObject"
+      },
+      {
+        "end": 6,
+        "start": 4,
+        "type": "PhysicalObject"
+      }
+    ],
+    "impact": 5,
+    "relations": [
+      {
+        "head": 0,
+        "tail": 1,
+        "type": "hasParticipant"
+      },
+      {
+        "head": 1,
+        "tail": 2,
+        "type": "hasPart"
+      }
+    ],
+    "uncertainty": 0.0
+  },
+  "409": {
+    "entities": [
+      {
+        "end": 2,
+        "start": 1,
+        "type": "PhysicalObject"
+      },
+      {
+        "end": 3,
+        "start": 2,
+        "type": "Activity"
+      },
+      {
+        "end": 5,
+        "start": 4,
+        "type": "Process"
+      }
+    ],
+    "impact": 3,
+    "relations": [
+      {
+        "head": 1,
+        "tail": 2,
+        "type": "hasParticipant"
+      }
+    ],
+    "uncertainty": 0.0
+  },
+  "41": {
+    "entities": [
+      {
+        "end": 3,
+        "start": 2,
+        "type": "PhysicalObject"
+      }
+    ],
+    "impact": 1,
+    "relations": [],
+    "uncertainty": 0.0
+  },
+  "419": {
+    "entities": [
+      {
+        "end": 2,
+        "start": 1,
+        "type": "Activity"
+      },
+      {
+        "end": 3,
+        "start": 2,
+        "type": "PhysicalObject"
+      },
+      {
+        "end": 5,
+        "start": 3,
+        "type": "PhysicalObject"
+      }
+    ],
+    "impact": 4,
+    "relations": [
+      {
+        "head": 0,
+        "tail": 1,
+        "type": "hasParticipant"
+      },
+      {
+        "head": 1,
+        "tail": 2,
+        "type": "hasPart"
+      }
+    ],
+    "uncertainty": 0.0
+  },
+  "421": {
+    "entities": [
+      {
+        "end": 2,
+        "start": 1,
+        "type": "Process"
+      },
+      {
+        "end": 3,
+        "start": 2,
+        "type": "PhysicalObject"
+      },
+      {
+        "end": 5,
+        "start": 3,
+        "type": "PhysicalObject"
+      }
+    ],
+    "impact": 4,
+    "relations": [
+      {
+        "head": 0,
+        "tail": 1,
+        "type": "hasParticipant"
+      },
+      {
+        "head": 1,
+        "tail": 2,
+        "type": "hasPart"
+      }
+    ],
+    "uncertainty": 0.0
+  },
+  "427": {
+    "entities": [
+      {
+        "end": 2,
+        "start": 1,
+        "type": "Activity"
+      },
+      {
+        "end": 3,
+        "start": 2,
+        "type": "State"
+      },
+      {
+        "end": 4,
+        "start": 3,
+        "type": "PhysicalObject"
+      },
+      {
+        "end": 5,
+        "start": 4,
+        "type": "State"
+      }
+    ],
+    "impact": 4,
+    "relations": [
+      {
+        "head": 0,
+        "tail": 1,
+        "type": "hasParticipant"
+      },
+      {
+        "head": 1,
+        "tail": 2,
+        "type": "hasParticipant"
+      }
+    ],
+    "uncertainty": 0.0
+  },
+  "432": {
+    "entities": [
+      {
+        "end": 6,
+        "start": 4,
+        "type": "Activity"
+      },
+      {
+        "end": 7,
+        "start": 6,
+        "type": "PhysicalObject"
+      },
+      {
+        "end": 8,
+        "start": 7,
+        "type": "Process"
+      }
+    ],
+    "impact": 4,
+    "relations": [
+      {
+        "head": 0,
+        "tail": 1,
+        "type": "hasParticipant"
+      }
+    ],
+    "uncertainty": 0.0
+  },
+  "435": {
+    "entities": [
+      {
+        "end": 2,
+        "start": 1,
+        "type": "Activity"
+      },
+      {
+        "end": 3,
+        "start": 2,
+        "type": "PhysicalObject"
+      },
+      {
+        "end": 4,
+        "start": 3,
+        "type": "Activity"
+      }
+    ],
+    "impact": 3,
+    "relations": [
+      {
+        "head": 0,
+        "tail": 1,
+        "type": "hasParticipant"
+      }
+    ],
+    "uncertainty": 0.0
+  },
+  "44": {
+    "entities": [
+      {
+        "end": 3,
+        "start": 2,
+        "type": "PhysicalObject"
+      },
+      {
+        "end": 5,
+        "start": 3,
+        "type": "State"
+      }
+    ],
+    "impact": 3,
+    "relations": [],
+    "uncertainty": 0.166667
+  },
+  "443": {
+    "entities": [
+      {
+        "end": 2,
+        "start": 1,
+        "type": "Activity"
+      },
+      {
+        "end": 4,
+        "start": 3,
+        "type": "Activity"
+      },
+      {
+        "end": 6,
+        "start": 5,
+        "type": "State"
+      }
+    ],
+    "impact": 3,
+    "relations": [
+      {
+        "head": 0,
+        "tail": 1,
+        "type": "isA"
+      },
+      {
+        "head": 1,
+        "tail": 2,
+        "type": "hasParticipant"
+      }
+    ],
+    "uncertainty": 0.0
+  },
+  "446": {
+    "entities": [
+      {
+        "end": 3,
+        "start": 1,
+        "type": "PhysicalObject"
+      },
+      {
+        "end": 4,
+        "start": 3,
+        "type": "State"
+      },
+      {
+        "end": 6,
+        "start": 5,
+        "type": "Process"
+      }
+    ],
+    "impact": 4,
+    "relations": [],
+    "uncertainty": 0.0
+  },
+  "450": {
+    "entities": [
+      {
+        "end": 2,
+        "start": 1,
+        "type": "Activity"
+      },
+      {
+        "end": 3,
+        "start": 2,
+        "type": "PhysicalObject"
+      },
+      {
+        "end": 4,
+        "start": 3,
+        "type": "State"
+      }
+    ],
+    "impact": 3,
+    "relations": [
+      {
+        "head": 0,
+        "tail": 1,
+        "type": "hasParticipant"
+      }
+    ],
+    "uncertainty": 0.0
+  },
+  "454": {
+    "entities": [
+      {
+        "end": 2,
+        "start": 1,
+        "type": "Activity"
+      },
+      {
+        "end": 4,
+        "start": 3,
+        "type": "Activity"
+      },
+      {
+        "end": 5,
+        "start": 4,
+        "type": "PhysicalObject"
+      },
+      {
+        "end": 6,
+        "start": 5,
+        "type": "State"
+      },
+      {
+        "end": 7,
+        "start": 6,
+        "type": "Activity"
+      }
+    ],
+    "impact": 5,
+    "relations": [
+      {
+        "head": 0,
+        "tail": 1,
+        "type": "isA"
+      },
+      {
+        "head": 1,
+        "tail": 2,
+        "type": "hasParticipant"
+      },
+      {
+        "head": 3,
+        "tail": 4,
+        "type": "hasParticipant"
+      }
+    ],
+    "uncertainty": 0.0
+  },
+  "456": {
+    "entities": [
+      {
+        "end": 2,
+        "start": 1,
+        "type": "PhysicalObject"
+      },
+      {
+        "end": 5,
+        "start": 4,
+        "type": "PhysicalObject"
+      },
+      {
+        "end": 7,
+        "start": 5,
+        "type": "Activity"
+      }
+    ],
+    "impact": 4,
+    "relations": [
+      {
+        "head": 0,
+        "tail": 1,
+        "type": "hasPart"
+      }
+    ],
+    "uncertainty": 0.0
+  },
+  "458": {
+    "entities": [
+      {
+        "end": 2,
+        "start": 1,
+        "type": "PhysicalObject"
+      },
+      {
+        "end": 4,
+        "start": 3,
+        "type": "State"
+      },
+      {
+        "end": 6,
+        "start": 5,
+        "type": "State"
+      }
+    ],
+    "impact": 3,
+    "relations": [
+      {
+        "head": 1,
+        "tail": 2,
+        "type": "isA"
+      }
+    ],
+    "uncertainty": 0.0
+  },
+  "465": {
+    "entities": [
+      {
+        "end": 1,
+        "start": 0,
+        "type": "PhysicalObject"
+      },
+      {
+        "end": 2,
+        "start": 1,
+        "type": "PhysicalObject"
+      },
+      {
+        "end": 4,
+        "start": 3,
+        "type": "State"
+      }
+    ],
+    "impact": 3,
+    "relations": [
+      {
+        "head": 0,
+        "tail": 1,
+        "type": "hasPart"
+      }
+    ],
+    "uncertainty": 0.0
+  },
+  "466": {
+    "entities": [
+      {
+        "end": 2,
+        "start": 0,
+        "type": "Activity"
+      },
+      {
+        "end": 5,
+        "start": 4,
+        "type": "PhysicalObject"
+      },
+      {
+        "end": 6,
+        "start": 5,
+        "type": "State"
+      }
+    ],
+    "impact": 4,
+    "relations": [
+      {
+        "head": 0,
+        "tail": 1,
+        "type": "hasParticipant"
+      }
+    ],
+    "uncertainty": 0.0
+  },
+  "467": {
+    "entities": [
+      {
+        "end": 1,
+        "start": 0,
+        "type": "PhysicalObject"
+      },
+      {
+        "end": 3,
+        "start": 2,
+        "type": "PhysicalObject"
+      },
+      {
+        "end": 5,
+        "start": 4,
+        "type": "State"
+      }
+    ],
+    "impact": 3,
+    "relations": [
+      {
+        "head": 0,
+        "tail": 1,
+        "type": "hasPart"
+      }
+    ],
+    "uncertainty": 0.0
+  },
+  "471": {
+    "entities": [
+      {
+        "end": 1,
+        "start": 0,
+        "type": "Activity"
+      },
+      {
+        "end": 6,
+        "start": 5,
+        "type": "PhysicalObject"
+      },
+      {
+        "end": 7,
+        "start": 6,
+        "type": "PhysicalObject"
+      }
+    ],
+    "impact": 3,
+    "relations": [
+      {
+        "head": 0,
+        "tail": 1,
+        "type": "hasParticipant"
+      },
+      {
+        "head": 1,
+        "tail": 2,
+        "type": "hasPart"
+      }
+    ],
+    "uncertainty": 0.0
+  },
+  "475": {
+    "entities": [
+      {
+        "end": 2,
+        "start": 0,
+        "type": "PhysicalObject"
+      },
+      {
+        "end": 4,
+        "start": 3,
+        "type": "PhysicalObject"
+      },
+      {
+        "end": 6,
+        "start": 5,
+        "type": "State"
+      }
+    ],
+    "impact": 4,
+    "relations": [
+      {
+        "head": 0,
+        "tail": 1,
+        "type": "hasPart"
+      }
+    ],
+    "uncertainty": 0.0
+  },
+  "478": {
+    "entities": [
+      {
+        "end": 2,
+        "start": 1,
+        "type": "Activity"
+      },
+      {
+        "end": 3,
+        "start": 2,
+        "type": "PhysicalObject"
+      },
+      {
+        "end": 5,
+        "start": 3,
+        "type": "PhysicalObject"
+      }
+    ],
+    "impact": 4,
+    "relations": [
+      {
+        "head": 0,
+        "tail": 1,
+        "type": "hasParticipant"
+      },
+      {
+        "head": 1,
+        "tail": 2,
+        "type": "hasPart"
+      }
+    ],
+    "uncertainty": 0.0
+  },
+  "481": {
+    "entities": [
+      {
+        "end": 2,
+        "start": 1,
+        "type": "PhysicalObject"
+      },
+      {
+        "end": 3,
+        "start": 2,
+        "type": "PhysicalObject"
+      },
+      {
+        "end": 5,
+        "start": 4,
+        "type": "State"
+      }
+    ],
+    "impact": 3,
+    "relations": [
+      {
+        "head": 0,
+        "tail": 1,
+        "type": "hasPart"
+      }
+    ],
+    "uncertainty": 0.0
+  },
+  "483": {
+    "entities": [
+      {
+        "end": 2,
+        "start": 1,
+        "type": "PhysicalObject"
+      },
+      {
+        "end": 4,
+        "start": 3,
+        "type": "Activity"
+      },
+      {
+        "end": 6,
+        "start": 5,
+        "type": "PhysicalObject"
+      }
+    ],
+    "impact": 3,
+    "relations": [
+      {
+        "head": 1,
+        "tail": 2,
+        "type": "hasParticipant"
+      }
+    ],
+    "uncertainty": 0.0
+  },
+  "484": {
+    "entities": [
+      {
+        "end": 1,
+        "start": 0,
+        "type": "PhysicalObject"
+      },
+      {
+        "end": 2,
+        "start": 1,
+        "type": "PhysicalObject"
+      },
+      {
+        "end": 3,
+        "start": 2,
+        "type": "State"
+      },
+      {
+        "end": 4,
+        "start": 3,
+        "type": "State"
+      },
+      {
+        "end": 5,
+        "start": 4,
+        "type": "Activity"
+      }
+    ],
+    "impact": 5,
+    "relations": [
+      {
+        "head": 0,
+        "tail": 1,
+        "type": "hasPart"
+      },
+      {
+        "head": 2,
+        "tail": 3,
+        "type": "isA"
+      },
+      {
+        "head": 3,
+        "tail": 4,
+        "type": "hasParticipant"
+      }
+    ],
+    "uncertainty": 0.0
+  },
+  "494": {
+    "entities": [
+      {
+        "end": 1,
+        "start": 0,
+        "type": "PhysicalObject"
+      },
+      {
+        "end": 2,
+        "start": 1,
+        "type": "PhysicalObject"
+      },
+      {
+        "end": 3,
+        "start": 2,
+        "type": "State"
+      },
+      {
+        "end": 4,
+        "start": 3,
+        "type": "Activity"
+      }
+    ],
+    "impact": 4,
+    "relations": [
+      {
+        "head": 0,
+        "tail": 1,
+        "type": "hasPart"
+      },
+      {
+        "head": 2,
+        "tail": 3,
+        "type": "hasParticipant"
+      }
+    ],
+    "uncertainty": 0.0
+  },
+  "497": {
+    "entities": [
+      {
+        "end": 3,
+        "start": 2,
+        "type": "PhysicalObject"
+      },
+      {
+        "end": 6,
+        "start": 5,
+        "type": "Activity"
+      }
+    ],
+    "impact": 2,
+    "relations": [],
+    "uncertainty": 0.0
+  },
+  "506": {
+    "entities": [
+      {
+        "end": 3,
+        "start": 2,
+        "type": "PhysicalObject"
+      },
+      {
+        "end": 4,
+        "start": 3,
+        "type": "PhysicalObject"
+      },
+      {
+        "end": 6,
+        "start": 5,
+        "type": "Activity"
+      },
+      {
+        "end": 7,
+        "start": 6,
+        "type": "Process"
+      }
+    ],
+    "impact": 4,
+    "relations": [
+      {
+        "head": 0,
+        "tail": 1,
+        "type": "hasPart"
+      },
+      {
+        "head": 2,
+        "tail": 3,
+        "type": "hasParticipant"
+      }
+    ],
+    "uncertainty": 0.0
+  },
+  "507": {
+    "entities": [
+      {
+        "end": 3,
+        "start": 2,
+        "type": "PhysicalObject"
+      },
+      {
+        "end": 4,
+        "start": 3,
+        "type": "PhysicalObject"
+      },
+      {
+        "end": 5,
+        "start": 4,
+        "type": "State"
+      }
+    ],
+    "impact": 3,
+    "relations": [
+      {
+        "head": 0,
+        "tail": 1,
+        "type": "hasPart"
+      }
+    ],
+    "uncertainty": 0.0
+  },
+  "512": {
+    "entities": [
+      {
+        "end": 3,
+        "start": 2,
+        "type": "PhysicalObject"
+      }
+    ],
+    "impact": 1,
+    "relations": [],
+    "uncertainty": 0.0
+  },
+  "533": {
+    "entities": [
+      {
+        "end": 4,
+        "start": 2,
+        "type": "Activity"
+      },
+      {
+        "end": 7,
+        "start": 5,
+        "type": "PhysicalObject"
+      },
+      {
+        "end": 8,
+        "start": 7,
+        "type": "PhysicalObject"
+      }
+    ],
+    "impact": 5,
+    "relations": [
+      {
+        "head": 0,
+        "tail": 1,
+        "type": "hasParticipant"
+      },
+      {
+        "head": 1,
+        "tail": 2,
+        "type": "hasPart"
+      }
+    ],
+    "uncertainty": 0.0
+  },
+  "536": {
+    "entities": [
+      {
+        "end": 4,
+        "start": 2,
+        "type": "Activity"
+      },
+      {
+        "end": 6,
+        "start": 4,
+        "type": "PhysicalObject"
+      },
+      {
+        "end": 7,
+        "start": 6,
+        "type": "PhysicalObject"
+      }
+    ],
+    "impact": 5,
+    "relations": [
+      {
+        "head": 0,
+        "tail": 1,
+        "type": "hasParticipant"
+      },
+      {
+        "head": 1,
+        "tail": 2,
+        "type": "hasPart"
+      }
+    ],
+    "uncertainty": 0.0
+  },
+  "544": {
+    "entities": [
+      {
+        "end": 4,
+        "start": 2,
+        "type": "Activity"
+      },
+      {
+        "end": 5,
+        "start": 4,
+        "type": "PhysicalObject"
+      },
+      {
+        "end": 6,
+        "start": 5,
+        "type": "PhysicalObject"
+      }
+    ],
+    "impact": 4,
+    "relations": [
+      {
+        "head": 0,
+        "tail": 1,
+        "type": "hasParticipant"
+      },
+      {
+        "head": 1,
+        "tail": 2,
+        "type": "hasPart"
+      }
+    ],
+    "uncertainty": 0.0
+  },
+  "549": {
+    "entities": [
+      {
+        "end": 4,
+        "start": 2,
+        "type": "Activity"
+      },
+      {
+        "end": 5,
+        "start": 4,
+        "type": "PhysicalObject"
+      },
+      {
+        "end": 6,
+        "start": 5,
+        "type": "PhysicalObject"
+      }
+    ],
+    "impact": 4,
+    "relations": [
+      {
+        "head": 0,
+        "tail": 1,
+        "type": "hasParticipant"
+      },
+      {
+        "head": 1,
+        "tail": 2,
+        "type": "hasPart"
+      }
+    ],
+    "uncertainty": 0.0
+  },
+  "551": {
+    "entities": [
+      {
+        "end": 4,
+        "start": 2,
+        "type": "Activity"
+      },
+      {
+        "end": 6,
+        "start": 4,
+        "type": "PhysicalObject"
+      }
+    ],
+    "impact": 4,
+    "relations": [
+      {
+        "head": 0,
+        "tail": 1,
+        "type": "hasParticipant"
+      }
+    ],
+    "uncertainty": 0.0
+  },
+  "553": {
+    "entities": [
+      {
+        "end": 4,
+        "start": 2,
+        "type": "Activity"
+      },
+      {
+        "end": 5,
+        "start": 4,
+        "type": "PhysicalObject"
+      },
+      {
+        "end": 6,
+        "start": 5,
+        "type": "PhysicalObject"
+      }
+    ],
+    "impact": 4,
+    "relations": [
+      {
+        "head": 0,
+        "tail": 1,
+        "type": "hasParticipant"
+      },
+      {
+        "head": 1,
+        "tail": 2,
+        "type": "hasPart"
+      }
+    ],
+    "uncertainty": 0.0
+  },
+  "555": {
+    "entities": [
+      {
+        "end": 4,
+        "start": 2,
+        "type": "Activity"
+      },
+      {
+        "end": 5,
+        "start": 4,
+        "type": "PhysicalObject"
+      }
+    ],
+    "impact": 3,
+    "relations": [
+      {
+        "head": 0,
+        "tail": 1,
+        "type": "hasParticipant"
+      }
+    ],
+    "uncertainty": 0.0
+  },
+  "556": {
+    "entities": [
+      {
+        "end": 4,
+        "start": 2,
+        "type": "Activity"
+      },
+      {
+        "end": 5,
+        "start": 4,
+        "type": "PhysicalObject"
+      },
+      {
+        "end": 6,
+        "start": 5,
+        "type": "PhysicalObject"
+      },
+      {
+        "end": 7,
+        "start": 6,
+        "type": "PhysicalObject"
+      }
+    ],
+    "impact": 5,
+    "relations": [
+      {
+        "head": 0,
+        "tail": 1,
+        "type": "hasParticipant"
+      },
+      {
+        "head": 1,
+        "tail": 2,
+        "type": "hasPart"
+      },
+      {
+        "head": 2,
+        "tail": 3,
+        "type": "hasPart"
+      }
+    ],
+    "uncertainty": 0.0
+  },
+  "557": {
+    "entities": [
+      {
+        "end": 4,
+        "start": 2,
+        "type": "Activity"
+      },
+      {
+        "end": 6,
+        "start": 4,
+        "type": "PhysicalObject"
+      },
+      {
+        "end": 7,
+        "start": 6,
+        "type": "PhysicalObject"
+      },
+      {
+        "end": 8,
+        "start": 7,
+        "type": "State"
+      }
+    ],
+    "impact": 6,
+    "relations": [
+      {
+        "head": 0,
+        "tail": 1,
+        "type": "hasParticipant"
+      },
+      {
+        "head": 1,
+        "tail": 2,
+        "type": "hasPart"
+      }
+    ],
+    "uncertainty": 0.0
+  },
+  "564": {
+    "entities": [
+      {
+        "end": 4,
+        "start": 2,
+        "type": "Activity"
+      },
+      {
+        "end": 5,
+        "start": 4,
+        "type": "Process"
+      },
+      {
+        "end": 6,
+        "start": 5,
+        "type": "PhysicalObject"
+      },
+      {
+        "end": 7,
+        "start": 6,
+        "type": "PhysicalObject"
+      }
+    ],
+    "impact": 5,
+    "relations": [
+      {
+        "head": 0,
+        "tail": 1,
+        "type": "hasParticipant"
+      },
+      {
+        "head": 1,
+        "tail": 2,
+        "type": "hasParticipant"
+      },
+      {
+        "head": 2,
+        "tail": 3,
+        "type": "hasPart"
+      }
+    ],
+    "uncertainty": 0.0
+  },
+  "571": {
+    "entities": [
+      {
+        "end": 4,
+        "start": 2,
+        "type": "Activity"
+      },
+      {
+        "end": 7,
+        "start": 6,
+        "type": "State"
+      },
+      {
+        "end": 8,
+        "start": 7,
+        "type": "PhysicalObject"
+      }
+    ],
+    "impact": 4,
+    "relations": [
+      {
+        "head": 0,
+        "tail": 1,
+        "type": "hasParticipant"
+      },
+      {
+        "head": 1,
+        "tail": 2,
+        "type": "hasParticipant"
+      }
+    ],
+    "uncertainty": 0.0
+  },
+  "572": {
+    "entities": [
+      {
+        "end": 4,
+        "start": 2,
+        "type": "Activity"
+      },
+      {
+        "end": 5,
+        "start": 4,
+        "type": "State"
+      },
+      {
+        "end": 6,
+        "start": 5,
+        "type": "PhysicalObject"
+      },
+      {
+        "end": 7,
+        "start": 6,
+        "type": "PhysicalObject"
+      }
+    ],
+    "impact": 5,
+    "relations": [
+      {
+        "head": 0,
+        "tail": 1,
+        "type": "hasParticipant"
+      },
+      {
+        "head": 1,
+        "tail": 2,
+        "type": "hasParticipant"
+      },
+      {
+        "head": 2,
+        "tail": 3,
+        "type": "hasPart"
+      }
+    ],
+    "uncertainty": 0.0
+  },
+  "580": {
+    "entities": [
+      {
+        "end": 4,
+        "start": 2,
+        "type": "Activity"
+      },
+      {
+        "end": 5,
+        "start": 4,
+        "type": "PhysicalObject"
+      },
+      {
+        "end": 7,
+        "start": 5,
+        "type": "PhysicalObject"
+      }
+    ],
+    "impact": 5,
+    "relations": [
+      {
+        "head": 0,
+        "tail": 1,
+        "type": "hasParticipant"
+      },
+      {
+        "head": 1,
+        "tail": 2,
+        "type": "hasPart"
+      }
+    ],
+    "uncertainty": 0.0
+  },
+  "583": {
+    "entities": [
+      {
+        "end": 4,
+        "start": 2,
+        "type": "Activity"
+      },
+      {
+        "end": 6,
+        "start": 4,
+        "type": "PhysicalObject"
+      }
+    ],
+    "impact": 4,
+    "relations": [
+      {
+        "head": 0,
+        "tail": 1,
+        "type": "hasParticipant"
+      }
+    ],
+    "uncertainty": 0.0
+  },
+  "584": {
+    "entities": [
+      {
+        "end": 4,
+        "start": 2,
+        "type": "Activity"
+      },
+      {
+        "end": 6,
+        "start": 4,
+        "type": "PhysicalObject"
+      }
+    ],
+    "impact": 4,
+    "relations": [
+      {
+        "head": 0,
+        "tail": 1,
+        "type": "hasParticipant"
+      }
+    ],
+    "uncertainty": 0.0
+  },
+  "585": {
+    "entities": [
+      {
+        "end": 4,
+        "start": 2,
+        "type": "Activity"
+      },
+      {
+        "end": 6,
+        "start": 4,
+        "type": "PhysicalObject"
+      }
+    ],
+    "impact": 4,
+    "relations": [
+      {
+        "head": 0,
+        "tail": 1,
+        "type": "hasParticipant"
+      }
+    ],
+    "uncertainty": 0.0
+  },
+  "593": {
+    "entities": [
+      {
+        "end": 4,
+        "start": 2,
+        "type": "Activity"
+      },
+      {
+        "end": 5,
+        "start": 4,
+        "type": "PhysicalObject"
+      }
+    ],
+    "impact": 3,
+    "relations": [
+      {
+        "head": 0,
+        "tail": 1,
+        "type": "hasParticipant"
+      }
+    ],
+    "uncertainty": 0.0
+  },
+  "594": {
+    "entities": [
+      {
+        "end": 4,
+        "start": 2,
+        "type": "Activity"
+      },
+      {
+        "end": 6,
+        "start": 4,
+        "type": "PhysicalObject"
+      },
+      {
+        "end": 7,
+        "start": 6,
+        "type": "PhysicalObject"
+      },
+      {
+        "end": 9,
+        "start": 8,
+        "type": "PhysicalObject"
+      },
+      {
+        "end": 10,
+        "start": 9,
+        "type": "PhysicalObject"
+      }
+    ],
+    "impact": 7,
+    "relations": [
+      {
+        "head": 0,
+        "tail": 1,
+        "type": "hasParticipant"
+      },
+      {
+        "head": 1,
+        "tail": 2,
+        "type": "hasPart"
+      },
+      {
+        "head": 2,
+        "tail": 3,
+        "type": "hasPart"
+      },
+      {
+        "head": 3,
+        "tail": 4,
+        "type": "hasPart"
+      }
+    ],
+    "uncertainty": 0.0
+  },
+  "595": {
+    "entities": [
+      {
+        "end": 4,
+        "start": 2,
+        "type": "Activity"
+      },
+      {
+        "end": 6,
+        "start": 4,
+        "type": "PhysicalObject"
+      },
+      {
+        "end": 7,
+        "start": 6,
+        "type": "PhysicalObject"
+      },
+      {
+        "end": 10,
+        "start": 8,
+        "type": "PhysicalObject"
+      }
+    ],
+    "impact": 7,
+    "relations": [
+      {
+        "head": 0,
+        "tail": 1,
+        "type": "hasParticipant"
+      },
+      {
+        "head": 1,
+        "tail": 2,
+        "type": "hasPart"
+      },
+      {
+        "head": 2,
+        "tail": 3,
+        "type": "hasPart"
+      }
+    ],
+    "uncertainty": 0.0
+  },
+  "600": {
+    "entities": [
+      {
+        "end": 3,
+        "start": 2,
+        "type": "PhysicalObject"
+      },
+      {
+        "end": 4,
+        "start": 3,
+        "type": "PhysicalObject"
+      },
+      {
+        "end": 6,
+        "start": 4,
+        "type": "PhysicalObject"
+      }
+    ],
+    "impact": 4,
+    "relations": [
+      {
+        "head": 0,
+        "tail": 1,
+        "type": "hasPart"
+      },
+      {
+        "head": 1,
+        "tail": 2,
+        "type": "hasPart"
+      }
+    ],
+    "uncertainty": 0.0
+  },
+  "604": {
+    "entities": [
+      {
+        "end": 3,
+        "start": 2,
+        "type": "PhysicalObject"
+      },
+      {
+        "end": 4,
+        "start": 3,
+        "type": "PhysicalObject"
+      },
+      {
+        "end": 6,
+        "start": 5,
+        "type": "PhysicalObject"
+      },
+      {
+        "end": 7,
+        "start": 6,
+        "type": "PhysicalObject"
+      },
+      {
+        "end": 8,
+        "start": 7,
+        "type": "Activity"
+      }
+    ],
+    "impact": 5,
+    "relations": [
+      {
+        "head": 0,
+        "tail": 1,
+        "type": "hasPart"
+      },
+      {
+        "head": 1,
+        "tail": 2,
+        "type": "hasPart"
+      },
+      {
+        "head": 2,
+        "tail": 3,
+        "type": "hasPart"
+      }
+    ],
+    "uncertainty": 0.05
+  },
+  "606": {
+    "entities": [
+      {
+        "end": 6,
+        "start": 5,
+        "type": "State"
+      }
+    ],
+    "impact": 1,
+    "relations": [],
+    "uncertainty": 0.0
+  },
+  "608": {
+    "entities": [
+      {
+        "end": 3,
+        "start": 2,
+        "type": "PhysicalObject"
+      },
+      {
+        "end": 4,
+        "start": 3,
+        "type": "PhysicalObject"
+      },
+      {
+        "end": 5,
+        "start": 4,
+        "type": "PhysicalObject"
+      },
+      {
+        "end": 6,
+        "start": 5,
+        "type": "Process"
+      }
+    ],
+    "impact": 4,
+    "relations": [
+      {
+        "head": 0,
+        "tail": 1,
+        "type": "hasPart"
+      },
+      {
+        "head": 1,
+        "tail": 2,
+        "type": "hasPart"
+      }
+    ],
+    "uncertainty": 0.0
+  },
+  "615": {
+    "entities": [
+      {
+        "end": 3,
+        "start": 2,
+        "type": "PhysicalObject"
+      }
+    ],
+    "impact": 1,
+    "relations": [],
+    "uncertainty": 0.0
+  },
+  "62": {
+    "entities": [],
+    "impact": 0,
+    "relations": [],
+    "uncertainty": 0.0
+  },
+  "620": {
+    "entities": [
+      {
+        "end": 4,
+        "start": 3,
+        "type": "PhysicalObject"
+      },
+      {
+        "end": 6,
+        "start": 5,
+        "type": "Activity"
+      }
+    ],
+    "impact": 2,
+    "relations": [],
+    "uncertainty": 0.0
+  },
+  "635": {
+    "entities": [
+      {
+        "end": 3,
+        "start": 2,
+        "type": "Activity"
+      },
+      {
+        "end": 5,
+        "start": 3,
+        "type": "PhysicalObject"
+      }
+    ],
+    "impact": 3,
+    "relations": [
+      {
+        "head": 0,
+        "tail": 1,
+        "type": "hasParticipant"
+      }
+    ],
+    "uncertainty": 0.0
+  },
+  "642": {
+    "entities": [
+      {
+        "end": 4,
+        "start": 3,
+        "type": "Activity"
+      },
+      {
+        "end": 7,
+        "start": 4,
+        "type": "PhysicalObject"
+      },
+      {
+        "end": 8,
+        "start": 7,
+        "type": "PhysicalObject"
+      },
+      {
+        "end": 10,
+        "start": 9,
+        "type": "State"
+      }
+    ],
+    "impact": 6,
+    "relations": [
+      {
+        "head": 0,
+        "tail": 1,
+        "type": "hasParticipant"
+      },
+      {
+        "head": 1,
+        "tail": 2,
+        "type": "hasPart"
+      }
+    ],
+    "uncertainty": 0.0
+  },
+  "645": {
+    "entities": [
+      {
+        "end": 4,
+        "start": 3,
+        "type": "Activity"
+      },
+      {
+        "end": 7,
+        "start": 4,
+        "type": "PhysicalObject"
+      },
+      {
+        "end": 8,
+        "start": 7,
+        "type": "PhysicalObject"
+      }
+    ],
+    "impact": 5,
+    "relations": [
+      {
+        "head": 0,
+        "tail": 1,
+        "type": "hasParticipant"
+      },
+      {
+        "head": 1,
+        "tail": 2,
+        "type": "hasPart"
+      }
+    ],
+    "uncertainty": 0.0
+  },
+  "655": {
+    "entities": [
+      {
+        "end": 7,
+        "start": 5,
+        "type": "PhysicalObject"
+      },
+      {
+        "end": 8,
+        "start": 7,
+        "type": "Property"
+      },
+      {
+        "end": 9,
+        "start": 8,
+        "type": "Activity"
+      }
+    ],
+    "impact": 4,
+    "relations": [
+      {
+        "head": 0,
+        "tail": 1,
+        "type": "hasProperty"
+      }
+    ],
+    "uncertainty": 0.0
+  },
+  "661": {
+    "entities": [
+      {
+        "end": 4,
+        "start": 3,
+        "type": "PhysicalObject"
+      },
+      {
+        "end": 5,
+        "start": 4,
+        "type": "PhysicalObject"
+      },
+      {
+        "end": 6,
+        "start": 5,
+        "type": "Process"
+      }
+    ],
+    "impact": 3,
+    "relations": [
+      {
+        "head": 0,
+        "tail": 1,
+        "type": "hasPart"
+      }
+    ],
+    "uncertainty": 0.0
+  },
+  "67": {
+    "entities": [
+      {
+        "end": 2,
+        "start": 1,
+        "type": "State"
+      },
+      {
+        "end": 4,
+        "start": 2,
+        "type": "PhysicalObject"
+      },
+      {
+        "end": 5,
+        "start": 4,
+        "type": "PhysicalObject"
+      }
+    ],
+    "impact": 4,
+    "relations": [
+      {
+        "head": 0,
+        "tail": 1,
+        "type": "hasParticipant"
+      },
+      {
+        "head": 1,
+        "tail": 2,
+        "type": "hasPart"
+      }
+    ],
+    "uncertainty": 0.0
+  },
+  "673": {
+    "entities": [
+      {
+        "end": 3,
+        "start": 2,
+        "type": "Activity"
+      },
+      {
+        "end": 4,
+        "start": 3,
+        "type": "PhysicalObject"
+      }
+    ],
+    "impact": 2,
+    "relations": [
+      {
+        "head": 0,
+        "tail": 1,
+        "type": "hasParticipant"
+      }
+    ],
+    "uncertainty": 0.0
+  },
+  "676": {
+    "entities": [
+      {
+        "end": 3,
+        "start": 2,
+        "type": "Activity"
+      },
+      {
+        "end": 5,
+        "start": 3,
+        "type": "PhysicalObject"
+      }
+    ],
+    "impact": 3,
+    "relations": [
+      {
+        "head": 0,
+        "tail": 1,
+        "type": "hasParticipant"
+      }
+    ],
+    "uncertainty": 0.0
+  },
+  "678": {
+    "entities": [
+      {
+        "end": 3,
+        "start": 2,
+        "type": "Activity"
+      },
+      {
+        "end": 4,
+        "start": 3,
+        "type": "State"
+      },
+      {
+        "end": 5,
+        "start": 4,
+        "type": "PhysicalObject"
+      },
+      {
+        "end": 6,
+        "start": 5,
+        "type": "PhysicalObject"
+      }
+    ],
+    "impact": 4,
+    "relations": [
+      {
+        "head": 0,
+        "tail": 1,
+        "type": "hasParticipant"
+      },
+      {
+        "head": 1,
+        "tail": 2,
+        "type": "hasParticipant"
+      },
+      {
+        "head": 2,
+        "tail": 3,
+        "type": "hasPart"
+      }
+    ],
+    "uncertainty": 0.0
+  },
+  "680": {
+    "entities": [
+      {
+        "end": 3,
+        "start": 2,
+        "type": "Activity"
+      },
+      {
+        "end": 4,
+        "start": 3,
+        "type": "PhysicalObject"
+      },
+      {
+        "end": 5,
+        "start": 4,
+        "type": "PhysicalObject"
+      },
+      {
+        "end": 6,
+        "start": 5,
+        "type": "Process"
+      }
+    ],
+    "impact": 4,
+    "relations": [
+      {
+        "head": 0,
+        "tail": 1,
+        "type": "hasParticipant"
+      },
+      {
+        "head": 1,
+        "tail": 2,
+        "type": "hasPart"
+      }
+    ],
+    "uncertainty": 0.0
+  },
+  "681": {
+    "entities": [
+      {
+        "end": 3,
+        "start": 2,
+        "type": "Activity"
+      },
+      {
+        "end": 4,
+        "start": 3,
+        "type": "PhysicalObject"
+      },
+      {
+        "end": 5,
+        "start": 4,
+        "type": "PhysicalObject"
+      },
+      {
+        "end": 6,
+        "start": 5,
+        "type": "Process"
+      }
+    ],
+    "impact": 4,
+    "relations": [
+      {
+        "head": 0,
+        "tail": 1,
+        "type": "hasParticipant"
+      },
+      {
+        "head": 1,
+        "tail": 2,
+        "type": "hasPart"
+      }
+    ],
+    "uncertainty": 0.0
+  },
+  "683": {
+    "entities": [
+      {
+        "end": 3,
+        "start": 2,
+        "type": "Activity"
+      },
+      {
+        "end": 5,
+        "start": 3,
+        "type": "PhysicalObject"
+      },
+      {
+        "end": 7,
+        "start": 6,
+        "type": "PhysicalObject"
+      }
+    ],
+    "impact": 4,
+    "relations": [
+      {
+        "head": 0,
+        "tail": 1,
+        "type": "hasParticipant"
+      },
+      {
+        "head": 1,
+        "tail": 2,
+        "type": "hasPart"
+      }
+    ],
+    "uncertainty": 0.0
+  },
+  "690": {
+    "entities": [
+      {
+        "end": 3,
+        "start": 2,
+        "type": "Activity"
+      },
+      {
+        "end": 5,
+        "start": 4,
+        "type": "PhysicalObject"
+      },
+      {
+        "end": 7,
+        "start": 6,
+        "type": "PhysicalObject"
+      }
+    ],
+    "impact": 3,
+    "relations": [
+      {
+        "head": 0,
+        "tail": 1,
+        "type": "hasParticipant"
+      },
+      {
+        "head": 1,
+        "tail": 2,
+        "type": "hasPart"
+      }
+    ],
+    "uncertainty": 0.0
+  },
+  "694": {
+    "entities": [
+      {
+        "end": 3,
+        "start": 2,
+        "type": "Activity"
+      }
+    ],
+    "impact": 1,
+    "relations": [],
+    "uncertainty": 0.0
+  },
+  "7": {
+    "entities": [
+      {
+        "end": 3,
+        "start": 1,
+        "type": "Activity"
+      },
+      {
+        "end": 5,
+        "start": 4,
+        "type": "PhysicalObject"
+      }
+    ],
+    "impact": 3,
+    "relations": [
+      {
+        "head": 0,
+        "tail": 1,
+        "type": "hasParticipant"
+      }
+    ],
+    "uncertainty": 0.0
+  },
+  "705": {
+    "entities": [
+      {
+        "end": 3,
+        "start": 2,
+        "type": "Activity"
+      },
+      {
+        "end": 5,
+        "start": 3,
+        "type": "PhysicalObject"
+      }
+    ],
+    "impact": 3,
+    "relations": [
+      {
+        "head": 0,
+        "tail": 1,
+        "type": "hasParticipant"
+      }
+    ],
+    "uncertainty": 0.0
+  },
+  "712": {
+    "entities": [
+      {
+        "end": 3,
+        "start": 2,
+        "type": "Activity"
+      },
+      {
+        "end": 5,
+        "start": 3,
+        "type": "PhysicalObject"
+      }
+    ],
+    "impact": 3,
+    "relations": [
+      {
+        "head": 0,
+        "tail": 1,
+        "type": "hasParticipant"
+      }
+    ],
+    "uncertainty": 0.0
+  },
+  "714": {
+    "entities": [
+      {
+        "end": 3,
+        "start": 2,
+        "type": "Activity"
+      },
+      {
+        "end": 6,
+        "start": 5,
+        "type": "PhysicalObject"
+      },
+      {
+        "end": 8,
+        "start": 7,
+        "type": "PhysicalObject"
+      }
+    ],
+    "impact": 3,
+    "relations": [
+      {
+        "head": 0,
+        "tail": 1,
+        "type": "hasParticipant"
+      },
+      {
+        "head": 1,
+        "tail": 2,
+        "type": "hasPart"
+      }
+    ],
+    "uncertainty": 0.0
+  },
+  "716": {
+    "entities": [
+      {
+        "end": 3,
+        "start": 2,
+        "type": "Activity"
+      },
+      {
+        "end": 5,
+        "start": 3,
+        "type": "PhysicalObject"
+      }
+    ],
+    "impact": 3,
+    "relations": [
+      {
+        "head": 0,
+        "tail": 1,
+        "type": "hasParticipant"
+      }
+    ],
+    "uncertainty": 0.0
+  },
+  "72": {
+    "entities": [
+      {
+        "end": 2,
+        "start": 1,
+        "type": "State"
+      },
+      {
+        "end": 3,
+        "start": 2,
+        "type": "PhysicalObject"
+      },
+      {
+        "end": 4,
+        "start": 3,
+        "type": "State"
+      },
+      {
+        "end": 5,
+        "start": 4,
+        "type": "PhysicalObject"
+      }
+    ],
+    "impact": 4,
+    "relations": [
+      {
+        "head": 0,
+        "tail": 1,
+        "type": "hasParticipant"
+      },
+      {
+        "head": 2,
+        "tail": 3,
+        "type": "hasParticipant"
+      }
+    ],
+    "uncertainty": 0.0
+  },
+  "721": {
+    "entities": [
+      {
+        "end": 3,
+        "start": 2,
+        "type": "Activity"
+      },
+      {
+        "end": 4,
+        "start": 3,
+        "type": "PhysicalObject"
+      }
+    ],
+    "impact": 2,
+    "relations": [
+      {
+        "head": 0,
+        "tail": 1,
+        "type": "hasParticipant"
+      }
+    ],
+    "uncertainty": 0.0
+  },
+  "724": {
+    "entities": [
+      {
+        "end": 3,
+        "start": 2,
+        "type": "Activity"
+      },
+      {
+        "end": 7,
+        "start": 6,
+        "type": "PhysicalObject"
+      },
+      {
+        "end": 8,
+        "start": 7,
+        "type": "PhysicalObject"
+      }
+    ],
+    "impact": 3,
+    "relations": [
+      {
+        "head": 0,
+        "tail": 1,
+        "type": "hasParticipant"
+      },
+      {
+        "head": 1,
+        "tail": 2,
+        "type": "hasPart"
+      }
+    ],
+    "uncertainty": 0.0
+  },
+  "726": {
+    "entities": [
+      {
+        "end": 3,
+        "start": 2,
+        "type": "Activity"
+      },
+      {
+        "end": 8,
+        "start": 7,
+        "type": "PhysicalObject"
+      }
+    ],
+    "impact": 2,
+    "relations": [
+      {
+        "head": 0,
+        "tail": 1,
+        "type": "hasParticipant"
+      }
+    ],
+    "uncertainty": 0.0
+  },
+  "742": {
+    "entities": [
+      {
+        "end": 3,
+        "start": 2,
+        "type": "PhysicalObject"
+      },
+      {
+        "end": 5,
+        "start": 4,
+        "type": "Process"
+      },
+      {
+        "end": 6,
+        "start": 5,
+        "type": "PhysicalObject"
+      },
+      {
+        "end": 8,
+        "start": 7,
+        "type": "Property"
+      }
+    ],
+    "impact": 4,
+    "relations": [
+      {
+        "head": 1,
+        "tail": 2,
+        "type": "hasParticipant"
+      },
+      {
+        "head": 2,
+        "tail": 3,
+        "type": "hasProperty"
+      }
+    ],
+    "uncertainty": 0.0
+  },
+  "743": {
+    "entities": [
+      {
+        "end": 3,
+        "start": 2,
+        "type": "PhysicalObject"
+      },
+      {
+        "end": 5,
+        "start": 3,
+        "type": "State"
+      }
+    ],
+    "impact": 3,
+    "relations": [],
+    "uncertainty": 0.0
+  },
+  "748": {
+    "entities": [
+      {
+        "end": 3,
+        "start": 2,
+        "type": "PhysicalObject"
+      },
+      {
+        "end": 4,
+        "start": 3,
+        "type": "Process"
+      },
+      {
+        "end": 6,
+        "start": 5,
+        "type": "PhysicalObject"
+      }
+    ],
+    "impact": 3,
+    "relations": [
+      {
+        "head": 1,
+        "tail": 2,
+        "type": "hasParticipant"
+      }
+    ],
+    "uncertainty": 0.0
+  },
+  "751": {
+    "entities": [
+      {
+        "end": 3,
+        "start": 2,
+        "type": "Activity"
+      },
+      {
+        "end": 6,
+        "start": 5,
+        "type": "PhysicalObject"
+      }
+    ],
+    "impact": 2,
+    "relations": [
+      {
+        "head": 0,
+        "tail": 1,
+        "type": "hasParticipant"
+      }
+    ],
+    "uncertainty": 0.0
+  },
+  "752": {
+    "entities": [
+      {
+        "end": 3,
+        "start": 2,
+        "type": "Activity"
+      },
+      {
+        "end": 4,
+        "start": 3,
+        "type": "PhysicalObject"
+      }
+    ],
+    "impact": 2,
+    "relations": [
+      {
+        "head": 0,
+        "tail": 1,
+        "type": "hasParticipant"
+      }
+    ],
+    "uncertainty": 0.0
+  },
+  "760": {
+    "entities": [
+      {
+        "end": 5,
+        "start": 1,
+        "type": "State"
+      }
+    ],
+    "impact": 4,
+    "relations": [],
+    "uncertainty": 0.0
+  },
+  "769": {
+    "entities": [
+      {
+        "end": 3,
+        "start": 2,
+        "type": "PhysicalObject"
+      },
+      {
+        "end": 5,
+        "start": 3,
+        "type": "PhysicalObject"
+      },
+      {
+        "end": 6,
+        "start": 5,
+        "type": "State"
+      }
+    ],
+    "impact": 4,
+    "relations": [
+      {
+        "head": 0,
+        "tail": 1,
+        "type": "hasPart"
+      }
+    ],
+    "uncertainty": 0.0
+  },
+  "771": {
+    "entities": [
+      {
+        "end": 3,
+        "start": 2,
+        "type": "PhysicalObject"
+      },
+      {
+        "end": 5,
+        "start": 3,
+        "type": "PhysicalObject"
+      },
+      {
+        "end": 7,
+        "start": 6,
+        "type": "PhysicalObject"
+      }
+    ],
+    "impact": 4,
+    "relations": [
+      {
+        "head": 0,
+        "tail": 1,
+        "type": "hasPart"
+      },
+      {
+        "head": 1,
+        "tail": 2,
+        "type": "hasPart"
+      }
+    ],
+    "uncertainty": 0.0
+  },
+  "773": {
+    "entities": [
+      {
+        "end": 4,
+        "start": 3,
+        "type": "PhysicalObject"
+      },
+      {
+        "end": 5,
+        "start": 4,
+        "type": "PhysicalObject"
+      },
+      {
+        "end": 6,
+        "start": 5,
+        "type": "Process"
+      }
+    ],
+    "impact": 3,
+    "relations": [
+      {
+        "head": 0,
+        "tail": 1,
+        "type": "hasPart"
+      }
+    ],
+    "uncertainty": 0.0
+  },
+  "775": {
+    "entities": [
+      {
+        "end": 2,
+        "start": 1,
+        "type": "PhysicalObject"
+      },
+      {
+        "end": 4,
+        "start": 3,
+        "type": "Activity"
+      },
+      {
+        "end": 5,
+        "start": 4,
+        "type": "PhysicalObject"
+      }
+    ],
+    "impact": 3,
+    "relations": [
+      {
+        "head": 1,
+        "tail": 2,
+        "type": "hasParticipant"
+      }
+    ],
+    "uncertainty": 0.0
+  },
+  "782": {
+    "entities": [
+      {
+        "end": 2,
+        "start": 1,
+        "type": "PhysicalObject"
+      },
+      {
+        "end": 4,
+        "start": 3,
+        "type": "Activity"
+      },
+      {
+        "end": 5,
+        "start": 4,
+        "type": "Process"
+      }
+    ],
+    "impact": 3,
+    "relations": [
+      {
+        "head": 1,
+        "tail": 2,
+        "type": "hasParticipant"
+      }
+    ],
+    "uncertainty": 0.0
+  },
+  "794": {
+    "entities": [
+      {
+        "end": 3,
+        "start": 1,
+        "type": "PhysicalObject"
+      },
+      {
+        "end": 4,
+        "start": 3,
+        "type": "PhysicalObject"
+      },
+      {
+        "end": 5,
+        "start": 4,
+        "type": "Process"
+      }
+    ],
+    "impact": 4,
+    "relations": [
+      {
+        "head": 0,
+        "tail": 1,
+        "type": "hasPart"
+      }
+    ],
+    "uncertainty": 0.0
+  },
+  "796": {
+    "entities": [
+      {
+        "end": 3,
+        "start": 1,
+        "type": "PhysicalObject"
+      },
+      {
+        "end": 4,
+        "start": 3,
+        "type": "PhysicalObject"
+      },
+      {
+        "end": 5,
+        "start": 4,
+        "type": "State"
+      },
+      {
+        "end": 7,
+        "start": 6,
+        "type": "Activity"
+      }
+    ],
+    "impact": 5,
+    "relations": [
+      {
+        "head": 0,
+        "tail": 1,
+        "type": "hasPart"
+      },
+      {
+        "head": 2,
+        "tail": 3,
+        "type": "hasParticipant"
+      }
+    ],
+    "uncertainty": 0.0
+  },
+  "801": {
+    "entities": [
+      {
+        "end": 3,
+        "start": 1,
+        "type": "PhysicalObject"
+      },
+      {
+        "end": 5,
+        "start": 3,
+        "type": "PhysicalObject"
+      },
+      {
+        "end": 6,
+        "start": 5,
+        "type": "State"
+      }
+    ],
+    "impact": 5,
+    "relations": [
+      {
+        "head": 0,
+        "tail": 1,
+        "type": "hasPart"
+      }
+    ],
+    "uncertainty": 0.0
+  },
+  "806": {
+    "entities": [
+      {
+        "end": 2,
+        "start": 0,
+        "type": "PhysicalObject"
+      },
+      {
+        "end": 3,
+        "start": 2,
+        "type": "PhysicalObject"
+      },
+      {
+        "end": 7,
+        "start": 5,
+        "type": "State"
+      }
+    ],
+    "impact": 5,
+    "relations": [
+      {
+        "head": 0,
+        "tail": 1,
+        "type": "hasPart"
+      }
+    ],
+    "uncertainty": 0.0
+  },
+  "809": {
+    "entities": [
+      {
+        "end": 4,
+        "start": 3,
+        "type": "PhysicalObject"
+      }
+    ],
+    "impact": 1,
+    "relations": [],
+    "uncertainty": 0.0
+  },
+  "81": {
+    "entities": [
+      {
+        "end": 4,
+        "start": 3,
+        "type": "PhysicalObject"
+      },
+      {
+        "end": 5,
+        "start": 4,
+        "type": "State"
+      }
+    ],
+    "impact": 2,
+    "relations": [],
+    "uncertainty": 0.0
+  },
+  "816": {
+    "entities": [
+      {
+        "end": 1,
+        "start": 0,
+        "type": "Activity"
+      },
+      {
+        "end": 5,
+        "start": 4,
+        "type": "PhysicalObject"
+      },
+      {
+        "end": 6,
+        "start": 5,
+        "type": "Activity"
+      }
+    ],
+    "impact": 3,
+    "relations": [
+      {
+        "head": 0,
+        "tail": 1,
+        "type": "hasParticipant"
+      }
+    ],
+    "uncertainty": 0.0
+  },
+  "817": {
+    "entities": [
+      {
+        "end": 1,
+        "start": 0,
+        "type": "PhysicalObject"
+      },
+      {
+        "end": 3,
+        "start": 2,
+        "type": "State"
+      }
+    ],
+    "impact": 2,
+    "relations": [],
+    "uncertainty": 0.0
+  },
+  "82": {
+    "entities": [
+      {
+        "end": 6,
+        "start": 4,
+        "type": "State"
+      }
+    ],
+    "impact": 2,
+    "relations": [],
+    "uncertainty": 0.0
+  },
+  "822": {
+    "entities": [
+      {
+        "end": 4,
+        "start": 3,
+        "type": "PhysicalObject"
+      }
+    ],
+    "impact": 1,
+    "relations": [],
+    "uncertainty": 0.0
+  },
+  "825": {
+    "entities": [
+      {
+        "end": 1,
+        "start": 0,
+        "type": "State"
+      },
+      {
+        "end": 3,
+        "start": 2,
+        "type": "PhysicalObject"
+      }
+    ],
+    "impact": 2,
+    "relations": [
+      {
+        "head": 0,
+        "tail": 1,
+        "type": "hasParticipant"
+      }
+    ],
+    "uncertainty": 0.0
+  },
+  "830": {
+    "entities": [
+      {
+        "end": 1,
+        "start": 0,
+        "type": "PhysicalObject"
+      },
+      {
+        "end": 4,
+        "start": 3,
+        "type": "State"
+      }
+    ],
+    "impact": 2,
+    "relations": [],
+    "uncertainty": 0.0
+  },
+  "844": {
+    "entities": [
+      {
+        "end": 2,
+        "start": 0,
+        "type": "PhysicalObject"
+      },
+      {
+        "end": 3,
+        "start": 2,
+        "type": "Activity"
+      }
+    ],
+    "impact": 3,
+    "relations": [],
+    "uncertainty": 0.0
+  },
+  "846": {
+    "entities": [
+      {
+        "end": 1,
+        "start": 0,
+        "type": "Activity"
+      },
+      {
+        "end": 2,
+        "start": 1,
+        "type": "PhysicalObject"
+      },
+      {
+        "end": 6,
+        "start": 5,
+        "type": "PhysicalObject"
+      }
+    ],
+    "impact": 3,
+    "relations": [
+      {
+        "head": 0,
+        "tail": 1,
+        "type": "hasParticipant"
+      },
+      {
+        "head": 1,
+        "tail": 2,
+        "type": "hasPart"
+      }
+    ],
+    "uncertainty": 0.0
+  },
+  "854": {
+    "entities": [
+      {
+        "end": 1,
+        "start": 0,
+        "type": "PhysicalObject"
+      },
+      {
+        "end": 3,
+        "start": 1,
+        "type": "PhysicalObject"
+      },
+      {
+        "end": 4,
+        "start": 3,
+        "type": "Process"
+      }
+    ],
+    "impact": 4,
+    "relations": [
+      {
+        "head": 0,
+        "tail": 1,
+        "type": "hasPart"
+      }
+    ],
+    "uncertainty": 0.0
+  },
+  "857": {
+    "entities": [
+      {
+        "end": 1,
+        "start": 0,
+        "type": "Activity"
+      },
+      {
+        "end": 3,
+        "start": 2,
+        "type": "PhysicalObject"
+      },
+      {
+        "end": 5,
+        "start": 4,
+        "type": "Activity"
+      }
+    ],
+    "impact": 3,
+    "relations": [
+      {
+        "head": 0,
+        "tail": 1,
+        "type": "hasParticipant"
+      }
+    ],
+    "uncertainty": 0.0
+  },
+  "859": {
+    "entities": [
+      {
+        "end": 3,
+        "start": 2,
+        "type": "PhysicalObject"
+      }
+    ],
+    "impact": 1,
+    "relations": [],
+    "uncertainty": 0.0
+  },
+  "862": {
+    "entities": [
+      {
+        "end": 1,
+        "start": 0,
+        "type": "Property"
+      },
+      {
+        "end": 2,
+        "start": 1,
+        "type": "Activity"
+      },
+      {
+        "end": 5,
+        "start": 4,
+        "type": "PhysicalObject"
+      },
+      {
+        "end": 6,
+        "start": 5,
+        "type": "PhysicalObject"
+      }
+    ],
+    "impact": 4,
+    "relations": [
+      {
+        "head": 1,
+        "tail": 2,
+        "type": "hasParticipant"
+      },
+      {
+        "head": 2,
+        "tail": 3,
+        "type": "hasPart"
+      }
+    ],
+    "uncertainty": 0.0
+  },
+  "867": {
+    "entities": [
+      {
+        "end": 1,
+        "start": 0,
+        "type": "Activity"
+      },
+      {
+        "end": 3,
+        "start": 2,
+        "type": "Activity"
+      },
+      {
+        "end": 6,
+        "start": 5,
+        "type": "PhysicalObject"
+      },
+      {
+        "end": 8,
+        "start": 6,
+        "type": "State"
+      }
+    ],
+    "impact": 5,
+    "relations": [
+      {
+        "head": 0,
+        "tail": 1,
+        "type": "isA"
+      },
+      {
+        "head": 1,
+        "tail": 2,
+        "type": "hasParticipant"
+      }
+    ],
+    "uncertainty": 0.0
+  },
+  "880": {
+    "entities": [
+      {
+        "end": 2,
+        "start": 1,
+        "type": "PhysicalObject"
+      },
+      {
+        "end": 3,
+        "start": 2,
+        "type": "PhysicalObject"
+      },
+      {
+        "end": 5,
+        "start": 3,
+        "type": "State"
+      }
+    ],
+    "impact": 4,
+    "relations": [
+      {
+        "head": 0,
+        "tail": 1,
+        "type": "hasPart"
+      }
+    ],
+    "uncertainty": 0.0
+  },
+  "882": {
+    "entities": [
+      {
+        "end": 1,
+        "start": 0,
+        "type": "PhysicalObject"
+      },
+      {
+        "end": 2,
+        "start": 1,
+        "type": "PhysicalObject"
+      },
+      {
+        "end": 3,
+        "start": 2,
+        "type": "Activity"
+      }
+    ],
+    "impact": 3,
+    "relations": [
+      {
+        "head": 0,
+        "tail": 1,
+        "type": "hasPart"
+      }
+    ],
+    "uncertainty": 0.0
+  },
+  "89": {
+    "entities": [
+      {
+        "end": 2,
+        "start": 1,
+        "type": "PhysicalObject"
+      },
+      {
+        "end": 4,
+        "start": 3,
+        "type": "Activity"
+      },
+      {
+        "end": 5,
+        "start": 4,
+        "type": "PhysicalObject"
+      },
+      {
+        "end": 8,
+        "start": 7,
+        "type": "PhysicalObject"
+      }
+    ],
+    "impact": 4,
+    "relations": [
+      {
+        "head": 1,
+        "tail": 2,
+        "type": "hasParticipant"
+      },
+      {
+        "head": 2,
+        "tail": 3,
+        "type": "hasPart"
+      }
+    ],
+    "uncertainty": 0.0
+  },
+  "897": {
+    "entities": [
+      {
+        "end": 1,
+        "start": 0,
+        "type": "PhysicalObject"
+      },
+      {
+        "end": 2,
+        "start": 1,
+        "type": "State"
+      }
+    ],
+    "impact": 2,
+    "relations": [],
+    "uncertainty": 0.0
+  },
+  "898": {
+    "entities": [
+      {
+        "end": 2,
+        "start": 1,
+        "type": "PhysicalObject"
+      }
+    ],
+    "impact": 1,
+    "relations": [],
+    "uncertainty": 0.0
+  },
+  "906": {
+    "entities": [
+      {
+        "end": 4,
+        "start": 2,
+        "type": "PhysicalObject"
+      }
+    ],
+    "impact": 2,
+    "relations": [],
+    "uncertainty": 0.0
+  },
+  "91": {
+    "entities": [
+      {
+        "end": 3,
+        "start": 2,
+        "type": "PhysicalObject"
+      },
+      {
+        "end": 5,
+        "start": 4,
+        "type": "Process"
+      }
+    ],
+    "impact": 2,
+    "relations": [],
+    "uncertainty": 0.0
+  },
+  "912": {
+    "entities": [
+      {
+        "end": 1,
+        "start": 0,
+        "type": "Activity"
+      },
+      {
+        "end": 3,
+        "start": 1,
+        "type": "PhysicalObject"
+      },
+      {
+        "end": 5,
+        "start": 3,
+        "type": "PhysicalObject"
+      }
+    ],
+    "impact": 5,
+    "relations": [
+      {
+        "head": 0,
+        "tail": 1,
+        "type": "hasParticipant"
+      },
+      {
+        "head": 1,
+        "tail": 2,
+        "type": "hasPart"
+      }
+    ],
+    "uncertainty": 0.0
+  },
+  "915": {
+    "entities": [
+      {
+        "end": 1,
+        "start": 0,
+        "type": "Activity"
+      },
+      {
+        "end": 5,
+        "start": 4,
+        "type": "PhysicalObject"
+      }
+    ],
+    "impact": 2,
+    "relations": [
+      {
+        "head": 0,
+        "tail": 1,
+        "type": "hasParticipant"
+      }
+    ],
+    "uncertainty": 0.0
+  },
+  "917": {
+    "entities": [
+      {
+        "end": 1,
+        "start": 0,
+        "type": "Activity"
+      },
+      {
+        "end": 3,
+        "start": 2,
+        "type": "Activity"
+      }
+    ],
+    "impact": 2,
+    "relations": [
+      {
+        "head": 0,
+        "tail": 1,
+        "type": "isA"
+      }
+    ],
+    "uncertainty": 0.0
+  },
+  "927": {
+    "entities": [
+      {
+        "end": 1,
+        "start": 0,
+        "type": "Activity"
+      },
+      {
+        "end": 3,
+        "start": 2,
+        "type": "PhysicalObject"
+      }
+    ],
+    "impact": 2,
+    "relations": [
+      {
+        "head": 0,
+        "tail": 1,
+        "type": "hasParticipant"
+      }
+    ],
+    "uncertainty": 0.0
+  },
+  "929": {
+    "entities": [
+      {
+        "end": 1,
+        "start": 0,
+        "type": "Activity"
+      },
+      {
+        "end": 2,
+        "start": 1,
+        "type": "State"
+      },
+      {
+        "end": 5,
+        "start": 3,
+        "type": "PhysicalObject"
+      }
+    ],
+    "impact": 4,
+    "relations": [
+      {
+        "head": 0,
+        "tail": 1,
+        "type": "hasParticipant"
+      },
+      {
+        "head": 1,
+        "tail": 2,
+        "type": "hasParticipant"
+      }
+    ],
+    "uncertainty": 0.0
+  },
+  "935": {
+    "entities": [
+      {
+        "end": 1,
+        "start": 0,
+        "type": "PhysicalObject"
+      },
+      {
+        "end": 2,
+        "start": 1,
+        "type": "Process"
+      },
+      {
+        "end": 5,
+        "start": 4,
+        "type": "PhysicalObject"
+      },
+      {
+        "end": 7,
+        "start": 6,
+        "type": "PhysicalObject"
+      },
+      {
+        "end": 8,
+        "start": 7,
+        "type": "PhysicalObject"
+      }
+    ],
+    "impact": 5,
+    "relations": [
+      {
+        "head": 1,
+        "tail": 2,
+        "type": "hasParticipant"
+      },
+      {
+        "head": 2,
+        "tail": 3,
+        "type": "hasPart"
+      },
+      {
+        "head": 3,
+        "tail": 4,
+        "type": "hasPart"
+      }
+    ],
+    "uncertainty": 0.0
+  },
+  "940": {
+    "entities": [
+      {
+        "end": 4,
+        "start": 2,
+        "type": "PhysicalObject"
+      },
+      {
+        "end": 5,
+        "start": 4,
+        "type": "Process"
+      }
+    ],
+    "impact": 3,
+    "relations": [],
+    "uncertainty": 0.0
+  },
+  "95": {
+    "entities": [
+      {
+        "end": 2,
+        "start": 1,
+        "type": "PhysicalObject"
+      },
+      {
+        "end": 4,
+        "start": 3,
+        "type": "State"
+      }
+    ],
+    "impact": 2,
+    "relations": [],
+    "uncertainty": 0.0
+  },
+  "951": {
+    "entities": [
+      {
+        "end": 1,
+        "start": 0,
+        "type": "Activity"
+      },
+      {
+        "end": 2,
+        "start": 1,
+        "type": "PhysicalObject"
+      },
+      {
+        "end": 4,
+        "start": 3,
+        "type": "Activity"
+      }
+    ],
+    "impact": 3,
+    "relations": [
+      {
+        "head": 0,
+        "tail": 1,
+        "type": "hasParticipant"
+      }
+    ],
+    "uncertainty": 0.0
+  },
+  "954": {
+    "entities": [
+      {
+        "end": 2,
+        "start": 0,
+        "type": "PhysicalObject"
+      },
+      {
+        "end": 4,
+        "start": 3,
+        "type": "PhysicalObject"
+      },
+      {
+        "end": 6,
+        "start": 5,
+        "type": "PhysicalObject"
+      },
+      {
+        "end": 7,
+        "start": 6,
+        "type": "State"
+      }
+    ],
+    "impact": 5,
+    "relations": [
+      {
+        "head": 0,
+        "tail": 1,
+        "type": "hasPart"
+      },
+      {
+        "head": 1,
+        "tail": 2,
+        "type": "hasPart"
+      }
+    ],
+    "uncertainty": 0.0
+  },
+  "960": {
+    "entities": [
+      {
+        "end": 1,
+        "start": 0,
+        "type": "PhysicalObject"
+      },
+      {
+        "end": 4,
+        "start": 3,
+        "type": "State"
+      }
+    ],
+    "impact": 2,
+    "relations": [],
+    "uncertainty": 0.0
+  },
+  "968": {
+    "entities": [
+      {
+        "end": 3,
+        "start": 2,
+        "type": "Activity"
+      },
+      {
+        "end": 4,
+        "start": 3,
+        "type": "PhysicalObject"
+      }
+    ],
+    "impact": 2,
+    "relations": [
+      {
+        "head": 0,
+        "tail": 1,
+        "type": "hasParticipant"
+      }
+    ],
+    "uncertainty": 0.0
+  },
+  "975": {
+    "entities": [
+      {
+        "end": 1,
+        "start": 0,
+        "type": "Activity"
+      },
+      {
+        "end": 3,
+        "start": 2,
+        "type": "Activity"
+      },
+      {
+        "end": 4,
+        "start": 3,
+        "type": "PhysicalObject"
+      },
+      {
+        "end": 5,
+        "start": 4,
+        "type": "PhysicalObject"
+      }
+    ],
+    "impact": 4,
+    "relations": [
+      {
+        "head": 0,
+        "tail": 1,
+        "type": "isA"
+      },
+      {
+        "head": 1,
+        "tail": 2,
+        "type": "hasParticipant"
+      },
+      {
+        "head": 2,
+        "tail": 3,
+        "type": "hasPart"
+      }
+    ],
+    "uncertainty": 0.0
+  },
+  "978": {
+    "entities": [
+      {
+        "end": 1,
+        "start": 0,
+        "type": "Activity"
+      },
+      {
+        "end": 2,
+        "start": 1,
+        "type": "Property"
+      },
+      {
+        "end": 6,
+        "start": 4,
+        "type": "PhysicalObject"
+      }
+    ],
+    "impact": 4,
+    "relations": [
+      {
+        "head": 0,
+        "tail": 1,
+        "type": "hasParticipant"
+      }
+    ],
+    "uncertainty": 0.0
+  },
+  "979": {
+    "entities": [
+      {
+        "end": 1,
+        "start": 0,
+        "type": "Activity"
+      },
+      {
+        "end": 2,
+        "start": 1,
+        "type": "Property"
+      },
+      {
+        "end": 3,
+        "start": 2,
+        "type": "State"
+      },
+      {
+        "end": 7,
+        "start": 6,
+        "type": "Activity"
+      }
+    ],
+    "impact": 4,
+    "relations": [
+      {
+        "head": 0,
+        "tail": 1,
+        "type": "hasParticipant"
+      },
+      {
+        "head": 2,
+        "tail": 3,
+        "type": "hasParticipant"
+      }
+    ],
+    "uncertainty": 0.0
+  },
+  "98": {
+    "entities": [
+      {
+        "end": 2,
+        "start": 1,
+        "type": "State"
+      },
+      {
+        "end": 3,
+        "start": 2,
+        "type": "PhysicalObject"
+      },
+      {
+        "end": 4,
+        "start": 3,
+        "type": "State"
+      },
+      {
+        "end": 6,
+        "start": 4,
+        "type": "PhysicalObject"
+      },
+      {
+        "end": 7,
+        "start": 6,
+        "type": "PhysicalObject"
+      }
+    ],
+    "impact": 6,
+    "relations": [
+      {
+        "head": 0,
+        "tail": 1,
+        "type": "hasParticipant"
+      },
+      {
+        "head": 2,
+        "tail": 3,
+        "type": "hasParticipant"
+      },
+      {
+        "head": 3,
+        "tail": 4,
+        "type": "hasPart"
+      }
+    ],
+    "uncertainty": 0.0
+  },
+  "980": {
+    "entities": [
+      {
+        "end": 1,
+        "start": 0,
+        "type": "Activity"
+      },
+      {
+        "end": 2,
+        "start": 1,
+        "type": "State"
+      },
+      {
+        "end": 6,
+        "start": 4,
+        "type": "PhysicalObject"
+      }
+    ],
+    "impact": 4,
+    "relations": [
+      {
+        "head": 0,
+        "tail": 1,
+        "type": "hasParticipant"
+      },
+      {
+        "head": 1,
+        "tail": 2,
+        "type": "hasParticipant"
+      }
+    ],
+    "uncertainty": 0.0
+  },
+  "989": {
+    "entities": [
+      {
+        "end": 1,
+        "start": 0,
+        "type": "Activity"
+      },
+      {
+        "end": 2,
+        "start": 1,
+        "type": "Process"
+      },
+      {
+        "end": 5,
+        "start": 3,
+        "type": "PhysicalObject"
+      },
+      {
+        "end": 6,
+        "start": 5,
+        "type": "PhysicalObject"
+      }
+    ],
+    "impact": 5,
+    "relations": [
+      {
+        "head": 0,
+        "tail": 1,
+        "type": "hasParticipant"
+      },
+      {
+        "head": 1,
+        "tail": 2,
+        "type": "hasParticipant"
+      },
+      {
+        "head": 2,
+        "tail": 3,
+        "type": "hasPart"
+      }
+    ],
+    "uncertainty": 0.0
+  },
+  "990": {
+    "entities": [
+      {
+        "end": 1,
+        "start": 0,
+        "type": "Activity"
+      },
+      {
+        "end": 2,
+        "start": 1,
+        "type": "PhysicalObject"
+      }
+    ],
+    "impact": 2,
+    "relations": [
+      {
+        "head": 0,
+        "tail": 1,
+        "type": "hasParticipant"
+      }
+    ],
+    "uncertainty": 0.0
+  }
+}

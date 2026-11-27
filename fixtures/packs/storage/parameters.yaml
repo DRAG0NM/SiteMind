@@ -1,0 +1,4 @@
+# 储能参数随版本清单走（ManifestComponent.parameters）。基准 vm-0003 不留备用；vm-0004 是一份候选示例，由 B18 生成并经 B04 激活，
+# 本包只按快照的 version_manifest_id 取值，不发布、不修改候选。
+vm-0003: {reserve_ratio: 0.0}
+vm-0004: {reserve_ratio: 0.3}

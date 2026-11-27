@@ -1,0 +1,24 @@
+{
+  "model": "ProbeProposal",
+  "data": {
+    "ticket_id": "ticket://TK-0001",
+    "round": 1,
+    "actions": [
+      {
+        "entity_id": "entity://demo-factory/air_system/AC-2",
+        "command": "set_mode",
+        "params": {"mode": "off"},
+        "interval": {
+          "start": "2026-07-01T02:30:00Z",
+          "end": "2026-07-01T02:33:00Z"
+        },
+        "readiness": "ready",
+        "depends_on": []
+      }
+    ],
+    "window_min": 3,
+    "hypothesis": "若压力在试探窗口内继续下降，则根因在空压站内部管道；若恢复，则指向供电侧",
+    "expectations": ["关阀后压力恢复：供电侧扰动", "关阀后压力继续降：管道泄漏"],
+    "created_at": "2026-07-01T02:30:00Z"
+  }
+}

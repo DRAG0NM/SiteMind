@@ -1,0 +1,39 @@
+{
+  "additionalProperties": false,
+  "description": "D55 严重程度估算：不采取保护动作的预期损失与是否停产。金额只含停产产值与设备损坏估值。",
+  "properties": {
+    "loss_cny": {
+      "minimum": 0,
+      "title": "Loss Cny",
+      "type": "number"
+    },
+    "production_stop": {
+      "title": "Production Stop",
+      "type": "boolean"
+    },
+    "horizon_min": {
+      "minimum": 1,
+      "title": "Horizon Min",
+      "type": "integer"
+    },
+    "basis": {
+      "title": "Basis",
+      "type": "string"
+    },
+    "field_check": {
+      "default": false,
+      "title": "Field Check",
+      "type": "boolean"
+    }
+  },
+  "required": [
+    "loss_cny",
+    "production_stop",
+    "horizon_min",
+    "basis"
+  ],
+  "title": "SeverityEstimate",
+  "type": "object",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "plantkg:contracts/1.2.0/SeverityEstimate"
+}

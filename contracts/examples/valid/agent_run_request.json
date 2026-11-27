@@ -1,0 +1,8 @@
+{
+  "model": "AgentRunRequest",
+  "data": {
+    "agent_name": "plantkg_energy_assistant",
+    "query": "明天的计划为什么在 11 点给电池充电？",
+    "run_id": "run-day-20260701"
+  }
+}

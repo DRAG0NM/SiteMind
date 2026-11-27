@@ -1,0 +1,10 @@
+{
+  "created_at": "2026-11-05T15:27:00+00:00",
+  "platform": "Nexent v2.8.2 本机 Docker",
+  "agent": "plantkg_main",
+  "command": "python scripts/nexent_workorder_mining.py --import-agents",
+  "result": "imported",
+  "bound_tools": ["plantkg_get_job", "plantkg_list_assets", "plantkg_workorder_search"],
+  "note": "8700 端口空出后重新导入；主 Agent 实际绑定 workorder_search，导出 nexent_assets/agents/exports/plantkg_main.export.json 已更新。",
+  "problems": ["plantkg_main 实际 Skill ['triage'] 与配置 [] 不一致：B27 占位 Skill 的平台存量绑定，与本卡无关"]
+}

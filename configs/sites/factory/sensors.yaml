@@ -1,0 +1,110 @@
+# 观测层（B22 / D59）：真实状态 → 传感器读数 → 残差与候选，不改真实状态。
+# 数据性质 configured：传感器布置、量程、噪声与一致性关系按常理编写；读数是场景仿真值（simulated），
+# 不是现场实测。传感器故障由 SensorFaultInjector 注入，与设备故障分开。
+# 节点编号引用全局图谱（configs/sites/factory/graph/graph.yaml）与 B18 装配（site.yaml）。
+nature: configured
+sample_minutes: 1
+history_minutes: 90                # 至少覆盖 同期基线 60 + 间隔 10 + 读数 15 分钟
+trial:
+  window_min: 3                    # 试探观察窗口（D61）
+  pressure_eps_bar: 0.03           # 卡死判定：压力读数变化小于此值
+  virtual_eps_bar: 0.03            # 推算值变化超过此值才算“有反应”
+
+sensors:
+  # 空压与管网
+  - {id: AIR-HDR.P, entity: AIR-HDR, metric: pressure_bar, unit: bar, source: air_header, range: [4.0, 9.0], decimals: 2}
+  - {id: AC-1.I, entity: AC-1, metric: current_a, unit: A, source: power_to_current, range: [0, 400], decimals: 1}
+  - {id: AC-2.I, entity: AC-2, metric: current_a, unit: A, source: power_to_current, range: [0, 400], decimals: 1}
+  - {id: AC-3.I, entity: AC-3, metric: current_a, unit: A, source: power_to_current, range: [0, 400], decimals: 1}
+  - {id: AC-1.OIL, entity: AC-1, metric: oil_temperature, unit: C, source: device_field, field: oil_c, range: [0, 120], decimals: 1}
+  - {id: AC-2.OIL, entity: AC-2, metric: oil_temperature, unit: C, source: device_field, field: oil_c, range: [0, 120], decimals: 1}
+  - {id: AC-3.OIL, entity: AC-3, metric: oil_temperature, unit: C, source: device_field, field: oil_c, range: [0, 120], decimals: 1}
+  # 计量：总表与分表（分表按配电柜成员求和，成员包含未计量余项，见 site.yaml）
+  - {id: GRID.P, entity: GRID, metric: power_kw, unit: kW, source: total_power, range: [0, 5000], decimals: 1}
+  # 变压器：读数取状态帧（方案 2，#216-2），与分钟账本 flows_kw.TX1 / 有效限额同一口径
+  - {id: TX1.P, entity: TX1, metric: power_kw, unit: kW, source: device_field, field: power_kw, range: [0, 5000], decimals: 1}
+  - {id: TX1.LOAD, entity: TX1, metric: load_ratio, unit: ratio, source: device_field, field: load_ratio, range: [0, 2], decimals: 3}
+  - {id: P-PROD.P, entity: P-PROD, metric: power_kw, unit: kW, source: members_power, range: [0, 5000], decimals: 1,
+     members: [AC-1, AC-2, AC-3, AHU-P1, AHU-P2, EXF-P1, LINE-1, LINE-2, LINE-3, UTIL-P1, FE-1, FE-2, FE-3, FE-4, LT-P, "P-PROD:unmetered"]}
+  - {id: P-ADMIN.P, entity: P-ADMIN, metric: power_kw, unit: kW, source: members_power, range: [0, 5000], decimals: 1,
+     members: [PE-1, PE-2, PE-3, PE-4, PE-5, PE-6, CH-A1, AHU-A01, AHU-A02, AHU-A03, AHU-A04, AHU-A05, AHU-A06, AHU-A07, AHU-A08, AHU-A09, AHU-A10, AHU-A11, AHU-A12,
+               LT-A01, LT-A02, LT-A03, LT-A04, LT-A05, LT-A06, LT-A07, LT-A08, LT-A09, LT-A10, LT-A11, LT-A12]}
+  - {id: P-CR.P, entity: P-CR, metric: power_kw, unit: kW, source: members_power, range: [0, 5000], decimals: 1, members: [CR-AHU1, CR-AHU2]}
+  - {id: P-HZ.P, entity: P-HZ, metric: power_kw, unit: kW, source: members_power, range: [0, 5000], decimals: 1, members: [HZ-EXF1]}
+  - {id: P-DC.P, entity: P-DC, metric: power_kw, unit: kW, source: members_power, range: [0, 5000], decimals: 1, members: [DC-IT1, DC-CRAC1, DC-CRAC2]}
+  # 暖通与区域温度
+  - {id: HVAC-P.P, entity: P-HVAC-P, metric: power_kw, unit: kW, source: members_power, range: [0, 5000], decimals: 1,
+     members: [AHU-P1, AHU-P2, EXF-P1]}
+  - {id: ZONE-PROD.T, entity: "zone:production", metric: temperature_c, unit: C, source: zone_temperature, range: [10, 40], decimals: 2}
+  - {id: ZONE-ADMIN.T, entity: "zone:admin", metric: temperature_c, unit: C, source: zone_temperature, range: [10, 40], decimals: 2}
+  - {id: ZONE-CR.T, entity: "zone:cleanroom", metric: temperature_c, unit: C, source: zone_temperature, range: [10, 40], decimals: 2}
+
+# 三条一致性关系，节点编号来自全局图谱；residual 由程序每分钟算，只列候选不下结论。
+relations:
+  - id: energy_balance
+    label: 总表与分表合计
+    kind: sum_equals
+    nodes: [GRID, P-PROD, P-ADMIN, P-CR, P-HZ, P-DC]
+    total: GRID.P
+    parts: [P-PROD.P, P-ADMIN.P, P-CR.P, P-HZ.P, P-DC.P]
+    tolerance: 25.0
+    unit: kW
+  - id: air_current_pressure
+    label: 空压电流与管网压力
+    kind: current_pressure
+    nodes: [AC-1, AC-2, AC-3, AIR-HDR]
+    currents: [AC-1.I, AC-2.I, AC-3.I]
+    pressure: AIR-HDR.P
+    params: {normal_current_a: 40.0, p0_bar: 7.0, k_bar: 0.8}
+    tolerance: 0.25
+    unit: bar
+  - id: hvac_power_temperature
+    label: 暖通功率与车间温度
+    kind: hvac_power_temperature
+    nodes: [AHU-P1, AHU-P2, EXF-P1, "zone:production"]
+    power: HVAC-P.P
+    temperature: ZONE-PROD.T
+    params: {setpoint_c: 22.0, rated_kw: 187.0, k_c_per_unit: 2.0}
+    tolerance: 1.5
+    unit: C
+
+# 2 个虚拟传感器：由电流推管网压力、由分表合计推总表。
+virtual_sensors:
+  - id: VS-AIR-P
+    label: 电流推管网压力（供给侧）
+    kind: current_to_pressure
+    entity: AIR-HDR
+    metric: pressure_bar
+    unit: bar
+    inputs: [AC-1.I, AC-2.I, AC-3.I]
+    params: {normal_current_a: 40.0, p0_bar: 7.0, k_bar: 0.8}
+  - id: VS-GRID-P
+    label: 分表合计推总表
+    kind: sum
+    entity: GRID
+    metric: power_kw
+    unit: kW
+    inputs: [P-PROD.P, P-ADMIN.P, P-CR.P, P-HZ.P, P-DC.P]
+
+# 故障特征矩阵：哪条关系报警 → 列哪些候选（sensor / equipment），只列不判。
+fault_matrix:
+  energy_balance:
+    - {id: total_meter_fault, category: sensor, label: 总表计量异常（卡死、偏置或掉线）, sensors: [GRID.P]}
+    - {id: submeter_fault, category: sensor, label: 分表计量异常（卡死、偏置或掉线）, sensors: [P-PROD.P, P-ADMIN.P, P-CR.P, P-HZ.P, P-DC.P]}
+    - {id: unmetered_load, category: equipment, label: 未计量负荷或私接用电, sensors: []}
+  air_current_pressure:
+    - {id: pressure_sensor_stuck, category: sensor, label: 压力传感器卡死或偏置, sensors: [AIR-HDR.P]}
+    - {id: air_leak, category: equipment, label: 管网泄漏, sensors: []}
+    - {id: compressor_fault, category: equipment, label: 空压机性能下降, sensors: [AC-1.I, AC-2.I, AC-3.I]}
+  hvac_power_temperature:
+    - {id: temperature_sensor_drift, category: sensor, label: 温度传感器漂移或偏置, sensors: [ZONE-PROD.T]}
+    - {id: hvac_fault, category: equipment, label: 暖通设备故障, sensors: [HVAC-P.P]}
+    - {id: thermal_load_change, category: equipment, label: 区域热负荷变化, sensors: []}
+
+# 5 种传感器故障的候选（与设备故障分开）。注入计划不写在这里，由 SensorFaultInjector 按场景给。
+sensor_fault_candidates:
+  stuck: {id: sensor_stuck, category: sensor, label: 传感器卡死}
+  drift: {id: sensor_drift, category: sensor, label: 传感器漂移}
+  offline: {id: sensor_offline, category: sensor, label: 传感器掉线}
+  spike: {id: sensor_spike, category: sensor, label: 传感器跳变}
+  bias: {id: sensor_bias, category: sensor, label: 传感器偏置}

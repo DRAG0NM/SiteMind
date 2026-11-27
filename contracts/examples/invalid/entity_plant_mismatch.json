@@ -1,0 +1,16 @@
+{
+  "model": "Entity",
+  "base": "entity_battery",
+  "expect_error": "厂区",
+  "data": {
+    "entity_id": "entity://demo-electronics/battery/BESS1",
+    "entity_type": "battery",
+    "label": "储能 1#",
+    "aliases": [
+      "BESS-1",
+      "1号储能"
+    ],
+    "plant_id": "other-plant",
+    "ontology_class": "brick:Battery"
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "additionalProperties": false,
+  "description": "同一把尺子上的三项代价；cny 为负表示节省。",
+  "properties": {
+    "cny": {
+      "title": "Cny",
+      "type": "number"
+    },
+    "wait_min": {
+      "default": 0.0,
+      "minimum": 0,
+      "title": "Wait Min",
+      "type": "number"
+    },
+    "comfort_min": {
+      "default": 0.0,
+      "minimum": 0,
+      "title": "Comfort Min",
+      "type": "number"
+    }
+  },
+  "required": [
+    "cny"
+  ],
+  "title": "ProposalCost",
+  "type": "object",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "plantkg:contracts/1.2.0/ProposalCost"
+}

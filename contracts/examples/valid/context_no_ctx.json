@@ -1,0 +1,11 @@
+{
+  "model": "Context",
+  "data": {
+    "plant_id": "demo-electronics",
+    "industry_pack": "manufacturing",
+    "actor": null,
+    "channel": "none",
+    "trace_id": "tr-0002",
+    "as_of": "2026-06-30T10:00:00Z"
+  }
+}

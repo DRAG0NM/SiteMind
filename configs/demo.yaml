@@ -1,0 +1,5 @@
+# --profile demo：本地演示与验收的写路径（B34/B35 确认工单）。在 defaults 与 plant 之后叠加。
+# 存储开启后 __main__ 把本机运维令牌写到 runtime/demo/operator.token，确认由 CLI/后端带令牌完成，
+# 浏览器不保存任何 Key；Nexent 保持关闭，回放与确认都在本机。
+storage: {enabled: true, sqlite: runtime/demo/catalog.db, graph: runtime/demo/graph, series: runtime/demo/series}
+actions: {reviewers: [dev-reviewer], ttl_s: 86400, token_file: runtime/demo/operator.token}

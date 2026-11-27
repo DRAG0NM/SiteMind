@@ -1,0 +1,128 @@
+{
+  "$defs": {
+    "Interval": {
+      "additionalProperties": false,
+      "description": "左闭右开 UTC 区间 [start, end)。",
+      "properties": {
+        "start": {
+          "format": "date-time",
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d{1,9})?(Z|[+-]00:?00)$",
+          "title": "Start",
+          "type": "string"
+        },
+        "end": {
+          "format": "date-time",
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d{1,9})?(Z|[+-]00:?00)$",
+          "title": "End",
+          "type": "string"
+        }
+      },
+      "required": [
+        "start",
+        "end"
+      ],
+      "title": "Interval",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "description": "已下发到仿真/执行层的动作；action_id 是取消、撤销与预计影响的对象。",
+  "properties": {
+    "action_id": {
+      "maxLength": 200,
+      "minLength": 1,
+      "title": "Action Id",
+      "type": "string"
+    },
+    "run_id": {
+      "maxLength": 200,
+      "minLength": 1,
+      "title": "Run Id",
+      "type": "string"
+    },
+    "entity_id": {
+      "maxLength": 200,
+      "minLength": 1,
+      "title": "Entity Id",
+      "type": "string"
+    },
+    "command": {
+      "maxLength": 200,
+      "minLength": 1,
+      "title": "Command",
+      "type": "string"
+    },
+    "params": {
+      "additionalProperties": true,
+      "title": "Params",
+      "type": "object"
+    },
+    "interval": {
+      "$ref": "#/$defs/Interval"
+    },
+    "stage": {
+      "enum": [
+        "scheduled",
+        "active",
+        "ended",
+        "cancelled",
+        "revoked"
+      ],
+      "title": "Stage",
+      "type": "string"
+    },
+    "protection": {
+      "default": false,
+      "title": "Protection",
+      "type": "boolean"
+    },
+    "ticket_id": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Ticket Id"
+    },
+    "proposal_id": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Proposal Id"
+    },
+    "temp_rule_id": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Temp Rule Id"
+    }
+  },
+  "required": [
+    "action_id",
+    "run_id",
+    "entity_id",
+    "command",
+    "interval",
+    "stage"
+  ],
+  "title": "AppliedAction",
+  "type": "object",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "plantkg:contracts/1.2.0/AppliedAction"
+}

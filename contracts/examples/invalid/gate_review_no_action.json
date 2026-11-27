@@ -1,0 +1,19 @@
+{
+  "model": "GateDecision",
+  "base": "gate_decision",
+  "expect_error": "待确认动作",
+  "data": {
+    "plan_id": "plan-20260701",
+    "revision": 1,
+    "outcome": "review_required",
+    "reasons": [
+      "光伏预测区间宽度超过阈值"
+    ],
+    "policy_version": "gate-fixed-1",
+    "thresholds": {
+      "pv_band_ratio": 0.2
+    },
+    "assessed_at": "2026-10-30T02:00:12Z",
+    "pending_action_id": null
+  }
+}

@@ -1,0 +1,1 @@
+ALTER TABLE b32_feedback ADD COLUMN actor TEXT;

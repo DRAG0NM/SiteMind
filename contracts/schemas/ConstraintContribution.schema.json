@@ -1,0 +1,77 @@
+{
+  "$defs": {
+    "Ref": {
+      "additionalProperties": false,
+      "description": "动作、约束的依据：规则、配置项或资产版本，至少一个（04 ModelBuilder.add_constraint）。",
+      "properties": {
+        "kind": {
+          "enum": [
+            "rule",
+            "config",
+            "asset_version"
+          ],
+          "title": "Kind",
+          "type": "string"
+        },
+        "id": {
+          "maxLength": 200,
+          "minLength": 1,
+          "title": "Id",
+          "type": "string"
+        }
+      },
+      "required": [
+        "kind",
+        "id"
+      ],
+      "title": "Ref",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "rule_id": {
+      "maxLength": 200,
+      "minLength": 1,
+      "title": "Rule Id",
+      "type": "string"
+    },
+    "pack": {
+      "maxLength": 200,
+      "minLength": 1,
+      "title": "Pack",
+      "type": "string"
+    },
+    "constraint_names": {
+      "items": {
+        "type": "string"
+      },
+      "minItems": 1,
+      "title": "Constraint Names",
+      "type": "array"
+    },
+    "refs": {
+      "items": {
+        "$ref": "#/$defs/Ref"
+      },
+      "minItems": 1,
+      "title": "Refs",
+      "type": "array"
+    },
+    "compiler_version": {
+      "title": "Compiler Version",
+      "type": "string"
+    }
+  },
+  "required": [
+    "rule_id",
+    "pack",
+    "constraint_names",
+    "refs",
+    "compiler_version"
+  ],
+  "title": "ConstraintContribution",
+  "type": "object",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "plantkg:contracts/1.2.0/ConstraintContribution"
+}

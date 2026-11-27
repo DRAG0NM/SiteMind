@@ -1,0 +1,15 @@
+{
+  "method": "GET",
+  "path": "/api/v1/health",
+  "status": 200,
+  "response": {
+    "status": "ok",
+    "profile": "mock",
+    "service_version": "0.1.0",
+    "contract_version": "1.2.0",
+    "dependencies": {
+      "nexent": "disabled",
+      "jev": "disabled"
+    }
+  }
+}

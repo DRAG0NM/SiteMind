@@ -1,0 +1,334 @@
+{
+  "$defs": {
+    "ActionReadiness": {
+      "enum": [
+        "ready",
+        "needs_diagnosis",
+        "needs_human"
+      ],
+      "title": "ActionReadiness",
+      "type": "string"
+    },
+    "AgentTiming": {
+      "additionalProperties": false,
+      "description": "三个仿真时间与墙钟耗时（03 §3.0 时间协调）。仿真时间决定动作生效，墙钟只进报告。",
+      "properties": {
+        "origin_event_at": {
+          "format": "date-time",
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d{1,9})?(Z|[+-]00:?00)$",
+          "title": "Origin Event At",
+          "type": "string"
+        },
+        "trigger_at": {
+          "format": "date-time",
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d{1,9})?(Z|[+-]00:?00)$",
+          "title": "Trigger At",
+          "type": "string"
+        },
+        "effective_at": {
+          "format": "date-time",
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d{1,9})?(Z|[+-]00:?00)$",
+          "title": "Effective At",
+          "type": "string"
+        },
+        "requested_at": {
+          "format": "date-time",
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d{1,9})?(Z|[+-]00:?00)$",
+          "title": "Requested At",
+          "type": "string"
+        },
+        "returned_at": {
+          "anyOf": [
+            {
+              "format": "date-time",
+              "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d{1,9})?(Z|[+-]00:?00)$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Returned At"
+        },
+        "latency_ms": {
+          "anyOf": [
+            {
+              "minimum": 0,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Latency Ms"
+        },
+        "retries": {
+          "default": 0,
+          "minimum": 0,
+          "title": "Retries",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "origin_event_at",
+        "trigger_at",
+        "effective_at",
+        "requested_at"
+      ],
+      "title": "AgentTiming",
+      "type": "object"
+    },
+    "Interval": {
+      "additionalProperties": false,
+      "description": "左闭右开 UTC 区间 [start, end)。",
+      "properties": {
+        "start": {
+          "format": "date-time",
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d{1,9})?(Z|[+-]00:?00)$",
+          "title": "Start",
+          "type": "string"
+        },
+        "end": {
+          "format": "date-time",
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d{1,9})?(Z|[+-]00:?00)$",
+          "title": "End",
+          "type": "string"
+        }
+      },
+      "required": [
+        "start",
+        "end"
+      ],
+      "title": "Interval",
+      "type": "object"
+    },
+    "ProposalCost": {
+      "additionalProperties": false,
+      "description": "同一把尺子上的三项代价；cny 为负表示节省。",
+      "properties": {
+        "cny": {
+          "title": "Cny",
+          "type": "number"
+        },
+        "wait_min": {
+          "default": 0.0,
+          "minimum": 0,
+          "title": "Wait Min",
+          "type": "number"
+        },
+        "comfort_min": {
+          "default": 0.0,
+          "minimum": 0,
+          "title": "Comfort Min",
+          "type": "number"
+        }
+      },
+      "required": [
+        "cny"
+      ],
+      "title": "ProposalCost",
+      "type": "object"
+    },
+    "ProposedAction": {
+      "additionalProperties": false,
+      "description": "专家提案里的一个动作。",
+      "properties": {
+        "entity_id": {
+          "description": "entity://{厂区}/{类型}/{编号}；不随资料修改而变",
+          "pattern": "^entity://[A-Za-z0-9_-]+/[a-z0-9_-]+/[A-Za-z0-9_.-]+$",
+          "title": "Entity Id",
+          "type": "string"
+        },
+        "command": {
+          "maxLength": 200,
+          "minLength": 1,
+          "title": "Command",
+          "type": "string"
+        },
+        "params": {
+          "additionalProperties": true,
+          "title": "Params",
+          "type": "object"
+        },
+        "interval": {
+          "$ref": "#/$defs/Interval"
+        },
+        "readiness": {
+          "$ref": "#/$defs/ActionReadiness",
+          "default": "ready"
+        },
+        "depends_on": {
+          "default": [],
+          "items": {
+            "type": "string"
+          },
+          "title": "Depends On",
+          "type": "array"
+        }
+      },
+      "required": [
+        "entity_id",
+        "command",
+        "interval"
+      ],
+      "title": "ProposedAction",
+      "type": "object"
+    },
+    "RunBinding": {
+      "additionalProperties": false,
+      "description": "一次专家或主 Agent 运行的绑定（03 §3.0 轮次与过期）。绑定不符的结果只入历史，不执行、不回写。",
+      "properties": {
+        "run_id": {
+          "maxLength": 200,
+          "minLength": 1,
+          "title": "Run Id",
+          "type": "string"
+        },
+        "knowledge_version": {
+          "minimum": 1,
+          "title": "Knowledge Version",
+          "type": "integer"
+        },
+        "ticket_id": {
+          "maxLength": 200,
+          "minLength": 1,
+          "title": "Ticket Id",
+          "type": "string"
+        },
+        "round": {
+          "minimum": 1,
+          "title": "Round",
+          "type": "integer"
+        },
+        "state_version": {
+          "minimum": 0,
+          "title": "State Version",
+          "type": "integer"
+        },
+        "trigger_at": {
+          "format": "date-time",
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d{1,9})?(Z|[+-]00:?00)$",
+          "title": "Trigger At",
+          "type": "string"
+        }
+      },
+      "required": [
+        "run_id",
+        "knowledge_version",
+        "ticket_id",
+        "round",
+        "state_version",
+        "trigger_at"
+      ],
+      "title": "RunBinding",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "description": "专家提案（03 §3.0 提案以落库为准）。propose 工具返回 proposal_id 为空的草稿，\nB23 注册表包装层经 ProposalSink.save 落库分配 proposal_id 并补 binding 与 timing；\ndiagnosis 与 evidence_refs 可由专家回答事后经 attach_reply 补充。",
+  "properties": {
+    "proposal_id": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Proposal Id"
+    },
+    "expert": {
+      "maxLength": 200,
+      "minLength": 1,
+      "title": "Expert",
+      "type": "string"
+    },
+    "ticket_id": {
+      "maxLength": 200,
+      "minLength": 1,
+      "title": "Ticket Id",
+      "type": "string"
+    },
+    "actions": {
+      "default": [],
+      "items": {
+        "$ref": "#/$defs/ProposedAction"
+      },
+      "title": "Actions",
+      "type": "array"
+    },
+    "cost": {
+      "$ref": "#/$defs/ProposalCost"
+    },
+    "confidence": {
+      "maximum": 1,
+      "minimum": 0,
+      "title": "Confidence",
+      "type": "number"
+    },
+    "diagnosis": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Diagnosis"
+    },
+    "evidence_refs": {
+      "default": [],
+      "items": {
+        "type": "string"
+      },
+      "title": "Evidence Refs",
+      "type": "array"
+    },
+    "safety_tags": {
+      "default": [],
+      "items": {
+        "type": "string"
+      },
+      "title": "Safety Tags",
+      "type": "array"
+    },
+    "binding": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/RunBinding"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    },
+    "timing": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/AgentTiming"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    }
+  },
+  "required": [
+    "expert",
+    "ticket_id",
+    "cost",
+    "confidence"
+  ],
+  "title": "ExpertProposal",
+  "type": "object",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "plantkg:contracts/1.2.0/ExpertProposal"
+}

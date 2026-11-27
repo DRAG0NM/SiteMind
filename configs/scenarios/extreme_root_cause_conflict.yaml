@@ -1,0 +1,12 @@
+# 极端场景 7：两位专家根因判断冲突（考验主 Agent 裁决与分歧呈现）。数据性质 synthetic。
+# 设备监测判电机绕组故障、能源判电网电压暂降；直派器不裁决，原样记下分歧交第 3 层。
+scenario_id: extreme_root_cause_conflict
+title: 两位专家根因判断冲突
+nature: synthetic
+date: "2026-07-01"
+seed: 107
+initial: {soc: 0.5}
+knowledge: [energy_manual]
+events:
+  - {at: "11:00", type: power_quality_dip, entity_id: AC-3, severity: 3, summary: 3# 空压机欠压跳机,
+     payload: {effects: [{kind: fault, minutes: 20}]}}

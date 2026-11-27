@@ -1,0 +1,702 @@
+{
+  "items": 35,
+  "entities": {
+    "tp": 23,
+    "fp": 49,
+    "fn": 98,
+    "precision": 0.3194444444444444,
+    "recall": 0.19008264462809918,
+    "f1": 0.23834196891191706
+  },
+  "relations": {
+    "tp": 0,
+    "fp": 34,
+    "fn": 87,
+    "precision": 0.0,
+    "recall": 0.0,
+    "f1": 0.0
+  },
+  "review_curves": {
+    "random": [
+      {
+        "reviewed": 0,
+        "entity_f1": 0.23834196891191706,
+        "relation_f1": 0.0
+      },
+      {
+        "reviewed": 1,
+        "entity_f1": 0.26666666666666666,
+        "relation_f1": 0.03252032520325203
+      },
+      {
+        "reviewed": 2,
+        "entity_f1": 0.29292929292929293,
+        "relation_f1": 0.09523809523809525
+      },
+      {
+        "reviewed": 3,
+        "entity_f1": 0.3283582089552239,
+        "relation_f1": 0.1395348837209302
+      },
+      {
+        "reviewed": 4,
+        "entity_f1": 0.36633663366336633,
+        "relation_f1": 0.2137404580152672
+      },
+      {
+        "reviewed": 5,
+        "entity_f1": 0.3842364532019704,
+        "relation_f1": 0.24060150375939848
+      },
+      {
+        "reviewed": 6,
+        "entity_f1": 0.4077669902912622,
+        "relation_f1": 0.26666666666666666
+      },
+      {
+        "reviewed": 7,
+        "entity_f1": 0.43809523809523815,
+        "relation_f1": 0.3043478260869565
+      },
+      {
+        "reviewed": 8,
+        "entity_f1": 0.45714285714285713,
+        "relation_f1": 0.33333333333333337
+      },
+      {
+        "reviewed": 9,
+        "entity_f1": 0.4761904761904762,
+        "relation_f1": 0.36231884057971014
+      },
+      {
+        "reviewed": 10,
+        "entity_f1": 0.5023696682464455,
+        "relation_f1": 0.38848920863309355
+      },
+      {
+        "reviewed": 11,
+        "entity_f1": 0.5352112676056339,
+        "relation_f1": 0.4255319148936171
+      },
+      {
+        "reviewed": 12,
+        "entity_f1": 0.5446009389671361,
+        "relation_f1": 0.43661971830985913
+      },
+      {
+        "reviewed": 13,
+        "entity_f1": 0.5607476635514019,
+        "relation_f1": 0.45833333333333337
+      },
+      {
+        "reviewed": 14,
+        "entity_f1": 0.5898617511520738,
+        "relation_f1": 0.5
+      },
+      {
+        "reviewed": 15,
+        "entity_f1": 0.6055045871559633,
+        "relation_f1": 0.5369127516778524
+      },
+      {
+        "reviewed": 16,
+        "entity_f1": 0.639269406392694,
+        "relation_f1": 0.5733333333333334
+      },
+      {
+        "reviewed": 17,
+        "entity_f1": 0.669683257918552,
+        "relation_f1": 0.6274509803921569
+      },
+      {
+        "reviewed": 18,
+        "entity_f1": 0.6816143497757847,
+        "relation_f1": 0.6363636363636364
+      },
+      {
+        "reviewed": 19,
+        "entity_f1": 0.7022222222222222,
+        "relation_f1": 0.6624203821656051
+      },
+      {
+        "reviewed": 20,
+        "entity_f1": 0.7168141592920353,
+        "relation_f1": 0.6835443037974683
+      },
+      {
+        "reviewed": 21,
+        "entity_f1": 0.7280701754385964,
+        "relation_f1": 0.6918238993710691
+      },
+      {
+        "reviewed": 22,
+        "entity_f1": 0.7478260869565218,
+        "relation_f1": 0.7204968944099379
+      },
+      {
+        "reviewed": 23,
+        "entity_f1": 0.7705627705627704,
+        "relation_f1": 0.7530864197530864
+      },
+      {
+        "reviewed": 24,
+        "entity_f1": 0.7896995708154506,
+        "relation_f1": 0.7730061349693252
+      },
+      {
+        "reviewed": 25,
+        "entity_f1": 0.8085106382978725,
+        "relation_f1": 0.8
+      },
+      {
+        "reviewed": 26,
+        "entity_f1": 0.8220338983050848,
+        "relation_f1": 0.8143712574850299
+      },
+      {
+        "reviewed": 27,
+        "entity_f1": 0.8305084745762712,
+        "relation_f1": 0.8263473053892216
+      },
+      {
+        "reviewed": 28,
+        "entity_f1": 0.8474576271186441,
+        "relation_f1": 0.8502994011976048
+      },
+      {
+        "reviewed": 29,
+        "entity_f1": 0.8823529411764707,
+        "relation_f1": 0.8875739644970414
+      },
+      {
+        "reviewed": 30,
+        "entity_f1": 0.895397489539749,
+        "relation_f1": 0.9058823529411766
+      },
+      {
+        "reviewed": 31,
+        "entity_f1": 0.9211618257261411,
+        "relation_f1": 0.9302325581395349
+      },
+      {
+        "reviewed": 32,
+        "entity_f1": 0.946058091286307,
+        "relation_f1": 0.9534883720930232
+      },
+      {
+        "reviewed": 33,
+        "entity_f1": 0.9669421487603306,
+        "relation_f1": 0.9826589595375722
+      },
+      {
+        "reviewed": 34,
+        "entity_f1": 0.9834710743801653,
+        "relation_f1": 0.9885057471264368
+      },
+      {
+        "reviewed": 35,
+        "entity_f1": 1.0,
+        "relation_f1": 1.0
+      }
+    ],
+    "uncertainty": [
+      {
+        "reviewed": 0,
+        "entity_f1": 0.23834196891191706,
+        "relation_f1": 0.0
+      },
+      {
+        "reviewed": 1,
+        "entity_f1": 0.26666666666666666,
+        "relation_f1": 0.03252032520325203
+      },
+      {
+        "reviewed": 2,
+        "entity_f1": 0.29292929292929293,
+        "relation_f1": 0.09523809523809525
+      },
+      {
+        "reviewed": 3,
+        "entity_f1": 0.3283582089552239,
+        "relation_f1": 0.1395348837209302
+      },
+      {
+        "reviewed": 4,
+        "entity_f1": 0.36633663366336633,
+        "relation_f1": 0.2137404580152672
+      },
+      {
+        "reviewed": 5,
+        "entity_f1": 0.3842364532019704,
+        "relation_f1": 0.24060150375939848
+      },
+      {
+        "reviewed": 6,
+        "entity_f1": 0.4077669902912622,
+        "relation_f1": 0.26666666666666666
+      },
+      {
+        "reviewed": 7,
+        "entity_f1": 0.43809523809523815,
+        "relation_f1": 0.3043478260869565
+      },
+      {
+        "reviewed": 8,
+        "entity_f1": 0.45714285714285713,
+        "relation_f1": 0.33333333333333337
+      },
+      {
+        "reviewed": 9,
+        "entity_f1": 0.4761904761904762,
+        "relation_f1": 0.36231884057971014
+      },
+      {
+        "reviewed": 10,
+        "entity_f1": 0.5023696682464455,
+        "relation_f1": 0.38848920863309355
+      },
+      {
+        "reviewed": 11,
+        "entity_f1": 0.5352112676056339,
+        "relation_f1": 0.4255319148936171
+      },
+      {
+        "reviewed": 12,
+        "entity_f1": 0.5446009389671361,
+        "relation_f1": 0.43661971830985913
+      },
+      {
+        "reviewed": 13,
+        "entity_f1": 0.5607476635514019,
+        "relation_f1": 0.45833333333333337
+      },
+      {
+        "reviewed": 14,
+        "entity_f1": 0.5898617511520738,
+        "relation_f1": 0.5
+      },
+      {
+        "reviewed": 15,
+        "entity_f1": 0.6055045871559633,
+        "relation_f1": 0.5369127516778524
+      },
+      {
+        "reviewed": 16,
+        "entity_f1": 0.639269406392694,
+        "relation_f1": 0.5733333333333334
+      },
+      {
+        "reviewed": 17,
+        "entity_f1": 0.669683257918552,
+        "relation_f1": 0.6274509803921569
+      },
+      {
+        "reviewed": 18,
+        "entity_f1": 0.6816143497757847,
+        "relation_f1": 0.6363636363636364
+      },
+      {
+        "reviewed": 19,
+        "entity_f1": 0.7022222222222222,
+        "relation_f1": 0.6624203821656051
+      },
+      {
+        "reviewed": 20,
+        "entity_f1": 0.7168141592920353,
+        "relation_f1": 0.6835443037974683
+      },
+      {
+        "reviewed": 21,
+        "entity_f1": 0.7280701754385964,
+        "relation_f1": 0.6918238993710691
+      },
+      {
+        "reviewed": 22,
+        "entity_f1": 0.7478260869565218,
+        "relation_f1": 0.7204968944099379
+      },
+      {
+        "reviewed": 23,
+        "entity_f1": 0.7705627705627704,
+        "relation_f1": 0.7530864197530864
+      },
+      {
+        "reviewed": 24,
+        "entity_f1": 0.7896995708154506,
+        "relation_f1": 0.7730061349693252
+      },
+      {
+        "reviewed": 25,
+        "entity_f1": 0.8085106382978725,
+        "relation_f1": 0.8
+      },
+      {
+        "reviewed": 26,
+        "entity_f1": 0.8220338983050848,
+        "relation_f1": 0.8143712574850299
+      },
+      {
+        "reviewed": 27,
+        "entity_f1": 0.8305084745762712,
+        "relation_f1": 0.8263473053892216
+      },
+      {
+        "reviewed": 28,
+        "entity_f1": 0.8474576271186441,
+        "relation_f1": 0.8502994011976048
+      },
+      {
+        "reviewed": 29,
+        "entity_f1": 0.8823529411764707,
+        "relation_f1": 0.8875739644970414
+      },
+      {
+        "reviewed": 30,
+        "entity_f1": 0.895397489539749,
+        "relation_f1": 0.9058823529411766
+      },
+      {
+        "reviewed": 31,
+        "entity_f1": 0.9211618257261411,
+        "relation_f1": 0.9302325581395349
+      },
+      {
+        "reviewed": 32,
+        "entity_f1": 0.946058091286307,
+        "relation_f1": 0.9534883720930232
+      },
+      {
+        "reviewed": 33,
+        "entity_f1": 0.9669421487603306,
+        "relation_f1": 0.9826589595375722
+      },
+      {
+        "reviewed": 34,
+        "entity_f1": 0.9834710743801653,
+        "relation_f1": 0.9885057471264368
+      },
+      {
+        "reviewed": 35,
+        "entity_f1": 1.0,
+        "relation_f1": 1.0
+      }
+    ],
+    "uncertainty_x_impact": [
+      {
+        "reviewed": 0,
+        "entity_f1": 0.23834196891191706,
+        "relation_f1": 0.0
+      },
+      {
+        "reviewed": 1,
+        "entity_f1": 0.26666666666666666,
+        "relation_f1": 0.03252032520325203
+      },
+      {
+        "reviewed": 2,
+        "entity_f1": 0.29292929292929293,
+        "relation_f1": 0.09523809523809525
+      },
+      {
+        "reviewed": 3,
+        "entity_f1": 0.3283582089552239,
+        "relation_f1": 0.1395348837209302
+      },
+      {
+        "reviewed": 4,
+        "entity_f1": 0.36633663366336633,
+        "relation_f1": 0.2137404580152672
+      },
+      {
+        "reviewed": 5,
+        "entity_f1": 0.3842364532019704,
+        "relation_f1": 0.24060150375939848
+      },
+      {
+        "reviewed": 6,
+        "entity_f1": 0.4077669902912622,
+        "relation_f1": 0.26666666666666666
+      },
+      {
+        "reviewed": 7,
+        "entity_f1": 0.43809523809523815,
+        "relation_f1": 0.3043478260869565
+      },
+      {
+        "reviewed": 8,
+        "entity_f1": 0.45714285714285713,
+        "relation_f1": 0.33333333333333337
+      },
+      {
+        "reviewed": 9,
+        "entity_f1": 0.4761904761904762,
+        "relation_f1": 0.36231884057971014
+      },
+      {
+        "reviewed": 10,
+        "entity_f1": 0.5023696682464455,
+        "relation_f1": 0.38848920863309355
+      },
+      {
+        "reviewed": 11,
+        "entity_f1": 0.5352112676056339,
+        "relation_f1": 0.4255319148936171
+      },
+      {
+        "reviewed": 12,
+        "entity_f1": 0.5446009389671361,
+        "relation_f1": 0.43661971830985913
+      },
+      {
+        "reviewed": 13,
+        "entity_f1": 0.5607476635514019,
+        "relation_f1": 0.45833333333333337
+      },
+      {
+        "reviewed": 14,
+        "entity_f1": 0.5898617511520738,
+        "relation_f1": 0.5
+      },
+      {
+        "reviewed": 15,
+        "entity_f1": 0.6055045871559633,
+        "relation_f1": 0.5369127516778524
+      },
+      {
+        "reviewed": 16,
+        "entity_f1": 0.639269406392694,
+        "relation_f1": 0.5733333333333334
+      },
+      {
+        "reviewed": 17,
+        "entity_f1": 0.669683257918552,
+        "relation_f1": 0.6274509803921569
+      },
+      {
+        "reviewed": 18,
+        "entity_f1": 0.6816143497757847,
+        "relation_f1": 0.6363636363636364
+      },
+      {
+        "reviewed": 19,
+        "entity_f1": 0.7022222222222222,
+        "relation_f1": 0.6624203821656051
+      },
+      {
+        "reviewed": 20,
+        "entity_f1": 0.7168141592920353,
+        "relation_f1": 0.6835443037974683
+      },
+      {
+        "reviewed": 21,
+        "entity_f1": 0.7280701754385964,
+        "relation_f1": 0.6918238993710691
+      },
+      {
+        "reviewed": 22,
+        "entity_f1": 0.7478260869565218,
+        "relation_f1": 0.7204968944099379
+      },
+      {
+        "reviewed": 23,
+        "entity_f1": 0.7705627705627704,
+        "relation_f1": 0.7530864197530864
+      },
+      {
+        "reviewed": 24,
+        "entity_f1": 0.7896995708154506,
+        "relation_f1": 0.7730061349693252
+      },
+      {
+        "reviewed": 25,
+        "entity_f1": 0.8085106382978725,
+        "relation_f1": 0.8
+      },
+      {
+        "reviewed": 26,
+        "entity_f1": 0.8220338983050848,
+        "relation_f1": 0.8143712574850299
+      },
+      {
+        "reviewed": 27,
+        "entity_f1": 0.8305084745762712,
+        "relation_f1": 0.8263473053892216
+      },
+      {
+        "reviewed": 28,
+        "entity_f1": 0.8474576271186441,
+        "relation_f1": 0.8502994011976048
+      },
+      {
+        "reviewed": 29,
+        "entity_f1": 0.8823529411764707,
+        "relation_f1": 0.8875739644970414
+      },
+      {
+        "reviewed": 30,
+        "entity_f1": 0.895397489539749,
+        "relation_f1": 0.9058823529411766
+      },
+      {
+        "reviewed": 31,
+        "entity_f1": 0.9211618257261411,
+        "relation_f1": 0.9302325581395349
+      },
+      {
+        "reviewed": 32,
+        "entity_f1": 0.946058091286307,
+        "relation_f1": 0.9534883720930232
+      },
+      {
+        "reviewed": 33,
+        "entity_f1": 0.9669421487603306,
+        "relation_f1": 0.9826589595375722
+      },
+      {
+        "reviewed": 34,
+        "entity_f1": 0.9834710743801653,
+        "relation_f1": 0.9885057471264368
+      },
+      {
+        "reviewed": 35,
+        "entity_f1": 1.0,
+        "relation_f1": 1.0
+      }
+    ]
+  },
+  "entities_by_label": {
+    "Activity": {
+      "tp": 2,
+      "fp": 10,
+      "fn": 23,
+      "precision": 0.16666666666666666,
+      "recall": 0.08,
+      "f1": 0.10810810810810811,
+      "sample_count": 26
+    },
+    "PhysicalObject": {
+      "tp": 20,
+      "fp": 36,
+      "fn": 60,
+      "precision": 0.35714285714285715,
+      "recall": 0.25,
+      "f1": 0.2941176470588235,
+      "sample_count": 34
+    },
+    "Process": {
+      "tp": 0,
+      "fp": 0,
+      "fn": 2,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "sample_count": 2
+    },
+    "Property": {
+      "tp": 0,
+      "fp": 2,
+      "fn": 0,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "sample_count": 2
+    },
+    "State": {
+      "tp": 1,
+      "fp": 1,
+      "fn": 13,
+      "precision": 0.5,
+      "recall": 0.07142857142857142,
+      "f1": 0.125,
+      "sample_count": 12
+    }
+  },
+  "relations_by_label": {
+    "contains": {
+      "tp": 0,
+      "fp": 3,
+      "fn": 0,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "sample_count": 3
+    },
+    "hasPart": {
+      "tp": 0,
+      "fp": 16,
+      "fn": 34,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "sample_count": 26
+    },
+    "hasParticipant": {
+      "tp": 0,
+      "fp": 0,
+      "fn": 38,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "sample_count": 33
+    },
+    "hasProperty": {
+      "tp": 0,
+      "fp": 8,
+      "fn": 0,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "sample_count": 8
+    },
+    "isA": {
+      "tp": 0,
+      "fp": 7,
+      "fn": 15,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "sample_count": 20
+    }
+  },
+  "seed": 42,
+  "split": "test",
+  "factory_only": true,
+  "data_kind": "derived",
+  "run_id": "maintie-8ada1a508115",
+  "source_sha256": "ef811cf4ffd0c90e6a13b1369e24e9d1d08f9a294d873ab4fb1a580096d7d6e0",
+  "predictions_sha256": "8ada1a508115dac41c24e595d3d57b82af7e142cae297c0cb0c5707be6383fe8",
+  "run_metadata": {
+    "source_kind": "local_model_adaptive_repair",
+    "model": "qwen3.5:4b-q4_K_M",
+    "seed": 42,
+    "source_sha256": "ef811cf4ffd0c90e6a13b1369e24e9d1d08f9a294d873ab4fb1a580096d7d6e0",
+    "previous_metadata_sha256": "68dfd075e9fad09c44dfd9e29a1d8c754d4e3bbcace8137f30e29ca7f461960b",
+    "previous_responses_sha256": "bccf765d63116fa51ba7d600e72a69eb9de4447d9943527c88d04ff9bea72942",
+    "started_utc": "2026-11-16T07:55:57.949405+00:00",
+    "previous_elapsed_seconds": 876.4220000000023,
+    "repair_elapsed_seconds": 40.06299999999828,
+    "repaired_count": 35,
+    "valid_count": 216,
+    "failed_count": 0,
+    "prediction_sha256": "a45124658b12d7abc62fc6aad740ba8665acd907116db0fdf936ebf758a4c8c9",
+    "api_fee": 0,
+    "api_fee_reason": "local endpoint; machine and human costs excluded",
+    "dataset_version": "MaintIE 825e7710e4129598da997276a38b3cb40b200bc2",
+    "model_digest": "d8b0f5e9760cd1682034f292d7ef72ec46f432149be0df7574bf2d6e92e38c04",
+    "model_details": "Qwen 3.5 4B Q4_K_M; Apache-2.0 reported by local Ollama",
+    "prompt_template_sha256": "04e7ed0848f2d9e2f5a39433a43ce7a6c147e0c6585dc2be91d907dae3f537a8",
+    "configuration": {
+      "temperature": 0,
+      "num_predict": 1024,
+      "format": "json",
+      "retries": 2
+    },
+    "first_started_utc": "2026-11-16T07:39:57.662023+00:00",
+    "sample_count": 216,
+    "input_tokens": 62747,
+    "output_tokens": 54432,
+    "repair_responses_sha256": "3d82997d71b7f29f120438f23be637f07784e0f8263ff8fc99212319f837239e",
+    "human_minutes": null,
+    "total_cost": null
+  }
+}

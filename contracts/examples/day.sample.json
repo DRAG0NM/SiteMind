@@ -1,0 +1,554 @@
+{
+  "schema_version": "1",
+  "plant_id": "demo-electronics",
+  "local_date": "2026-07-01",
+  "timezone": "Asia/Shanghai",
+  "run_id": "run-scn-20260701-f1",
+  "runs": [
+    {
+      "run_id": "run-scn-20260701",
+      "knowledge_version": 1,
+      "data_sources": [
+        {
+          "source": "D05",
+          "dataset_version": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+        }
+      ]
+    },
+    {
+      "run_id": "run-scn-20260701-f1",
+      "forked_from": "run-scn-20260701",
+      "forked_at": "2026-07-01T06:00:00Z",
+      "knowledge_version": 2,
+      "data_sources": [
+        {
+          "source": "D05",
+          "dataset_version": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+        }
+      ]
+    }
+  ],
+  "events": [
+    {
+      "event_id": "event://ev-0805-elev",
+      "at": "2026-07-01T00:05:00Z",
+      "event_type": "elevator_peak",
+      "source": "script",
+      "entity_id": "entity://demo-electronics/elevator_group/EG-PROD",
+      "severity": 3,
+      "summary": "早班到岗，生产楼电梯群候梯 42 人",
+      "payload": {
+        "queue": 42
+      },
+      "nature": "simulated"
+    },
+    {
+      "event_id": "event://ev-0805-t1",
+      "at": "2026-07-01T00:05:00Z",
+      "event_type": "transformer_overload",
+      "source": "sim_limit",
+      "entity_id": "entity://demo-electronics/transformer/T1",
+      "severity": 4,
+      "summary": "T1 负载率 96%，逼近容量",
+      "payload": {
+        "load_ratio": 0.96
+      },
+      "nature": "simulated"
+    },
+    {
+      "event_id": "event://ev-1330-msg",
+      "at": "2026-07-01T05:30:00Z",
+      "event_type": "operator_instruction",
+      "source": "operator_message",
+      "entity_id": "entity://demo-electronics/hvac_zone/ADMIN-3F",
+      "severity": 2,
+      "summary": "下午有领导参观，行政楼保持 24 ℃",
+      "nature": "configured"
+    }
+  ],
+  "tickets": [
+    {
+      "ticket_id": "ticket://tk-0001",
+      "opened_at": "2026-07-01T00:05:00Z",
+      "closed_at": "2026-07-01T00:40:00Z",
+      "status": "closed",
+      "rehearsal": false,
+      "round": 1,
+      "event_ids": [
+        "event://ev-0805-elev",
+        "event://ev-0805-t1"
+      ],
+      "experts": [
+        "energy",
+        "elevator"
+      ],
+      "subscriptions": [
+        {
+          "entity_id": "entity://demo-electronics/transformer/T1",
+          "event_types": [
+            "transformer_overload"
+          ]
+        },
+        {
+          "entity_id": "entity://demo-electronics/elevator_group/EG-PROD",
+          "event_types": [
+            "elevator_peak",
+            "elevator_fault"
+          ]
+        }
+      ],
+      "summary": "早高峰与变压器越限合并处置"
+    },
+    {
+      "ticket_id": "ticket://tk-0002",
+      "opened_at": "2026-07-01T05:30:00Z",
+      "status": "blocked",
+      "round": 1,
+      "event_ids": [
+        "event://ev-1330-msg"
+      ],
+      "experts": [
+        "hvac"
+      ],
+      "summary": "参观期间行政楼控温；预冷撞上峰段，等人确认"
+    }
+  ],
+  "proposals": [
+    {
+      "proposal_id": "proposal://pp-0001",
+      "expert": "energy",
+      "ticket_id": "ticket://tk-0001",
+      "actions": [
+        {
+          "entity_id": "entity://demo-electronics/battery/BESS1",
+          "command": "discharge",
+          "params": {
+            "kw": 390
+          },
+          "interval": {
+            "start": "2026-07-01T00:06:00Z",
+            "end": "2026-07-01T00:30:00Z"
+          },
+          "readiness": "ready"
+        }
+      ],
+      "cost": {
+        "cny": -38.2,
+        "wait_min": 0,
+        "comfort_min": 0
+      },
+      "confidence": 0.82,
+      "diagnosis": "早高峰电梯与空压同时启动，T1 越限",
+      "evidence_refs": [
+        "rule://tou-2026#peak",
+        "entity://demo-electronics/transformer/T1"
+      ],
+      "safety_tags": [],
+      "binding": {
+        "run_id": "run-scn-20260701",
+        "knowledge_version": 1,
+        "ticket_id": "ticket://tk-0001",
+        "round": 1,
+        "state_version": 5,
+        "trigger_at": "2026-07-01T00:05:00Z"
+      },
+      "timing": {
+        "origin_event_at": "2026-07-01T00:05:00Z",
+        "trigger_at": "2026-07-01T00:05:00Z",
+        "effective_at": "2026-07-01T00:06:00Z",
+        "requested_at": "2026-11-04T02:10:00Z",
+        "returned_at": "2026-11-04T02:10:12.400Z",
+        "latency_ms": 12400,
+        "retries": 0
+      }
+    },
+    {
+      "proposal_id": "proposal://pp-0002",
+      "expert": "elevator",
+      "ticket_id": "ticket://tk-0001",
+      "actions": [
+        {
+          "entity_id": "entity://demo-electronics/elevator_group/EG-PROD",
+          "command": "set_mode",
+          "params": {
+            "mode": "up_peak",
+            "max_running": 3
+          },
+          "interval": {
+            "start": "2026-07-01T00:06:00Z",
+            "end": "2026-07-01T00:30:00Z"
+          },
+          "readiness": "ready"
+        }
+      ],
+      "cost": {
+        "cny": -6.0,
+        "wait_min": 35.0,
+        "comfort_min": 0
+      },
+      "confidence": 0.74,
+      "evidence_refs": [],
+      "safety_tags": [],
+      "binding": {
+        "run_id": "run-scn-20260701",
+        "knowledge_version": 1,
+        "ticket_id": "ticket://tk-0001",
+        "round": 1,
+        "state_version": 5,
+        "trigger_at": "2026-07-01T00:05:00Z"
+      },
+      "timing": {
+        "origin_event_at": "2026-07-01T00:05:00Z",
+        "trigger_at": "2026-07-01T00:05:00Z",
+        "effective_at": "2026-07-01T00:06:00Z",
+        "requested_at": "2026-11-04T02:10:00Z",
+        "returned_at": "2026-11-04T02:10:09.100Z",
+        "latency_ms": 9100,
+        "retries": 0
+      }
+    }
+  ],
+  "decisions": [
+    {
+      "decision_id": "decision://dc-0001",
+      "ticket_id": "ticket://tk-0001",
+      "round": 1,
+      "layer": 2,
+      "at": "2026-07-01T00:06:00Z",
+      "conflict": {
+        "summary": "能源专家要压负荷；电梯专家限台数会让候梯多 35 分钟",
+        "proposal_ids": [
+          "proposal://pp-0001",
+          "proposal://pp-0002"
+        ]
+      },
+      "conversion": {
+        "policy_version": "policy-1",
+        "scores": {
+          "pp-0001": -38.2,
+          "pp-0002": 29.0,
+          "pp-0001+pp-0002": -9.2
+        },
+        "infeasible": [],
+        "notes": [
+          "候梯 1 分钟折 1 元（policy-1）"
+        ]
+      },
+      "result": {
+        "selected_proposal_ids": [
+          "proposal://pp-0001"
+        ],
+        "outcome": "executed",
+        "summary": "储能放电削峰，电梯维持全台运行"
+      }
+    }
+  ],
+  "work_orders": [
+    {
+      "work_order_id": "wo-0001",
+      "ticket_id": "ticket://tk-0002",
+      "created_at": "2026-07-01T05:31:00Z",
+      "reason": "预冷要在峰段多开一台冷机，需值班确认",
+      "actions": [
+        {
+          "entity_id": "entity://demo-electronics/hvac_zone/ADMIN-3F",
+          "command": "set_setpoint",
+          "params": {
+            "degC": 24
+          },
+          "interval": {
+            "start": "2026-07-01T05:45:00Z",
+            "end": "2026-07-01T09:00:00Z"
+          },
+          "readiness": "needs_human"
+        }
+      ],
+      "status": "proposed",
+      "pending_action_id": "act-0042"
+    }
+  ],
+  "temp_rules": [
+    {
+      "rule_id": "temp://tr-0001",
+      "text": "行政楼 3F 参观期间保持 24 ℃",
+      "effective": {
+        "start": "2026-07-01T05:45:00Z",
+        "end": "2026-07-01T09:00:00Z"
+      },
+      "entity_ids": [
+        "entity://demo-electronics/hvac_zone/ADMIN-3F"
+      ],
+      "created_at": "2026-07-01T05:30:30Z",
+      "source_event_id": "event://ev-1330-msg",
+      "estimated_cost_cny": 46.5
+    }
+  ],
+  "knowledge_versions": [
+    {
+      "version": 1,
+      "version_manifest_id": "vm-0003",
+      "activated_at": "2026-06-30T10:00:00Z",
+      "summary": "初始知识"
+    },
+    {
+      "version": 2,
+      "version_manifest_id": "vm-0004",
+      "activated_at": "2026-07-01T06:00:00Z",
+      "summary": "新电价政策：峰段提前到 13:00"
+    }
+  ],
+  "qa": [
+    {
+      "qa_id": "qa-0001",
+      "at": "2026-07-01T01:00:00Z",
+      "question": "早上为什么没限电梯台数？",
+      "answer": "限台数省 6 元但多 35 分钟候梯，按 policy-1 不划算；改用储能放电削峰。",
+      "agent_run_id": "ar-0003",
+      "evidence_refs": [
+        "decision://dc-0001"
+      ]
+    }
+  ],
+  "agent_runs": [
+    {
+      "agent_run_id": "ar-0001",
+      "kind": "expert",
+      "agent_name": "energy_expert",
+      "run_mode": "live",
+      "source": "nexent",
+      "binding": {
+        "run_id": "run-scn-20260701",
+        "knowledge_version": 1,
+        "ticket_id": "ticket://tk-0001",
+        "round": 1,
+        "state_version": 5,
+        "trigger_at": "2026-07-01T00:05:00Z"
+      },
+      "timing": {
+        "origin_event_at": "2026-07-01T00:05:00Z",
+        "trigger_at": "2026-07-01T00:05:00Z",
+        "effective_at": "2026-07-01T00:06:00Z",
+        "requested_at": "2026-11-04T02:10:00Z",
+        "returned_at": "2026-11-04T02:10:12.400Z",
+        "latency_ms": 12400,
+        "retries": 0
+      },
+      "status": "finished",
+      "proposal_ids": [
+        "proposal://pp-0001"
+      ],
+      "model": "deepseek-v4.1-flash-1017",
+      "conversation_id": "101",
+      "terminal_reason": "completed_from_deltas",
+      "nodes": [
+        {
+          "node_id": "root",
+          "agent_name": "plantkg_expert_energy",
+          "depth": 0,
+          "started_at": "2026-11-04T02:10:00Z",
+          "finished_at": "2026-11-04T02:10:12.400Z",
+          "final_answer": "{\"status\":\"done\",\"proposal_id\":\"proposal://pp-0001\",\"diagnosis\":\"早高峰叠加储能 SOC 低\",\"evidence_refs\":[],\"question\":null}"
+        }
+      ],
+      "tool_calls": [
+        {
+          "call_id": "call-3f2a9c1d4e5b6a70",
+          "agent_name": "plantkg_expert_energy",
+          "depth": 0,
+          "tool": "energy_propose",
+          "model_params": {"focus": "储能放电"},
+          "bound_params": {"plant_id": "demo-electronics", "actor": "dev-reviewer", "as_of": "2026-07-01T00:05:00Z", "ticket_id": "ticket://tk-0001", "round": 1},
+          "started_at": "2026-11-04T02:10:03Z",
+          "duration_ms": 820,
+          "business_status": "done",
+          "summary": "proposal://pp-0001：2 个动作，代价 -120.0 元，置信度 0.82"
+        }
+      ],
+      "final_answer": "{\"status\":\"done\",\"proposal_id\":\"proposal://pp-0001\",\"diagnosis\":\"早高峰叠加储能 SOC 低\",\"evidence_refs\":[],\"question\":null}"
+    },
+    {
+      "agent_run_id": "ar-0002",
+      "kind": "expert",
+      "agent_name": "elevator_expert",
+      "run_mode": "live",
+      "source": "nexent",
+      "binding": {
+        "run_id": "run-scn-20260701",
+        "knowledge_version": 1,
+        "ticket_id": "ticket://tk-0001",
+        "round": 1,
+        "state_version": 5,
+        "trigger_at": "2026-07-01T00:05:00Z"
+      },
+      "timing": {
+        "origin_event_at": "2026-07-01T00:05:00Z",
+        "trigger_at": "2026-07-01T00:05:00Z",
+        "effective_at": "2026-07-01T00:06:00Z",
+        "requested_at": "2026-11-04T02:10:00Z",
+        "returned_at": "2026-11-04T02:10:09.100Z",
+        "latency_ms": 9100,
+        "retries": 0
+      },
+      "status": "finished",
+      "proposal_ids": [
+        "proposal://pp-0002"
+      ]
+    }
+  ],
+  "metrics": [
+    {
+      "metric": "cost_cny",
+      "group": "baseline",
+      "value": 18620.0,
+      "unit": "CNY"
+    },
+    {
+      "metric": "cost_cny",
+      "group": "independent",
+      "value": 17940.0,
+      "unit": "CNY"
+    },
+    {
+      "metric": "cost_cny",
+      "group": "coordinated",
+      "value": 17210.0,
+      "unit": "CNY"
+    },
+    {
+      "metric": "agent_latency_p95_ms",
+      "group": "coordinated",
+      "value": 12400.0,
+      "unit": "ms",
+      "note": "墙钟，不进账本"
+    }
+  ],
+  "state_series": [
+    {
+      "at": "2026-07-01T00:00:00Z",
+      "devices": {
+        "entity://demo-electronics/battery/BESS1": {
+          "soc": 0.62,
+          "mode": "idle"
+        },
+        "entity://demo-electronics/elevator_group/EG-PROD": {
+          "running": 4,
+          "queue": 8,
+          "fault": null
+        },
+        "entity://demo-electronics/hvac_zone/ADMIN-3F": {
+          "temperature_degC": 26.1,
+          "humidity": 0.58
+        },
+        "entity://demo-electronics/transformer/T1": {
+          "load_ratio": 0.78
+        }
+      },
+      "changes": [
+        {
+          "at": "2026-07-01T00:05:00Z",
+          "entity_id": "entity://demo-electronics/elevator_group/EG-PROD",
+          "field": "queue",
+          "value": 42
+        },
+        {
+          "at": "2026-07-01T00:05:00Z",
+          "entity_id": "entity://demo-electronics/transformer/T1",
+          "field": "load_ratio",
+          "value": 0.96
+        },
+        {
+          "at": "2026-07-01T00:06:00Z",
+          "entity_id": "entity://demo-electronics/battery/BESS1",
+          "field": "mode",
+          "value": "discharge"
+        },
+        {
+          "at": "2026-07-01T00:07:00Z",
+          "entity_id": "entity://demo-electronics/battery/BESS1",
+          "field": "soc",
+          "value": 0.5966
+        }
+      ]
+    },
+    {
+      "at": "2026-07-01T00:15:00Z",
+      "devices": {
+        "entity://demo-electronics/battery/BESS1": {
+          "soc": 0.567,
+          "mode": "discharge"
+        },
+        "entity://demo-electronics/elevator_group/EG-PROD": {
+          "running": 4,
+          "queue": 15,
+          "fault": null
+        },
+        "entity://demo-electronics/hvac_zone/ADMIN-3F": {
+          "temperature_degC": 25.6,
+          "humidity": 0.57
+        },
+        "entity://demo-electronics/transformer/T1": {
+          "load_ratio": 0.81
+        }
+      },
+      "changes": []
+    }
+  ],
+  "ledger_minutes": [
+    {
+      "interval": {
+        "start": "2026-07-01T00:06:00Z",
+        "end": "2026-07-01T00:07:00Z"
+      },
+      "pv_available_kwh": 2.0,
+      "pv_used_kwh": 2.0,
+      "pv_curtailed_kwh": 0.0,
+      "grid_import_kwh": 6.5,
+      "grid_export_kwh": 0.0,
+      "charge_kwh": 0.0,
+      "discharge_kwh": 6.5,
+      "load_kwh": 15.0,
+      "energy_start_kwh": 1200.0,
+      "energy_end_kwh": 1193.157895,
+      "soc_end": 0.596579,
+      "price_cny_per_kwh": 0.95,
+      "cost_cny": 6.175,
+      "residual_kwh": 0.0,
+      "load_breakdown": {
+        "elevator": 1.5,
+        "hvac": 4.0,
+        "air_compressor": 3.0,
+        "lighting": 1.0,
+        "process": 4.5,
+        "base": 1.0
+      }
+    },
+    {
+      "interval": {
+        "start": "2026-07-01T00:07:00Z",
+        "end": "2026-07-01T00:08:00Z"
+      },
+      "pv_available_kwh": 2.0,
+      "pv_used_kwh": 2.0,
+      "pv_curtailed_kwh": 0.0,
+      "grid_import_kwh": 6.5,
+      "grid_export_kwh": 0.0,
+      "charge_kwh": 0.0,
+      "discharge_kwh": 6.5,
+      "load_kwh": 15.0,
+      "energy_start_kwh": 1193.157895,
+      "energy_end_kwh": 1186.315789,
+      "soc_end": 0.593158,
+      "price_cny_per_kwh": 0.95,
+      "cost_cny": 6.175,
+      "residual_kwh": 0.0,
+      "load_breakdown": {
+        "elevator": 1.5,
+        "hvac": 4.0,
+        "air_compressor": 3.0,
+        "lighting": 1.0,
+        "process": 4.5,
+        "base": 1.0
+      }
+    }
+  ]
+}

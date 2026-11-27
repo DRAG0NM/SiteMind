@@ -1,0 +1,26 @@
+{
+  "model": "RevokePreview",
+  "data": {
+    "action_id": "A-00003",
+    "run_id": "run-day-20260701",
+    "window": {
+      "start": "2026-07-01T00:31:00Z",
+      "end": "2026-07-01T00:36:00Z"
+    },
+    "revoke": {
+      "cost_cny": 251.36,
+      "violation_minutes": 0,
+      "t1_peak_kw": 1451.2
+    },
+    "keep": {
+      "cost_cny": 251.76,
+      "violation_minutes": 0,
+      "t1_peak_kw": 1453.2
+    },
+    "cost_delta_cny": -0.4,
+    "violation_minutes_delta": 0,
+    "t1_peak_delta_kw": -2.0,
+    "protection": true,
+    "note": "保护动作：撤销需要填写说明并二次确认"
+  }
+}

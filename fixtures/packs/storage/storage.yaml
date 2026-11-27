@@ -1,0 +1,12 @@
+# 储能包样例配置（B11）。1000 kWh / 250 kW、效率 0.95、SOC 0.1～0.9 是候选值（configured，见 configs/plant.yaml），不是已批准选型。
+storage:
+  entity_id: entity://demo-electronics/battery/BAT1
+  capacity_kwh: 1000
+  charge_kw: 250
+  discharge_kw: 250
+  eta_c: 0.95
+  eta_d: 0.95
+  soc_min: 0.1
+  soc_max: 0.9
+  end_soc: null                   # null：期末电量不低于初始电量
+  degradation_cny_per_kwh: null   # null：不计衰减成本

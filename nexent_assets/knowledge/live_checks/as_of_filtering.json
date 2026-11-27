@@ -1,0 +1,30 @@
+{
+  "created_at": "2026-11-05T12:08:00+00:00",
+  "platform": "Nexent v2.8.2 本机 Docker（对话模型 deepseek-v4.1-flash-1017）",
+  "command": "python scripts/nexent_kb_demo.py --experts energy --query \"储能低 SOC 时怎么处理？引用知识库里的规则回答；一句话即可。\" [--as-of 2025-12-01T00:00:00+00:00]",
+  "note": "同一句话、同一位能源专家，只改 as_of。2025-12-01 时《储能系统运行维护手册》（2026-01-01 生效）不可见，网关不注入它；默认 as_of 2026-06-30 时可见。说明 document_paths 确实按 as_of 注入，而不是整库检索。",
+  "runs": [
+    {
+      "as_of": "2025-12-01T00:00:00+00:00",
+      "agent": "plantkg_expert_energy",
+      "agent_run_id": "ar-c6171d08eee335f2",
+      "status": "finished",
+      "terminal_reason": "completed_from_deltas",
+      "latency_ms": 9232,
+      "injected_documents": ["江苏分时电价要点（426 号文摘要）"],
+      "answer": "知识库里只收录了江苏分时电价规则（储能谷段充电、峰段与尖峰放电以降低电度电费）[[a1]]，并未收录低 SOC 保护阈值或处置流程，因此无法引用具体规则作答；从通用做法看，低 SOC 时应禁止继续放电、在谷段或平段补电至安全区间，但这不属于知识库内容。",
+      "cites_manual": false
+    },
+    {
+      "as_of": "2026-06-30T10:00:00+00:00",
+      "agent": "plantkg_expert_energy",
+      "agent_run_id": "ar-7fed6d868ea6c197",
+      "status": "finished",
+      "terminal_reason": "completed_from_deltas",
+      "latency_ms": 4478,
+      "injected_documents": ["江苏分时电价要点（426 号文摘要）", "储能系统运行维护手册（厂内版）", "光伏出力曲线（2026-06-21）"],
+      "answer": "储能低 SOC 时按厂内运行手册的 SOC 管理规则：运行 SOC 不得低于 10%，低于 15% 时只允许充电、禁止参与削峰（如仍处峰段应停止放电，等谷段或允许时段补电至 15% 以上）[[a1]]。",
+      "cites_manual": true
+    }
+  ]
+}

@@ -1,0 +1,50 @@
+{
+  "model": "JudgeResult",
+  "base": "judge_result",
+  "expect_error": "唯一第一名",
+  "data": {
+    "candidate_id": "oc-0001",
+    "choice": "A",
+    "score": 0.91,
+    "prob": 0.88,
+    "coverage": 1.0,
+    "backend": "jev",
+    "model": "decision-model-preview",
+    "calibration_version": "cal-jev-1",
+    "orders": [
+      {
+        "order": [
+          "X"
+        ],
+        "choice": "A",
+        "distribution": {
+          "X": 0.9
+        }
+      },
+      {
+        "order": [
+          "Y"
+        ],
+        "choice": "A",
+        "distribution": {
+          "Y": 0.9
+        }
+      },
+      {
+        "order": [
+          "Z"
+        ],
+        "choice": "A",
+        "distribution": {
+          "Z": 0.9
+        }
+      }
+    ],
+    "order_agree": true,
+    "cross_backend_agree": null,
+    "top_k": [],
+    "candidate_recall_source": "vector",
+    "vector_top": "A",
+    "gate_accept": true
+  }
+}

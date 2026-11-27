@@ -1,0 +1,213 @@
+# 全局图谱（B25）：在 B18 装配（site.yaml 的区域、配电拓扑、设备）之上补介质网络、服务关系、安全标记、优先级与应急预案。
+# 全部按常理编写，标 synthetic/configured；条款原文见同目录 regulations.yaml。字段增改只在本分支。
+knowledge_version: v1
+nature: configured
+site: ../site.yaml
+
+# 设备类型 → 主管专家（领域）。事件定位后按领域分组，给 Jev 打权重用。照明归能源（11-03 确认）。
+domains:
+  elevator: [freight_elevator, passenger_elevator]
+  hvac: [ahu, chiller, exhaust_fan, crac, chilled_water_loop]
+  equipment: [air_compressor, pump_station, air_header, air_branch, cooling_water_loop, pneumatic_group]
+  energy: [production_line, lighting, emergency_lighting, fire_pump, it_load, pv, battery, transformer, bus, panel, grid]
+
+# 只在图谱里出现的节点（管网、回路、未单独计负荷的生命安全设备）。panel 填了就接入配电树。
+nodes:
+  - {code: CW-LOOP, type: cooling_water_loop, label: 循环冷却水环路, zone: production}
+  - {code: AIR-HDR, type: air_header, label: 空压站主管网（0.7 MPa）, zone: production}
+  - {code: AIR-BR-P, type: air_branch, label: 车间压缩空气支管, zone: production}
+  - {code: AIR-BR-CR, type: air_branch, label: 洁净车间压缩空气支管, zone: cleanroom}
+  - {code: CR-PNEU, type: pneumatic_group, label: 洁净车间气动阀组与风淋门, zone: cleanroom}
+  - {code: CHW-A, type: chilled_water_loop, label: 行政楼冷冻水环路, zone: admin}
+  - {code: EL-A, type: emergency_lighting, label: 行政楼应急照明回路, zone: admin, panel: P-ADMIN-LT}
+  - {code: EL-P, type: emergency_lighting, label: 车间应急照明回路, zone: production, panel: P-LT-P}
+  - {code: FP-1, type: fire_pump, label: 消防泵, zone: production, panel: P-UTIL}
+
+# 介质供给（上游 → 下游）。电力由 site.yaml 的配电树生成，这里只写其他介质。
+links:
+  cooling_water:
+    - [UTIL-P1, CW-LOOP]
+    - [CW-LOOP, [AC-1, AC-2, AC-3]]
+  compressed_air:
+    - [[AC-1, AC-2, AC-3], AIR-HDR]
+    - [AIR-HDR, [AIR-BR-P, AIR-BR-CR]]
+    - [AIR-BR-P, [LINE-1, LINE-2, LINE-3]]
+    - [AIR-BR-CR, CR-PNEU]
+  chilled_water:
+    - [CH-A1, CHW-A]
+    - [CHW-A, AHU-A*]       # * 展开为该前缀的全部设备（逐层空调箱）
+
+# 服务关系：设备 → 区域或楼层。未写的设备按所在区域服务。楼层写 admin:3、admin:1-6。
+serves:
+  AHU-P1: [production]
+  AHU-P2: [production]
+  CR-AHU1: [cleanroom]
+  CR-AHU2: [cleanroom]
+  CR-PNEU: [cleanroom]
+  HZ-EXF1: [hazmat]
+  DC-CRAC1: [datacenter]
+  DC-CRAC2: [datacenter]
+  PE-1: [admin:1-6]
+  PE-2: [admin:1-6]
+  PE-3: [admin:1-6]
+  PE-4: [admin:1, admin:7-12]
+  PE-5: [admin:1, admin:7-12]
+  PE-6: [admin:1, admin:7-12]
+  EL-A: [admin:1-12]
+  AHU-A*: [floor]         # 逐层设备服务自己所在楼层
+  LT-A*: [floor]
+
+# 安全标记：确定性判断“动作是否可能造成人员伤亡或碰硬约束”。命中任一标记即不自动执行、转操作工单。
+# match 按区域、设备类型或编号命中；actions 为受限的动作种类（* 表示全部会改变状态的动作）；
+# power 为 true 时，切断上游供电（含经配电树间接断到）同样命中。
+safety_tags:
+  - id: hazmat_area
+    label: 危化品仓库
+    match: {zones: [hazmat]}
+    actions: ["*"]
+    power: true
+    clause: SR-3.1
+  - id: no_power_cut
+    label: 数据机房不能断电
+    match: {zones: [datacenter]}
+    actions: [power_off, shed, curtail, stop]
+    power: true
+    clause: SR-3.2
+  - id: hard_climate
+    label: 洁净车间恒温恒湿硬约束
+    match: {zones: [cleanroom]}
+    actions: [power_off, shed, curtail, stop, setpoint_change, precool_delay]
+    power: true
+    clause: SR-3.3
+  - id: life_safety_circuit
+    label: 消防与应急照明回路
+    match: {types: [emergency_lighting, fire_pump]}
+    actions: ["*"]
+    power: true
+    clause: SR-2.1
+  - id: occupied_car
+    label: 轿厢内有人或无法确认
+    match: {types: [freight_elevator, passenger_elevator]}
+    actions: [power_off, shed, stop, maintenance, release_brake, move_car]
+    power: true
+    occupancy: true       # 只有明确传入 occupied=false 才不命中；查不清按有人处理
+    clause: SR-1.1
+
+# 会改变设备状态的动作；不在此列（如 observe、notify）的动作不受安全标记限制。
+# 实际命令名（契约 ProposedAction.command）与概念动作名同在这张表里：graph.py 的 COMMAND_ACTIONS 把实际命令
+# 归一成概念动作，两者必须同源（load 时校验），action_consequences 也只能引用这里的动作。
+state_changing_actions: [power_off, shed, curtail, stop, start, setpoint_change, precool_delay, dispatch, zone_mode,
+                         maintenance, release_brake, move_car, discharge, charge, shift,
+                         set_mode, set_active, switch_circuit, switch_standby, set_setpoint, isolate_leak, repair,
+                         rescue, ventilate]
+safe_actions: [observe, notify, broadcast, open_ticket]
+
+# 聚合对象（电梯群、空压系统）的动作策略：expand_on 里的动作展开成成员设备，逐台查安全标记；
+# 不在列表里的动作保持群级判定（auto_ok）。成员映射见 plantkg/knowledge/rules/normalise.py 的
+# AGGREGATE_ENTITIES（唯一来源）。电梯群 stop/检修必须查轿厢有人（#223）；空压隔离/检修保留群级
+# 自动，工厂演示的空压泄漏链路不变。
+aggregate_policies:
+  elevator_group: {expand_on: [stop, maintenance, power_off, shed, curtail]}
+  air_system: {expand_on: [power_off, shed, curtail]}
+
+# 动作后果档位（D53）：值取 reversible_small（可逆、影响小）或 hard_to_reverse（难逆或代价大）。
+# B47 分级执行按它乘自主等级决定执行、抽查或等人批准；未列出的动作按难逆处理。
+action_consequences:
+  reversible_small: [set_mode, set_active, switch_circuit, set_setpoint, discharge, charge, start, broadcast, ventilate, notify,
+                     observe]
+  hard_to_reverse: [isolate_leak, repair, rescue, stop, shed, curtail, power_off, maintenance, release_brake, move_car,
+                    dispatch, shift]
+
+# 优先级配置（D16）：安全永远第一，不随时段变化；其余按区域与时段取第一条命中的窗口。
+priority:
+  fixed_first: safety
+  clause: SR-0.1
+  windows:
+    - {id: admin_peak, label: 行政楼上下班高峰, zones: [admin], days: weekday, times: ["07:30-09:30", "17:00-18:45"], order: [comfort, production, cost]}
+    - {id: production_hours, label: 生产时段, zones: [production, cleanroom], days: all, times: ["06:00-22:00"], order: [production, comfort, cost]}
+    - {id: night, label: 夜间, zones: "*", days: all, times: ["22:00-06:00"], order: [cost, production, comfort]}
+    - {id: office_hours, label: 行政楼办公时段, zones: [admin], days: weekday, times: ["09:30-17:00"], order: [comfort, cost, production]}
+  default: {id: default, label: 其余时段, order: [production, comfort, cost]}
+
+# 应急预案：触发条件、牵头专家、步骤（谁做什么）、可执行动作模板，引用条款。
+# steps 给人看；actions 给 B47 执行：protection 开单即自动执行，disposal 工单确认后执行。
+# 动作模板字段：role（实体角色：$event / battery / zone:admin / 电梯群 ID 等）、command（动作词表内的命令）、
+# params、minutes、readiness（ready / needs_human / needs_diagnosis，缺省 ready）。模板随图谱知识版本变化，
+# B30 子图写入时按同一 schema 校验（plantkg/knowledge/graph/graph.py: validate_playbook_spec）。
+playbooks:
+  - id: elevator_entrapment
+    label: 电梯困人
+    trigger: {event: elevator_stuck, types: [freight_elevator, passenger_elevator]}
+    lead: elevator
+    work_order: true
+    clause: SR-1.2
+    actions:
+      protection: []
+      disposal:
+        - {role: freight, command: set_mode, params: {mode: takeover, takeover_of: "$event"}, minutes: 120, readiness: needs_human}
+        - {role: "$event", command: ventilate, params: {kw: 3.0}, minutes: 45, readiness: needs_human}
+        - {role: freight, command: broadcast, params: {text: 救援人员已出发，请留在轿厢内不要扒门，保持通话；预计 15 分钟内到达}, minutes: 5, readiness: needs_human}
+    steps:
+      - {by: main_agent, do: 生成操作工单，不自动处理，通知值班人员与维保单位}
+      - {by: human, do: 确认救援方案并到场，按盘车规程放人}
+      - {by: elevator, do: 同组其他电梯接管任务，避开故障井道}
+      - {by: hvac, do: 给故障井道和轿厢通风}
+      - {by: main_agent, do: 广播安抚被困人员，告知预计救援时间}
+  - id: air_leak
+    label: 压缩空气泄漏
+    trigger: {event: pressure_drop, types: [air_header, air_branch]}
+    lead: equipment
+    work_order: false
+    clause: SR-4.1
+    actions:
+      protection: []
+      disposal: []
+    steps:
+      - {by: equipment, do: 按压力下降速率判别泄漏，沿管网定位到支管}
+      - {by: equipment, do: 开维修工单，关闭泄漏支管隔离阀}
+      - {by: energy, do: 受影响生产线的工序顺延，向主 Agent 报产量影响}
+      - {by: equipment, do: 洁净车间支管受影响时，单独报主 Agent（安全标记）}
+  - id: transformer_overload
+    label: 变压器逼近容量上限
+    trigger: {event: load_surge, types: [transformer, bus]}
+    lead: energy
+    work_order: false
+    clause: SR-5.1
+    actions:
+      protection:
+        - {role: battery, command: discharge, params: {power_kw: 400.0}, minutes: 30}
+        - {role: "zone:admin", command: set_mode, params: {mode: off}, minutes: 15}
+      disposal:
+        - {role: admin_low, command: set_mode, params: {mode: zone}, minutes: 45}
+    steps:
+      - {by: main_agent, do: 沿配电树找出突增来源，按领域给出权重}
+      - {by: energy, do: 储能放电到下限，平移可平移工序}
+      - {by: hvac, do: 推迟非安全区预冷}
+      - {by: elevator, do: 切分区运行，减少同时启动}
+      - {by: main_agent, do: 不对带安全标记的区域削负荷}
+  - id: datacenter_power_loss
+    label: 数据机房失电
+    trigger: {event: power_loss, zones: [datacenter]}
+    lead: energy
+    work_order: true
+    clause: SR-3.2
+    actions:
+      protection: []
+      disposal: []
+    steps:
+      - {by: energy, do: 确认 UPS 接管与剩余时长}
+      - {by: main_agent, do: 生成操作工单，值班电工检查 P-DC 进线}
+      - {by: hvac, do: 精密空调保持运行，必要时启用备用}
+  - id: hazmat_ventilation_fault
+    label: 危化品仓库排风故障
+    trigger: {event: ventilation_fault, zones: [hazmat]}
+    lead: hvac
+    work_order: true
+    clause: SR-3.1
+    actions:
+      protection: []
+      disposal: []
+    steps:
+      - {by: main_agent, do: 生成操作工单，禁止人员进入，通知安全员}
+      - {by: human, do: 佩戴防护进入检查，启用移动防爆风机}
+      - {by: hvac, do: 记录排风中断时长，恢复后连续监测}

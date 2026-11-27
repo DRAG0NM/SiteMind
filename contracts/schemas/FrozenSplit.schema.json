@@ -1,0 +1,52 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "split_id": {
+      "maxLength": 200,
+      "minLength": 1,
+      "title": "Split Id",
+      "type": "string"
+    },
+    "purpose": {
+      "enum": [
+        "calibration",
+        "scoring",
+        "validation",
+        "test"
+      ],
+      "title": "Purpose",
+      "type": "string"
+    },
+    "days": {
+      "items": {
+        "type": "string"
+      },
+      "minItems": 1,
+      "title": "Days",
+      "type": "array"
+    },
+    "frozen_at": {
+      "format": "date-time",
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d{1,9})?(Z|[+-]00:?00)$",
+      "title": "Frozen At",
+      "type": "string"
+    },
+    "content_hash": {
+      "description": "完整 sha256，去重与完整性校验用",
+      "pattern": "^sha256:[0-9a-f]{64}$",
+      "title": "Content Hash",
+      "type": "string"
+    }
+  },
+  "required": [
+    "split_id",
+    "purpose",
+    "days",
+    "frozen_at",
+    "content_hash"
+  ],
+  "title": "FrozenSplit",
+  "type": "object",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "plantkg:contracts/1.2.0/FrozenSplit"
+}

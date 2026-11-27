@@ -1,0 +1,305 @@
+{
+  "$defs": {
+    "Interval": {
+      "additionalProperties": false,
+      "description": "左闭右开 UTC 区间 [start, end)。",
+      "properties": {
+        "start": {
+          "format": "date-time",
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d{1,9})?(Z|[+-]00:?00)$",
+          "title": "Start",
+          "type": "string"
+        },
+        "end": {
+          "format": "date-time",
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d{1,9})?(Z|[+-]00:?00)$",
+          "title": "End",
+          "type": "string"
+        }
+      },
+      "required": [
+        "start",
+        "end"
+      ],
+      "title": "Interval",
+      "type": "object"
+    },
+    "LedgerEntry": {
+      "additionalProperties": false,
+      "description": "一个时段的交流侧账本（非负量，kW 时段平均、kWh 时段电量）。",
+      "properties": {
+        "interval": {
+          "$ref": "#/$defs/Interval"
+        },
+        "pv_available_kwh": {
+          "minimum": 0,
+          "title": "Pv Available Kwh",
+          "type": "number"
+        },
+        "pv_used_kwh": {
+          "minimum": 0,
+          "title": "Pv Used Kwh",
+          "type": "number"
+        },
+        "pv_curtailed_kwh": {
+          "minimum": 0,
+          "title": "Pv Curtailed Kwh",
+          "type": "number"
+        },
+        "grid_import_kwh": {
+          "minimum": 0,
+          "title": "Grid Import Kwh",
+          "type": "number"
+        },
+        "grid_export_kwh": {
+          "minimum": 0,
+          "title": "Grid Export Kwh",
+          "type": "number"
+        },
+        "charge_kwh": {
+          "minimum": 0,
+          "title": "Charge Kwh",
+          "type": "number"
+        },
+        "discharge_kwh": {
+          "minimum": 0,
+          "title": "Discharge Kwh",
+          "type": "number"
+        },
+        "load_kwh": {
+          "minimum": 0,
+          "title": "Load Kwh",
+          "type": "number"
+        },
+        "energy_start_kwh": {
+          "minimum": 0,
+          "title": "Energy Start Kwh",
+          "type": "number"
+        },
+        "energy_end_kwh": {
+          "minimum": 0,
+          "title": "Energy End Kwh",
+          "type": "number"
+        },
+        "soc_end": {
+          "maximum": 1,
+          "minimum": 0,
+          "title": "Soc End",
+          "type": "number"
+        },
+        "price_cny_per_kwh": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Price Cny Per Kwh"
+        },
+        "cost_cny": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Cost Cny"
+        },
+        "residual_kwh": {
+          "title": "Residual Kwh",
+          "type": "number"
+        },
+        "load_breakdown": {
+          "anyOf": [
+            {
+              "additionalProperties": {
+                "type": "number"
+              },
+              "propertyNames": {
+                "$ref": "#/$defs/LoadCategory"
+              },
+              "type": "object"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Load Breakdown"
+        }
+      },
+      "required": [
+        "interval",
+        "pv_available_kwh",
+        "pv_used_kwh",
+        "pv_curtailed_kwh",
+        "grid_import_kwh",
+        "grid_export_kwh",
+        "charge_kwh",
+        "discharge_kwh",
+        "load_kwh",
+        "energy_start_kwh",
+        "energy_end_kwh",
+        "soc_end",
+        "residual_kwh"
+      ],
+      "title": "LedgerEntry",
+      "type": "object"
+    },
+    "LoadCategory": {
+      "description": "负荷分项（v0.8 账本 load_breakdown）。",
+      "enum": [
+        "elevator",
+        "hvac",
+        "air_compressor",
+        "lighting",
+        "process",
+        "base"
+      ],
+      "title": "LoadCategory",
+      "type": "string"
+    },
+    "ProposalCost": {
+      "additionalProperties": false,
+      "description": "同一把尺子上的三项代价；cny 为负表示节省。",
+      "properties": {
+        "cny": {
+          "title": "Cny",
+          "type": "number"
+        },
+        "wait_min": {
+          "default": 0.0,
+          "minimum": 0,
+          "title": "Wait Min",
+          "type": "number"
+        },
+        "comfort_min": {
+          "default": 0.0,
+          "minimum": 0,
+          "title": "Comfort Min",
+          "type": "number"
+        }
+      },
+      "required": [
+        "cny"
+      ],
+      "title": "ProposalCost",
+      "type": "object"
+    },
+    "TrialViolation": {
+      "additionalProperties": false,
+      "properties": {
+        "kind": {
+          "enum": [
+            "capacity",
+            "hard_zone",
+            "safety"
+          ],
+          "title": "Kind",
+          "type": "string"
+        },
+        "entity_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Entity Id"
+        },
+        "at": {
+          "format": "date-time",
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d{1,9})?(Z|[+-]00:?00)$",
+          "title": "At",
+          "type": "string"
+        },
+        "detail": {
+          "title": "Detail",
+          "type": "string"
+        }
+      },
+      "required": [
+        "kind",
+        "at",
+        "detail"
+      ],
+      "title": "TrialViolation",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "description": "TrialRunner.trial 的结果（03 §3.4 第 2 层）。硬约束违规即不可行，软代价不参与抵消。\n\n`violations` 只含相对“同一快照的空候选基线”新增或加重的违规；基线本来就有的违规记在\n`baseline_violations`，不参与本次可行性判断（#173 相对语义：既有违规下允许缓解动作）。",
+  "properties": {
+    "feasible": {
+      "title": "Feasible",
+      "type": "boolean"
+    },
+    "violations": {
+      "default": [],
+      "items": {
+        "$ref": "#/$defs/TrialViolation"
+      },
+      "title": "Violations",
+      "type": "array"
+    },
+    "soft_cost": {
+      "$ref": "#/$defs/ProposalCost"
+    },
+    "minute_ledger": {
+      "default": [],
+      "items": {
+        "$ref": "#/$defs/LedgerEntry"
+      },
+      "title": "Minute Ledger",
+      "type": "array"
+    },
+    "baseline_violations": {
+      "default": [],
+      "items": {
+        "$ref": "#/$defs/TrialViolation"
+      },
+      "title": "Baseline Violations",
+      "type": "array"
+    },
+    "baseline_soft_cost": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/ProposalCost"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    },
+    "remaining_violation_minutes": {
+      "anyOf": [
+        {
+          "type": "integer"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Remaining Violation Minutes"
+    }
+  },
+  "required": [
+    "feasible",
+    "soft_cost"
+  ],
+  "title": "TrialResult",
+  "type": "object",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "plantkg:contracts/1.2.0/TrialResult"
+}

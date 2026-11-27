@@ -1,0 +1,420 @@
+{
+  "enums": {
+    "ActionReadiness": [
+      "ready",
+      "needs_diagnosis",
+      "needs_human"
+    ],
+    "AgentResultKind": [
+      "expert",
+      "triage",
+      "arbitration",
+      "follow_up",
+      "investigate"
+    ],
+    "BusinessStatus": [
+      "done",
+      "pending",
+      "degraded",
+      "failed"
+    ],
+    "CandidateKind": [
+      "parameter",
+      "knowledge",
+      "skill"
+    ],
+    "CandidateStatus": [
+      "proposed",
+      "validated",
+      "rejected",
+      "published",
+      "rolled_back"
+    ],
+    "ContextChannel": [
+      "gateway",
+      "none",
+      "rest",
+      "offline",
+      "mock_default"
+    ],
+    "DataNature": [
+      "measured",
+      "derived",
+      "configured",
+      "synthetic",
+      "simulated"
+    ],
+    "ErrorCode": [
+      "PLANTKG_E_NO_CTX",
+      "PLANTKG_E_UNKNOWN_CTX",
+      "PLANTKG_E_CTX_EXPIRED",
+      "PLANTKG_E_FORBIDDEN",
+      "PLANTKG_E_CROSS_PLANT",
+      "PLANTKG_E_NOT_FOUND",
+      "PLANTKG_E_NOT_VISIBLE",
+      "PLANTKG_E_INVALID_REQUEST",
+      "PLANTKG_E_DOMAIN_INVALID",
+      "PLANTKG_E_PENDING_ISSUES",
+      "PLANTKG_E_PRECONDITION",
+      "PLANTKG_E_REVISION_CONFLICT",
+      "PLANTKG_E_STATE_CONFLICT",
+      "PLANTKG_E_IDEMPOTENCY_MISMATCH",
+      "PLANTKG_E_ACTION_EXPIRED",
+      "PLANTKG_E_INFEASIBLE",
+      "PLANTKG_E_SOLVER_TIMEOUT",
+      "PLANTKG_E_SOLVER_ERROR",
+      "PLANTKG_E_RESULT_TOO_LARGE",
+      "PLANTKG_E_DEPENDENCY_UNAVAILABLE",
+      "PLANTKG_E_INTERNAL"
+    ],
+    "EvidenceEventType": [
+      "tool_called",
+      "tool_result",
+      "retrieval",
+      "graph_query",
+      "rule_lookup",
+      "rule_applied",
+      "conflict_detected",
+      "path_switch",
+      "plan_created",
+      "gate_decided",
+      "pending_action_proposed",
+      "action_decided",
+      "job_submitted",
+      "job_finished",
+      "execution_recorded",
+      "version_activated",
+      "candidate_status_changed",
+      "autonomy_paused",
+      "autonomy_resumed",
+      "action_cancelled",
+      "action_revoked"
+    ],
+    "EvidencePath": [
+      "retrieval",
+      "reasoning",
+      "none"
+    ],
+    "GateOutcome": [
+      "auto_confirmed",
+      "review_required",
+      "rejected"
+    ],
+    "JobKind": [
+      "run_day",
+      "run_week",
+      "backtest",
+      "counterfactual_score",
+      "knowledge_eval",
+      "ingest",
+      "onboarding_investigate"
+    ],
+    "JobStatus": [
+      "pending",
+      "running",
+      "succeeded",
+      "failed",
+      "cancelled"
+    ],
+    "JudgeBackend": [
+      "jev",
+      "fallback",
+      "fake"
+    ],
+    "LoadCategory": [
+      "elevator",
+      "hvac",
+      "air_compressor",
+      "lighting",
+      "process",
+      "base"
+    ],
+    "ManifestComponent": [
+      "ontology",
+      "rules",
+      "parameters",
+      "data_sources",
+      "compilers",
+      "models",
+      "skills",
+      "policy",
+      "sensor_cases"
+    ],
+    "ManifestStatus": [
+      "prepared",
+      "verified",
+      "active",
+      "retired",
+      "discarded"
+    ],
+    "OntologyLayer": [
+      "concept",
+      "relation",
+      "constraint",
+      "instance"
+    ],
+    "PendingActionKind": [
+      "review_decision",
+      "plan_confirmation",
+      "publish",
+      "rollback",
+      "work_order",
+      "correction",
+      "sampling",
+      "human_decision",
+      "review",
+      "question"
+    ],
+    "PendingActionStatus": [
+      "proposed",
+      "confirmed",
+      "rejected",
+      "expired"
+    ],
+    "PendingIssueReason": [
+      "unit_unknown",
+      "subject_unknown",
+      "conflict",
+      "missing_price",
+      "negative_price",
+      "unsupported_kind",
+      "not_reviewed",
+      "not_visible",
+      "out_of_effect",
+      "config_invalid"
+    ],
+    "PlanStatus": [
+      "draft",
+      "review_required",
+      "auto_confirmed",
+      "confirmed",
+      "rejected",
+      "executed",
+      "superseded"
+    ],
+    "RecallSource": [
+      "vector",
+      "rule",
+      "manual",
+      "fake"
+    ],
+    "ResultStatus": [
+      "ok",
+      "pending",
+      "degraded",
+      "failed",
+      "conflict"
+    ],
+    "ReviewStatus": [
+      "pending",
+      "auto_accepted",
+      "approved",
+      "rejected",
+      "trusted_config"
+    ],
+    "Role": [
+      "viewer",
+      "operator",
+      "reviewer"
+    ],
+    "RunMode": [
+      "live",
+      "trial",
+      "evaluation",
+      "deterministic"
+    ],
+    "SolverStatus": [
+      "optimal",
+      "feasible",
+      "timeout",
+      "infeasible",
+      "error"
+    ],
+    "TerminalReason": [
+      "completed",
+      "completed_from_deltas",
+      "timeout",
+      "cancelled",
+      "stream_lost_recovered",
+      "stream_lost",
+      "error"
+    ],
+    "UIEventType": [
+      "run_started",
+      "tool_started",
+      "tool_finished",
+      "evidence_added",
+      "job_progress",
+      "review_required",
+      "answer_delta",
+      "plan_ready",
+      "run_finished",
+      "run_failed",
+      "run_cancelled",
+      "keepalive"
+    ],
+    "Unit": [
+      "kW",
+      "kWh",
+      "1",
+      "CNY",
+      "CNY/kWh",
+      "CNY/kW",
+      "h",
+      "min",
+      "degC",
+      "%",
+      "count",
+      "bar/h",
+      "s"
+    ]
+  },
+  "constants": {
+    "contract_version": "1.2.0",
+    "tool_result_schema_version": "1",
+    "api_prefix": "/api/v1",
+    "tool_prefix": "plantkg_",
+    "tool_text_max_bytes": 8192,
+    "tool_deadline_s": 40,
+    "job_wait_max_s": 40,
+    "error_prefix": "PLANTKG_E_",
+    "notice_no_ctx_prefix": "PLANTKG_NOTICE_NO_CTX:",
+    "injected_param_names": [
+      "ctx",
+      "document_paths"
+    ],
+    "ledger_tolerance": {
+      "policy_version": "ledger-tol-1",
+      "energy_abs_kwh": 0.001,
+      "energy_rel": 1e-06,
+      "soc_abs": 1e-06,
+      "power_zero_kw": 1e-06
+    },
+    "error_http_status": {
+      "PLANTKG_E_NO_CTX": 401,
+      "PLANTKG_E_UNKNOWN_CTX": 401,
+      "PLANTKG_E_CTX_EXPIRED": 401,
+      "PLANTKG_E_FORBIDDEN": 403,
+      "PLANTKG_E_CROSS_PLANT": 403,
+      "PLANTKG_E_NOT_FOUND": 404,
+      "PLANTKG_E_NOT_VISIBLE": 404,
+      "PLANTKG_E_INVALID_REQUEST": 400,
+      "PLANTKG_E_DOMAIN_INVALID": 422,
+      "PLANTKG_E_PENDING_ISSUES": 422,
+      "PLANTKG_E_PRECONDITION": 422,
+      "PLANTKG_E_REVISION_CONFLICT": 409,
+      "PLANTKG_E_STATE_CONFLICT": 409,
+      "PLANTKG_E_IDEMPOTENCY_MISMATCH": 409,
+      "PLANTKG_E_ACTION_EXPIRED": 409,
+      "PLANTKG_E_INFEASIBLE": 422,
+      "PLANTKG_E_SOLVER_TIMEOUT": 503,
+      "PLANTKG_E_SOLVER_ERROR": 500,
+      "PLANTKG_E_RESULT_TOO_LARGE": 500,
+      "PLANTKG_E_DEPENDENCY_UNAVAILABLE": 503,
+      "PLANTKG_E_INTERNAL": 500
+    },
+    "retryable_errors": [
+      "PLANTKG_E_DEPENDENCY_UNAVAILABLE",
+      "PLANTKG_E_SOLVER_TIMEOUT"
+    ],
+    "compilable_review_statuses": [
+      "approved",
+      "trusted_config"
+    ],
+    "solver_statuses_with_plan": [
+      "feasible",
+      "optimal"
+    ],
+    "undecidable_choices": [
+      "none",
+      "other",
+      "unknown",
+      "其他",
+      "无法确定",
+      "未知"
+    ]
+  },
+  "transitions": {
+    "PendingAction": {
+      "proposed": [
+        "confirmed",
+        "expired",
+        "rejected"
+      ],
+      "confirmed": [],
+      "rejected": [],
+      "expired": []
+    },
+    "Job": {
+      "pending": [
+        "cancelled",
+        "failed",
+        "running"
+      ],
+      "running": [
+        "cancelled",
+        "failed",
+        "succeeded"
+      ],
+      "succeeded": [],
+      "failed": [],
+      "cancelled": []
+    },
+    "VersionManifest": {
+      "prepared": [
+        "discarded",
+        "verified"
+      ],
+      "verified": [
+        "active",
+        "discarded"
+      ],
+      "active": [
+        "retired"
+      ],
+      "retired": [
+        "active"
+      ],
+      "discarded": []
+    },
+    "Candidate": {
+      "proposed": [
+        "rejected",
+        "validated"
+      ],
+      "validated": [
+        "published",
+        "rejected"
+      ],
+      "published": [
+        "rolled_back"
+      ],
+      "rejected": [],
+      "rolled_back": []
+    },
+    "Plan": {
+      "draft": [
+        "auto_confirmed",
+        "rejected",
+        "review_required",
+        "superseded"
+      ],
+      "review_required": [
+        "confirmed",
+        "rejected",
+        "superseded"
+      ],
+      "auto_confirmed": [
+        "executed",
+        "superseded"
+      ],
+      "confirmed": [
+        "executed",
+        "superseded"
+      ],
+      "rejected": [],
+      "executed": [],
+      "superseded": []
+    }
+  }
+}

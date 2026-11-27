@@ -1,0 +1,732 @@
+{
+  "agent_id": 16,
+  "agent_info": {
+    "16": {
+      "agent_id": 16,
+      "name": "plantkg_main",
+      "display_name": "plantkg 主 Agent",
+      "description": "厂区值守的唯一对人出口：慢通道调查、裁决汇报与运维问答；需要领域细节时调用专家子 Agent",
+      "max_steps": 10,
+      "requested_output_tokens": null,
+      "is_main_agent": true,
+      "provide_run_summary": false,
+      "allow_chat_metadata": true,
+      "enable_protocol_repair_retry": false,
+      "verification_config": null,
+      "context_policy": null,
+      "prompt": "你是厂区值守系统的主 Agent，负责对拿不准的事件做调查，也是唯一直接回答值班人员的 Agent。\n值守程序已经完成准入、开事件单和快通道派发；派不派、走快通道还是慢通道由程序决定，你只在慢通道被叫到。\n\n可用工具：\n- plantkg_trace_impact：沿图谱查一个实体的下游影响与安全标记；\n- plantkg_find_sources：按位置与症状找上游供给来源；\n- plantkg_ts_query：按时间窗查物理量读数；\n- plantkg_sensor_query：按对象与传感器读观测层数值（entity、sensor_id、minutes、since），带质量标记；\n  读数质量不是 ok 时不得当作证据，要写明“读数可疑，请先现场核实”；\n- plantkg_recall：按对象 ID 展开一跳（事件 event://、事件单 ticket://、提案 proposal://、实体 entity://、资料 asset://）；\n- plantkg_trial：在固定快照上隔离试算候选动作，只读，不改真实运行；\n- plantkg_ask_operator：向值班人员提一个问题，答案回写后继续；\n- plantkg_escalate：把事件单升级为操作工单，只升不降。\n\n调查步骤（总工具调用不超过 8 次；只有一个对象时最多 4 次就下结论）：\n1. 对事件里的每个对象各调一次 plantkg_trace_impact，不要带 media 细分，同一对象不要重复调用（最多 4 次）；\n2. 两条链的上游汇到同一个对象时，直接把它当根因候选，不要再逐级向上查；\n3. find_sources 最多调一次做交叉验证；ts_query 最多一次；recall 只在需要事件单、提案或历史时用一次；\n4. 到 8 次调用必须下结论，证据够就停，不要为了确认再查一遍；\n5. 只有现场信息缺失、不拿到答案就会误判时才 ask_operator，一次只问一个具体问题；涉及安全或需要人工执行时用 escalate。\n慢通道调查（query 写明“只输出一个 JSON 对象”时）的回答只有一个 JSON 对象，值守程序按它派发，其他文字一律不写：\n{\"diagnosis\": \"根因与依据\", \"experts\": [\"hvac\"], \"evidence_refs\": [\"entity://...\"], \"probe\": null}\n- diagnosis：一到三句中文，先给根因（对象名称或 ID），再给依据（图谱路径、读数、事件单号）；\n- experts：要问的专家，取自 energy、elevator、hvac、equipment；\n- evidence_refs：结论用到的图谱路径、读数或事件单 ID，工具没返回的内容不要编造；\n- probe：只有做一次可撤回小试探才能区分假设时才给，否则写 null。格式\n  {\"actions\": [{\"entity_id\": \"...\", \"command\": \"...\", \"params\": {}}], \"window_min\": 3, \"hypothesis\": \"待检验假设\",\n  \"expectations\": [\"各假设下的预期读数反应\"]}；生效时间由程序定为观察窗口，不用写。给了 probe 本轮到此结束，experts 可为空数组，\n  窗口结束后程序会发起接续调查。\n接续调查的 query 里带试探前后带时间戳的读数（readings_before、readings_after）、假设和试探结果：只用时间戳晚于 effective_at 的读数下结论；\nprobe_incomplete 为 true 时在 diagnosis 写明“试探未完成”。\n读数质量不是 ok 时不得当作证据，要写明“读数可疑，请先现场核实”。\n\n运维问答（不属于慢通道调查时）：\n1. 问题涉及某个领域时，调用对应的专家子 Agent（能源 plantkg_expert_energy、电梯 plantkg_expert_elevator、\n   暖通 plantkg_expert_hvac、设备监测 plantkg_expert_equipment），task 里写清要它回答什么；一次只调一个专家，不要重复调用。\n2. 问答里专家只给文字回答，不出提案：task 只写要回答的问题，不要要求 JSON、proposal_id 或工单号。\n   引用专家的结论时不改写数字；没调用就不要编造专家结论。\n3. 用一到三句中文回答，先给结论，再给依据（提案 ID、工具结果）。\n4. 工具返回以 PLANTKG_E_ 开头表示失败，如实说明失败原因，不要假装成功。\n5. 问到设备重复故障、历史工单或维保规律时，调用 plantkg_workorder_search，按设备、现象、时间段查工单原文与聚类，\n   引用工单号回答；候选规则只是建议，不要当成已发布规则。\n6. 资料入库时使用 asset-onboarding 和 rule-review：调用抽取工具并检查分流结果，对例外核对图谱、资料版本与标准原文；\n   缺现场事实最多问一个问题。只提交复核或发布提议，必须等复核员确认后才称为生效。\n",
+      "enabled": true,
+      "tools": [
+        {
+          "class_name": "plantkg_list_assets",
+          "name": "plantkg_list_assets",
+          "description": "列出当前 as_of 可见的资料版本（政策、手册等），不含运行简报和实时读数",
+          "description_zh": null,
+          "inputs": "{'asset_type': {'anyOf': [{'type': 'string'}, {'type': 'null'}], 'default': None, 'description': '按类型过滤', 'type': 'string'}, 'cursor': {'anyOf': [{'type': 'string'}, {'type': 'null'}], 'default': None, 'description': '分页游标；首次调用留空', 'type': 'string'}, 'page_size': {'anyOf': [{'maximum': 50.0, 'minimum': 1.0, 'type': 'integer'}, {'type': 'null'}], 'default': None, 'description': '每页条数，1～50', 'type': 'string'}, 'ctx': {'default': '', 'description': '由系统注入，不要填写', 'type': 'string'}}",
+          "output_type": "object",
+          "params": {},
+          "source": "mcp",
+          "usage": "plantkg",
+          "metadata": null,
+          "labels": null
+        },
+        {
+          "class_name": "plantkg_find_sources",
+          "name": "plantkg_find_sources",
+          "description": "按症状在全局图谱上找来源候选并按领域汇总：load_surge 找下游用电设备（load），pressure_drop 找供气方（supply）与泄漏点（leak），其他症状找上游供给方；位置为区域时服务该区的设备标 serving",
+          "description_zh": null,
+          "inputs": "{'location': {'description': '出现症状的节点编号或区域（如 TX1、AIR-HDR、cleanroom）', 'type': 'string'}, 'symptom': {'description': 'load_surge、overload、pressure_drop、temperature_deviation、power_loss 等', 'type': 'string'}, 'ctx': {'default': '', 'description': '由系统注入，不要填写', 'type': 'string'}}",
+          "output_type": "object",
+          "params": {},
+          "source": "mcp",
+          "usage": "plantkg",
+          "metadata": null,
+          "labels": null
+        },
+        {
+          "class_name": "plantkg_recall",
+          "name": "plantkg_recall",
+          "description": "按 ID 前缀（event://、ticket://、proposal://、entity://、asset://）展开一跳；单次不超过 8KB，装不下给 next",
+          "description_zh": null,
+          "inputs": "{'id': {'description': '对象 ID，如 ticket://TK-0001', 'type': 'string'}, 'ctx': {'default': '', 'description': '由系统注入，不要填写', 'type': 'string'}}",
+          "output_type": "object",
+          "params": {},
+          "source": "mcp",
+          "usage": "plantkg",
+          "metadata": null,
+          "labels": null
+        },
+        {
+          "class_name": "plantkg_trace_impact",
+          "name": "plantkg_trace_impact",
+          "description": "沿全局图谱查某设备、管网或配电节点停供时受影响的设备、楼层和区域，每项带图谱路径与安全标记",
+          "description_zh": null,
+          "inputs": "{'entity': {'description': '设备或节点编号（如 AC-1、AIR-HDR、TX1）或 entity:// 标识', 'type': 'string'}, 'media': {'anyOf': [{'type': 'string'}, {'type': 'null'}], 'default': None, 'description': '只沿这些介质查，逗号分隔：power,cooling_water,compressed_air,chilled_water；不填查全部', 'type': 'string'}, 'ctx': {'default': '', 'description': '由系统注入，不要填写', 'type': 'string'}}",
+          "output_type": "object",
+          "params": {},
+          "source": "mcp",
+          "usage": "plantkg",
+          "metadata": null,
+          "labels": null
+        },
+        {
+          "class_name": "plantkg_get_job",
+          "name": "plantkg_get_job",
+          "description": "查询后台任务；服务端最多等 40 秒。返回 pending 时用同一 job_id 再调用",
+          "description_zh": null,
+          "inputs": "{'job_id': {'description': '任务 ID', 'type': 'string'}, 'wait': {'anyOf': [{'maximum': 40.0, 'minimum': 0.0, 'type': 'integer'}, {'type': 'null'}], 'default': None, 'description': '等待秒数 0～40', 'type': 'string'}, 'ctx': {'default': '', 'description': '由系统注入，不要填写', 'type': 'string'}}",
+          "output_type": "object",
+          "params": {},
+          "source": "mcp",
+          "usage": "plantkg",
+          "metadata": null,
+          "labels": null
+        },
+        {
+          "class_name": "plantkg_ts_query",
+          "name": "plantkg_ts_query",
+          "description": "按 available_at 过滤的只读时序查询",
+          "description_zh": null,
+          "inputs": "{'quantity': {'description': '物理量', 'type': 'string'}, 'start': {'description': 'UTC 开始', 'type': 'string'}, 'end': {'description': 'UTC 结束', 'type': 'string'}, 'cursor': {'anyOf': [{'type': 'string'}, {'type': 'null'}], 'default': None, 'description': '分页游标；首次调用留空', 'type': 'string'}, 'page_size': {'anyOf': [{'maximum': 50.0, 'minimum': 1.0, 'type': 'integer'}, {'type': 'null'}], 'default': None, 'description': '每页条数，1～50', 'type': 'string'}, 'ctx': {'default': '', 'description': '由系统注入，不要填写', 'type': 'string'}}",
+          "output_type": "object",
+          "params": {},
+          "source": "mcp",
+          "usage": "plantkg",
+          "metadata": null,
+          "labels": null
+        },
+        {
+          "class_name": "plantkg_escalate",
+          "name": "plantkg_escalate",
+          "description": "把当前事件单升级为操作工单，只升不降；经 urgent 钩子交 B47",
+          "description_zh": null,
+          "inputs": "{'reason': {'description': '升级理由', 'type': 'string'}, 'ticket_id': {'anyOf': [{'type': 'string'}, {'type': 'null'}], 'default': None, 'description': '事件单 ID；有多张打开时必填', 'type': 'string'}, 'ctx': {'default': '', 'description': '由系统注入，不要填写', 'type': 'string'}}",
+          "output_type": "object",
+          "params": {},
+          "source": "mcp",
+          "usage": "plantkg",
+          "metadata": null,
+          "labels": null
+        },
+        {
+          "class_name": "plantkg_trial",
+          "name": "plantkg_trial",
+          "description": "在固定快照上隔离试算候选动作，不改真实运行；返回可行性、违规与软代价",
+          "description_zh": null,
+          "inputs": "{'actions': {'description': '候选动作（entity_id、command、params、interval）', 'items': {}, 'type': 'array'}, 'horizon_min': {'anyOf': [{'type': 'integer'}, {'type': 'null'}], 'default': None, 'description': '试算时长（分钟），默认取配置', 'type': 'string'}, 'ticket_id': {'anyOf': [{'type': 'string'}, {'type': 'null'}], 'default': None, 'description': '事件单 ID；有多张打开时必填', 'type': 'string'}, 'ctx': {'default': '', 'description': '由系统注入，不要填写', 'type': 'string'}}",
+          "output_type": "object",
+          "params": {},
+          "source": "mcp",
+          "usage": "plantkg",
+          "metadata": null,
+          "labels": null
+        },
+        {
+          "class_name": "plantkg_ask_operator",
+          "name": "plantkg_ask_operator",
+          "description": "向值班人员提一个问题；答案经回答卡片回写后继续本轮调查",
+          "description_zh": null,
+          "inputs": "{'question': {'description': '要问的问题', 'type': 'string'}, 'ticket_id': {'anyOf': [{'type': 'string'}, {'type': 'null'}], 'default': None, 'description': '事件单 ID；有多张打开时必填', 'type': 'string'}, 'ctx': {'default': '', 'description': '由系统注入，不要填写', 'type': 'string'}}",
+          "output_type": "object",
+          "params": {},
+          "source": "mcp",
+          "usage": "plantkg",
+          "metadata": null,
+          "labels": null
+        },
+        {
+          "class_name": "plantkg_sensor_query",
+          "name": "plantkg_sensor_query",
+          "description": "场景观测层：传感器读数与 Quality、残差报警、候选假设（只列候选不下结论）与虚拟传感器推算值；可按设备或传感器查最近窗口，since 只看试探生效后的读数",
+          "description_zh": null,
+          "inputs": "{'entity': {'anyOf': [{'type': 'string'}, {'type': 'null'}], 'default': None, 'description': '设备或节点编号（如 AC-1、AIR-HDR）或 zone:production', 'type': 'string'}, 'sensor_id': {'anyOf': [{'type': 'string'}, {'type': 'null'}], 'default': None, 'description': '传感器 ID（如 AIR-HDR.P）', 'type': 'string'}, 'minutes': {'anyOf': [{'maximum': 60.0, 'minimum': 1.0, 'type': 'integer'}, {'type': 'null'}], 'default': None, 'description': '最近分钟数，默认 5', 'type': 'string'}, 'since': {'anyOf': [{'type': 'string'}, {'type': 'null'}], 'default': None, 'description': '只取时间戳晚于该时刻的读数（ISO 8601）', 'type': 'string'}, 'ctx': {'default': '', 'description': '由系统注入，不要填写', 'type': 'string'}}",
+          "output_type": "object",
+          "params": {},
+          "source": "mcp",
+          "usage": "plantkg",
+          "metadata": null,
+          "labels": null
+        },
+        {
+          "class_name": "plantkg_workorder_search",
+          "name": "plantkg_workorder_search",
+          "description": "按设备、故障现象与时间段查询历史工单原文与确定性聚类；只读",
+          "description_zh": null,
+          "inputs": "{'equipment': {'anyOf': [{'type': 'string'}, {'type': 'null'}], 'default': None, 'description': '设备编号，如 AC-2', 'type': 'string'}, 'phenomenon': {'anyOf': [{'type': 'string'}, {'type': 'null'}], 'default': None, 'description': '故障现象关键字', 'type': 'string'}, 'from_time': {'anyOf': [{'type': 'string'}, {'type': 'null'}], 'default': None, 'description': '起始时间 ISO-8601 UTC', 'type': 'string'}, 'to_time': {'anyOf': [{'type': 'string'}, {'type': 'null'}], 'default': None, 'description': '结束时间 ISO-8601 UTC', 'type': 'string'}, 'cursor': {'anyOf': [{'type': 'string'}, {'type': 'null'}], 'default': None, 'description': '分页游标；首次调用留空', 'type': 'string'}, 'page_size': {'anyOf': [{'maximum': 50.0, 'minimum': 1.0, 'type': 'integer'}, {'type': 'null'}], 'default': None, 'description': '每页条数，1～50', 'type': 'string'}, 'ctx': {'default': '', 'description': '由系统注入，不要填写', 'type': 'string'}}",
+          "output_type": "object",
+          "params": {},
+          "source": "mcp",
+          "usage": "plantkg",
+          "metadata": null,
+          "labels": null
+        },
+        {
+          "class_name": "plantkg_extract_rules",
+          "name": "plantkg_extract_rules",
+          "description": "从资料片段抽取候选规则；不能跳过审核",
+          "description_zh": null,
+          "inputs": "{'asset_version_id': {'description': '资料版本', 'type': 'string'}, 'rule_kind': {'anyOf': [{'type': 'string'}, {'type': 'null'}], 'default': None, 'description': '限定规则类型', 'type': 'string'}, 'ctx': {'default': '', 'description': '由系统注入，不要填写', 'type': 'string'}}",
+          "output_type": "object",
+          "params": {},
+          "source": "mcp",
+          "usage": "plantkg",
+          "metadata": null,
+          "labels": null
+        },
+        {
+          "class_name": "plantkg_next_review_batch",
+          "name": "plantkg_next_review_batch",
+          "description": "取出待复核条目（按决策感知影响面排序）",
+          "description_zh": null,
+          "inputs": "{'cursor': {'anyOf': [{'type': 'string'}, {'type': 'null'}], 'default': None, 'description': '分页游标；首次调用留空', 'type': 'string'}, 'page_size': {'anyOf': [{'maximum': 50.0, 'minimum': 1.0, 'type': 'integer'}, {'type': 'null'}], 'default': None, 'description': '每页条数，1～50', 'type': 'string'}, 'ctx': {'default': '', 'description': '由系统注入，不要填写', 'type': 'string'}}",
+          "output_type": "object",
+          "params": {},
+          "source": "mcp",
+          "usage": "plantkg",
+          "metadata": null,
+          "labels": null
+        },
+        {
+          "class_name": "plantkg_propose_review_decision",
+          "name": "plantkg_propose_review_decision",
+          "description": "为复核项提出建议结论，只生成待确认动作，由复核员在工作台确认",
+          "description_zh": null,
+          "inputs": "{'review_id': {'description': '复核项 ID', 'type': 'string'}, 'decision': {'description': 'accept/revise/reject', 'type': 'string'}, 'rationale': {'description': '依据说明', 'type': 'string'}, 'revision': {'anyOf': [{'additionalProperties': True, 'type': 'object'}, {'type': 'null'}], 'default': None, 'description': '修订内容', 'type': 'string'}, 'ctx': {'default': '', 'description': '由系统注入，不要填写', 'type': 'string'}}",
+          "output_type": "object",
+          "params": {},
+          "source": "mcp",
+          "usage": "plantkg",
+          "metadata": null,
+          "labels": null
+        },
+        {
+          "class_name": "plantkg_propose_publish",
+          "name": "plantkg_propose_publish",
+          "description": "提出发布已验证候选，只生成待确认动作",
+          "description_zh": null,
+          "inputs": "{'candidate_id': {'description': '候选 ID', 'type': 'string'}, 'rationale': {'description': '依据说明', 'type': 'string'}, 'ctx': {'default': '', 'description': '由系统注入，不要填写', 'type': 'string'}}",
+          "output_type": "object",
+          "params": {},
+          "source": "mcp",
+          "usage": "plantkg",
+          "metadata": null,
+          "labels": null
+        },
+        {
+          "class_name": "plantkg_lookup_rules",
+          "name": "plantkg_lookup_rules",
+          "description": "查询对当前 as_of 可见且适用的已发布规则",
+          "description_zh": null,
+          "inputs": "{'subject_id': {'anyOf': [{'type': 'string'}, {'type': 'null'}], 'default': None, 'description': '适用对象', 'type': 'string'}, 'kind': {'anyOf': [{'type': 'string'}, {'type': 'null'}], 'default': None, 'description': '规则类型', 'type': 'string'}, 'cursor': {'anyOf': [{'type': 'string'}, {'type': 'null'}], 'default': None, 'description': '分页游标；首次调用留空', 'type': 'string'}, 'page_size': {'anyOf': [{'maximum': 50.0, 'minimum': 1.0, 'type': 'integer'}, {'type': 'null'}], 'default': None, 'description': '每页条数，1～50', 'type': 'string'}, 'ctx': {'default': '', 'description': '由系统注入，不要填写', 'type': 'string'}}",
+          "output_type": "object",
+          "params": {},
+          "source": "mcp",
+          "usage": "plantkg",
+          "metadata": null,
+          "labels": null
+        },
+        {
+          "class_name": "plantkg_propose_candidates",
+          "name": "plantkg_propose_candidates",
+          "description": "为对象生成四层本体候选（概念、关系、约束、实例）",
+          "description_zh": null,
+          "inputs": "{'subject_ids': {'description': '对象 ID 列表', 'items': {}, 'type': 'array'}, 'layer': {'description': 'concept/relation/constraint/instance', 'type': 'string'}, 'ctx': {'default': '', 'description': '由系统注入，不要填写', 'type': 'string'}}",
+          "output_type": "object",
+          "params": {},
+          "source": "mcp",
+          "usage": "plantkg",
+          "metadata": null,
+          "labels": null
+        },
+        {
+          "class_name": "plantkg_link_entities",
+          "name": "plantkg_link_entities",
+          "description": "建立关系或别名归一，生成待门控候选",
+          "description_zh": null,
+          "inputs": "{'subject_id': {'description': '主体', 'type': 'string'}, 'target_id': {'description': '客体', 'type': 'string'}, 'relation': {'description': '关系类型', 'type': 'string'}, 'ctx': {'default': '', 'description': '由系统注入，不要填写', 'type': 'string'}}",
+          "output_type": "object",
+          "params": {},
+          "source": "mcp",
+          "usage": "plantkg",
+          "metadata": null,
+          "labels": null
+        },
+        {
+          "class_name": "plantkg_judge_candidates",
+          "name": "plantkg_judge_candidates",
+          "description": "用判别后端对候选打分并做一致性门控；score/prob/coverage 分开返回",
+          "description_zh": null,
+          "inputs": "{'candidate_ids': {'description': '候选 ID 列表', 'items': {}, 'type': 'array'}, 'ctx': {'default': '', 'description': '由系统注入，不要填写', 'type': 'string'}}",
+          "output_type": "object",
+          "params": {},
+          "source": "mcp",
+          "usage": "plantkg",
+          "metadata": null,
+          "labels": null
+        },
+        {
+          "class_name": "plantkg_graph_query",
+          "name": "plantkg_graph_query",
+          "description": "按白名单查询 ID 读取固定可见图；不接受任意 SPARQL",
+          "description_zh": null,
+          "inputs": "{'query_id': {'description': '白名单查询 ID', 'type': 'string'}, 'params': {'anyOf': [{'additionalProperties': True, 'type': 'object'}, {'type': 'null'}], 'default': None, 'description': '查询参数', 'type': 'string'}, 'cursor': {'anyOf': [{'type': 'string'}, {'type': 'null'}], 'default': None, 'description': '分页游标；首次调用留空', 'type': 'string'}, 'page_size': {'anyOf': [{'maximum': 50.0, 'minimum': 1.0, 'type': 'integer'}, {'type': 'null'}], 'default': None, 'description': '每页条数，1～50', 'type': 'string'}, 'ctx': {'default': '', 'description': '由系统注入，不要填写', 'type': 'string'}}",
+          "output_type": "object",
+          "params": {},
+          "source": "mcp",
+          "usage": "plantkg",
+          "metadata": null,
+          "labels": null
+        },
+        {
+          "class_name": "plantkg_validate",
+          "name": "plantkg_validate",
+          "description": "对指定命名图做 SHACL 结构校验，只检查结构",
+          "description_zh": null,
+          "inputs": "{'graph': {'anyOf': [{'type': 'string'}, {'type': 'null'}], 'default': None, 'description': '命名图名称；留空为当前清单', 'type': 'string'}, 'ctx': {'default': '', 'description': '由系统注入，不要填写', 'type': 'string'}}",
+          "output_type": "object",
+          "params": {},
+          "source": "mcp",
+          "usage": "plantkg",
+          "metadata": null,
+          "labels": null
+        },
+        {
+          "class_name": "plantkg_snapshot",
+          "name": "plantkg_snapshot",
+          "description": "返回当前清单下本体快照摘要",
+          "description_zh": null,
+          "inputs": "{'ctx': {'default': '', 'description': '由系统注入，不要填写', 'type': 'string'}}",
+          "output_type": "object",
+          "params": {},
+          "source": "mcp",
+          "usage": "plantkg",
+          "metadata": null,
+          "labels": null
+        },
+        {
+          "class_name": "plantkg_diff",
+          "name": "plantkg_diff",
+          "description": "比较两个版本的本体与规则差异",
+          "description_zh": null,
+          "inputs": "{'from_version': {'description': '旧清单 ID', 'type': 'string'}, 'to_version': {'description': '新清单 ID', 'type': 'string'}, 'ctx': {'default': '', 'description': '由系统注入，不要填写', 'type': 'string'}}",
+          "output_type": "object",
+          "params": {},
+          "source": "mcp",
+          "usage": "plantkg",
+          "metadata": null,
+          "labels": null
+        },
+        {
+          "class_name": "plantkg_prepare_tariff_review",
+          "name": "plantkg_prepare_tariff_review",
+          "description": "结合已抽取政策与可见节日日历，生成待复核的电价时段表",
+          "description_zh": null,
+          "inputs": "{'candidate_id': {'description': '政策候选编号', 'type': 'string'}, 'calendar_asset_version': {'description': '节日日历资料版本', 'type': 'string'}, 'subject_id': {'description': '电网接入点实体', 'type': 'string'}, 'category': {'description': '用电类别', 'type': 'string'}, 'effective_from': {'description': '规则生效 UTC 时间', 'type': 'string'}, 'ctx': {'default': '', 'description': '由系统注入，不要填写', 'type': 'string'}}",
+          "output_type": "object",
+          "params": {},
+          "source": "mcp",
+          "usage": "plantkg",
+          "metadata": null,
+          "labels": null
+        }
+      ],
+      "managed_agents": [
+        12,
+        13,
+        14,
+        15
+      ],
+      "model_ids": [
+        4
+      ],
+      "model_names": [
+        "deepseek-v4.1-flash-1017"
+      ],
+      "business_logic_model_id": 4,
+      "business_logic_model_name": "deepseek-v4.1-flash-1017",
+      "skill_names": [
+        "triage",
+        "asset-onboarding",
+        "rule-review"
+      ],
+      "model_params_override": {
+        "4": {
+          "extra_params": {}
+        }
+      },
+      "greeting_message": null,
+      "example_questions": null
+    },
+    "12": {
+      "agent_id": 12,
+      "name": "plantkg_expert_elevator",
+      "display_name": "plantkg 电梯专家",
+      "description": "电梯专家：电梯群控、人梯与货梯调度、候梯时间",
+      "max_steps": 10,
+      "requested_output_tokens": null,
+      "is_main_agent": true,
+      "provide_run_summary": false,
+      "allow_chat_metadata": true,
+      "enable_protocol_repair_retry": false,
+      "verification_config": null,
+      "context_policy": null,
+      "prompt": "你是厂区的电梯专家，负责 6 台人梯（低区 1～6 层 3 台、高区 7～12 层 3 台）与 4 台货梯的群控调度。\n1. 收到事件单会诊时，先调用 plantkg_elevator_propose 得到提案（工具会落库并返回 proposal_id 与摘要），不要自己编数字。\n2. 会诊的最终回答只能是一行 JSON，不加解释、不加代码块：\n   {\"status\":\"done|waiting|blocked|needs_clarification\",\"proposal_id\":\"<工具返回的 proposal_id>\",\"diagnosis\":\"<一句话诊断>\",\"evidence_refs\":[],\"question\":null}\n3. 任务不是以“事件单 … 第 N 轮会诊”开头时都算问答：不要调用 propose 工具（它只用于会诊，调了只会失败）；list_assets 最多调一次，不要换类型重试，它只列资料版本，没有运行简报和实时读数，用一两句中文回答，依据 domain-elevator Skill 与工具结果；不知道就说不知道。\n4. 困人是安全事件：救援动作必须标 needs_human，等值班人员确认；同时让其他货梯接管被困梯的生产任务。\n5. 早高峰优先分区与首层集中派梯；午间双向、晚高峰下行、低谷停部分梯。货梯按紧急度排队，人梯高峰让行，峰电时段合并批次。\n",
+      "enabled": true,
+      "tools": [
+        {
+          "class_name": "plantkg_elevator_propose",
+          "name": "plantkg_elevator_propose",
+          "description": "电梯专家：针对当前事件单确定性算出动作、代价、置信度与安全标记，提案落库后返回 proposal_id",
+          "description_zh": null,
+          "inputs": "{'focus': {'anyOf': [{'type': 'string'}, {'type': 'null'}], 'default': None, 'description': '本次关注的对象或问题（可留空）', 'type': 'string'}, 'ctx': {'default': '', 'description': '由系统注入，不要填写', 'type': 'string'}}",
+          "output_type": "object",
+          "params": {},
+          "source": "mcp",
+          "usage": "plantkg",
+          "metadata": null,
+          "labels": null
+        },
+        {
+          "class_name": "KnowledgeBaseSearchTool",
+          "name": "knowledge_base_search",
+          "description": "Performs a local knowledge base search based on your query then returns the top search results. A tool for retrieving domain-specific knowledge, documents, and information stored in the local knowledge base. Use this tool when users ask questions related to specialized knowledge, technical documentation, domain expertise, personal notes, or any information that has been indexed in the knowledge base. Suitable for queries requiring access to stored knowledge that may not be publicly available.",
+          "description_zh": "执行本地知识库检索并返回最相关的结果。",
+          "inputs": "{\"query\": {\"type\": \"string\", \"description\": \"The search query to perform.\", \"description_zh\": \"要执行的搜索查询词\"}, \"index_names\": {\"type\": \"array\", \"description\": \"The list of index names to search\", \"description_zh\": \"要索引的知识库\", \"nullable\": true}}",
+          "output_type": "string",
+          "params": {
+            "top_k": 3,
+            "index_names": [],
+            "search_mode": "hybrid",
+            "rerank": false,
+            "rerank_model_name": ""
+          },
+          "source": "local",
+          "usage": null,
+          "metadata": {},
+          "labels": null
+        },
+        {
+          "class_name": "plantkg_list_assets",
+          "name": "plantkg_list_assets",
+          "description": "列出当前 as_of 可见的资料版本（政策、手册等），不含运行简报和实时读数",
+          "description_zh": null,
+          "inputs": "{'asset_type': {'anyOf': [{'type': 'string'}, {'type': 'null'}], 'default': None, 'description': '按类型过滤', 'type': 'string'}, 'cursor': {'anyOf': [{'type': 'string'}, {'type': 'null'}], 'default': None, 'description': '分页游标；首次调用留空', 'type': 'string'}, 'page_size': {'anyOf': [{'maximum': 50.0, 'minimum': 1.0, 'type': 'integer'}, {'type': 'null'}], 'default': None, 'description': '每页条数，1～50', 'type': 'string'}, 'ctx': {'default': '', 'description': '由系统注入，不要填写', 'type': 'string'}}",
+          "output_type": "object",
+          "params": {},
+          "source": "mcp",
+          "usage": "plantkg",
+          "metadata": null,
+          "labels": null
+        }
+      ],
+      "managed_agents": [],
+      "model_ids": [
+        4
+      ],
+      "model_names": [
+        "deepseek-v4.1-flash-1017"
+      ],
+      "business_logic_model_id": 4,
+      "business_logic_model_name": "deepseek-v4.1-flash-1017",
+      "skill_names": [
+        "domain-elevator"
+      ],
+      "model_params_override": {
+        "4": {
+          "extra_params": {}
+        }
+      },
+      "greeting_message": null,
+      "example_questions": null
+    },
+    "13": {
+      "agent_id": 13,
+      "name": "plantkg_expert_energy",
+      "display_name": "plantkg 能源专家",
+      "description": "能源专家：日前计划、储能充放与实时削峰、光伏消纳、峰谷电价与需量、照明回路",
+      "max_steps": 10,
+      "requested_output_tokens": null,
+      "is_main_agent": true,
+      "provide_run_summary": false,
+      "allow_chat_metadata": true,
+      "enable_protocol_repair_retry": false,
+      "verification_config": null,
+      "context_policy": null,
+      "prompt": "你是厂区的能源专家，负责储能充放、光伏消纳、峰谷电价、需量与照明回路。判断依据是运行简报里的\nSOC、变压器容量、分时电价与事件影响，不凭印象编数字。\n\n收到事件单会诊时：\n1. 先调用 plantkg_energy_propose（参数 focus 填本次关注的对象或问题）。工具会按当前事件单与运行\n   简报确定性算出动作、代价与置信度，并把提案落库，只返回 proposal_id 与摘要。\n2. 你的回答只引用工具返回的 proposal_id 与摘要里的数，不改写、不补充工具没有的数。\n3. 最终回答只能是一行 JSON，不加解释、不加代码块：\n   {\"status\":\"done|waiting|blocked|needs_clarification\",\"proposal_id\":\"<工具返回的 proposal_id>\",\"diagnosis\":\"<一句话诊断>\",\"evidence_refs\":[],\"question\":null}\n\n任务不是以“事件单 … 第 N 轮会诊”开头时都算问答：不要调用 propose 工具（它只用于会诊，调了只会失败）；list_assets 最多调一次，不要换类型重试，它只列资料版本，没有运行简报和实时读数，用一到三句中文回答，先结论后依据；\n依据可以是报价时段、SOC、峰谷价差、当前计划的目标线；不知道就说不知道。\n\n领域判断要点（详见 domain-energy Skill）：\n- 储能接在园区 1# 变压器下，只能缓解 TX1/LV1 侧的生产负荷，缓解不了行政楼 TX2 的负载；SOC 到下限\n  就不放电，功率不超过配置上限。\n- 电价按已审核的分时时段算：谷段（00:00–06:00、11:00–13:00）充电，峰段（14:00–22:00）与尖峰放电，\n  平段按负荷跟踪；估算省钱用峰谷价差，不把容量电费算进来。\n- 照明是可调负荷，可以按比例降功率参与削峰；照明回路故障时切备用回路（switch_circuit）。洁净车间、\n  数据机房、危化品仓库有硬约束，不能停电或停风。\n- 事件响应预算 1 分钟：动作在事件时刻 + 1 分钟的整分钟生效，不追溯修改已结算的分钟。\n涉及停电、停风或安全标记的动作只提议，由值班人员在工作台确认。\n",
+      "enabled": true,
+      "tools": [
+        {
+          "class_name": "KnowledgeBaseSearchTool",
+          "name": "knowledge_base_search",
+          "description": "Performs a local knowledge base search based on your query then returns the top search results. A tool for retrieving domain-specific knowledge, documents, and information stored in the local knowledge base. Use this tool when users ask questions related to specialized knowledge, technical documentation, domain expertise, personal notes, or any information that has been indexed in the knowledge base. Suitable for queries requiring access to stored knowledge that may not be publicly available.",
+          "description_zh": "执行本地知识库检索并返回最相关的结果。",
+          "inputs": "{\"query\": {\"type\": \"string\", \"description\": \"The search query to perform.\", \"description_zh\": \"要执行的搜索查询词\"}, \"index_names\": {\"type\": \"array\", \"description\": \"The list of index names to search\", \"description_zh\": \"要索引的知识库\", \"nullable\": true}}",
+          "output_type": "string",
+          "params": {
+            "top_k": 3,
+            "index_names": [],
+            "search_mode": "hybrid",
+            "rerank": false,
+            "rerank_model_name": ""
+          },
+          "source": "local",
+          "usage": null,
+          "metadata": {},
+          "labels": null
+        },
+        {
+          "class_name": "plantkg_list_assets",
+          "name": "plantkg_list_assets",
+          "description": "列出当前 as_of 可见的资料版本（政策、手册等），不含运行简报和实时读数",
+          "description_zh": null,
+          "inputs": "{'asset_type': {'anyOf': [{'type': 'string'}, {'type': 'null'}], 'default': None, 'description': '按类型过滤', 'type': 'string'}, 'cursor': {'anyOf': [{'type': 'string'}, {'type': 'null'}], 'default': None, 'description': '分页游标；首次调用留空', 'type': 'string'}, 'page_size': {'anyOf': [{'maximum': 50.0, 'minimum': 1.0, 'type': 'integer'}, {'type': 'null'}], 'default': None, 'description': '每页条数，1～50', 'type': 'string'}, 'ctx': {'default': '', 'description': '由系统注入，不要填写', 'type': 'string'}}",
+          "output_type": "object",
+          "params": {},
+          "source": "mcp",
+          "usage": "plantkg",
+          "metadata": null,
+          "labels": null
+        },
+        {
+          "class_name": "plantkg_energy_propose",
+          "name": "plantkg_energy_propose",
+          "description": "能源专家：针对当前事件单确定性算出动作、代价、置信度与安全标记，提案落库后返回 proposal_id",
+          "description_zh": null,
+          "inputs": "{'focus': {'anyOf': [{'type': 'string'}, {'type': 'null'}], 'default': None, 'description': '本次关注的对象或问题（可留空）', 'type': 'string'}, 'ctx': {'default': '', 'description': '由系统注入，不要填写', 'type': 'string'}}",
+          "output_type": "object",
+          "params": {},
+          "source": "mcp",
+          "usage": "plantkg",
+          "metadata": null,
+          "labels": null
+        }
+      ],
+      "managed_agents": [],
+      "model_ids": [
+        4
+      ],
+      "model_names": [
+        "deepseek-v4.1-flash-1017"
+      ],
+      "business_logic_model_id": 4,
+      "business_logic_model_name": "deepseek-v4.1-flash-1017",
+      "skill_names": [
+        "domain-energy"
+      ],
+      "model_params_override": {
+        "4": {
+          "extra_params": {}
+        }
+      },
+      "greeting_message": null,
+      "example_questions": null
+    },
+    "14": {
+      "agent_id": 14,
+      "name": "plantkg_expert_equipment",
+      "display_name": "plantkg 设备监测专家",
+      "description": "设备监测专家：空压等设备健康、故障研判与维修工单",
+      "max_steps": 10,
+      "requested_output_tokens": null,
+      "is_main_agent": true,
+      "provide_run_summary": false,
+      "allow_chat_metadata": true,
+      "enable_protocol_repair_retry": false,
+      "verification_config": null,
+      "context_policy": null,
+      "prompt": "你是厂区的设备监测专家，负责空压等设备健康、故障研判与维修工单。\n1. 收到事件单会诊时，先调用 plantkg_equipment_propose 得到提案（工具会落库并返回 proposal_id 与摘要），\n   不要自己编诊断、电流、压力或置信度。\n2. 读数研判一律与同时段基线比：白天不能用夜间的运转占比作基线；证据不足时只说不足，不要硬判。\n3. 计量类异常（CT 极性反接、相位错位、互感器变比配错、标签配错）判为“数据异常、设备本身正常”，\n   只开计量检修工单，不切设备；涉及安全或需要停机的动作只提议，由值班人员在工作台确认。\n4. 读数可疑时先用 plantkg_sensor_query 查观测层的 Quality、残差报警与候选假设（只列候选，不下结论）；\n   要区分“传感器 vs 设备”时做可撤回的小试探（如短时启动备用空压机），试探后只用时间戳晚于生效时刻的\n   读数判断；判传感器卡死就改用推算值、开计量检修工单、不停机。\n5. 查影响哪些产线、设备或上游来源，用 plantkg_trace_impact 和 plantkg_find_sources，不要用 list_assets 反复翻。\n6. 会诊的最终回答只能是一行 JSON，不加解释、不加代码块：\n   {\"status\":\"done|waiting|blocked|needs_clarification\",\"proposal_id\":\"<工具返回的 proposal_id>\",\"diagnosis\":\"<一句话诊断>\",\"evidence_refs\":[],\"question\":null}\n7. 任务不是以“事件单 … 第 N 轮会诊”开头时都算问答：不要调用 propose 工具（它只用于会诊，调了只会失败）；list_assets 最多调一次，不要换类型重试，它只列资料版本，没有运行简报和实时读数，用一两句中文回答，依据资料与\n   工具结果，先给结论后给依据；不知道就说不知道。\n",
+      "enabled": true,
+      "tools": [
+        {
+          "class_name": "plantkg_equipment_propose",
+          "name": "plantkg_equipment_propose",
+          "description": "设备监测专家：针对当前事件单确定性算出动作、代价、置信度与安全标记，提案落库后返回 proposal_id",
+          "description_zh": null,
+          "inputs": "{'focus': {'anyOf': [{'type': 'string'}, {'type': 'null'}], 'default': None, 'description': '本次关注的对象或问题（可留空）', 'type': 'string'}, 'ctx': {'default': '', 'description': '由系统注入，不要填写', 'type': 'string'}}",
+          "output_type": "object",
+          "params": {},
+          "source": "mcp",
+          "usage": "plantkg",
+          "metadata": null,
+          "labels": null
+        },
+        {
+          "class_name": "KnowledgeBaseSearchTool",
+          "name": "knowledge_base_search",
+          "description": "Performs a local knowledge base search based on your query then returns the top search results. A tool for retrieving domain-specific knowledge, documents, and information stored in the local knowledge base. Use this tool when users ask questions related to specialized knowledge, technical documentation, domain expertise, personal notes, or any information that has been indexed in the knowledge base. Suitable for queries requiring access to stored knowledge that may not be publicly available.",
+          "description_zh": "执行本地知识库检索并返回最相关的结果。",
+          "inputs": "{\"query\": {\"type\": \"string\", \"description\": \"The search query to perform.\", \"description_zh\": \"要执行的搜索查询词\"}, \"index_names\": {\"type\": \"array\", \"description\": \"The list of index names to search\", \"description_zh\": \"要索引的知识库\", \"nullable\": true}}",
+          "output_type": "string",
+          "params": {
+            "top_k": 3,
+            "index_names": [],
+            "search_mode": "hybrid",
+            "rerank": false,
+            "rerank_model_name": ""
+          },
+          "source": "local",
+          "usage": null,
+          "metadata": {},
+          "labels": null
+        },
+        {
+          "class_name": "plantkg_trace_impact",
+          "name": "plantkg_trace_impact",
+          "description": "沿全局图谱查某设备、管网或配电节点停供时受影响的设备、楼层和区域，每项带图谱路径与安全标记",
+          "description_zh": null,
+          "inputs": "{'entity': {'description': '设备或节点编号（如 AC-1、AIR-HDR、TX1）或 entity:// 标识', 'type': 'string'}, 'media': {'anyOf': [{'type': 'string'}, {'type': 'null'}], 'default': None, 'description': '只沿这些介质查，逗号分隔：power,cooling_water,compressed_air,chilled_water；不填查全部', 'type': 'string'}, 'ctx': {'default': '', 'description': '由系统注入，不要填写', 'type': 'string'}}",
+          "output_type": "object",
+          "params": {},
+          "source": "mcp",
+          "usage": "plantkg",
+          "metadata": null,
+          "labels": null
+        },
+        {
+          "class_name": "plantkg_list_assets",
+          "name": "plantkg_list_assets",
+          "description": "列出当前 as_of 可见的资料版本（政策、手册等），不含运行简报和实时读数",
+          "description_zh": null,
+          "inputs": "{'asset_type': {'anyOf': [{'type': 'string'}, {'type': 'null'}], 'default': None, 'description': '按类型过滤', 'type': 'string'}, 'cursor': {'anyOf': [{'type': 'string'}, {'type': 'null'}], 'default': None, 'description': '分页游标；首次调用留空', 'type': 'string'}, 'page_size': {'anyOf': [{'maximum': 50.0, 'minimum': 1.0, 'type': 'integer'}, {'type': 'null'}], 'default': None, 'description': '每页条数，1～50', 'type': 'string'}, 'ctx': {'default': '', 'description': '由系统注入，不要填写', 'type': 'string'}}",
+          "output_type": "object",
+          "params": {},
+          "source": "mcp",
+          "usage": "plantkg",
+          "metadata": null,
+          "labels": null
+        },
+        {
+          "class_name": "plantkg_sensor_query",
+          "name": "plantkg_sensor_query",
+          "description": "场景观测层：传感器读数与 Quality、残差报警、候选假设（只列候选不下结论）与虚拟传感器推算值；可按设备或传感器查最近窗口，since 只看试探生效后的读数",
+          "description_zh": null,
+          "inputs": "{'entity': {'anyOf': [{'type': 'string'}, {'type': 'null'}], 'default': None, 'description': '设备或节点编号（如 AC-1、AIR-HDR）或 zone:production', 'type': 'string'}, 'sensor_id': {'anyOf': [{'type': 'string'}, {'type': 'null'}], 'default': None, 'description': '传感器 ID（如 AIR-HDR.P）', 'type': 'string'}, 'minutes': {'anyOf': [{'maximum': 60.0, 'minimum': 1.0, 'type': 'integer'}, {'type': 'null'}], 'default': None, 'description': '最近分钟数，默认 5', 'type': 'string'}, 'since': {'anyOf': [{'type': 'string'}, {'type': 'null'}], 'default': None, 'description': '只取时间戳晚于该时刻的读数（ISO 8601）', 'type': 'string'}, 'ctx': {'default': '', 'description': '由系统注入，不要填写', 'type': 'string'}}",
+          "output_type": "object",
+          "params": {},
+          "source": "mcp",
+          "usage": "plantkg",
+          "metadata": null,
+          "labels": null
+        },
+        {
+          "class_name": "plantkg_find_sources",
+          "name": "plantkg_find_sources",
+          "description": "按症状在全局图谱上找来源候选并按领域汇总：load_surge 找下游用电设备（load），pressure_drop 找供气方（supply）与泄漏点（leak），其他症状找上游供给方；位置为区域时服务该区的设备标 serving",
+          "description_zh": null,
+          "inputs": "{'location': {'description': '出现症状的节点编号或区域（如 TX1、AIR-HDR、cleanroom）', 'type': 'string'}, 'symptom': {'description': 'load_surge、overload、pressure_drop、temperature_deviation、power_loss 等', 'type': 'string'}, 'ctx': {'default': '', 'description': '由系统注入，不要填写', 'type': 'string'}}",
+          "output_type": "object",
+          "params": {},
+          "source": "mcp",
+          "usage": "plantkg",
+          "metadata": null,
+          "labels": null
+        }
+      ],
+      "managed_agents": [],
+      "model_ids": [
+        4
+      ],
+      "model_names": [
+        "deepseek-v4.1-flash-1017"
+      ],
+      "business_logic_model_id": 4,
+      "business_logic_model_name": "deepseek-v4.1-flash-1017",
+      "skill_names": [],
+      "model_params_override": {
+        "4": {
+          "extra_params": {}
+        }
+      },
+      "greeting_message": null,
+      "example_questions": null
+    },
+    "15": {
+      "agent_id": 15,
+      "name": "plantkg_expert_hvac",
+      "display_name": "plantkg 暖通专家",
+      "description": "暖通专家：区域温度与舒适区间、预冷与推迟预冷、错峰让容，洁净车间与数据机房按硬约束保供",
+      "max_steps": 10,
+      "requested_output_tokens": null,
+      "is_main_agent": true,
+      "provide_run_summary": false,
+      "allow_chat_metadata": true,
+      "enable_protocol_repair_retry": false,
+      "verification_config": null,
+      "context_policy": null,
+      "prompt": "你是厂区的暖通专家，负责区域温度、预冷与错峰、舒适度。\n1. 收到事件单会诊时，先调用 plantkg_hvac_propose 得到提案（工具会落库并返回 proposal_id 与摘要），不要自己编温度、功率或省钱数。\n2. 区域与约束：车间恒温区 22±2 ℃；行政楼 24～26 ℃、07:00 起供冷；洁净车间 21～23 ℃ / 45±5 %RH 与数据机房 18～27 ℃ 是硬约束，\n   不能停机、不能断供、不能改设定温度。削峰只动非硬约束区域，先动行政楼，不要让室温越过上限。\n3. 动作只有三种：set_mode（normal / precool / off）、set_setpoint（setpoint_c）、ventilate（井道通风）。\n   off 是这段时间停供冷、温度会上浮；precool 是设定温度低 1 ℃、把冷量提前买进去；让出的冷量要在窗口之后补回来，所以错峰不是省电。\n4. 会诊的最终回答只能是一行 JSON，不加解释、不加代码块：\n   {\"status\":\"done|waiting|blocked|needs_clarification\",\"proposal_id\":\"<工具返回的 proposal_id>\",\"diagnosis\":\"<一句话诊断>\",\"evidence_refs\":[],\"question\":null}\n5. 任务不是以“事件单 … 第 N 轮会诊”开头时都算问答：不要调用 propose 工具（它只用于会诊，调了只会失败）；list_assets 最多调一次，不要换类型重试，它只列资料版本，没有运行简报和实时读数，用一两句中文回答，依据资料与工具结果；不知道就说不知道。\n",
+      "enabled": true,
+      "tools": [
+        {
+          "class_name": "plantkg_list_assets",
+          "name": "plantkg_list_assets",
+          "description": "列出当前 as_of 可见的资料版本（政策、手册等），不含运行简报和实时读数",
+          "description_zh": null,
+          "inputs": "{'asset_type': {'anyOf': [{'type': 'string'}, {'type': 'null'}], 'default': None, 'description': '按类型过滤', 'type': 'string'}, 'cursor': {'anyOf': [{'type': 'string'}, {'type': 'null'}], 'default': None, 'description': '分页游标；首次调用留空', 'type': 'string'}, 'page_size': {'anyOf': [{'maximum': 50.0, 'minimum': 1.0, 'type': 'integer'}, {'type': 'null'}], 'default': None, 'description': '每页条数，1～50', 'type': 'string'}, 'ctx': {'default': '', 'description': '由系统注入，不要填写', 'type': 'string'}}",
+          "output_type": "object",
+          "params": {},
+          "source": "mcp",
+          "usage": "plantkg",
+          "metadata": null,
+          "labels": null
+        },
+        {
+          "class_name": "KnowledgeBaseSearchTool",
+          "name": "knowledge_base_search",
+          "description": "Performs a local knowledge base search based on your query then returns the top search results. A tool for retrieving domain-specific knowledge, documents, and information stored in the local knowledge base. Use this tool when users ask questions related to specialized knowledge, technical documentation, domain expertise, personal notes, or any information that has been indexed in the knowledge base. Suitable for queries requiring access to stored knowledge that may not be publicly available.",
+          "description_zh": "执行本地知识库检索并返回最相关的结果。",
+          "inputs": "{\"query\": {\"type\": \"string\", \"description\": \"The search query to perform.\", \"description_zh\": \"要执行的搜索查询词\"}, \"index_names\": {\"type\": \"array\", \"description\": \"The list of index names to search\", \"description_zh\": \"要索引的知识库\", \"nullable\": true}}",
+          "output_type": "string",
+          "params": {
+            "top_k": 3,
+            "index_names": [],
+            "search_mode": "hybrid",
+            "rerank": false,
+            "rerank_model_name": ""
+          },
+          "source": "local",
+          "usage": null,
+          "metadata": {},
+          "labels": null
+        },
+        {
+          "class_name": "plantkg_hvac_propose",
+          "name": "plantkg_hvac_propose",
+          "description": "暖通专家：针对当前事件单确定性算出动作、代价、置信度与安全标记，提案落库后返回 proposal_id",
+          "description_zh": null,
+          "inputs": "{'focus': {'anyOf': [{'type': 'string'}, {'type': 'null'}], 'default': None, 'description': '本次关注的对象或问题（可留空）', 'type': 'string'}, 'ctx': {'default': '', 'description': '由系统注入，不要填写', 'type': 'string'}}",
+          "output_type": "object",
+          "params": {},
+          "source": "mcp",
+          "usage": "plantkg",
+          "metadata": null,
+          "labels": null
+        }
+      ],
+      "managed_agents": [],
+      "model_ids": [
+        4
+      ],
+      "model_names": [
+        "deepseek-v4.1-flash-1017"
+      ],
+      "business_logic_model_id": 4,
+      "business_logic_model_name": "deepseek-v4.1-flash-1017",
+      "skill_names": [
+        "domain-hvac"
+      ],
+      "model_params_override": {
+        "4": {
+          "extra_params": {}
+        }
+      },
+      "greeting_message": null,
+      "example_questions": null
+    }
+  },
+  "mcp_info": [
+    {
+      "mcp_server_name": "plantkg",
+      "mcp_url": "http://host.docker.internal:8700/mcp"
+    }
+  ]
+}

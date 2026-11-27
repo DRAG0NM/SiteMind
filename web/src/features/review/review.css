@@ -1,0 +1,40 @@
+/* B35 处置卡片：只补卡片内部排版，颜色与按钮沿用 theme.css 的 token。 */
+.rv { display: flex; flex-direction: column; gap: 10px; min-width: 0; }
+.rv-head { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; min-width: 0; }
+.rv-head b { font-size: 15px; line-height: 1.45; overflow-wrap: anywhere; }
+.rv-block { display: flex; flex-direction: column; gap: 6px; }
+.rv-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 5px; }
+.rv-list li {
+  position: relative; padding-left: 12px;
+  font-size: 14px; line-height: 1.55; color: var(--text-2); overflow-wrap: anywhere;
+}
+.rv-list li::before { content: ''; position: absolute; left: 0; top: 7px; width: 4px; height: 4px; border-radius: 50%; background: var(--agent); }
+.rv-form { display: flex; flex-direction: column; gap: 8px; min-width: 0; }
+.rv-row { display: flex; align-items: center; gap: 8px; min-width: 0; }
+.rv-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
+.rv-input {
+  flex: 1 1 180px; min-width: 0; height: 36px; padding: 0 10px;
+  border: 1px solid var(--line); border-radius: var(--r-btn);
+  background: #0e1318; color: var(--text); font: inherit; font-size: 14px; cursor: text;
+  transition: border-color var(--t-fast);
+}
+.rv-input::placeholder, .rv-area::placeholder { color: var(--text-3); }
+.rv-input:hover, .rv-area:hover { border-color: var(--line-hover); }
+.rv-area {
+  width: 100%; min-height: 64px; padding: 8px 10px;
+  border: 1px solid var(--line); border-radius: var(--r-btn);
+  background: #0e1318; color: var(--text); font: inherit; font-size: 14px; line-height: 1.55;
+  resize: vertical; cursor: text; transition: border-color var(--t-fast);
+}
+.rv-check { display: flex; align-items: flex-start; gap: 7px; font-size: 13px; line-height: 1.5; color: var(--text-2); }
+.rv-check input { margin: 2px 0 0; accent-color: var(--accent); }
+.rv-note { margin: 0; color: var(--text-3); font-size: 12px; line-height: 1.55; }
+.rv-question { margin: 0; font-size: 17px; line-height: 1.55; font-weight: 700; overflow-wrap: anywhere; }
+.rv-result {
+  margin: 0; padding: 8px 10px; border-left: 2px solid var(--agent);
+  background: var(--agent-wash); color: var(--text); font-size: 13px; line-height: 1.55; overflow-wrap: anywhere;
+}
+@media (max-height: 840px) {
+  .rv { gap: 8px; }
+  .rv-area { min-height: 52px; }
+}

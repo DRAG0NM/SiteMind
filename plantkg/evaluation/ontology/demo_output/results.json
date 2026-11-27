@@ -1,0 +1,314 @@
+{
+  "items": 16,
+  "entities": {
+    "tp": 12,
+    "fp": 4,
+    "fn": 4,
+    "precision": 0.75,
+    "recall": 0.75,
+    "f1": 0.75
+  },
+  "relations": {
+    "tp": 0,
+    "fp": 0,
+    "fn": 0,
+    "precision": 0.0,
+    "recall": 0.0,
+    "f1": 0.0
+  },
+  "review_curves": {
+    "random": [
+      {
+        "reviewed": 0,
+        "entity_f1": 0.75,
+        "relation_f1": 0.0
+      },
+      {
+        "reviewed": 1,
+        "entity_f1": 0.75,
+        "relation_f1": 0.0
+      },
+      {
+        "reviewed": 2,
+        "entity_f1": 0.75,
+        "relation_f1": 0.0
+      },
+      {
+        "reviewed": 3,
+        "entity_f1": 0.75,
+        "relation_f1": 0.0
+      },
+      {
+        "reviewed": 4,
+        "entity_f1": 0.75,
+        "relation_f1": 0.0
+      },
+      {
+        "reviewed": 5,
+        "entity_f1": 0.75,
+        "relation_f1": 0.0
+      },
+      {
+        "reviewed": 6,
+        "entity_f1": 0.75,
+        "relation_f1": 0.0
+      },
+      {
+        "reviewed": 7,
+        "entity_f1": 0.8125,
+        "relation_f1": 0.0
+      },
+      {
+        "reviewed": 8,
+        "entity_f1": 0.875,
+        "relation_f1": 0.0
+      },
+      {
+        "reviewed": 9,
+        "entity_f1": 0.875,
+        "relation_f1": 0.0
+      },
+      {
+        "reviewed": 10,
+        "entity_f1": 0.875,
+        "relation_f1": 0.0
+      },
+      {
+        "reviewed": 11,
+        "entity_f1": 0.875,
+        "relation_f1": 0.0
+      },
+      {
+        "reviewed": 12,
+        "entity_f1": 0.875,
+        "relation_f1": 0.0
+      },
+      {
+        "reviewed": 13,
+        "entity_f1": 0.9375,
+        "relation_f1": 0.0
+      },
+      {
+        "reviewed": 14,
+        "entity_f1": 0.9375,
+        "relation_f1": 0.0
+      },
+      {
+        "reviewed": 15,
+        "entity_f1": 1.0,
+        "relation_f1": 0.0
+      },
+      {
+        "reviewed": 16,
+        "entity_f1": 1.0,
+        "relation_f1": 0.0
+      }
+    ],
+    "uncertainty": [
+      {
+        "reviewed": 0,
+        "entity_f1": 0.75,
+        "relation_f1": 0.0
+      },
+      {
+        "reviewed": 1,
+        "entity_f1": 0.75,
+        "relation_f1": 0.0
+      },
+      {
+        "reviewed": 2,
+        "entity_f1": 0.75,
+        "relation_f1": 0.0
+      },
+      {
+        "reviewed": 3,
+        "entity_f1": 0.8125,
+        "relation_f1": 0.0
+      },
+      {
+        "reviewed": 4,
+        "entity_f1": 0.875,
+        "relation_f1": 0.0
+      },
+      {
+        "reviewed": 5,
+        "entity_f1": 0.875,
+        "relation_f1": 0.0
+      },
+      {
+        "reviewed": 6,
+        "entity_f1": 0.875,
+        "relation_f1": 0.0
+      },
+      {
+        "reviewed": 7,
+        "entity_f1": 0.875,
+        "relation_f1": 0.0
+      },
+      {
+        "reviewed": 8,
+        "entity_f1": 0.9375,
+        "relation_f1": 0.0
+      },
+      {
+        "reviewed": 9,
+        "entity_f1": 0.9375,
+        "relation_f1": 0.0
+      },
+      {
+        "reviewed": 10,
+        "entity_f1": 0.9375,
+        "relation_f1": 0.0
+      },
+      {
+        "reviewed": 11,
+        "entity_f1": 0.9375,
+        "relation_f1": 0.0
+      },
+      {
+        "reviewed": 12,
+        "entity_f1": 0.9375,
+        "relation_f1": 0.0
+      },
+      {
+        "reviewed": 13,
+        "entity_f1": 0.9375,
+        "relation_f1": 0.0
+      },
+      {
+        "reviewed": 14,
+        "entity_f1": 0.9375,
+        "relation_f1": 0.0
+      },
+      {
+        "reviewed": 15,
+        "entity_f1": 0.9375,
+        "relation_f1": 0.0
+      },
+      {
+        "reviewed": 16,
+        "entity_f1": 1.0,
+        "relation_f1": 0.0
+      }
+    ],
+    "uncertainty_x_impact": [
+      {
+        "reviewed": 0,
+        "entity_f1": 0.75,
+        "relation_f1": 0.0
+      },
+      {
+        "reviewed": 1,
+        "entity_f1": 0.75,
+        "relation_f1": 0.0
+      },
+      {
+        "reviewed": 2,
+        "entity_f1": 0.8125,
+        "relation_f1": 0.0
+      },
+      {
+        "reviewed": 3,
+        "entity_f1": 0.875,
+        "relation_f1": 0.0
+      },
+      {
+        "reviewed": 4,
+        "entity_f1": 0.875,
+        "relation_f1": 0.0
+      },
+      {
+        "reviewed": 5,
+        "entity_f1": 0.875,
+        "relation_f1": 0.0
+      },
+      {
+        "reviewed": 6,
+        "entity_f1": 0.875,
+        "relation_f1": 0.0
+      },
+      {
+        "reviewed": 7,
+        "entity_f1": 0.875,
+        "relation_f1": 0.0
+      },
+      {
+        "reviewed": 8,
+        "entity_f1": 0.875,
+        "relation_f1": 0.0
+      },
+      {
+        "reviewed": 9,
+        "entity_f1": 0.875,
+        "relation_f1": 0.0
+      },
+      {
+        "reviewed": 10,
+        "entity_f1": 0.9375,
+        "relation_f1": 0.0
+      },
+      {
+        "reviewed": 11,
+        "entity_f1": 0.9375,
+        "relation_f1": 0.0
+      },
+      {
+        "reviewed": 12,
+        "entity_f1": 0.9375,
+        "relation_f1": 0.0
+      },
+      {
+        "reviewed": 13,
+        "entity_f1": 0.9375,
+        "relation_f1": 0.0
+      },
+      {
+        "reviewed": 14,
+        "entity_f1": 0.9375,
+        "relation_f1": 0.0
+      },
+      {
+        "reviewed": 15,
+        "entity_f1": 0.9375,
+        "relation_f1": 0.0
+      },
+      {
+        "reviewed": 16,
+        "entity_f1": 1.0,
+        "relation_f1": 0.0
+      }
+    ]
+  },
+  "entities_by_label": {
+    "Equipment": {
+      "tp": 4,
+      "fp": 0,
+      "fn": 4,
+      "precision": 1.0,
+      "recall": 0.5,
+      "f1": 0.6666666666666666
+    },
+    "Sensor": {
+      "tp": 8,
+      "fp": 0,
+      "fn": 0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0
+    },
+    "Wrong": {
+      "tp": 0,
+      "fp": 4,
+      "fn": 0,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0
+    }
+  },
+  "relations_by_label": {},
+  "seed": 42,
+  "source": "fixtures/ontology/synthetic.json",
+  "source_sha256": "0f2116bc7f033de1a8a7b6278a5754e652964cd9a32e7f455f363ea36c84285a",
+  "data_kind": "synthetic",
+  "run_id": "synthetic-demo-v1"
+}

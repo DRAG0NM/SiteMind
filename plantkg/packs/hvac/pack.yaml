@@ -1,0 +1,10 @@
+name: hvac
+schema_version: 1
+order: 80
+# 领域包清单在 packs/ 下，实现在专家平面（plantkg/experts/hvac/）：领域包受边界检查约束只能依赖 plantkg.core，
+# 而暖通专家要读区域温度仿真器与世界状态，所以入口指到专家平面。装配时由注册表调用 install(registry, settings)。
+status: active
+description: 暖通领域包：区域温度一阶 RC 模型、预冷与推迟预冷、舒适区间与越界分钟代价，登记 MCP 工具 hvac_propose
+entrypoint: plantkg.experts.hvac.install:install
+provides:
+  tools: [hvac_propose]

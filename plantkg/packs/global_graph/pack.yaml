@@ -1,0 +1,8 @@
+name: global_graph
+schema_version: 1
+order: 50
+status: active
+description: 全局图谱（B25）：设备拓扑与介质网络、安全标记、优先级配置、应急预案，按 SPARQL 查 Oxigraph；配置见 configs/sites/factory/graph/
+entrypoint: plantkg.knowledge.graph.tools:register
+provides:
+  tools: [trace_impact, find_sources, safety_tags, priority_rules, playbooks]

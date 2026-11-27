@@ -1,0 +1,254 @@
+{
+  "$defs": {
+    "Job": {
+      "additionalProperties": false,
+      "description": "后台任务。不随 MCP 调用取消；get_job 服务端最多等 40 秒（09 D21）。",
+      "properties": {
+        "job_id": {
+          "maxLength": 200,
+          "minLength": 1,
+          "title": "Job Id",
+          "type": "string"
+        },
+        "kind": {
+          "$ref": "#/$defs/JobKind"
+        },
+        "idempotency_key": {
+          "maxLength": 200,
+          "minLength": 1,
+          "title": "Idempotency Key",
+          "type": "string"
+        },
+        "status": {
+          "$ref": "#/$defs/JobStatus"
+        },
+        "submitted_at": {
+          "format": "date-time",
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d{1,9})?(Z|[+-]00:?00)$",
+          "title": "Submitted At",
+          "type": "string"
+        },
+        "started_at": {
+          "anyOf": [
+            {
+              "format": "date-time",
+              "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d{1,9})?(Z|[+-]00:?00)$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Started At"
+        },
+        "finished_at": {
+          "anyOf": [
+            {
+              "format": "date-time",
+              "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d{1,9})?(Z|[+-]00:?00)$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Finished At"
+        },
+        "budget": {
+          "$ref": "#/$defs/JobBudget"
+        },
+        "progress": {
+          "anyOf": [
+            {
+              "maximum": 1,
+              "minimum": 0,
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Progress"
+        },
+        "result_ref": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Result Ref"
+        },
+        "error": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/ToolError"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "run_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Run Id"
+        },
+        "agent_run_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Agent Run Id"
+        }
+      },
+      "required": [
+        "job_id",
+        "kind",
+        "idempotency_key",
+        "status",
+        "submitted_at",
+        "budget"
+      ],
+      "title": "Job",
+      "type": "object"
+    },
+    "JobBudget": {
+      "additionalProperties": false,
+      "properties": {
+        "time_limit_s": {
+          "exclusiveMinimum": 0,
+          "title": "Time Limit S",
+          "type": "number"
+        },
+        "note": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Note"
+        }
+      },
+      "required": [
+        "time_limit_s"
+      ],
+      "title": "JobBudget",
+      "type": "object"
+    },
+    "JobKind": {
+      "enum": [
+        "run_day",
+        "run_week",
+        "backtest",
+        "counterfactual_score",
+        "knowledge_eval",
+        "ingest",
+        "onboarding_investigate"
+      ],
+      "title": "JobKind",
+      "type": "string"
+    },
+    "JobStatus": {
+      "enum": [
+        "pending",
+        "running",
+        "succeeded",
+        "failed",
+        "cancelled"
+      ],
+      "title": "JobStatus",
+      "type": "string"
+    },
+    "ToolError": {
+      "additionalProperties": false,
+      "properties": {
+        "code": {
+          "pattern": "^PLANTKG_E_[A-Z_]+$",
+          "title": "Code",
+          "type": "string"
+        },
+        "message": {
+          "title": "Message",
+          "type": "string"
+        },
+        "retryable": {
+          "default": false,
+          "title": "Retryable",
+          "type": "boolean"
+        },
+        "details": {
+          "additionalProperties": true,
+          "title": "Details",
+          "type": "object"
+        }
+      },
+      "required": [
+        "code",
+        "message"
+      ],
+      "title": "ToolError",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "description": "JobRunner 只读队列快照（#69）：按运行与状态过滤后的任务页，供值守巡检枚举任务。",
+  "properties": {
+    "jobs": {
+      "items": {
+        "$ref": "#/$defs/Job"
+      },
+      "title": "Jobs",
+      "type": "array"
+    },
+    "total": {
+      "minimum": 0,
+      "title": "Total",
+      "type": "integer"
+    },
+    "limit": {
+      "maximum": 200,
+      "minimum": 1,
+      "title": "Limit",
+      "type": "integer"
+    },
+    "offset": {
+      "minimum": 0,
+      "title": "Offset",
+      "type": "integer"
+    }
+  },
+  "required": [
+    "jobs",
+    "total",
+    "limit",
+    "offset"
+  ],
+  "title": "JobQueueSnapshot",
+  "type": "object",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "plantkg:contracts/1.2.0/JobQueueSnapshot"
+}

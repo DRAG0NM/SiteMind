@@ -1,0 +1,21 @@
+{
+  "model": "PlanResult",
+  "data": {
+    "solver_status": "infeasible",
+    "plan": null,
+    "solver": {
+      "name": "highs",
+      "version": "1.15.1",
+      "params": {
+        "time_limit": 20,
+        "mip_rel_gap": 0.001,
+        "threads": 1,
+        "random_seed": 0
+      }
+    },
+    "elapsed_s": 0.08,
+    "conflict_hints": [
+      "production.JOB1 窗口 [08:00,18:00) 放不下 12 小时工序"
+    ]
+  }
+}

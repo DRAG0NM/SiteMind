@@ -1,0 +1,27 @@
+{
+  "created_at": "2026-11-04T15:19:00+00:00",
+  "platform": "Nexent v2.8.2 本机 Docker（对话模型 deepseek-v4.1-flash-1017）",
+  "command": "python scripts/nexent_kb_demo.py --experts elevator,hvac",
+  "query": "从你的知识库里查一下电梯困人救援的规程条款，引用原文回答；一句话即可。",
+  "note": "同一句话分别问两位专家；两位专家的知识库互不可见。回答为真实平台运行结果，[[aN]] 是 Nexent 知识库引用标记。",
+  "runs": [
+    {
+      "agent": "plantkg_expert_elevator",
+      "agent_run_id": "ar-11375a084a2589ee",
+      "status": "finished",
+      "terminal_reason": "completed_from_deltas",
+      "latency_ms": 6227,
+      "answer": "《电梯安全技术规程》5.12.1 困人救援规定：“轿厢困人时，维保人员到场确认轿厢位置与载人情况后，按盘车规程救援；非持证人员不得盘车、松闸或移动轿厢。”[[a1]]",
+      "cites_own_library": true
+    },
+    {
+      "agent": "plantkg_expert_hvac",
+      "agent_run_id": "ar-a2eafe2e74e77454",
+      "status": "finished",
+      "terminal_reason": "completed_from_deltas",
+      "latency_ms": 5032,
+      "answer": "我的知识库里没有电梯困人救援规程的条款——该库（plantkg 知识库-暖通）仅收录了暖通空调设计参数[[a1]]、离心式冷水机组维护手册[[a2]]和维保记录[[a3]]，因此无法引用原文回答。",
+      "cites_own_library": false
+    }
+  ]
+}

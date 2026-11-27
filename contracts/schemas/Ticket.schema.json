@@ -1,0 +1,148 @@
+{
+  "$defs": {
+    "StatusChange": {
+      "additionalProperties": false,
+      "description": "一次状态迁移（#217-3）：只在状态变化时追加，不按分钟写。",
+      "properties": {
+        "status": {
+          "title": "Status",
+          "type": "string"
+        },
+        "at": {
+          "format": "date-time",
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d{1,9})?(Z|[+-]00:?00)$",
+          "title": "At",
+          "type": "string"
+        }
+      },
+      "required": [
+        "status",
+        "at"
+      ],
+      "title": "StatusChange",
+      "type": "object"
+    },
+    "TicketSubscription": {
+      "additionalProperties": false,
+      "properties": {
+        "entity_id": {
+          "maxLength": 200,
+          "minLength": 1,
+          "title": "Entity Id",
+          "type": "string"
+        },
+        "event_types": {
+          "items": {
+            "type": "string"
+          },
+          "minItems": 1,
+          "title": "Event Types",
+          "type": "array"
+        }
+      },
+      "required": [
+        "entity_id",
+        "event_types"
+      ],
+      "title": "TicketSubscription",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "ticket_id": {
+      "maxLength": 200,
+      "minLength": 1,
+      "title": "Ticket Id",
+      "type": "string"
+    },
+    "opened_at": {
+      "format": "date-time",
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d{1,9})?(Z|[+-]00:?00)$",
+      "title": "Opened At",
+      "type": "string"
+    },
+    "closed_at": {
+      "anyOf": [
+        {
+          "format": "date-time",
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d{1,9})?(Z|[+-]00:?00)$",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Closed At"
+    },
+    "status": {
+      "enum": [
+        "open",
+        "waiting",
+        "blocked",
+        "resolved",
+        "closed"
+      ],
+      "title": "Status",
+      "type": "string"
+    },
+    "rehearsal": {
+      "default": false,
+      "title": "Rehearsal",
+      "type": "boolean"
+    },
+    "round": {
+      "minimum": 0,
+      "title": "Round",
+      "type": "integer"
+    },
+    "event_ids": {
+      "default": [],
+      "items": {
+        "type": "string"
+      },
+      "title": "Event Ids",
+      "type": "array"
+    },
+    "experts": {
+      "default": [],
+      "items": {
+        "type": "string"
+      },
+      "title": "Experts",
+      "type": "array"
+    },
+    "subscriptions": {
+      "default": [],
+      "items": {
+        "$ref": "#/$defs/TicketSubscription"
+      },
+      "title": "Subscriptions",
+      "type": "array"
+    },
+    "summary": {
+      "default": "",
+      "title": "Summary",
+      "type": "string"
+    },
+    "status_history": {
+      "default": [],
+      "items": {
+        "$ref": "#/$defs/StatusChange"
+      },
+      "title": "Status History",
+      "type": "array"
+    }
+  },
+  "required": [
+    "ticket_id",
+    "opened_at",
+    "status",
+    "round"
+  ],
+  "title": "Ticket",
+  "type": "object",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "plantkg:contracts/1.2.0/Ticket"
+}

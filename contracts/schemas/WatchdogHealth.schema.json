@@ -1,0 +1,27 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "checked_at": {
+      "title": "Checked At",
+      "type": "string"
+    },
+    "health": {
+      "additionalProperties": {
+        "additionalProperties": {
+          "type": "string"
+        },
+        "type": "object"
+      },
+      "title": "Health",
+      "type": "object"
+    }
+  },
+  "required": [
+    "checked_at",
+    "health"
+  ],
+  "title": "WatchdogHealth",
+  "type": "object",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "plantkg:contracts/1.2.0/WatchdogHealth"
+}

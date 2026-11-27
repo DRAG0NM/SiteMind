@@ -1,0 +1,14 @@
+{
+  "model": "Entity",
+  "data": {
+    "entity_id": "entity://demo-electronics/battery/BESS1",
+    "entity_type": "battery",
+    "label": "储能 1#",
+    "aliases": [
+      "BESS-1",
+      "1号储能"
+    ],
+    "plant_id": "demo-electronics",
+    "ontology_class": "brick:Battery"
+  }
+}

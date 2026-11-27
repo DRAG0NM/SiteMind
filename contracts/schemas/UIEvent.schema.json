@@ -1,0 +1,136 @@
+{
+  "$defs": {
+    "NexentEventRef": {
+      "additionalProperties": false,
+      "description": "保留 Nexent 原事件引用（07 Q03）；字段只作提示，不作为工具调用事实。",
+      "properties": {
+        "type": {
+          "title": "Type",
+          "type": "string"
+        },
+        "index": {
+          "minimum": 0,
+          "title": "Index",
+          "type": "integer"
+        },
+        "conversation_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Conversation Id"
+        }
+      },
+      "required": [
+        "type",
+        "index"
+      ],
+      "title": "NexentEventRef",
+      "type": "object"
+    },
+    "UIEventType": {
+      "enum": [
+        "run_started",
+        "tool_started",
+        "tool_finished",
+        "evidence_added",
+        "job_progress",
+        "review_required",
+        "answer_delta",
+        "plan_ready",
+        "run_finished",
+        "run_failed",
+        "run_cancelled",
+        "keepalive"
+      ],
+      "title": "UIEventType",
+      "type": "string"
+    }
+  },
+  "additionalProperties": false,
+  "description": "网关合流后的统一事件（04 UIEvent）。",
+  "properties": {
+    "type": {
+      "$ref": "#/$defs/UIEventType"
+    },
+    "agent_run_id": {
+      "maxLength": 200,
+      "minLength": 1,
+      "title": "Agent Run Id",
+      "type": "string"
+    },
+    "trace_id": {
+      "maxLength": 200,
+      "minLength": 1,
+      "title": "Trace Id",
+      "type": "string"
+    },
+    "seq": {
+      "minimum": 0,
+      "title": "Seq",
+      "type": "integer"
+    },
+    "ts": {
+      "format": "date-time",
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d{1,9})?(Z|[+-]00:?00)$",
+      "title": "Ts",
+      "type": "string"
+    },
+    "call_id": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Call Id"
+    },
+    "payload": {
+      "additionalProperties": true,
+      "title": "Payload",
+      "type": "object"
+    },
+    "nexent_ref": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/NexentEventRef"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    },
+    "event_id": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Event Id"
+    }
+  },
+  "required": [
+    "type",
+    "agent_run_id",
+    "trace_id",
+    "seq",
+    "ts"
+  ],
+  "title": "UIEvent",
+  "type": "object",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "plantkg:contracts/1.2.0/UIEvent"
+}

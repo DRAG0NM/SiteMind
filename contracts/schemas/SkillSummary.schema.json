@@ -1,0 +1,87 @@
+{
+  "additionalProperties": false,
+  "description": "B43：候选 Skill 列表项（当前版本与发布状态）。",
+  "properties": {
+    "name": {
+      "maxLength": 200,
+      "minLength": 1,
+      "title": "Name",
+      "type": "string"
+    },
+    "latest_version": {
+      "minimum": 1,
+      "title": "Latest Version",
+      "type": "integer"
+    },
+    "candidate_id": {
+      "anyOf": [
+        {
+          "maxLength": 200,
+          "minLength": 1,
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Candidate Id"
+    },
+    "manifest_id": {
+      "anyOf": [
+        {
+          "maxLength": 200,
+          "minLength": 1,
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Manifest Id"
+    },
+    "status": {
+      "default": "published",
+      "enum": [
+        "candidate",
+        "active",
+        "published",
+        "rolled_back",
+        "overridden"
+      ],
+      "title": "Status",
+      "type": "string"
+    },
+    "published_at": {
+      "anyOf": [
+        {
+          "format": "date-time",
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d{1,9})?(Z|[+-]00:?00)$",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Published At"
+    },
+    "source_tickets": {
+      "default": [],
+      "items": {
+        "type": "string"
+      },
+      "title": "Source Tickets",
+      "type": "array"
+    }
+  },
+  "required": [
+    "name",
+    "latest_version"
+  ],
+  "title": "SkillSummary",
+  "type": "object",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "plantkg:contracts/1.2.0/SkillSummary"
+}
