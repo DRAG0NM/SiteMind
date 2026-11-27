@@ -21,7 +21,7 @@ import { KnowledgePage } from './pages/Knowledge'
 import { MainAgentPage } from './pages/MainAgent'
 import type { PageProps } from './pages/types'
 import type { TabKey } from './tabs'
-import { STAGE_SHARE, TOUR_FRAMES, TOUR_INTRO_MS, tourFrameAt, tourStart } from './tour'
+import { STAGE_SHARE, TOUR_FRAMES, TOUR_INTRO_HOLD_MS, TOUR_INTRO_MS, tourFrameAt, tourStart } from './tour'
 import '../shared/theme.css'
 import './showcase.css'
 
@@ -99,8 +99,9 @@ export function App({ initialDay }: { initialDay?: Day } = {}) {
     let elapsedMs = 0
     const id = window.setInterval(() => {
       elapsedMs += TICK_MS * speedRef.current
-      if (introPending && elapsedMs >= TOUR_INTRO_MS) {
+      if (introPending && elapsedMs >= TOUR_INTRO_HOLD_MS) {
         introPending = false
+        // 换页放到淡出开始的那一刻：封面还盖着屏幕，看不到硬切。
         setTab(frame.tab)
       }
       if (elapsedMs >= frame.durationMs) {
@@ -220,7 +221,7 @@ export function App({ initialDay }: { initialDay?: Day } = {}) {
       </div>
     )
   }
-  if (!loaded) return <div className="boot"><span className="spinner" />正在加载 day.json…</div>
+  if (!loaded) return <div className="boot"><span className="spinner" />正在准备演示场景…</div>
 
   const { day, source } = loaded
   const pageProps: PageProps = {
@@ -290,11 +291,20 @@ export function App({ initialDay }: { initialDay?: Day } = {}) {
           ) : null}
 
           {intro && activeFrame && (
-            <div className="tour-intro" aria-live="polite">
-              <div className="intro-caption">
-                <span className="intro-eyebrow">{activeFrame.title} · {activeFrame.hour}</span>
-                <b>{activeFrame.camera}</b>
-                <p>{activeFrame.stage}</p>
+            <div className="opening" aria-live="polite">
+              {/* 开屏用第二段的舞台态当封面：先看一个关键时刻，再从 07:30 开始完整回放 */}
+              <div className="opening-hero" aria-hidden="true">
+                <StageView
+                  day={day}
+                  cursor={tourFrameAt(day, TOUR_FRAMES[1])}
+                  frame={TOUR_FRAMES[1]}
+                  campusRef={campusRef}
+                  onSelect={() => {}}
+                />
+              </div>
+              <div className="opening-hint">
+                <span className="opening-eyebrow">自动演示 · {TOUR_FRAMES.length} 段 · 约 90 秒</span>
+                <span className="opening-copy">无需操作；点击任意处可接管，自己拖动时间轴看任意时刻</span>
               </div>
             </div>
           )}

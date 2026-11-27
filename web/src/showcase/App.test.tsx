@@ -73,7 +73,7 @@ it('读不到 day.json 时回退到内置样例，页头显示内置样例并标
   await act(async () => { root.render(<App />) })
   await settle()
 
-  expect(text('.source')).toContain('标准演示场景 · 含合成补全')
+  expect(text('.source')).toContain('演示场景 · 含合成补全')
   expect(text('.overview')).toContain('厂区数字孪生')
   expect(container.querySelectorAll('.knowledge-mark').length).toBeGreaterThanOrEqual(2)
 })
@@ -95,7 +95,7 @@ it('day.json 返回 404 时回退内置样例并保留样例标识', async () =>
   await act(async () => { root.render(<App />) })
   await settle()
 
-  expect(text('.source')).toContain('标准演示场景 · 含合成补全')
+  expect(text('.source')).toContain('演示场景 · 含合成补全')
   expect(text('.overview')).toContain('厂区数字孪生')
 })
 
@@ -289,7 +289,7 @@ it('后端没有这次运行、day.json 也读不到时回退内置样例，来�
   await act(async () => { root.render(<App />) })
   await settle()
 
-  expect(text('.source')).toContain('标准演示场景 · 含合成补全')
+  expect(text('.source')).toContain('演示场景 · 含合成补全')
   expect(text('.sourcenote')).toContain('后端没有这次运行')
   expect(text('.overview')).toContain('厂区数字孪生')
 })
