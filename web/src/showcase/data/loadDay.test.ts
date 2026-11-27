@@ -10,7 +10,7 @@ it('file:// 打开时直接读内置样例，不再请求 day.json', async () =>
   const loaded = await loadDay(fetcher as unknown as typeof fetch)
   expect(fetcher).not.toHaveBeenCalled()
   expect(loaded.source.kind).toBe('sample')
-  expect(loaded.source.label).toContain('标准演示场景')
+  expect(loaded.source.label).toContain('演示场景')
 })
 
 it('静态托管 SPA 回退把 index.html 当 day.json 返回时仍用内置样例', async () => {
@@ -19,7 +19,7 @@ it('静态托管 SPA 回退把 index.html 当 day.json 返回时仍用内置样�
   }))
   const loaded = await loadDay(fetcher as unknown as typeof fetch)
   expect(loaded.source.kind).toBe('sample')
-  expect(loaded.source.label).toContain('标准演示场景')
+  expect(loaded.source.label).toContain('演示场景')
 })
 
 it('day.json 返回 404 时仍回退内置样例', async () => {

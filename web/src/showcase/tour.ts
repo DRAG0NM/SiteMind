@@ -88,8 +88,12 @@ export const TOUR_FRAMES: readonly TourFrame[] = [
   },
 ]
 
-/** 开场由暗转亮的时长（毫秒，1×） */
-export const TOUR_INTRO_MS = 1100
+/** 开场封面停住让人读完三行字的时长（毫秒，1×） */
+export const TOUR_INTRO_HOLD_MS = 2400
+/** 封面淡出时长：换页发生在淡出开始时，被封面盖住，看不到硬切 */
+export const TOUR_INTRO_FADE_MS = 800
+/** 开场封面的总时长（毫秒，1×） */
+export const TOUR_INTRO_MS = TOUR_INTRO_HOLD_MS + TOUR_INTRO_FADE_MS
 /** 舞台态占一段的比例，剩下的时间回到普通页面 */
 export const STAGE_SHARE = 0.72
 /** 事件段把回放头再往前推一点，带上刚落下的裁决 */

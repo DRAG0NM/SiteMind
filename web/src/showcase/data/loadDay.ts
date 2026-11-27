@@ -6,7 +6,7 @@ import type { Day } from './types'
 
 export { DayDataError }
 
-export const SAMPLE_LABEL = '标准演示场景 · 含合成补全'
+export const SAMPLE_LABEL = '演示场景 · 含合成补全'
 
 export interface DaySource {
   kind: 'exported' | 'imported' | 'sample' | 'backend'

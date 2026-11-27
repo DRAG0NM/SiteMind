@@ -32,7 +32,18 @@ html, body, #root { height: 100%; }
 .tabs { display: flex; align-items: stretch; height: 100%; overflow-x: auto; scrollbar-width: none; margin-left: 6px; min-width: 0; }
 .tabs::-webkit-scrollbar { display: none; }
 .topright { margin-left: auto; display: flex; align-items: center; gap: 10px; min-width: 0; }
-.tourchip.on { border-color: var(--text); color: var(--text); }
+/* 自动巡演时：主题橙 + 呼吸点；自由探索保持原样，不显示这个点 */
+.tourchip.on { border-color: var(--accent); color: var(--accent); background: rgba(242, 145, 59, 0.10); }
+.tourdot {
+  width: 7px; height: 7px; border-radius: 50%; background: var(--accent); flex: none;
+  animation: tourdot 1.5s ease-in-out infinite;
+}
+@keyframes tourdot {
+  0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(242, 145, 59, 0.55); }
+  55% { opacity: 0.4; box-shadow: 0 0 0 5px rgba(242, 145, 59, 0); }
+}
+@media (prefers-reduced-motion: reduce) { .tourdot { animation: none; } }
+:root[data-motion='reduce'] .tourdot { animation: none; }
 .tourchip[data-tour='free'] { color: var(--text-2); }
 .tourtitle { font-size: 12px; color: var(--text-3); max-width: 160px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .source { max-width: 210px; overflow: hidden; text-overflow: ellipsis; display: inline-block; line-height: 26px; }
@@ -231,17 +242,24 @@ html, body, #root { height: 100%; }
 .playerhint { width: 92px; font-size: 12px; line-height: 1.4; color: var(--text-3); }
 .returnbtn { height: 30px; font-size: 13px; }
 
-/* ---------- 开场 ---------- */
-.tour-intro {
-  position: absolute; inset: 0; z-index: 30; display: flex; align-items: flex-end;
-  padding: 0 0 48px 32px; background: rgba(10, 13, 17, 0.92);
-  animation: intro-fade 1100ms ease-out forwards; pointer-events: none;
+/* ---------- 开场（开屏封面） ---------- */
+.opening {
+  position: fixed; inset: 0; z-index: 60; pointer-events: none;
+  /* 停 2.4s 看清这一幕，再淡出 0.8s 落到回放 */
+  animation: intro-fade 800ms ease-out 2400ms forwards;
+  background: radial-gradient(120% 90% at 50% 100%, rgba(10, 13, 17, 0.92) 0%, rgba(10, 13, 17, 0.35) 55%, rgba(10, 13, 17, 0.15) 100%);
 }
-.intro-caption { display: flex; flex-direction: column; gap: 6px; }
-.intro-eyebrow { color: var(--accent); font-size: 15px; font-weight: 700; }
-.intro-caption b { font-size: 30px; }
-.intro-caption p { margin: 0; color: var(--text-2); font-size: 15px; }
-@keyframes intro-fade { from { opacity: 1; } 70% { opacity: 0.72; } to { opacity: 0; } }
+.opening-hero { position: absolute; inset: 0; }
+.opening-hint {
+  position: absolute; right: 28px; bottom: 24px;
+  display: flex; flex-direction: column; align-items: flex-end; gap: 5px;
+  padding: 11px 16px; white-space: nowrap;
+  background: rgba(10, 13, 17, 0.84); border: 1px solid var(--line); border-radius: 10px;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.5);
+}
+.opening-eyebrow { color: var(--accent); font-size: 13px; font-weight: 700; }
+.opening-copy { color: var(--text-2); font-size: 13px; }
+@keyframes intro-fade { to { opacity: 0; } }
 
 /* ---------- 舞台态 ---------- */
 .stageview { position: absolute; inset: 0; overflow: hidden; background: var(--bg); }
@@ -555,8 +573,6 @@ aside.drawer { background: var(--panel); }
   .stageview-lanes { position: relative; left: auto; bottom: auto; width: auto; order: 3; }
   .stageview-right { position: relative; right: auto; top: auto; width: auto; order: 4; }
   .lane { grid-template-columns: 64px minmax(0, 1fr) 56px; }
-  .intro-caption b { font-size: 22px; }
-  .tour-intro { padding: 0 0 24px 16px; }
 }
 
 @media (max-width: 560px) {

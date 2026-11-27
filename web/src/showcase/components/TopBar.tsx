@@ -48,6 +48,7 @@ export function TopBar({ day, source, cursor, tab, tourIndex, onTab, onImport, i
       <div className="topright">
         <span className={'chip tourchip' + (tourIndex !== null ? ' on' : '')}
           aria-live="polite" data-tour={tourIndex !== null ? tourIndex + 1 : 'free'}>
+          {tourIndex !== null && <i className="tourdot" aria-hidden="true" />}
           {tourIndex !== null ? `自动巡演 ${tourIndex + 1} / ${TOUR_FRAMES.length}` : '自由探索'}
         </span>
 
